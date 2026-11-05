@@ -47,7 +47,7 @@
 | **Atajos** | Ejecuta tus atajos de macOS desde el notch, con favoritos. |
 | **Terminal** | Una terminal real bajo el notch (SwiftTerm) que sigue funcionando aunque cambies de pestaña o cierres el panel. |
 | **Acciones rápidas** | Mantén el Mac despierto, toma un color de cualquier parte, captura a la Bandeja, bloquea la pantalla o cambia a modo oscuro. |
-| **Actualizaciones** | Revisa GitHub una vez al día y te avisa en la isla cuando hay versión nueva. |
+| **Actualizaciones** | Actualizador integrado (Sparkle) con versiones firmadas. Revisa una vez al día y te avisa en la isla cuando hay versión nueva. |
 | **Actividades en vivo** | Música, cambio de canción, carga y batería baja, **AirPods y dispositivos Bluetooth con batería**, volumen y brillo, descargas con progreso, próximas reuniones, temporizadores y Bloq Mayús. |
 | **HUD del sistema** | Puede reemplazar el indicador de volumen y brillo por un control fino bajo el notch (⌥⇧ para pasos finos). |
 | **Gestos y teclas** | Pasa el puntero o desliza hacia abajo para abrir, hacia arriba para cerrar, ⌃⌥Espacio para abrir o cerrar, ⌃⌥V para el portapapeles, ⌘1…⌘9 para cambiar de pestaña. Todo es configurable. |
@@ -88,7 +88,7 @@ Pulsa ⌘R en Xcode 26 o posterior. Para generar un DMG:
 
 ## Privacidad
 
-Isla pide solo lo que una función necesita, cuando la activas: Calendario, Recordatorios, Cámara (Espejo), Ubicación (clima), Micrófono y voz (teleprompter), Bluetooth (actividades de dispositivos) y Accesibilidad (HUD del sistema y pegado automático). Funciona sin ninguno de ellos. El clima usa [Open-Meteo](https://open-meteo.com) con una ubicación aproximada las letras vienen de [LRCLIB](https://lrclib.net) y la búsqueda de actualizaciones solo consulta el número de la última versión en GitHub. Nada más sale de tu Mac.
+Isla pide solo lo que una función necesita, cuando la activas: Calendario, Recordatorios, Cámara (Espejo), Ubicación (clima), Micrófono y voz (teleprompter), Bluetooth (actividades de dispositivos) y Accesibilidad (HUD del sistema y pegado automático). Funciona sin ninguno de ellos. El clima usa [Open-Meteo](https://open-meteo.com) con una ubicación aproximada, las letras vienen de [LRCLIB](https://lrclib.net) y la búsqueda de actualizaciones descarga la lista de versiones de [isla.kyrosrd.com](https://isla.kyrosrd.com) (se puede apagar en Ajustes). Nada más sale de tu Mac.
 
 ## Contribuir
 

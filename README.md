@@ -50,7 +50,7 @@
 | **Live activities** | Music, track changes, charging and low battery, **AirPods and Bluetooth devices with battery**, volume and brightness, downloads with progress, upcoming meetings, timers and Caps Lock. |
 | **System HUD** | Optionally replaces the volume and brightness overlay with a slim slider under the notch (⌥⇧ for fine steps). |
 | **Gestures & keys** | Hover or swipe down to open, swipe up to close, ⌃⌥Space to toggle, ⌃⌥V for the clipboard, ⌘1…⌘9 to switch tabs. All shortcuts are configurable. |
-| **Updates** | Checks GitHub once a day and tells you on the island when a new version ships. |
+| **Updates** | Built-in updater (Sparkle) with signed releases. Checks once a day and tells you on the island when a new version ships. |
 | **Languages** | English and Spanish. |
 
 <p align="center">
@@ -98,7 +98,7 @@ Press ⌘R in Xcode 26 or later. To produce a DMG:
 
 - **The notch window** is a borderless, non-activating panel above the menu bar on each display. It ignores the mouse everywhere except over the notch silhouette, so it never steals clicks from the menu bar or the apps below.
 - **Now Playing** comes from a small bridge (`MediaBridge/`) loaded by the system's `/usr/bin/perl`, an Apple-signed interpreter that macOS lets read the Now Playing session. Isla falls back to AppleScript for Music and Spotify.
-- **Weather** uses [Open-Meteo](https://open-meteo.com) with a location rounded to about a kilometre. **Lyrics** come from [LRCLIB](https://lrclib.net). The **update check** asks the GitHub API for the latest release number. Nothing else leaves your Mac.
+- **Weather** uses [Open-Meteo](https://open-meteo.com) with a location rounded to about a kilometre. **Lyrics** come from [LRCLIB](https://lrclib.net). The **update check** downloads the release feed from [isla.kyrosrd.com](https://isla.kyrosrd.com) and can be turned off in Settings. Nothing else leaves your Mac.
 - **Terminal** is powered by [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) (MIT).
 
 ```
