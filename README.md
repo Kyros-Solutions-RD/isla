@@ -12,7 +12,6 @@
 
 <p align="center">
   <a href="https://github.com/Kyros-Solutions-RD/isla/releases/latest"><b>Download</b></a> ·
-  <a href="https://kyros-solutions-rd.github.io/isla/">Website</a> ·
   <a href="README.es.md">Leer en español</a> ·
   <a href="CONTRIBUTING.md">Contribute</a>
 </p>
@@ -35,8 +34,8 @@
 | | |
 | --- | --- |
 | **Nook** | A row of widgets you pick and order: Now Playing, Up Next, Weather, Focus, Battery & Devices, Shortcuts, Shelf and Quick Note. |
-| **Now Playing** | Follows any app in Control Center's Now Playing (Music, Spotify, Podcasts, browsers). Artwork, scrubber, controls, **synced lyrics** from LRCLIB, artwork-tinted glass and an animated equalizer. Swipe sideways on the notch to change tracks. |
-| **Shelf** | Drop files on the notch and drag them back out anywhere. **AirDrop**, Share, Quick convert to PNG, JPEG, HEIC, TIFF, PDF, merged PDF, MP4, M4A or ZIP. Text and images you drop become files. |
+| **Now Playing** | Follows any app in Control Center's Now Playing (Music, Spotify, Podcasts, browsers). Artwork, scrubber, controls, **synced lyrics** from LRCLIB (optionally shown right under the island), artwork-tinted glass and an animated equalizer. Swipe sideways on the notch to change tracks. |
+| **Shelf** | Drop files on the notch and drag them back out anywhere. **AirDrop**, Share, Quick Look (Space), convert to PNG, JPEG, HEIC, TIFF, PDF, merged PDF, MP4, M4A or ZIP. Text and images you drop become files. |
 | **Pocket** | Shake the pointer while dragging files and a glass Pocket appears right there to catch them. |
 | **Clipboard** | Searchable history with filters (text, links, images, files, colors), pinned items and one-click paste. Concealed items and password managers are never recorded. |
 | **Calendar** | Two-week strip and day agenda from every calendar on your Mac, one-click **Join** for Zoom, Meet, Teams, Webex and more, and quick event creation. |
@@ -46,9 +45,12 @@
 | **Mirror** | Check your camera before a call. |
 | **Teleprompter** | Read scripts right under the lens. Scrolls at your pace or **follows your voice** with on-device speech recognition. Mirror mode for beam-splitter rigs. |
 | **Shortcuts** | Run your macOS Shortcuts from the notch, with favorites. |
+| **Terminal** | A real shell under the notch (SwiftTerm) that keeps running while you switch tabs or close the panel. |
+| **Quick Actions** | Keep your Mac awake, pick a color from anywhere, capture a screenshot to the Shelf, lock the screen or toggle dark mode. |
 | **Live activities** | Music, track changes, charging and low battery, **AirPods and Bluetooth devices with battery**, volume and brightness, downloads with progress, upcoming meetings, timers and Caps Lock. |
 | **System HUD** | Optionally replaces the volume and brightness overlay with a slim slider under the notch (⌥⇧ for fine steps). |
 | **Gestures & keys** | Hover or swipe down to open, swipe up to close, ⌃⌥Space to toggle, ⌃⌥V for the clipboard, ⌘1…⌘9 to switch tabs. All shortcuts are configurable. |
+| **Updates** | Checks GitHub once a day and tells you on the island when a new version ships. |
 | **Languages** | English and Spanish. |
 
 <p align="center">
@@ -56,8 +58,12 @@
   <img src="website/assets/app/glass-calendar.jpg" width="49%" alt="The calendar tab with the week and today's agenda">
 </p>
 <p align="center">
+  <img src="website/assets/app/glass-terminal.jpg" width="49%" alt="A terminal inside the notch">
+  <img src="website/assets/app/classic-home.jpg" width="49%" alt="Classic black style">
+</p>
+<p align="center">
   <img src="website/assets/app/act-airpods.jpg" width="49%" alt="AirPods live activity around the notch">
-  <img src="website/assets/app/act-volume.jpg" width="49%" alt="Volume HUD under the notch">
+  <img src="website/assets/app/act-lyrics.jpg" width="49%" alt="Synced lyrics under the island">
 </p>
 
 ## Requirements
@@ -92,7 +98,8 @@ Press ⌘R in Xcode 26 or later. To produce a DMG:
 
 - **The notch window** is a borderless, non-activating panel above the menu bar on each display. It ignores the mouse everywhere except over the notch silhouette, so it never steals clicks from the menu bar or the apps below.
 - **Now Playing** comes from a small bridge (`MediaBridge/`) loaded by the system's `/usr/bin/perl`, an Apple-signed interpreter that macOS lets read the Now Playing session. Isla falls back to AppleScript for Music and Spotify.
-- **Weather** uses [Open-Meteo](https://open-meteo.com) with a location rounded to about a kilometre. **Lyrics** come from [LRCLIB](https://lrclib.net). Nothing else leaves your Mac.
+- **Weather** uses [Open-Meteo](https://open-meteo.com) with a location rounded to about a kilometre. **Lyrics** come from [LRCLIB](https://lrclib.net). The **update check** asks the GitHub API for the latest release number. Nothing else leaves your Mac.
+- **Terminal** is powered by [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) (MIT).
 
 ```
 Isla/
@@ -108,7 +115,8 @@ Isla/
 └── Resources/        Info.plist, entitlements, assets, string catalogs
 MediaBridge/          Now Playing bridge (Objective-C + loader script)
 website/              Static website (GitHub Pages)
-scripts/              Icon renderer and release packaging
+scripts/              Release packaging
+design/               App icon and alternatives
 ```
 
 ## Privacy

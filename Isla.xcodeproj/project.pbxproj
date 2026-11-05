@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0717A1E7FF0DF6FBB48D34BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58325A7C6FD4852C2916CE4A /* AppDelegate.swift */; };
 		0C6033BFA264F2728075D2B0 /* NotchWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F59239002015BBD598ED34 /* NotchWindowController.swift */; };
+		0F0F513CF8ED09C1B3A39F73 /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 2BB1369CC2621F293C3E5E04 /* SwiftTerm */; };
 		14BE4F2C66EDAD78B8E4527D /* NotchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720447E0AB3D54192434095F /* NotchViewModel.swift */; };
 		1B028DE26191316636484C7A /* TimerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1197973B81C52F361CD45375 /* TimerStore.swift */; };
 		1D6BD9CE1C6E9EAB5016F0F4 /* BatteryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8822FC65912659C0521E9C8E /* BatteryMonitor.swift */; };
@@ -18,6 +19,7 @@
 		29D95629D74AF506895FF636 /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6304914144CDD8B3E9300D76 /* HotKey.swift */; };
 		2BD8DF5506B1339D9997EBF2 /* BluetoothMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD53A7382C94DCCE38E835 /* BluetoothMonitor.swift */; };
 		2BDBDE4128771F2AF91D8E6E /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA932BBFA9C4B707D30A3828 /* SettingsWindowController.swift */; };
+		31286A061DB578EDE0707D76 /* IslaGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C3D61C86FE6E097326CBBF /* IslaGlyph.swift */; };
 		33B16CF9913DD6BD5C43524E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3982F24E5E37777009DBD26 /* Assets.xcassets */; };
 		369A0F3EA1E390D82553150A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468B1E0F65E67F9376ABC85 /* Preferences.swift */; };
 		3F28DDF75EB03340C668E722 /* PocketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD157950BAE555A192876A /* PocketController.swift */; };
@@ -40,6 +42,7 @@
 		861AE549122D47F41F64511A /* NowPlayingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62A29FA3A0D34F12DCB6A9B /* NowPlayingService.swift */; };
 		88E538965D3A310A3E360DC0 /* DemoActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03D16295A5C5DAF23B9CFD /* DemoActivities.swift */; };
 		8A0A7D26FF112060791E2654 /* NotchRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FFC968D9236DAE50339A1 /* NotchRootView.swift */; };
+		8F3AF5610F1E0B10F35F66D3 /* QuickActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B827D5178EB8EE6F7ABD997 /* QuickActions.swift */; };
 		90AA64BA7C72AABDACFBC7CD /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CB555423F68937E34AD83168 /* Localizable.xcstrings */; };
 		92CBBE607549704DAA5E11DD /* IslaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4873D4710C302D971AA4FF /* IslaApp.swift */; };
 		970B4807E87A6D257967218E /* SystemHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B258C2C10D9C4FACD5066E0 /* SystemHUD.swift */; };
@@ -53,7 +56,9 @@
 		C88881A18BEB86B3F549A13A /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBB83084AD72A197A2194BC /* CalendarView.swift */; };
 		C9ADF13847A573E92A49D10B /* ShortcutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27047AC72D12466497377828 /* ShortcutsView.swift */; };
 		D6789DF6AD7B775582F02AF9 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DCDE16C53B64269ABCECF8 /* Permissions.swift */; };
+		D6B8B33433171A40EC8B6614 /* NotchTerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A00452E1A0487E802C43360 /* NotchTerminalView.swift */; };
 		DE10D28710501290D4810D4E /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE708AB4D31A6907ADB585 /* CalendarService.swift */; };
+		E1F0CE99D491A9827FDBCC23 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC0B779F039523F5D7E6BEA /* UpdateChecker.swift */; };
 		E25353F95FDEA4CDCCEAA437 /* FocusSoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A199801A2486634539FAF73 /* FocusSoundPlayer.swift */; };
 		E34F66988EF41814BF56A55B /* DownloadsWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC98DC2FC3FC4252F953D2D0 /* DownloadsWatcher.swift */; };
 		EDC7D267E9825327545E6986 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16C95C024E5342F0AF8F2FC /* Utilities.swift */; };
@@ -101,9 +106,13 @@
 		5F8E92EC739C4B7DB391ADF3 /* LyricsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsService.swift; sourceTree = "<group>"; };
 		5FBE708AB4D31A6907ADB585 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
 		61F59239002015BBD598ED34 /* NotchWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchWindowController.swift; sourceTree = "<group>"; };
+		62C3D61C86FE6E097326CBBF /* IslaGlyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslaGlyph.swift; sourceTree = "<group>"; };
 		6304914144CDD8B3E9300D76 /* HotKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKey.swift; sourceTree = "<group>"; };
+		6A00452E1A0487E802C43360 /* NotchTerminalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchTerminalView.swift; sourceTree = "<group>"; };
+		6B827D5178EB8EE6F7ABD997 /* QuickActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActions.swift; sourceTree = "<group>"; };
 		720447E0AB3D54192434095F /* NotchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewModel.swift; sourceTree = "<group>"; };
 		7A65343EDD879F57CF85763C /* NotchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchManager.swift; sourceTree = "<group>"; };
+		7AC0B779F039523F5D7E6BEA /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
 		814373AEBFED59596A0F3FDB /* IslaMediaBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IslaMediaBridge.m; sourceTree = "<group>"; };
 		8336645A820152ECB3F233E8 /* MirrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorView.swift; sourceTree = "<group>"; };
 		8822FC65912659C0521E9C8E /* BatteryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryMonitor.swift; sourceTree = "<group>"; };
@@ -133,6 +142,17 @@
 		FF64B6B5D3186C5A6E30FFE3 /* Isla.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Isla.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFrameworksBuildPhase section */
+		FB7608AB5EECB87E44B62660 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F0F513CF8ED09C1B3A39F73 /* SwiftTerm in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
 		122618F0CC987A7CE675F313 /* Mirror */ = {
 			isa = PBXGroup;
@@ -150,6 +170,14 @@
 				BA932BBFA9C4B707D30A3828 /* SettingsWindowController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		1F3B8111835B893082D79E5F /* Terminal */ = {
+			isa = PBXGroup;
+			children = (
+				6A00452E1A0487E802C43360 /* NotchTerminalView.swift */,
+			);
+			path = Terminal;
 			sourceTree = "<group>";
 		};
 		2B21D2BEC9AF9A4EFF57A8D0 /* Home */ = {
@@ -211,10 +239,12 @@
 				933EB58136B4E484736FBC5A /* Media */,
 				122618F0CC987A7CE675F313 /* Mirror */,
 				E1B86D92BDE2F96F95DA868D /* Notes */,
+				6C3C72FDCD2B2C609B661595 /* QuickActions */,
 				DFEE42022069645F76BBEA16 /* Shelf */,
 				D3A8D217BBF8BB1D6E8BC721 /* Shortcuts */,
 				C306D9DCEA2AACFD48BEDC58 /* Tasks */,
 				6E3B4BE4B3B1E9A8816C3490 /* Teleprompter */,
+				1F3B8111835B893082D79E5F /* Terminal */,
 				A335F231FEE99600FDFEBD9E /* Timers */,
 				6ACD55C2930EEDE81F2B600F /* Weather */,
 			);
@@ -245,6 +275,14 @@
 			path = Weather;
 			sourceTree = "<group>";
 		};
+		6C3C72FDCD2B2C609B661595 /* QuickActions */ = {
+			isa = PBXGroup;
+			children = (
+				6B827D5178EB8EE6F7ABD997 /* QuickActions.swift */,
+			);
+			path = QuickActions;
+			sourceTree = "<group>";
+		};
 		6E3B4BE4B3B1E9A8816C3490 /* Teleprompter */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +306,8 @@
 			children = (
 				1054E8CAD28529BA4A7ACCA8 /* DesignSystem.swift */,
 				6304914144CDD8B3E9300D76 /* HotKey.swift */,
+				62C3D61C86FE6E097326CBBF /* IslaGlyph.swift */,
+				7AC0B779F039523F5D7E6BEA /* UpdateChecker.swift */,
 				D16C95C024E5342F0AF8F2FC /* Utilities.swift */,
 			);
 			path = Support;
@@ -398,6 +438,7 @@
 			buildPhases = (
 				B2A486D321F7AB23EA2F5F73 /* Sources */,
 				FF0AF4DE56DCAD6AA957FC8B /* Resources */,
+				FB7608AB5EECB87E44B62660 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -406,6 +447,7 @@
 			);
 			name = Isla;
 			packageProductDependencies = (
+				2BB1369CC2621F293C3E5E04 /* SwiftTerm */,
 			);
 			productName = Isla;
 			productReference = 5EC66251D799FEBF78D6C4AD /* Isla.app */;
@@ -457,6 +499,9 @@
 			);
 			mainGroup = 811FE0034965BC2BB0E624C4;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C097E410177768F6DFD177FB /* XCRemoteSwiftPackageReference "SwiftTerm" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 54E64242D869EA6E42B9C534 /* Products */;
 			projectDirPath = "";
@@ -511,6 +556,7 @@
 				C3454382C5C0F7A761B04CEB /* HomeView.swift in Sources */,
 				29D95629D74AF506895FF636 /* HotKey.swift in Sources */,
 				92CBBE607549704DAA5E11DD /* IslaApp.swift in Sources */,
+				31286A061DB578EDE0707D76 /* IslaGlyph.swift in Sources */,
 				612EB55C71F78761CB6AFB89 /* LiveActivity.swift in Sources */,
 				1DE3156A5F70899EED9C1D29 /* LiveActivityViews.swift in Sources */,
 				5D1AD21C2F3B1E1F513A41B4 /* LyricsService.swift in Sources */,
@@ -521,6 +567,7 @@
 				8A0A7D26FF112060791E2654 /* NotchRootView.swift in Sources */,
 				AF9156EE5389EAD82C71B5AC /* NotchShape.swift in Sources */,
 				795245BE985D83E868C96986 /* NotchTab.swift in Sources */,
+				D6B8B33433171A40EC8B6614 /* NotchTerminalView.swift in Sources */,
 				14BE4F2C66EDAD78B8E4527D /* NotchViewModel.swift in Sources */,
 				0C6033BFA264F2728075D2B0 /* NotchWindowController.swift in Sources */,
 				BEE6501369B8010342371E79 /* NotesStore.swift in Sources */,
@@ -530,6 +577,7 @@
 				D6789DF6AD7B775582F02AF9 /* Permissions.swift in Sources */,
 				3F28DDF75EB03340C668E722 /* PocketController.swift in Sources */,
 				369A0F3EA1E390D82553150A /* Preferences.swift in Sources */,
+				8F3AF5610F1E0B10F35F66D3 /* QuickActions.swift in Sources */,
 				6DB36C5CCD2166259E4CA425 /* SettingsView.swift in Sources */,
 				2BDBDE4128771F2AF91D8E6E /* SettingsWindowController.swift in Sources */,
 				7554B86421034E563BD74309 /* ShelfStore.swift in Sources */,
@@ -542,6 +590,7 @@
 				40B6BCDA8ECA7B21DA6F80AA /* TeleprompterView.swift in Sources */,
 				1B028DE26191316636484C7A /* TimerStore.swift in Sources */,
 				4121CB2F44D4E2A9E0CE08C2 /* TimersView.swift in Sources */,
+				E1F0CE99D491A9827FDBCC23 /* UpdateChecker.swift in Sources */,
 				EDC7D267E9825327545E6986 /* Utilities.swift in Sources */,
 				5737F94EE3A8628E8C1261CE /* WeatherService.swift in Sources */,
 			);
@@ -800,6 +849,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C097E410177768F6DFD177FB /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2BB1369CC2621F293C3E5E04 /* SwiftTerm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C097E410177768F6DFD177FB /* XCRemoteSwiftPackageReference "SwiftTerm" */;
+			productName = SwiftTerm;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8C13A8398C6C72E9F882755C /* Project object */;
 }

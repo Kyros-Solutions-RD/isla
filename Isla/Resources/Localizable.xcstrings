@@ -1,6 +1,16 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "%@ copied": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ copiado"
+          }
+        }
+      }
+    },
     "%@ — %@": {
       "localizations": {
         "es": {
@@ -177,6 +187,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "/ %lld hechas"
+          }
+        }
+      }
+    },
+    "A real shell under the notch that keeps running in the background.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una terminal real bajo el notch que sigue funcionando en segundo plano."
           }
         }
       }
@@ -451,6 +471,16 @@
         }
       }
     },
+    "Awake": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despierto"
+          }
+        }
+      }
+    },
     "Back": {
       "localizations": {
         "es": {
@@ -581,6 +611,26 @@
         }
       }
     },
+    "Capture": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Captura"
+          }
+        }
+      }
+    },
+    "Capture to Shelf": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capturar a la Bandeja"
+          }
+        }
+      }
+    },
     "Celsius (°C)": {
       "localizations": {
         "es": {
@@ -631,6 +681,26 @@
         }
       }
     },
+    "Check for Updates": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones"
+          }
+        }
+      }
+    },
+    "Check for updates automatically": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones automáticamente"
+          }
+        }
+      }
+    },
     "Check your camera before a call.": {
       "localizations": {
         "es": {
@@ -647,6 +717,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mírate antes de una llamada"
+          }
+        }
+      }
+    },
+    "Checking…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando…"
           }
         }
       }
@@ -707,6 +787,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Borrar historial"
+          }
+        }
+      }
+    },
+    "Clear Screen": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpiar"
           }
         }
       }
@@ -787,6 +877,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nublado"
+          }
+        }
+      }
+    },
+    "Color": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Color"
           }
         }
       }
@@ -911,6 +1011,16 @@
         }
       }
     },
+    "Couldn't reach GitHub. Try again later.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo conectar con GitHub. Inténtalo más tarde."
+          }
+        }
+      }
+    },
     "Create shortcuts in the Shortcuts app and run them from here.": {
       "localizations": {
         "es": {
@@ -932,6 +1042,16 @@
       }
     },
     "Dark": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oscuro"
+          }
+        }
+      }
+    },
+    "Dark Mode": {
       "localizations": {
         "es": {
           "stringUnit": {
@@ -997,6 +1117,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Listo"
+          }
+        }
+      }
+    },
+    "Download": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargar"
           }
         }
       }
@@ -1411,6 +1541,16 @@
         }
       }
     },
+    "Installed version": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versión instalada"
+          }
+        }
+      }
+    },
     "Instant": {
       "localizations": {
         "es": {
@@ -1427,6 +1567,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Isla"
+          }
+        }
+      }
+    },
+    "Isla %@ is available": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla %@ está disponible"
           }
         }
       }
@@ -1531,6 +1681,16 @@
         }
       }
     },
+    "Keep Mac Awake": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantener el Mac despierto"
+          }
+        }
+      }
+    },
     "Keep clipboard history": {
       "localizations": {
         "es": {
@@ -1557,6 +1717,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mantener abierto"
+          }
+        }
+      }
+    },
+    "Keeping your Mac awake": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu Mac se mantiene despierto"
+          }
+        }
+      }
+    },
+    "Keeping your Mac awake. Click to stop.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu Mac se mantiene despierto. Haz clic para detener."
           }
         }
       }
@@ -1677,6 +1857,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "La ubicación está desactivada para Isla."
+          }
+        }
+      }
+    },
+    "Lock": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloquear"
           }
         }
       }
@@ -1927,6 +2117,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nuevo guion"
+          }
+        }
+      }
+    },
+    "New Session": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva sesión"
           }
         }
       }
@@ -2331,6 +2531,16 @@
         }
       }
     },
+    "Open in Terminal": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en Terminal"
+          }
+        }
+      }
+    },
     "Open or close Isla": {
       "localizations": {
         "es": {
@@ -2447,6 +2657,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Permisos"
+          }
+        }
+      }
+    },
+    "Pick a Color": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tomar un color"
           }
         }
       }
@@ -2577,6 +2797,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Privacidad y permisos"
+          }
+        }
+      }
+    },
+    "Quick Actions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acciones rápidas"
+          }
+        }
+      }
+    },
+    "Quick Look": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vista rápida"
           }
         }
       }
@@ -2901,6 +3141,16 @@
         }
       }
     },
+    "Screenshot": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Captura"
+          }
+        }
+      }
+    },
     "Scripts": {
       "localizations": {
         "es": {
@@ -3091,6 +3341,16 @@
         }
       }
     },
+    "Show the lyric line under the island": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar la letra bajo la isla"
+          }
+        }
+      }
+    },
     "Show the notch on": {
       "localizations": {
         "es": {
@@ -3241,6 +3501,16 @@
         }
       }
     },
+    "Stop Keeping Awake": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dejar de mantener despierto"
+          }
+        }
+      }
+    },
     "Stopwatch": {
       "localizations": {
         "es": {
@@ -3267,6 +3537,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Estilo"
+          }
+        }
+      }
+    },
+    "SwiftTerm": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SwiftTerm"
           }
         }
       }
@@ -3367,6 +3647,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Teleprompter"
+          }
+        }
+      }
+    },
+    "Terminal": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminal"
+          }
+        }
+      }
+    },
+    "Terminal emulator (MIT)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emulador de terminal (MIT)"
           }
         }
       }
@@ -3591,6 +3891,36 @@
         }
       }
     },
+    "Update Available…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualización disponible…"
+          }
+        }
+      }
+    },
+    "Update available": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualización disponible"
+          }
+        }
+      }
+    },
+    "Updates": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualizaciones"
+          }
+        }
+      }
+    },
     "Use Local Tasks Instead": {
       "localizations": {
         "es": {
@@ -3751,6 +4081,16 @@
         }
       }
     },
+    "You're up to date": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tienes la última versión"
+          }
+        }
+      }
+    },
     "Your agenda for the week with one-click meeting links.": {
       "localizations": {
         "es": {
@@ -3827,6 +4167,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "—"
+          }
+        }
+      }
+    },
+    "⌥ types special characters. Esc goes to the shell.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⌥ escribe caracteres especiales. Esc va a la terminal."
           }
         }
       }

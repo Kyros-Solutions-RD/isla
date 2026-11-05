@@ -52,8 +52,14 @@ final class NotchViewModel {
         guard let activity = LiveActivityCenter.shared.presented?.kind else { return notchSize }
         let ears = activity.earWidths(notchHeight: notchSize.height)
         let earWidth = max(ears.left, ears.right)
-        return CGSize(width: notchSize.width + earWidth * 2,
-                      height: notchSize.height + activity.detailHeight)
+        return CGSize(width: notchSize.width + earWidth * 2 + (showsIslandLyrics ? 120 : 0),
+                      height: notchSize.height + activity.detailHeight + (showsIslandLyrics ? 26 : 0))
+    }
+
+    /// Synced lyrics under the island while music plays (opt-in).
+    var showsIslandLyrics: Bool {
+        LiveActivityCenter.shared.presented?.kind == .nowPlaying &&
+            Preferences.shared.lyricsOnIsland && LyricsService.shared.hasSyncedLyrics
     }
 
     var shapeSize: CGSize {
@@ -73,7 +79,7 @@ final class NotchViewModel {
         case .open:
             return (16, 34)
         case .peek, .closed:
-            let hasDetail = (LiveActivityCenter.shared.presented?.kind.detailHeight ?? 0) > 0
+            let hasDetail = (LiveActivityCenter.shared.presented?.kind.detailHeight ?? 0) > 0 || showsIslandLyrics
             let base: CGFloat = geometry.hasHardwareNotch ? 10 : 12
             return (6, hasDetail ? 20 : (phase == .peek ? base + 3 : base))
         }

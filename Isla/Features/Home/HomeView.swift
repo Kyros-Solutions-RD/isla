@@ -37,6 +37,7 @@ struct HomeView: View {
         case .shortcuts: ShortcutsCard()
         case .shelf: ShelfPreviewCard(model: model)
         case .note: QuickNoteCard()
+        case .actions: QuickActionsCard(model: model)
         }
     }
 }

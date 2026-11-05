@@ -195,6 +195,7 @@ private struct ShelfTile: View {
         }
         .contextMenu {
             Button("Open") { shelf.open(item) }
+            Button("Quick Look") { QuickLookController.shared.show([item.url]) }
             Button("Show in Finder") { shelf.reveal([item]) }
             Button("Copy") { shelf.copyToPasteboard([item]) }
             Button("AirDrop") { shelf.airDrop([item]) }

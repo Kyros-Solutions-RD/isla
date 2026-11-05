@@ -12,7 +12,6 @@
 
 <p align="center">
   <a href="https://github.com/Kyros-Solutions-RD/isla/releases/latest"><b>Descargar</b></a> ·
-  <a href="https://kyros-solutions-rd.github.io/isla/">Sitio web</a> ·
   <a href="README.md">Read in English</a> ·
   <a href="CONTRIBUTING.md">Contribuir</a>
 </p>
@@ -35,7 +34,7 @@
 | | |
 | --- | --- |
 | **Nook** | Una fila de widgets que eliges y ordenas: Reproduciendo, A continuación, Clima, Enfoque, Batería y dispositivos, Atajos, Bandeja y Nota rápida. |
-| **Música** | Sigue cualquier app de «Reproduciendo» del Centro de control (Música, Spotify, Podcasts, navegadores). Portada, barra para adelantar, controles, **letras sincronizadas** de LRCLIB, vidrio teñido con la portada y ecualizador animado. Desliza de lado sobre el notch para cambiar de canción. |
+| **Música** | Sigue cualquier app de «Reproduciendo» del Centro de control (Música, Spotify, Podcasts, navegadores). Portada, barra para adelantar, controles, **letras sincronizadas** de LRCLIB (también bajo la isla), vidrio teñido con la portada y ecualizador animado. Desliza de lado sobre el notch para cambiar de canción. |
 | **Bandeja** | Suelta archivos en el notch y arrástralos fuera donde quieras. **AirDrop**, Compartir y conversión a PNG, JPEG, HEIC, TIFF, PDF, PDF combinado, MP4, M4A o ZIP. El texto y las imágenes que sueltas se vuelven archivos. |
 | **Bolsillo** | Agita el puntero mientras arrastras archivos y aparece un Bolsillo de vidrio justo ahí para recibirlos. |
 | **Portapapeles** | Historial con búsqueda, filtros (texto, enlaces, imágenes, archivos, colores), elementos fijados y pegado con un clic. Nunca guarda lo marcado como oculto ni lo que viene de gestores de contraseñas. |
@@ -46,6 +45,9 @@
 | **Espejo** | Revisa tu cámara antes de una llamada. |
 | **Teleprompter** | Lee guiones justo bajo el lente. Avanza a tu ritmo o **sigue tu voz** con reconocimiento en el equipo. Modo espejo para teleprompters de cristal. |
 | **Atajos** | Ejecuta tus atajos de macOS desde el notch, con favoritos. |
+| **Terminal** | Una terminal real bajo el notch (SwiftTerm) que sigue funcionando aunque cambies de pestaña o cierres el panel. |
+| **Acciones rápidas** | Mantén el Mac despierto, toma un color de cualquier parte, captura a la Bandeja, bloquea la pantalla o cambia a modo oscuro. |
+| **Actualizaciones** | Revisa GitHub una vez al día y te avisa en la isla cuando hay versión nueva. |
 | **Actividades en vivo** | Música, cambio de canción, carga y batería baja, **AirPods y dispositivos Bluetooth con batería**, volumen y brillo, descargas con progreso, próximas reuniones, temporizadores y Bloq Mayús. |
 | **HUD del sistema** | Puede reemplazar el indicador de volumen y brillo por un control fino bajo el notch (⌥⇧ para pasos finos). |
 | **Gestos y teclas** | Pasa el puntero o desliza hacia abajo para abrir, hacia arriba para cerrar, ⌃⌥Espacio para abrir o cerrar, ⌃⌥V para el portapapeles, ⌘1…⌘9 para cambiar de pestaña. Todo es configurable. |
@@ -86,7 +88,7 @@ Pulsa ⌘R en Xcode 26 o posterior. Para generar un DMG:
 
 ## Privacidad
 
-Isla pide solo lo que una función necesita, cuando la activas: Calendario, Recordatorios, Cámara (Espejo), Ubicación (clima), Micrófono y voz (teleprompter), Bluetooth (actividades de dispositivos) y Accesibilidad (HUD del sistema y pegado automático). Funciona sin ninguno de ellos. El clima usa [Open-Meteo](https://open-meteo.com) con una ubicación aproximada y las letras vienen de [LRCLIB](https://lrclib.net). Nada más sale de tu Mac.
+Isla pide solo lo que una función necesita, cuando la activas: Calendario, Recordatorios, Cámara (Espejo), Ubicación (clima), Micrófono y voz (teleprompter), Bluetooth (actividades de dispositivos) y Accesibilidad (HUD del sistema y pegado automático). Funciona sin ninguno de ellos. El clima usa [Open-Meteo](https://open-meteo.com) con una ubicación aproximada las letras vienen de [LRCLIB](https://lrclib.net) y la búsqueda de actualizaciones solo consulta el número de la última versión en GitHub. Nada más sale de tu Mac.
 
 ## Contribuir
 

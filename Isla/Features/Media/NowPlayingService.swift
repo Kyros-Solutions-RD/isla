@@ -120,6 +120,9 @@ final class NowPlayingService {
     // MARK: State
 
     private func apply(bridgeState state: MediaRemoteBridge.State) {
+        #if DEBUG
+        if demoLocked { return }
+        #endif
         if state.title?.isEmpty == false { bridgeHasDelivered = true }
         if usingFallback, state.title != nil {
             usingFallback = false
@@ -184,7 +187,10 @@ final class NowPlayingService {
     }
 
     #if DEBUG
+    @ObservationIgnored private var demoLocked = false
+
     func applyDemo() {
+        demoLocked = true
         let art = DemoArt.album()
         usingFallback = true
         fallbackTimer?.invalidate()

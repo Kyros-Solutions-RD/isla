@@ -8,6 +8,7 @@
 //
 
 import AppKit
+import SwiftTerm
 import SwiftUI
 
 final class NotchPanel: NSPanel {
@@ -252,7 +253,11 @@ final class NotchWindowController {
     }
 
     private var isEditingText: Bool {
-        panel.isKeyWindow && panel.firstResponder is NSTextView
+        panel.isKeyWindow && (panel.firstResponder is NSTextView || panel.firstResponder is TerminalView)
+    }
+
+    private var isTerminalFocused: Bool {
+        panel.isKeyWindow && panel.firstResponder is TerminalView
     }
 
     // MARK: - Dragging files onto the notch
@@ -348,8 +353,12 @@ final class NotchWindowController {
 
     private func handleKey(_ event: NSEvent) -> Bool {
         guard event.window === panel else { return false }
-        if event.keyCode == 53 { // Escape
+        if event.keyCode == 53, !isTerminalFocused { // Escape
             close()
+            return true
+        }
+        if event.keyCode == 49, model.tab == .shelf, !isEditingText, event.modifierFlags.intersection(.deviceIndependentFlagsMask).isEmpty {
+            QuickLookController.shared.show(ShelfStore.shared.selectedItems.map(\.url))
             return true
         }
         let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)

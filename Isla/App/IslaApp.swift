@@ -16,8 +16,10 @@ struct IslaApp: App {
     @Bindable private var prefs = Preferences.shared
 
     var body: some Scene {
-        MenuBarExtra("Isla", systemImage: "capsule.portrait.inset.filled", isInserted: $prefs.showMenuBarIcon) {
+        MenuBarExtra(isInserted: $prefs.showMenuBarIcon) {
             MenuBarContent()
+        } label: {
+            Image(nsImage: IslaGlyph.menuBarImage)
         }
         .menuBarExtraStyle(.menu)
     }
@@ -38,6 +40,15 @@ private struct MenuBarContent: View {
             Text("\(info.title) — \(info.artist)")
             Button(media.isPlaying ? "Pause" : "Play") { media.togglePlayPause() }
             Button("Next Track") { media.next() }
+        }
+
+        Divider()
+        Button(QuickActions.shared.keepAwake ? "Stop Keeping Awake" : "Keep Mac Awake") { QuickActions.shared.toggleKeepAwake() }
+        Button("Pick a Color") { QuickActions.shared.pickColor() }
+        Button("Capture to Shelf") { QuickActions.shared.captureScreenshot() }
+        if UpdateChecker.shared.updateAvailable {
+            Divider()
+            Button("Update Available…") { UpdateChecker.shared.openReleasePage() }
         }
 
         Divider()

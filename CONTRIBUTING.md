@@ -14,7 +14,7 @@ Thanks for helping make Isla better. ¡Gracias por contribuir!
    open Isla.xcodeproj
    ```
 
-3. Run the **Isla** scheme. The project is defined in `project.yml`; edit that file rather than the generated `.xcodeproj`, then run `xcodegen generate` again.
+3. Run the **Isla** scheme. The first time, Xcode asks you to trust the SwiftTerm build plugin; choose **Trust & Enable**. On the command line pass `-skipPackagePluginValidation`. The project is defined in `project.yml`; edit that file rather than the generated `.xcodeproj`, then run `xcodegen generate` again.
 
 ## Handy tools in Debug builds
 

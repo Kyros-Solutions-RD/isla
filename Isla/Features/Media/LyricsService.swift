@@ -37,6 +37,15 @@ final class LyricsService {
         trackKey = nil
     }
 
+    #if DEBUG
+    func applyDemo() {
+        trackKey = NowPlayingService.shared.info?.trackKey
+        let words = ["La brisa del Malecón", "pinta de naranja el mar", "y la isla se despierta", "justo debajo de tu cámara",
+                     "suena la ciudad", "y el notch empieza a bailar"]
+        lines = words.enumerated().map { LyricLine(id: $0.offset, time: Double($0.offset) * 14 + 70, text: $0.element) }
+    }
+    #endif
+
     func line(at time: TimeInterval) -> LyricLine? {
         guard !lines.isEmpty else { return nil }
         var low = 0, high = lines.count - 1, match: LyricLine?

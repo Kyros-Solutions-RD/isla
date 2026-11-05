@@ -26,6 +26,8 @@ BUILD_ARGS=(
   -derivedDataPath "$BUILD_DIR"
   -destination "generic/platform=macOS"
   CODE_SIGN_IDENTITY="$SIGN_IDENTITY"
+  -skipPackagePluginValidation
+  -skipMacroValidation
   build
 )
 if command -v xcbeautify >/dev/null 2>&1; then

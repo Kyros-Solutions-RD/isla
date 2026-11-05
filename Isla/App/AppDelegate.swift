@@ -38,6 +38,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         WeatherService.shared.start()
         BluetoothMonitor.shared.start()
         MediaKeyTap.shared.update()
+        UpdateChecker.shared.start()
         if Preferences.shared.activityDownloads {
             DownloadsWatcher.shared.start()
         }
@@ -82,5 +83,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ notification: Notification) {
         NowPlayingService.shared.stop()
+        QuickActions.shared.stopKeepAwake()
     }
 }

@@ -195,6 +195,7 @@ struct TabContent: View {
             case .mirror: MirrorView(model: model)
             case .teleprompter: TeleprompterView(model: model)
             case .shortcuts: ShortcutsView(model: model)
+            case .terminal: NotchTerminalView(model: model)
             }
         }
         .id(model.tab)
@@ -294,6 +295,21 @@ struct HeaderActions: View {
 
     var body: some View {
         HStack(spacing: 4) {
+            if UpdateChecker.shared.updateAvailable {
+                Button { UpdateChecker.shared.openReleasePage() } label: {
+                    Image(systemName: "arrow.down.circle.fill").foregroundStyle(Color.accentColor)
+                }
+                .buttonStyle(NotchIconButtonStyle(size: 26))
+                .help(String(localized: "Update available"))
+            }
+            if QuickActions.shared.keepAwake {
+                Button { QuickActions.shared.stopKeepAwake() } label: {
+                    Image(systemName: "cup.and.saucer.fill").foregroundStyle(.orange)
+                }
+                .buttonStyle(NotchIconButtonStyle(size: 26))
+                .help(String(localized: "Keeping your Mac awake. Click to stop."))
+                .transition(.scale.combined(with: .opacity))
+            }
             if battery.hasBattery {
                 HStack(spacing: 4) {
                     Text("\(battery.level)%")

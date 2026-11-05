@@ -122,12 +122,12 @@ enum LiveActivityKind: Equatable {
         case .device(_, _, _, let battery): return (battery == nil ? 150 : 150, battery == nil ? 34 : 58)
         case .hud: return (square, square + 6)
         case .timer: return (square + 34, 70)
-        case .timerFinished: return (120, 70)
+        case .timerFinished: return (160, 76)
         case .download: return (130, 58)
         case .downloadFinished: return (150, 44)
         case .meeting: return (160, 74)
         case .capsLock: return (110, 34)
-        case .shelf: return (96, 40)
+        case .shelf: return (128, 40)
         case .message: return (140, 34)
         }
     }

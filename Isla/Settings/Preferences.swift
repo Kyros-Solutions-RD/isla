@@ -65,7 +65,7 @@ enum TemperatureUnit: String, CaseIterable, Identifiable, Codable {
 }
 
 enum HomeWidget: String, CaseIterable, Identifiable, Codable {
-    case media, calendar, weather, timer, battery, shortcuts, shelf, note
+    case media, calendar, weather, timer, battery, shortcuts, shelf, note, actions
 
     var id: String { rawValue }
 
@@ -79,6 +79,7 @@ enum HomeWidget: String, CaseIterable, Identifiable, Codable {
         case .shortcuts: "Shortcuts"
         case .shelf: "Shelf"
         case .note: "Quick Note"
+        case .actions: "Quick Actions"
         }
     }
 
@@ -92,6 +93,7 @@ enum HomeWidget: String, CaseIterable, Identifiable, Codable {
         case .shortcuts: "square.stack.3d.up.fill"
         case .shelf: "tray.full.fill"
         case .note: "note.text"
+        case .actions: "bolt.fill"
         }
     }
 
@@ -147,6 +149,8 @@ final class Preferences {
     // MARK: Media
     var lyricsEnabled: Bool { didSet { set(lyricsEnabled, "lyricsEnabled") } }
     var showVisualizer: Bool { didSet { set(showVisualizer, "showVisualizer") } }
+    var lyricsOnIsland: Bool { didSet { set(lyricsOnIsland, "lyricsOnIsland") } }
+    var checkForUpdates: Bool { didSet { set(checkForUpdates, "checkForUpdates") } }
 
     // MARK: Shelf
     var rememberShelf: Bool { didSet { set(rememberShelf, "rememberShelf") } }
@@ -233,6 +237,8 @@ final class Preferences {
 
         lyricsEnabled = bool("lyricsEnabled", true)
         showVisualizer = bool("showVisualizer", true)
+        lyricsOnIsland = bool("lyricsOnIsland", false)
+        checkForUpdates = bool("checkForUpdates", true)
 
         rememberShelf = bool("rememberShelf", true)
         pocketEnabled = bool("pocketEnabled", true)

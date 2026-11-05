@@ -32,6 +32,10 @@ struct ClosedActivityView: View {
                 detail
                     .frame(height: activity.kind.detailHeight)
                     .padding(.horizontal, 16)
+            } else if model.showsIslandLyrics, let info = NowPlayingService.shared.info {
+                IslandLyricLine(info: info)
+                    .frame(height: 26)
+                    .padding(.horizontal, 18)
             }
         }
         .foregroundStyle(.white)
@@ -444,6 +448,26 @@ struct TimerEarTrailing: View {
                 .monospacedDigit()
                 .foregroundStyle(primary?.tint ?? .orange)
                 .contentTransition(.numericText(countsDown: true))
+        }
+    }
+}
+
+/// The current lyric line, shown under the island while music plays.
+struct IslandLyricLine: View {
+    let info: NowPlayingInfo
+    private let lyrics = LyricsService.shared
+
+    var body: some View {
+        TimelineView(.periodic(from: .now, by: 0.25)) { context in
+            let line = lyrics.line(at: info.elapsed(at: context.date))
+            Text(line?.text.nonEmpty ?? "♪")
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(NowPlayingService.shared.accentColor ?? .white)
+                .lineLimit(1)
+                .frame(maxWidth: .infinity)
+                .padding(.bottom, 6)
+                .contentTransition(.opacity)
+                .animation(.smooth(duration: 0.3), value: line?.id)
         }
     }
 }

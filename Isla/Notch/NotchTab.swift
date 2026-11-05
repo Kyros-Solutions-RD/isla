@@ -16,10 +16,11 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
     case mirror
     case teleprompter
     case shortcuts
+    case terminal
 
     var id: String { rawValue }
 
-    static let defaultTabs: [NotchTab] = [.home, .shelf, .clipboard, .calendar, .tasks, .timers, .notes, .mirror]
+    static let defaultTabs: [NotchTab] = [.home, .shelf, .clipboard, .calendar, .tasks, .timers, .notes, .mirror, .terminal]
 
     var title: LocalizedStringKey {
         switch self {
@@ -33,6 +34,7 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
         case .mirror: "Mirror"
         case .teleprompter: "Teleprompter"
         case .shortcuts: "Shortcuts"
+        case .terminal: "Terminal"
         }
     }
 
@@ -48,6 +50,7 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
         case .mirror: String(localized: "Mirror")
         case .teleprompter: String(localized: "Teleprompter")
         case .shortcuts: String(localized: "Shortcuts")
+        case .terminal: String(localized: "Terminal")
         }
     }
 
@@ -63,6 +66,7 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
         case .mirror: "person.crop.square.fill"
         case .teleprompter: "text.alignleft"
         case .shortcuts: "square.stack.3d.up.fill"
+        case .terminal: "apple.terminal.fill"
         }
     }
 
@@ -78,6 +82,7 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
         case .mirror: "Check your camera before a call."
         case .teleprompter: "Read scripts right under your camera, at your pace or following your voice."
         case .shortcuts: "Run your favorite Shortcuts from the notch."
+        case .terminal: "A real shell under the notch that keeps running in the background."
         }
     }
 }

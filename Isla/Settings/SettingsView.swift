@@ -84,6 +84,8 @@ private struct GeneralPane: View {
                         }
                     }
                 Toggle("Show icon in the menu bar", isOn: $prefs.showMenuBarIcon)
+                Toggle("Check for updates automatically", isOn: $prefs.checkForUpdates)
+                    .onChange(of: prefs.checkForUpdates) { _, on in if on { UpdateChecker.shared.start() } }
             }
 
             Section("Displays") {
@@ -399,6 +401,8 @@ private struct MediaPane: View {
             Section {
                 Toggle("Synced lyrics", isOn: $prefs.lyricsEnabled)
                 Toggle("Animated equalizer", isOn: $prefs.showVisualizer)
+                Toggle("Show the lyric line under the island", isOn: $prefs.lyricsOnIsland)
+                    .disabled(!prefs.lyricsEnabled)
             } footer: {
                 Text("Lyrics come from LRCLIB, a free and open lyrics database. Only the song title, artist and album are sent.")
             }
@@ -737,10 +741,6 @@ private struct AboutPane: View {
                             Label("Source Code", systemImage: "chevron.left.forwardslash.chevron.right")
                         }
                         .buttonStyle(.glass)
-                        Link(destination: URL(string: "https://kyros-solutions-rd.github.io/isla/")!) {
-                            Label("Website", systemImage: "safari")
-                        }
-                        .buttonStyle(.glass)
                         Link(destination: URL(string: "https://github.com/Kyros-Solutions-RD/isla/issues/new")!) {
                             Label("Report an Issue", systemImage: "ladybug")
                         }
@@ -752,6 +752,28 @@ private struct AboutPane: View {
                 .padding(.vertical, 12)
             }
 
+            Section("Updates") {
+                let updates = UpdateChecker.shared
+                LabeledContent("Installed version", value: updates.currentVersion)
+                if updates.updateAvailable, let latest = updates.latestVersion {
+                    HStack {
+                        Label("Isla \(latest) is available", systemImage: "arrow.down.circle.fill")
+                            .foregroundStyle(Color.accentColor)
+                        Spacer()
+                        Button("Download") { updates.openReleasePage() }
+                            .buttonStyle(.glassProminent)
+                    }
+                } else if updates.isChecking {
+                    HStack { ProgressView().controlSize(.small); Text("Checking…").foregroundStyle(.secondary) }
+                } else if updates.failed {
+                    Text("Couldn't reach GitHub. Try again later.").foregroundStyle(.secondary)
+                } else if updates.lastChecked != nil {
+                    Label("You're up to date", systemImage: "checkmark.circle.fill").foregroundStyle(.green)
+                }
+                Button("Check for Updates") { Task { await updates.check(announce: false) } }
+                    .disabled(updates.isChecking)
+            }
+
             Section("Made by") {
                 LabeledContent("Kyros Solutions RD", value: String(localized: "Santo Domingo, Dominican Republic"))
                 LabeledContent("License", value: "MIT")
@@ -760,6 +782,7 @@ private struct AboutPane: View {
             Section("Thanks to") {
                 LabeledContent("LRCLIB", value: String(localized: "Synced lyrics"))
                 LabeledContent("Open-Meteo", value: String(localized: "Weather data"))
+                LabeledContent("SwiftTerm", value: String(localized: "Terminal emulator (MIT)"))
             }
         }
     }

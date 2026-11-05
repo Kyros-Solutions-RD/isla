@@ -1,267 +1,368 @@
-/* Isla website — language, hero reel, live notch demo, moments, entrances. */
+/* Isla website: language, live desktop demo, comparisons and motion. */
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canHover = window.matchMedia('(hover: hover)').matches;
 
-  /* ---------- Language ---------- */
+  /* ---------------- Language ---------------- */
 
   const en = {
     'skip': 'Skip to content',
-    'nav.features': 'Features', 'nav.try': 'Try it', 'nav.open': 'Open source', 'nav.faq': 'FAQ', 'nav.download': 'Download',
-    'hero.left': 'Your notch,', 'hero.right': 'now an island.',
-    'hero.lead': 'Music, files, calendar and live activities right under your camera. Native, in Liquid Glass, free and open source.',
-    'hero.cta': 'Download free for Mac', 'hero.note': 'macOS 26 Tahoe or later · with or without a notch',
-    'try.title': 'Point at the notch.',
-    'try.lead': 'This is the real Isla, captured on a MacBook Pro. Open the Nook, switch tabs or trigger a live activity.',
-    'try.openAria': 'Open the Nook',
-    'try.nook': 'Open the Nook', 'try.airpods': 'Connect AirPods', 'try.charging': 'Plug in the charger', 'try.volume': 'Turn up the volume',
-    'try.meeting': 'Meeting in 4 minutes', 'try.download': 'Download a file', 'try.track': 'Change the song', 'try.caps': 'Caps Lock',
-    'features.title': 'Everything you use, one gesture away.',
-    'f1.title': 'Music you can see', 'f1.text': 'Isla follows whatever plays in Music, Spotify, Podcasts or your browser. Artwork, controls, a scrubber and synced lyrics. Swipe sideways on the notch to change tracks.',
-    'f2.title': 'Drop, keep, send', 'f2.text': 'Drag files onto the notch and they wait on the Shelf until you drop them anywhere. AirDrop them or convert them to PNG, JPEG, HEIC, PDF, MP4 or ZIP. Far from the notch? Shake the pointer and a Pocket appears.',
-    'f3.title': 'Your week, without opening anything', 'f3.text': 'It reads the calendars already on your Mac (iCloud, Google, Exchange) and gives you a heads-up before every meeting with a button to join. Tasks sync with Reminders.',
-    'f4.title': 'Everything you copied', 'f4.text': 'Clipboard history with search, filters and pinned items. Click to paste. Anything copied from a password manager is never saved.',
-    'f5.title': 'Focus, and talk to camera', 'f5.text': 'Pomodoro, several timers at once, a stopwatch and brown noise generated on your Mac. Plus a teleprompter right under the lens that scrolls at your pace or follows your voice.',
-    'moments.intro': 'The notch tells you about', 'moments.track': 'the song that just started,', 'moments.charging': 'your Mac charging,',
-    'moments.airpods': 'your AirPods and their battery,', 'moments.volume': 'volume and brightness,', 'moments.download': 'your downloads,',
-    'moments.meeting': 'your next meeting', 'moments.caps': 'and even Caps Lock.',
-    'stages.title': 'Ready in a minute.',
-    'stages.a.time': '10 seconds', 'stages.b.time': 'One minute', 'stages.c.time': 'All day',
-    'stages.a.text': 'First, download the .dmg and drag Isla to Applications.',
-    'stages.b.text': 'Then the welcome tour lets you turn on only the permissions you want.',
-    'stages.c.text': 'After that, move the pointer to the notch or press ⌃⌥Space from any app.',
+    'nav.try': 'Try it', 'nav.features': 'Features', 'nav.free': 'Free', 'nav.open': 'Open source', 'nav.faq': 'FAQ', 'nav.download': 'Download',
+    'hero.news': 'New: Terminal, Quick Actions and lyrics under the island',
+    'hero.title1': 'Your notch, now', 'hero.title2': 'an island.',
+    'hero.sub': 'Music with lyrics, a Shelf with AirDrop, calendar, clipboard, terminal and live activities, right under your camera. Native, in Liquid Glass. Free and open source.',
+    'hero.cta': 'Download free', 'hero.try': 'Try it here',
+    'hero.meta': 'macOS 26 Tahoe or later · Apple silicon and Intel · With or without a notch',
+    'demo.title': 'Try it before you download it.',
+    'demo.lead': 'This is the real Isla, captured on a MacBook Pro. Point at the notch, switch tabs, drag a file or turn on a live activity.',
+    'demo.openAria': 'Open the Nook', 'demo.hint': 'Psst… it’s interactive. Drag a file to the notch.',
+    'mb.file': 'File', 'mb.edit': 'Edit',
+    'tab.home': 'Nook', 'tab.shelf': 'Shelf', 'tab.clipboard': 'Clipboard', 'tab.calendar': 'Calendar', 'tab.tasks': 'Tasks',
+    'tab.timers': 'Focus', 'tab.notes': 'Notes', 'tab.teleprompter': 'Teleprompter', 'tab.terminal': 'Terminal', 'tab.actions': 'Actions',
+    'style.classic': 'Classic',
+    'act.airpods': 'Connect AirPods', 'act.charging': 'Plug in the charger', 'act.volume': 'Turn up the volume', 'act.brightness': 'Dim the screen',
+    'act.meeting': 'Meeting in 4 min', 'act.download': 'Download a file', 'act.track': 'Change the song', 'act.lyrics': 'Lyrics under the island',
+    'act.timer': 'Pomodoro done', 'act.caps': 'Caps Lock',
+    'live.title': 'The island keeps you posted.',
+    'live.lead': 'Charging, AirPods with their battery, volume and brightness, downloads, meetings, timers and your song. They appear around the notch and leave on their own.',
+    'features.title1': 'More than 40 features.', 'features.title2': 'Zero price.',
+    'features.lead': 'Everything you’d expect from the best notch app, and a few things you wouldn’t.',
+    'b.music.t': 'Music you can see', 'b.music.p': 'Any app in Now Playing: Music, Spotify, Podcasts or your browser. Artwork, controls, synced lyrics and glass that takes on the album’s color.',
+    'b.shelf.t': 'Drop. Keep. Send.', 'b.shelf.p': 'Drag onto the notch and files wait on the Shelf. AirDrop, share and convert to PNG, JPEG, HEIC, PDF, MP4 or ZIP. Far from the notch? Shake the pointer and a Pocket appears.',
+    'b.clip.t': 'Everything you copied', 'b.clip.p': 'History with search, filters and pins. Never stores passwords.',
+    'b.cal.t': 'Your week at a glance', 'b.cal.p': 'iCloud, Google and Exchange, with a button to join Zoom, Meet or Teams.',
+    'b.term.t': 'A real terminal', 'b.term.p': 'Your shell under the notch. It keeps running even when you close the panel.',
+    'b.focus.t': 'Focus', 'b.focus.p': 'Pomodoro, timers, a stopwatch and brown noise generated on your Mac.',
+    'b.prompt.t': 'Talk to camera without losing your place', 'b.prompt.p': 'A teleprompter right under the lens that scrolls at your pace or follows your voice, recognized on your Mac.',
+    'b.actions.t': 'Quick Actions', 'b.actions.p': 'Keep your Mac awake, pick a color, capture to the Shelf, lock the screen or switch to dark mode.',
+    'm.tasks.t': 'Tasks', 'm.tasks.p': 'Synced with Reminders.', 'm.notes.t': 'Notes', 'm.notes.p': 'Quick, local, exportable to Notes.',
+    'm.mirror.t': 'Mirror', 'm.mirror.p': 'Check yourself before a call.', 'm.shortcuts.t': 'Shortcuts', 'm.shortcuts.p': 'Run your macOS Shortcuts.',
+    'm.weather.t': 'Weather', 'm.weather.p': 'Local, with highs and lows.', 'm.hud.t': 'Volume HUD', 'm.hud.p': 'Replaces the system overlay.',
+    'm.gestures.t': 'Gestures', 'm.gestures.p': 'Swipe to open or change songs.', 'm.screens.t': 'Every display', 'm.screens.p': 'Notched, notchless and external monitors.',
+    'm.keys.t': 'Keyboard', 'm.keys.p': '⌃⌥Space opens the island from any app.', 'm.lang.t': 'English and Spanish', 'm.lang.p': 'Fully translated.',
+    'm.privacy.t': 'Private', 'm.privacy.p': 'No accounts, no analytics.', 'm.updates.t': 'Always up to date', 'm.updates.p': 'Lets you know when a new version ships.',
+    'compare.title': 'Glass or black. Your call.',
+    'compare.lead': 'macOS Liquid Glass lets your wallpaper shine through the island. Classic black melts it into the camera. Slide to compare.',
     'native.title': 'Made the way Apple would.',
-    'native.text': 'Written in Swift and SwiftUI with macOS Liquid Glass, SF Symbols, haptic feedback and Settings that feel at home. Choose glass or classic black, the panel size, the tabs and the widgets. In English and Spanish.',
+    'native.lead': 'Swift and SwiftUI, the system Liquid Glass, SF Symbols, haptics and a Settings window that feels like System Settings. No Electron, no web views.',
+    'stats.native': 'native', 'stats.size': 'download', 'stats.trackers': 'trackers',
+    'free.title': 'Everything included. Free. Forever.',
+    'free.lead': 'No Pro tier, no 48-hour trial, no subscription and no limit on Macs.',
+    'free.note': 'Forever, on every Mac you own.', 'free.cta': 'Download Isla',
+    'free.l1': 'Liquid Glass or classic black', 'free.l2': 'Music with synced lyrics', 'free.l3': 'Shelf, AirDrop and Pocket', 'free.l4': 'On-device file conversion',
+    'free.l5': 'Clipboard history', 'free.l6': 'Calendar, tasks and notes', 'free.l7': 'Pomodoro and focus sounds', 'free.l8': 'A teleprompter that follows your voice',
+    'free.l9': 'A terminal inside the notch', 'free.l10': 'Every live activity', 'free.l11': 'Works on Macs without a notch', 'free.l12': 'Every update',
     'open.title': 'Open, like the sea.',
-    'open.text': 'Isla is free and open source under the MIT License. No accounts, no analytics, no subscriptions. Your notes, Shelf and clipboard stay on your Mac. Read the code, suggest improvements or build your own.',
+    'open.lead': 'Isla is free and open source under the MIT License. Read the code, suggest improvements or build your own.',
     'open.made': 'Designed and built by Kyros Solutions RD in Santo Domingo, on an island in the Caribbean. Hence the name.',
-    'open.cta': 'View on GitHub',
+    'open.cta': 'View on GitHub', 'open.contrib': 'How to contribute', 'code.c1': 'Build Isla in a minute',
+    'open.caption': 'Calle las Damas, in Santo Domingo’s Colonial Zone, a short walk from where Isla was born.',
     'faq.title': 'Questions, answered.',
     'faq.q1': 'Is Isla really free?', 'faq.a1': 'Yes. Every feature is free, forever, with no trial and no subscription. The code is on GitHub under the MIT License.',
-    'faq.q2': 'Which Mac do I need?', 'faq.a2': 'Any Mac running macOS 26 Tahoe or later. Isla uses the system Liquid Glass, which is why it requires Tahoe. It runs on Apple silicon and Intel Macs.',
+    'faq.q2': 'Which Mac do I need?', 'faq.a2': 'Any Mac running macOS 26 Tahoe or later, with Apple silicon or Intel. Isla uses the system Liquid Glass, which is why it requires Tahoe.',
     'faq.q3': 'What if my Mac has no notch?', 'faq.a3': 'Isla draws a matching island at the top of any display, external monitors included. You choose which displays show it.',
-    'faq.q4': 'Which music apps does it work with?', 'faq.a4': 'Any app that appears in Control Center’s Now Playing: Music, Spotify, Podcasts, YouTube in the browser and more. Lyrics come from LRCLIB, an open database.',
-    'faq.q5': 'What permissions does it ask for, and what happens to my data?', 'faq.a5': 'Only the ones you turn on: Calendar, Reminders, Camera for the Mirror, Location for weather, Microphone for the teleprompter and Accessibility to replace the volume overlay. Nothing leaves your Mac except the weather lookup, with an approximate location, and the lyrics search.',
-    'faq.q6': 'macOS says it can’t verify the app. What do I do?', 'faq.a6': 'Community builds are signed without a paid certificate. Right-click Isla, choose Open and confirm. Or build it yourself from source in a couple of minutes.',
-    'cta.line': 'Your notch awaits.', 'cta.button': 'Download',
-    'cta.note': 'Free, no accounts. Open the .dmg, drag Isla to Applications and move the pointer to the notch.',
-    'footer.line': 'Let’s build Isla together.', 'footer.cta': 'How to contribute', 'footer.issues': 'Report an issue', 'footer.releases': 'Releases',
-    'footer.org': 'Kyros Solutions RD', 'footer.license': 'MIT License',
-    'footer.trademark': 'Mac, macOS, AirPods and AirDrop are trademarks of Apple Inc. Isla is not affiliated with Apple.', 'footer.photos': 'Photos:',
+    'faq.q4': 'Which music apps does it work with?', 'faq.a4': 'Any app that shows up in Control Center’s Now Playing: Music, Spotify, Podcasts, YouTube in the browser and more. Lyrics come from LRCLIB, an open database.',
+    'faq.q5': 'What permissions does it ask for, and what happens to my data?', 'faq.a5': 'Only the ones you turn on: Calendar, Reminders, Camera for the Mirror, Location for weather, Microphone for the teleprompter and Accessibility for the volume overlay. Nothing leaves your Mac except the weather lookup with an approximate location, the lyrics search and the update check.',
+    'faq.q6': 'macOS says it can’t verify the app. What do I do?', 'faq.a6': 'Community builds are signed without a paid certificate. Right-click Isla, choose Open and confirm. Or build it yourself from source.',
+    'faq.q7': 'How do I hear about new versions?', 'faq.a7': 'Isla checks GitHub once a day and tells you right on the island. You can turn this off in Settings.',
+    'final.title': 'Your notch awaits.', 'final.lead': 'Open the .dmg, drag Isla to Applications and move the pointer to the notch.', 'final.cta': 'Download free',
+    'footer.tag': 'Your notch, now an island. Made in Santo Domingo.', 'footer.product': 'Product', 'footer.resources': 'Resources', 'footer.community': 'Community',
+    'footer.releases': 'Releases', 'footer.changelog': 'What’s new', 'footer.issues': 'Report an issue', 'footer.contribute': 'Contribute',
+    'footer.license': 'MIT License', 'footer.tm': 'Mac, macOS, AirPods and AirDrop are trademarks of Apple Inc. Isla is not affiliated with Apple.',
+    'footer.photos': 'Photos:', 'footer.bg': 'background of the captures',
   };
 
   const nodes = [...document.querySelectorAll('[data-i18n]')];
-  const spanish = new Map(nodes.map((node) => [node, node.textContent]));
+  const original = new Map(nodes.map((node) => [node, node.textContent]));
   const ariaNodes = [...document.querySelectorAll('[data-i18n-aria]')];
-  const spanishAria = new Map(ariaNodes.map((node) => [node, node.getAttribute('aria-label')]));
+  const originalAria = new Map(ariaNodes.map((node) => [node, node.getAttribute('aria-label')]));
   const toggle = document.querySelector('[data-lang-toggle]');
+  let lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('isla-lang') || 'es';
+  if (lang !== 'en') lang = 'es';
 
-  function applyLanguage(lang) {
+  function applyLanguage() {
     document.documentElement.lang = lang;
-    nodes.forEach((node) => {
-      const key = node.dataset.i18n;
-      node.textContent = lang === 'en' && en[key] ? en[key] : spanish.get(node);
-    });
-    ariaNodes.forEach((node) => {
-      const key = node.dataset.i18nAria;
-      node.setAttribute('aria-label', lang === 'en' && en[key] ? en[key] : spanishAria.get(node));
-    });
+    nodes.forEach((node) => { node.textContent = lang === 'en' && en[node.dataset.i18n] ? en[node.dataset.i18n] : original.get(node); });
+    ariaNodes.forEach((node) => node.setAttribute('aria-label', lang === 'en' && en[node.dataset.i18nAria] ? en[node.dataset.i18nAria] : originalAria.get(node)));
     if (toggle) {
       toggle.textContent = lang === 'en' ? 'ES' : 'EN';
-      toggle.setAttribute('aria-label', lang === 'en' ? 'Cambiar idioma a español' : 'Change language to English');
+      toggle.setAttribute('aria-label', lang === 'en' ? 'Cambiar a español' : 'Change language to English');
     }
     document.title = lang === 'en'
       ? 'Isla: your notch, now an island. Free and open source for macOS'
-      : 'Isla: tu notch es una isla. Gratis y de código abierto para macOS';
+      : 'Isla: tu notch, ahora es una isla. Gratis y de código abierto para macOS';
+    updateClock();
   }
 
-  const params = new URLSearchParams(location.search);
-  let language = params.get('lang') || localStorage.getItem('isla-lang') || 'es';
-  if (language !== 'en') language = 'es';
-  applyLanguage(language);
   toggle?.addEventListener('click', () => {
-    language = language === 'en' ? 'es' : 'en';
-    localStorage.setItem('isla-lang', language);
-    applyLanguage(language);
+    lang = lang === 'en' ? 'es' : 'en';
+    localStorage.setItem('isla-lang', lang);
+    applyLanguage();
   });
 
-  /* ---------- Hero reel: the frames pass through the sentence ---------- */
+  /* ---------------- Desktop demo ---------------- */
 
-  const hero = document.querySelector('.hero');
-  const track = document.querySelector('.reel-track');
-  const reel = document.querySelector('.reel');
-  const wide = window.matchMedia('(min-width: 961px)');
+  const desk = document.querySelector('[data-desk]');
+  const clock = document.querySelector('[data-clock]');
 
-  function updateReel() {
-    if (!hero || !track || !reel || reduceMotion || !wide.matches) return;
-    const frames = track.children;
-    if (!frames.length) return;
-    const frameHeight = frames[0].getBoundingClientRect().height;
-    const step = frameHeight + 24;
-    const total = hero.offsetHeight - window.innerHeight;
-    const progress = Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / Math.max(1, total)));
-    const position = progress * (frames.length - 1);
-    const center = reel.clientHeight / 2 - frameHeight / 2;
-    track.style.transform = `translate3d(0, ${center - position * step}px, 0)`;
+  function updateClock() {
+    if (!clock) return;
+    const now = new Date();
+    clock.textContent = new Intl.DateTimeFormat(lang === 'en' ? 'en-US' : 'es-DO', { weekday: 'short', hour: 'numeric', minute: '2-digit' }).format(now);
   }
 
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => { updateReel(); ticking = false; });
-  }, { passive: true });
-  window.addEventListener('resize', updateReel);
-  window.addEventListener('load', updateReel);
-  updateReel();
+  if (desk) {
+    const panel = desk.querySelector('[data-panel]');
+    const panelImg = desk.querySelector('[data-panel-img]');
+    const actLayer = desk.querySelector('[data-act-layer]');
+    const actImg = desk.querySelector('[data-act-img]');
+    const hint = desk.querySelector('[data-hint]');
+    const tabButtons = [...document.querySelectorAll('[data-tabs] [data-tab]')];
+    const styleButtons = [...document.querySelectorAll('[data-styles] [data-style]')];
+    const actButtons = [...document.querySelectorAll('[data-act]')];
 
-  /* ---------- Live notch demo ---------- */
-
-  const screen = document.querySelector('[data-screen]');
-  if (screen) {
-    const panel = screen.querySelector('[data-panel]');
-    const panelImg = screen.querySelector('[data-panel-img]');
-    const activityImg = screen.querySelector('[data-activity-img]');
-    const tabs = ['home', 'shelf', 'clipboard', 'calendar', 'tasks', 'timers'];
-    const more = ['notes', 'teleprompter'];
-    let moreIndex = 0;
-    let closeTimer;
-    let activityTimer;
-
-    const preload = (src) => { const image = new Image(); image.src = src; };
-    [...tabs, ...more].forEach((tab) => preload(`assets/app/glass-${tab}.jpg`));
-    ['airpods', 'charging', 'volume', 'meeting', 'download', 'track', 'caps', 'media'].forEach((name) => preload(`assets/app/act-${name}.jpg`));
-
-    const pressed = (button) => {
-      document.querySelectorAll('.try').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+    const tabs = ['home', 'shelf', 'clipboard', 'calendar', 'tasks', 'timers', 'notes', 'teleprompter', 'terminal', 'home-actions', 'dragging'];
+    const activities = {
+      media: { x: 436, w: 640, h: 80 }, airpods: {}, charging: {}, volume: {}, brightness: {}, meeting: {}, download: {}, caps: {}, timerdone: {}, shelf: {},
+      track: { h: 100 }, lyrics: { x: 376, w: 760, h: 100 },
     };
+    let style = 'glass';
+    let tab = 'home';
+    let pinned = false;
+    let closeTimer;
+    let actTimer;
 
-    function open(tab = 'home') {
+    const src = (name) => `assets/app/${style}-${name}.jpg`;
+    const preload = (url) => { const image = new Image(); image.src = url; };
+    let preloaded = false;
+    function preloadAll() {
+      if (preloaded) return;
+      preloaded = true;
+      ['glass', 'classic'].forEach((s) => tabs.forEach((t) => preload(`assets/app/${s}-${t}.jpg`)));
+      Object.keys(activities).forEach((a) => preload(`assets/app/act-${a}.jpg`));
+    }
+    new IntersectionObserver((entries, observer) => {
+      if (entries.some((entry) => entry.isIntersecting)) { preloadAll(); observer.disconnect(); }
+    }, { rootMargin: '600px' }).observe(desk);
+
+    function setPanelImage(name) {
+      const next = src(name);
+      if (panelImg.getAttribute('src') === next) return;
+      panelImg.classList.add('swap');
+      const image = new Image();
+      image.onload = () => { panelImg.src = next; requestAnimationFrame(() => panelImg.classList.remove('swap')); };
+      image.src = next;
+    }
+
+    function markTab(name) {
+      tabButtons.forEach((button) => button.classList.toggle('is-on', button.dataset.tab === name));
+    }
+
+    function open(name = tab, { pin = false } = {}) {
       clearTimeout(closeTimer);
-      endActivity();
-      panelImg.src = `assets/app/glass-${tab}.jpg`;
-      screen.dataset.state = 'open';
+      endActivity(true);
+      tab = name;
+      pinned = pinned || pin;
+      setPanelImage(name);
+      if (name !== 'dragging') markTab(name);
+      desk.dataset.state = 'open';
     }
 
     function close() {
-      screen.dataset.state = 'closed';
-      pressed(null);
+      pinned = false;
+      desk.dataset.state = 'closed';
+      showActivity('media', true);
     }
 
-    function endActivity() {
-      clearTimeout(activityTimer);
-      delete screen.dataset.activityOn;
+    function endActivity(silent) {
+      clearTimeout(actTimer);
+      if (silent) delete desk.dataset.actOn;
     }
 
     function showActivity(name, persistent = false) {
-      close();
-      const isTrack = name === 'track';
-      activityImg.src = `assets/app/act-${name}.jpg`;
-      activityImg.width = 1280;
-      activityImg.height = isTrack ? 200 : 160;
-      screen.dataset.activityOn = '';
-      clearTimeout(activityTimer);
+      const config = { x: 436, w: 640, h: 80, ...activities[name] };
+      const notchWidth = 185;
+      actLayer.style.left = `${(config.x / 1512) * 100}%`;
+      actLayer.style.width = `${(config.w / 1512) * 100}%`;
+      actLayer.style.setProperty('--ix', `${((config.w - notchWidth) / 2 / config.w) * 100}%`);
+      actLayer.style.setProperty('--iy', `${(1 - 32 / config.h) * 100}%`);
+      if (desk.dataset.state === 'open') desk.dataset.state = 'closed';
+      delete desk.dataset.actOn;
+      actImg.src = `assets/app/act-${name}.jpg`;
+      actImg.width = config.w * 2;
+      actImg.height = config.h * 2;
+      setTimeout(() => { desk.dataset.actOn = ''; }, 30);
+      clearTimeout(actTimer);
+      actButtons.forEach((button) => button.classList.toggle('is-on', !persistent && button.dataset.act === name));
       if (!persistent) {
-        activityTimer = setTimeout(() => showActivity('media', true), name === 'meeting' ? 5200 : 3200);
+        actTimer = setTimeout(() => {
+          actButtons.forEach((button) => button.classList.remove('is-on'));
+          showActivity('media', true);
+        }, name === 'meeting' || name === 'lyrics' ? 4200 : 3000);
       }
     }
 
-    // Music is playing in the captured session, so the island starts with it.
+    // The captured session is playing music, so the island starts with it.
     showActivity('media', true);
+    updateClock();
+    setInterval(updateClock, 20000);
 
-    screen.querySelector('[data-open]').addEventListener('click', () => open('home'));
-    screen.querySelector('.notch-hit').addEventListener('mouseenter', () => {
-      if (window.matchMedia('(hover: hover)').matches) open('home');
-    });
-    screen.querySelector('.activity').addEventListener('click', () => open('home'));
-    screen.addEventListener('mouseleave', () => {
-      if (screen.dataset.state !== 'open') return;
-      closeTimer = setTimeout(() => { close(); showActivity('media', true); }, 650);
-    });
-    screen.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+    const notchHit = desk.querySelector('[data-open]');
+    notchHit.addEventListener('click', () => (desk.dataset.state === 'open' ? close() : open('home')));
+    if (canHover) {
+      notchHit.addEventListener('mouseenter', () => { if (desk.dataset.state !== 'open') open('home'); });
+      desk.addEventListener('mouseleave', () => {
+        if (pinned || desk.dataset.state !== 'open' || dragging) return;
+        closeTimer = setTimeout(close, 650);
+      });
+      desk.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+    }
+    desk.querySelector('.desk-wall').addEventListener('click', () => { if (desk.dataset.state === 'open') close(); });
 
     panel.querySelectorAll('[data-tab]').forEach((button) => {
-      button.addEventListener('click', (event) => {
-        event.stopPropagation();
-        let tab = button.dataset.tab;
-        if (tab === 'more') { tab = more[moreIndex % more.length]; moreIndex += 1; }
-        panelImg.src = `assets/app/glass-${tab}.jpg`;
+      button.addEventListener('click', (event) => { event.stopPropagation(); open(button.dataset.tab, { pin: true }); });
+    });
+    tabButtons.forEach((button) => button.addEventListener('click', () => open(button.dataset.tab, { pin: true })));
+    styleButtons.forEach((button) => button.addEventListener('click', () => {
+      style = button.dataset.style;
+      desk.dataset.style = style;
+      styleButtons.forEach((b) => b.classList.toggle('is-on', b === button));
+      if (desk.dataset.state === 'open') { setPanelImage(tab); } else { open(tab, { pin: true }); }
+    }));
+    actButtons.forEach((button) => button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      pinned = false;
+      showActivity(button.dataset.act);
+    }));
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && desk.dataset.state === 'open') close(); });
+
+    /* Drag files onto the notch */
+    let dragging = null;
+    const files = [...desk.querySelectorAll('.file')];
+
+    function notchPoint() {
+      const canvas = desk.querySelector('.desk-canvas').getBoundingClientRect();
+      return { x: canvas.left + canvas.width / 2, y: canvas.top + canvas.width * 0.012, reach: canvas.width * 0.2 };
+    }
+
+    files.forEach((file) => {
+      file.addEventListener('dragstart', (event) => event.preventDefault());
+      file.addEventListener('pointerdown', (event) => {
+        if (event.button !== 0) return;
+        event.preventDefault();
+        file.setPointerCapture(event.pointerId);
+        const ghost = file.querySelector('.file-icon').cloneNode(true);
+        ghost.classList.add('file-ghost');
+        const rect = file.querySelector('.file-icon').getBoundingClientRect();
+        ghost.style.width = `${rect.width}px`;
+        ghost.style.height = `${rect.height}px`;
+        ghost.style.left = `${event.clientX}px`;
+        ghost.style.top = `${event.clientY}px`;
+        document.body.appendChild(ghost);
+        file.style.opacity = '0.35';
+        hint?.classList.add('is-hidden');
+        dragging = { file, ghost, near: false };
+        endActivity(true);
       });
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && screen.dataset.state === 'open') { close(); showActivity('media', true); }
-    });
-
-    document.querySelectorAll('.try').forEach((button) => {
-      button.addEventListener('click', () => {
-        pressed(button);
-        if (button.dataset.show) {
-          open(button.dataset.show);
-        } else {
-          showActivity(button.dataset.act);
-          setTimeout(() => button.setAttribute('aria-pressed', 'false'), 3200);
+      file.addEventListener('pointermove', (event) => {
+        if (!dragging || dragging.file !== file) return;
+        dragging.ghost.style.left = `${event.clientX}px`;
+        dragging.ghost.style.top = `${event.clientY}px`;
+        const target = notchPoint();
+        const near = Math.hypot(event.clientX - target.x, event.clientY - target.y) < target.reach;
+        if (near !== dragging.near) {
+          dragging.near = near;
+          if (near) { open('dragging'); } else { desk.dataset.state = 'closed'; }
         }
       });
+      const finish = () => {
+        if (!dragging || dragging.file !== file) return;
+        const { ghost, near } = dragging;
+        dragging = null;
+        ghost.remove();
+        file.style.opacity = '';
+        if (near) {
+          file.classList.add('is-gone');
+          open('shelf', { pin: true });
+          setTimeout(() => {
+            if (desk.dataset.state === 'open' && tab === 'shelf') { pinned = false; desk.dataset.state = 'closed'; showActivity('shelf'); }
+          }, 1800);
+          if (files.every((f) => f.classList.contains('is-gone'))) {
+            setTimeout(() => { files.forEach((f) => f.classList.remove('is-gone')); hint?.classList.remove('is-hidden'); }, 6000);
+          }
+        } else {
+          close();
+        }
+      };
+      file.addEventListener('pointerup', finish);
+      file.addEventListener('pointercancel', finish);
     });
   }
 
-  /* ---------- Moments: one live activity lit at a time ---------- */
+  /* ---------------- Before / after ---------------- */
 
-  const moments = [...document.querySelectorAll('[data-moment]')];
-  const momentImg = document.querySelector('[data-moment-img]');
-  if (moments.length && momentImg) {
-    let index = 0;
-    const light = () => {
-      moments.forEach((moment, i) => moment.classList.toggle('is-lit', i === index));
-      const name = moments[index].dataset.moment;
-      momentImg.style.opacity = '0.0';
-      setTimeout(() => {
-        momentImg.src = `assets/app/act-${name}.jpg`;
-        momentImg.width = 1280;
-        momentImg.height = name === 'track' ? 200 : 160;
-        momentImg.style.opacity = '1';
-      }, reduceMotion ? 0 : 180);
-      index = (index + 1) % moments.length;
-    };
-    light();
-    if (!reduceMotion) setInterval(light, 2200);
+  document.querySelectorAll('[data-ba]').forEach((ba) => {
+    const range = ba.querySelector('[data-ba-range]');
+    range.addEventListener('input', () => ba.style.setProperty('--pos', `${range.value}%`));
+  });
+
+  /* ---------------- Hero tilt & card glow ---------------- */
+
+  const icon = document.querySelector('[data-tilt]');
+  if (icon && canHover && !reduceMotion) {
+    window.addEventListener('pointermove', (event) => {
+      const x = event.clientX / window.innerWidth - 0.5;
+      const y = event.clientY / window.innerHeight - 0.5;
+      icon.style.transform = `perspective(800px) rotateY(${x * 16}deg) rotateX(${-y * 14}deg)`;
+    }, { passive: true });
   }
+  document.querySelectorAll('[data-glow]').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+      card.style.setProperty('--my', `${event.clientY - rect.top}px`);
+    });
+  });
 
-  /* ---------- Entrances ---------- */
+  /* ---------------- Marquee duplicate ---------------- */
 
-  const groups = [
-    ['.showcase', ['.head', '.section-lead', '.screen', '.try-actions']],
-    ['.features-intro', ['.head']],
-    ['.row', ['.row-title', '.row-text p', '.row-media']],
-    ['.moments', ['.moments-sentence', '.moments-figure']],
-    ['.stages', ['.head', '.bar-diagram', '.stage-notes']],
-    ['.native', ['.head', '.native-text p', '.native-shot']],
-    ['.open', ['.open-strip', '.head', '.open-text p', '.open-text .button', 'pre', '.open-photo']],
-    ['.faq', ['.head', 'details']],
-    ['.cta', ['.cta-line', '.cta-note']],
-    ['.footer', ['.footer-line', '.footer-invite .button', '.footer-links li']],
-  ];
+  const track = document.querySelector('.marquee-track');
+  if (track) track.append(...[...track.children].map((node) => node.cloneNode(true)));
+
+  /* ---------------- Reveal ---------------- */
 
   if (!reduceMotion && 'IntersectionObserver' in window) {
+    const groups = [
+      ['.section-head', ['.h2', '.lead']],
+      ['.demo', ['.desk', '.demo-controls', '.acts']],
+      ['.bento', ['.tile']],
+      ['.mini-grid', ['.mini']],
+      ['.compare', ['.ba']],
+      ['.native', ['.h2', '.lead', '.stats', '.shot-a', '.shot-b']],
+      ['.free', ['.price']],
+      ['.open', ['.open-photo', '.h2', '.lead', '.body', '.open-ctas', '.code', '.open-street']],
+      ['.faq-list', ['details']],
+      ['.final', ['.final-icon', '.h1', '.lead', '.btn']],
+    ];
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         entry.target.querySelectorAll('.reveal').forEach((node) => node.classList.add('in'));
         observer.unobserve(entry.target);
       });
-    }, { rootMargin: '0px 0px -12% 0px' });
-
-    groups.forEach(([sectionSelector, parts]) => {
-      document.querySelectorAll(sectionSelector).forEach((section) => {
+    }, { rootMargin: '0px 0px -10% 0px' });
+    groups.forEach(([selector, parts]) => {
+      document.querySelectorAll(selector).forEach((section) => {
         let i = 0;
-        parts.forEach((selector) => {
-          section.querySelectorAll(selector).forEach((node) => {
-            node.classList.add('reveal');
-            node.style.setProperty('--i', String(i++));
-          });
-        });
+        parts.forEach((part) => section.querySelectorAll(part).forEach((node) => {
+          if (node.classList.contains('reveal')) return;
+          node.classList.add('reveal');
+          node.style.setProperty('--i', String(i++ % 8));
+        }));
         observer.observe(section);
       });
     });
   }
+
+  applyLanguage();
 })();

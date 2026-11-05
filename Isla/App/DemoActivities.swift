@@ -25,7 +25,7 @@ enum DemoActivities {
         case "meeting": center.post(.meeting(title: "Design Review", start: .now.addingTimeInterval(240), url: nil), duration: 6)
         case "timer":
             TimerStore.shared.startTimer(minutes: 25, label: "Focus")
-        case "timerdone": center.post(.timerFinished(label: "Tea is ready"), duration: 6)
+        case "timerdone": center.post(.timerFinished(label: String(localized: "Focus done")), duration: 6)
         case "shelf": center.post(.shelf(count: 3), duration: 6)
         case "track": center.post(.trackChanged, duration: 6)
         case "data":
@@ -35,6 +35,26 @@ enum DemoActivities {
             ClipboardStore.shared.applyDemo()
             TasksStore.shared.applyDemo()
             ShelfStore.shared.applyDemo()
+        case "dragging":
+            if let main = NSScreen.screens.first, let controller = NotchManager.shared.controllers[main.displayID] {
+                controller.open(.shelf)
+                controller.model.isDraggingFiles = true
+            }
+        case "dragend":
+            NotchManager.shared.controllers.values.forEach { $0.model.isDraggingFiles = false }
+        case "style-classic": Preferences.shared.notchStyle = .classic
+        case "style-glass": Preferences.shared.notchStyle = .liquidGlass
+        case "lyrics":
+            LyricsService.shared.applyDemo()
+            Preferences.shared.lyricsOnIsland = true
+        case "lyrics-off": Preferences.shared.lyricsOnIsland = false
+        case "widgets-actions": Preferences.shared.homeWidgets = [.media, .actions, .calendar]
+        case "widgets-default": Preferences.shared.homeWidgets = [.media, .calendar, .weather]
+        case "terminal":
+            TerminalSession.shared.run("PROMPT='%F{cyan}isla%f %F{white}%~%f %# '; clear; print -P '%F{214}¡Hola desde la isla!%f'; sw_vers")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                NotchManager.shared.controllers.values.forEach { $0.panel.makeFirstResponder(nil) }
+            }
         case "clear":
             for timer in TimerStore.shared.timers { TimerStore.shared.remove(timer) }
             center.dismissTransient()

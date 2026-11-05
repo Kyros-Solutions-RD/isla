@@ -20,4 +20,5 @@ jobs:
       - name: Build
         run: |
           xcodebuild -project Isla.xcodeproj -scheme Isla -configuration Release \
-            -destination 'generic/platform=macOS' CODE_SIGN_IDENTITY=- build
+            -destination 'generic/platform=macOS' CODE_SIGN_IDENTITY=- \
+            -skipPackagePluginValidation -skipMacroValidation build
