@@ -45,3 +45,19 @@ Isla registers the `isla://` URL scheme:
 ## Reporting bugs
 
 Open an [issue](https://github.com/Kyros-Solutions-RD/isla/issues) with your macOS version, Mac model, whether the display has a notch, and the steps to reproduce.
+
+## Releasing (maintainers)
+
+Isla is published from a Mac to the project's cPanel server, with GitHub as the source of truth.
+
+1. Save the cPanel API token once in `~/.config/isla/cpanel.env` (see `scripts/cpanel.env.example`).
+2. First time only: `./scripts/setup-server.sh` creates `isla.kyrosrd.com`, requests SSL and connects cPanel Git to this repository.
+3. Add a `## x.y.z` section to `CHANGELOG.md`, commit, then run:
+
+   ```bash
+   ./scripts/release.sh x.y.z
+   ```
+
+   The script builds a universal DMG, signs it for Sparkle with the key stored in your login Keychain (`generate_keys --account isla`), adds it to `website/updates/appcast.xml`, tags and pushes to GitHub, creates the GitHub Release, uploads the DMG to `isla.kyrosrd.com/downloads` and redeploys the website. Installed copies of Isla pick the update up within a day.
+
+To publish only website changes: push to `main` and run `./scripts/deploy-site.sh`.

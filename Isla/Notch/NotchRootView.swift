@@ -295,8 +295,8 @@ struct HeaderActions: View {
 
     var body: some View {
         HStack(spacing: 4) {
-            if UpdateChecker.shared.updateAvailable {
-                Button { UpdateChecker.shared.openReleasePage() } label: {
+            if UpdateManager.shared.availableVersion != nil {
+                Button { UpdateManager.shared.checkForUpdates() } label: {
                     Image(systemName: "arrow.down.circle.fill").foregroundStyle(Color.accentColor)
                 }
                 .buttonStyle(NotchIconButtonStyle(size: 26))

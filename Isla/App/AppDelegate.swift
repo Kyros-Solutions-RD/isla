@@ -38,7 +38,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         WeatherService.shared.start()
         BluetoothMonitor.shared.start()
         MediaKeyTap.shared.update()
-        UpdateChecker.shared.start()
+        UpdateManager.shared.start()
         if Preferences.shared.activityDownloads {
             DownloadsWatcher.shared.start()
         }

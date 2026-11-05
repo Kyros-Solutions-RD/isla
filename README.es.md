@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Kyros-Solutions-RD/isla/releases/latest"><b>Descargar</b></a> ·
+  <a href="https://isla.kyrosrd.com/downloads/Isla.dmg"><b>Descargar</b></a> ·
   <a href="README.md">Read in English</a> ·
   <a href="CONTRIBUTING.md">Contribuir</a>
 </p>
@@ -65,7 +65,7 @@
 
 ## Instalación
 
-1. Descarga **Isla.dmg** desde la [última versión](https://github.com/Kyros-Solutions-RD/isla/releases/latest).
+1. Descarga **Isla.dmg** desde la [última versión](https://isla.kyrosrd.com/downloads/Isla.dmg).
 2. Ábrelo y arrastra **Isla** a **Aplicaciones**.
 3. Las versiones de la comunidad se firman sin certificado de pago. La primera vez, haz clic derecho en Isla, elige **Abrir** y confirma.
 4. El recorrido de bienvenida te deja activar solo los permisos que quieras.

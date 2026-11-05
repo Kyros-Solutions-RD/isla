@@ -1,0 +1,8 @@
+Options -Indexes
+AddType application/x-apple-diskimage .dmg
+<IfModule mod_headers.c>
+  <FilesMatch "\.dmg$">
+    Header set Content-Disposition "attachment"
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>

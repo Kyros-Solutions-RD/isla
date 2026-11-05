@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Kyros-Solutions-RD/isla/releases/latest"><b>Download</b></a> ·
+  <a href="https://isla.kyrosrd.com/downloads/Isla.dmg"><b>Download</b></a> ·
   <a href="README.es.md">Leer en español</a> ·
   <a href="CONTRIBUTING.md">Contribute</a>
 </p>
@@ -73,7 +73,7 @@
 
 ## Install
 
-1. Download **Isla.dmg** from the [latest release](https://github.com/Kyros-Solutions-RD/isla/releases/latest).
+1. Download **Isla.dmg** from the [latest release](https://isla.kyrosrd.com/downloads/Isla.dmg).
 2. Open it and drag **Isla** to **Applications**.
 3. Community builds are signed ad hoc. The first time, right-click Isla, choose **Open** and confirm.
 4. The welcome tour lets you turn on only the permissions you want.

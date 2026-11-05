@@ -68,6 +68,16 @@
 	<string>Isla uses your approximate location to show local weather.</string>
 	<key>NSDownloadsFolderUsageDescription</key>
 	<string>Isla shows a live activity while files download and lets you drop finished downloads on the Shelf.</string>
+	<key>SUFeedURL</key>
+	<string>$(ISLA_UPDATE_FEED_URL)</string>
+	<key>SUPublicEDKey</key>
+	<string>$(ISLA_SPARKLE_PUBLIC_KEY)</string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUScheduledCheckInterval</key>
+	<integer>86400</integer>
+	<key>SUAllowsAutomaticUpdates</key>
+	<true/>
 	<key>NSHighResolutionCapable</key>
 	<true/>
 	<key>NSSupportsAutomaticTermination</key>

@@ -85,7 +85,7 @@ private struct GeneralPane: View {
                     }
                 Toggle("Show icon in the menu bar", isOn: $prefs.showMenuBarIcon)
                 Toggle("Check for updates automatically", isOn: $prefs.checkForUpdates)
-                    .onChange(of: prefs.checkForUpdates) { _, on in if on { UpdateChecker.shared.start() } }
+                    .onChange(of: prefs.checkForUpdates) { _, on in UpdateManager.shared.automaticallyChecks = on }
             }
 
             Section("Displays") {
@@ -741,6 +741,10 @@ private struct AboutPane: View {
                             Label("Source Code", systemImage: "chevron.left.forwardslash.chevron.right")
                         }
                         .buttonStyle(.glass)
+                        Link(destination: URL(string: "https://isla.kyrosrd.com")!) {
+                            Label("Website", systemImage: "safari")
+                        }
+                        .buttonStyle(.glass)
                         Link(destination: URL(string: "https://github.com/Kyros-Solutions-RD/isla/issues/new")!) {
                             Label("Report an Issue", systemImage: "ladybug")
                         }
@@ -753,25 +757,20 @@ private struct AboutPane: View {
             }
 
             Section("Updates") {
-                let updates = UpdateChecker.shared
+                let updates = UpdateManager.shared
                 LabeledContent("Installed version", value: updates.currentVersion)
-                if updates.updateAvailable, let latest = updates.latestVersion {
-                    HStack {
-                        Label("Isla \(latest) is available", systemImage: "arrow.down.circle.fill")
-                            .foregroundStyle(Color.accentColor)
-                        Spacer()
-                        Button("Download") { updates.openReleasePage() }
-                            .buttonStyle(.glassProminent)
-                    }
-                } else if updates.isChecking {
-                    HStack { ProgressView().controlSize(.small); Text("Checking…").foregroundStyle(.secondary) }
-                } else if updates.failed {
-                    Text("Couldn't reach GitHub. Try again later.").foregroundStyle(.secondary)
-                } else if updates.lastChecked != nil {
-                    Label("You're up to date", systemImage: "checkmark.circle.fill").foregroundStyle(.green)
+                if let version = updates.availableVersion {
+                    Label("Isla \(version) is available", systemImage: "arrow.down.circle.fill")
+                        .foregroundStyle(Color.accentColor)
                 }
-                Button("Check for Updates") { Task { await updates.check(announce: false) } }
-                    .disabled(updates.isChecking)
+                if let last = updates.lastChecked {
+                    LabeledContent("Last checked", value: last.formatted(.relative(presentation: .named)))
+                }
+                Toggle("Download updates automatically", isOn: Binding {
+                    updates.automaticallyDownloads
+                } set: { updates.automaticallyDownloads = $0 })
+                Button("Check for Updates…") { updates.checkForUpdates() }
+                    .buttonStyle(.glassProminent)
             }
 
             Section("Made by") {
@@ -783,6 +782,7 @@ private struct AboutPane: View {
                 LabeledContent("LRCLIB", value: String(localized: "Synced lyrics"))
                 LabeledContent("Open-Meteo", value: String(localized: "Weather data"))
                 LabeledContent("SwiftTerm", value: String(localized: "Terminal emulator (MIT)"))
+                LabeledContent("Sparkle", value: String(localized: "Automatic updates (MIT)"))
             }
         }
     }

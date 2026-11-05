@@ -46,9 +46,9 @@ private struct MenuBarContent: View {
         Button(QuickActions.shared.keepAwake ? "Stop Keeping Awake" : "Keep Mac Awake") { QuickActions.shared.toggleKeepAwake() }
         Button("Pick a Color") { QuickActions.shared.pickColor() }
         Button("Capture to Shelf") { QuickActions.shared.captureScreenshot() }
-        if UpdateChecker.shared.updateAvailable {
-            Divider()
-            Button("Update Available…") { UpdateChecker.shared.openReleasePage() }
+        Divider()
+        Button(UpdateManager.shared.availableVersion == nil ? "Check for Updates…" : "Update Available…") {
+            UpdateManager.shared.checkForUpdates()
         }
 
         Divider()
