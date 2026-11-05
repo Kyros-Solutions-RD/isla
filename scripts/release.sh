@@ -9,7 +9,8 @@
 #
 # usage: ./scripts/release.sh 1.1.0
 #
-# Release notes come from the matching "## 1.1.0" section of CHANGELOG.md.
+# Release notes come from the matching "## 1.1.0" section of CHANGELOG.md (English) and
+# CHANGELOG.es.md (Spanish); both feed the website's changelog page, isla.kyrosrd.com/novedades/.
 #
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -33,9 +34,10 @@ sed -i '' "s/^    CURRENT_PROJECT_VERSION: \".*\"/    CURRENT_PROJECT_VERSION: \
 echo "› Isla ${VERSION} (build ${BUILD})"
 
 NOTES="$(mktemp -t isla-notes)"
-trap 'rm -f "${NOTES:?}"' EXIT
+trap 'rm -f "${NOTES:?}" "${NOTES:?}.gh"' EXIT
 awk -v v="$VERSION" '/^## /{p = index($0, v) > 0; next} p' CHANGELOG.md > "$NOTES"
 [ -s "$NOTES" ] || echo "- Improvements and fixes." > "$NOTES"
+grep -q "^## ${VERSION}" CHANGELOG.es.md 2>/dev/null || echo "  ! CHANGELOG.es.md has no ## ${VERSION} section; the Spanish changelog will show the English notes"
 
 ./scripts/build-dmg.sh
 DMG="dist/Isla-${VERSION}.dmg"
@@ -46,13 +48,16 @@ SIGNATURE="$(echo "$SIGNATURE_LINE" | sed -n 's/.*sparkle:edSignature="\([^"]*\)
 LENGTH="$(echo "$SIGNATURE_LINE" | sed -n 's/.*length="\([0-9]*\)".*/\1/p')"
 python3 -I scripts/lib/appcast.py website/updates/appcast.xml "$VERSION" "$BUILD" \
   "https://${ISLA_DOMAIN}/downloads/Isla-${VERSION}.dmg" "$SIGNATURE" "$LENGTH" "$NOTES"
+python3 -I scripts/lib/changelog_page.py
 
 # 3. GitHub: the release (with the DMG) exists before the appcast that points to it.
-git add project.yml Isla.xcodeproj website/updates/appcast.xml
+git add project.yml Isla.xcodeproj website/updates/appcast.xml website/novedades/index.html website/index.html
 git commit -q -m "Release ${VERSION}"
 git tag -a "v${VERSION}" -m "Isla ${VERSION}"
 git push -q origin "v${VERSION}"
-gh release create "v${VERSION}" "$DMG" "dist/Isla.dmg" --title "Isla ${VERSION}" --notes-file "$NOTES" --verify-tag
+# GitHub release notes need absolute image URLs; the images are served by the website.
+sed "s#](website/#](https://${ISLA_DOMAIN}/#g" "$NOTES" > "$NOTES.gh"
+gh release create "v${VERSION}" "$DMG" "dist/Isla.dmg" --title "Isla ${VERSION}" --notes-file "$NOTES.gh" --verify-tag
 git push -q origin main
 
 # 4. The server picks it up within ~10 minutes.

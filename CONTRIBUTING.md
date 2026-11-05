@@ -58,13 +58,13 @@ GitHub is the source of truth; the website and the Sparkle feed are served from 
 
 `scripts/server/sync.sh` pulls `main`, mirrors every DMG referenced by the appcast from GitHub Releases into `/downloads`, and then deploys `website/`. No API tokens are involved.
 
-**New version:** add a `## x.y.z` section to `CHANGELOG.md`, commit, then run:
+**New version:** add a `## x.y.z — YYYY-MM-DD` section to `CHANGELOG.md` and its Spanish twin to `CHANGELOG.es.md` (an image line such as `![Alt text](website/assets/app/shot.jpg)` is shown on the website and on GitHub, not in the update window), commit, then run:
 
 ```bash
 ./scripts/release.sh x.y.z
 ```
 
-It builds a universal DMG, signs it for Sparkle with the key in your login Keychain (`generate_keys --account isla`), adds it to `website/updates/appcast.xml`, tags, creates the GitHub Release with the DMG and pushes. Within about ten minutes the server mirrors the DMG and publishes the appcast; installed copies of Isla update within a day.
+It builds a universal DMG, signs it for Sparkle with the key in your login Keychain (`generate_keys --account isla`), adds it to `website/updates/appcast.xml`, regenerates the changelog page `website/novedades/` (`scripts/lib/changelog_page.py`), tags, creates the GitHub Release with the DMG and pushes. Within about ten minutes the server mirrors the DMG and publishes the appcast; installed copies of Isla update within a day.
 
 **Website only:** push to `main`; the server deploys it on its next run.
 

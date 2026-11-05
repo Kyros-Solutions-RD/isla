@@ -1,4 +1,4 @@
-/* Isla website: language, live desktop demo, comparisons and motion. */
+/* Isla website: language, the menu bar island, live desktop demo, comparisons and motion. */
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const canHover = window.matchMedia('(hover: hover)').matches;
@@ -7,8 +7,8 @@
 
   const en = {
     'skip': 'Skip to content',
-    'nav.try': 'Try it', 'nav.features': 'Features', 'nav.free': 'Free', 'nav.open': 'Open source', 'nav.faq': 'FAQ', 'nav.download': 'Download',
-    'hero.news': 'New: Terminal, Quick Actions and lyrics under the island',
+    'nav.try': 'Try it', 'nav.features': 'Features', 'nav.news': 'What’s new', 'nav.free': 'Free', 'nav.open': 'Open source', 'nav.faq': 'FAQ', 'nav.download': 'Download',
+    'island.label': 'What’s new',
     'hero.title1': 'Your notch, now', 'hero.title2': 'an island.',
     'hero.sub': 'Music with lyrics, a Shelf with AirDrop, calendar, clipboard, terminal and live activities, right under your camera. Native, in Liquid Glass. Free and open source.',
     'hero.cta': 'Download free', 'hero.try': 'Try it here',
@@ -64,12 +64,16 @@
     'faq.q4': 'Which music apps does it work with?', 'faq.a4': 'Any app that shows up in Control Center’s Now Playing: Music, Spotify, Podcasts, YouTube in the browser and more. Lyrics come from LRCLIB, an open database.',
     'faq.q5': 'What permissions does it ask for, and what happens to my data?', 'faq.a5': 'Only the ones you turn on: Calendar, Reminders, Camera for the Mirror, Location for weather, Microphone for the teleprompter and Accessibility for the volume overlay. Nothing leaves your Mac except the weather lookup with an approximate location, the lyrics search and the update check.',
     'faq.q6': 'macOS says it can’t verify the app. What do I do?', 'faq.a6': 'Community builds are signed without a paid Apple certificate. Open System Settings › Privacy & Security, scroll down, click “Open Anyway” and confirm. You only do this once. Or build it yourself from source.',
-    'faq.q7': 'How do I hear about new versions?', 'faq.a7': 'Isla checks GitHub once a day and tells you right on the island. You can turn this off in Settings.',
+    'faq.q7': 'How do I hear about new versions?', 'faq.a7': 'Isla checks for updates once a day and tells you right on the island; they install in one click. Everything that changes is in <a href="novedades/">What’s new</a>. You can turn the check off in Settings.',
     'final.title': 'Your notch awaits.', 'final.lead': 'Open the .dmg, drag Isla to Applications and move the pointer to the notch.', 'final.cta': 'Download free',
     'footer.tag': 'Your notch, now an island. Made in Santo Domingo.', 'footer.product': 'Product', 'footer.resources': 'Resources', 'footer.community': 'Community',
     'footer.releases': 'Releases', 'footer.changelog': 'What’s new', 'footer.issues': 'Report an issue', 'footer.contribute': 'Contribute',
     'footer.license': 'MIT License', 'footer.tm': 'Mac, macOS, AirPods and AirDrop are trademarks of Apple Inc. Isla is not affiliated with Apple.',
     'footer.photos': 'Photos:', 'footer.bg': 'background of the captures',
+    'log.title': 'What’s new',
+    'log.lead': 'Everything that changes in Isla, version by version. The app updates itself and lets you know on the island; here you can see what each version brings.',
+    'log.cta': 'Download Isla', 'log.feed': 'Subscribe via RSS', 'log.list': 'Every version',
+    'log.foot': 'Looking for something more technical? Every version is also on',
   };
 
   const nodes = [...document.querySelectorAll('[data-i18n]')];
@@ -80,18 +84,25 @@
   let lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('isla-lang') || 'es';
   if (lang !== 'en') lang = 'es';
 
+  const rich = new Set(nodes.filter((node) => node.children.length > 0 && !node.querySelector('[data-i18n]')));
+  rich.forEach((node) => original.set(node, node.innerHTML));
+
   function applyLanguage() {
     document.documentElement.lang = lang;
-    nodes.forEach((node) => { node.textContent = lang === 'en' && en[node.dataset.i18n] ? en[node.dataset.i18n] : original.get(node); });
+    nodes.forEach((node) => {
+      const value = lang === 'en' && en[node.dataset.i18n] ? en[node.dataset.i18n] : original.get(node);
+      if (rich.has(node)) { node.innerHTML = value; } else { node.textContent = value; }
+    });
     ariaNodes.forEach((node) => node.setAttribute('aria-label', lang === 'en' && en[node.dataset.i18nAria] ? en[node.dataset.i18nAria] : originalAria.get(node)));
     if (toggle) {
       toggle.textContent = lang === 'en' ? 'ES' : 'EN';
       toggle.setAttribute('aria-label', lang === 'en' ? 'Cambiar a español' : 'Change language to English');
     }
-    document.title = lang === 'en'
-      ? 'Isla: your notch, now an island. Free and open source for macOS'
-      : 'Isla: tu notch, ahora es una isla. Gratis y de código abierto para macOS';
+    const titles = document.documentElement.dataset;
+    document.title = lang === 'en' ? (titles.titleEn || document.title) : (titles.titleEs || document.title);
     updateClock();
+    updateBarClock();
+    document.dispatchEvent(new CustomEvent('isla:lang', { detail: lang }));
   }
 
   toggle?.addEventListener('click', () => {
@@ -99,6 +110,22 @@
     localStorage.setItem('isla-lang', lang);
     applyLanguage();
   });
+
+  /* ---------------- Menu bar: clock and island ---------------- */
+
+  const barClock = document.querySelector('[data-bar-clock]');
+  function updateBarClock() {
+    if (!barClock) return;
+    barClock.textContent = new Intl.DateTimeFormat(lang === 'en' ? 'en-US' : 'es-DO', { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }).format(new Date());
+  }
+  setInterval(updateBarClock, 20000);
+
+  // Like a live activity, the island opens once to announce the latest version, then rests.
+  const island = document.querySelector('[data-island]');
+  if (island && !reduceMotion) {
+    setTimeout(() => island.classList.add('is-open'), 1100);
+    setTimeout(() => island.classList.remove('is-open'), 6400);
+  }
 
   /* ---------------- Desktop demo ---------------- */
 
@@ -306,24 +333,6 @@
     range.addEventListener('input', () => ba.style.setProperty('--pos', `${range.value}%`));
   });
 
-  /* ---------------- Hero tilt & card glow ---------------- */
-
-  const icon = document.querySelector('[data-tilt]');
-  if (icon && canHover && !reduceMotion) {
-    window.addEventListener('pointermove', (event) => {
-      const x = event.clientX / window.innerWidth - 0.5;
-      const y = event.clientY / window.innerHeight - 0.5;
-      icon.style.transform = `perspective(800px) rotateY(${x * 16}deg) rotateX(${-y * 14}deg)`;
-    }, { passive: true });
-  }
-  document.querySelectorAll('[data-glow]').forEach((card) => {
-    card.addEventListener('pointermove', (event) => {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mx', `${event.clientX - rect.left}px`);
-      card.style.setProperty('--my', `${event.clientY - rect.top}px`);
-    });
-  });
-
   /* ---------------- Marquee duplicate ---------------- */
 
   const track = document.querySelector('.marquee-track');
@@ -343,6 +352,8 @@
       ['.open', ['.open-photo', '.h2', '.lead', '.body', '.open-ctas', '.code', '.open-street']],
       ['.faq-list', ['details']],
       ['.final', ['.final-icon', '.h1', '.lead', '.btn']],
+      ['.release', ['.release-version', '.release-date', '.release-badge', '.release-intro', '.release-shot', 'li', '.release-links']],
+      ['.log', ['.log-foot']],
     ];
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

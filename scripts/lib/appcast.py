@@ -12,7 +12,8 @@ appcast, version, build, url, signature, length, notes_path = sys.argv[1:8]
 
 notes = open(notes_path, encoding="utf-8").read().strip()
 items = [line[2:].strip() for line in notes.splitlines() if line.startswith("- ")]
-paragraphs = [line.strip() for line in notes.splitlines() if line.strip() and not line.startswith(("- ", "#"))]
+# Images ("![alt](path)") are for the website and GitHub; the update window shows text only.
+paragraphs = [line.strip() for line in notes.splitlines() if line.strip() and not line.startswith(("- ", "#", "!["))]
 body = "".join(f"<p>{html.escape(p)}</p>" for p in paragraphs)
 if items:
     body += "<ul>" + "".join(f"<li>{html.escape(item)}</li>" for item in items) + "</ul>"
@@ -23,6 +24,7 @@ item = f"""    <item>
       <sparkle:version>{html.escape(build)}</sparkle:version>
       <sparkle:shortVersionString>{html.escape(version)}</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
       <description><![CDATA[{body}]]></description>
       <enclosure url="{html.escape(url)}" sparkle:edSignature="{html.escape(signature)}" length="{html.escape(length)}" type="application/octet-stream"/>
     </item>

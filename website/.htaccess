@@ -5,6 +5,7 @@ DirectoryIndex index.html
   RewriteEngine On
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  RewriteRule ^(changelog|whats-new)/?$ /novedades/ [L,R=301]
 </IfModule>
 
 AddType application/rss+xml .xml
