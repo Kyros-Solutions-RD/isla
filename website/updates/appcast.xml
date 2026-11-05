@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.1</title>
+      <pubDate>Thu, 05 Nov 2026 22:52:05 GMT</pubDate>
+      <sparkle:version>9</sparkle:version>
+      <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>The AI tab shows the model each session uses, when it started and how long it has been working or waiting.</li><li>Codex sessions now show whether a turn is running, what Codex is doing (the command it runs or the file it edits) and how much of its 5-hour usage limit is used.</li><li>Local models list the running servers under the title, and the context size moved to the tooltip, so nothing gets cut.</li><li>Folder names stay readable: when space is short, the AI tab shows just the project.</li><li>Lists in the notch (AI, Calendar, Tasks, Focus and Notes) fade out at the edges instead of being cut off.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.1.dmg" sparkle:edSignature="lzguQtDvYQwM6ViCar2MYaIQ7EEszv0tV9qzoVOfeZ1FUBtkHRrjNfDlINifZBY0l3p84XaCDzhqVkzti3jZCQ==" length="11667046" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.0</title>
       <pubDate>Thu, 05 Nov 2026 22:27:15 GMT</pubDate>
       <sparkle:version>8</sparkle:version>
