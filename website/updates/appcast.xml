@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.0</title>
+      <pubDate>Thu, 05 Nov 2026 22:27:15 GMT</pubDate>
+      <sparkle:version>8</sparkle:version>
+      <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>New **AI** tab: the coding agents running on your Mac, in Terminal or in their own app, with the folder each one works in, how long it has been running and whether it is working, waiting or needs you. It also shows what each agent is doing right now and its activity over the last minute.</li><li>Editors built around an agent, such as Antigravity and Cursor, appear with their open project, and the AI apps you have open are one click away.</li><li>Local models: see which models Ollama and LM Studio keep in memory, how much memory they use and when they unload.</li><li>While an agent works, its icon and project appear around the closed notch. When it finishes or stops to ask you something, the island lets you know, and a dot on the AI tab shows it too.</li><li>Settings › AI Agents turns the tab, the notch activity and the alerts on or off, and lets you add any other agent by its command name. No new permissions: Isla only looks at your own processes, and nothing leaves your Mac.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.0.dmg" sparkle:edSignature="fLtxAHx6kxh4Q07yjSQ85CKGmYKeAInckuF2M75IBGMXXo+TnyRBFku9WoP8Tbk8HUpvzfikZBA7Oodb4b77CQ==" length="11587360" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.0.5</title>
       <pubDate>Thu, 05 Nov 2026 20:49:00 GMT</pubDate>
       <sparkle:version>7</sparkle:version>
