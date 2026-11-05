@@ -67,7 +67,7 @@
 
 1. Descarga **Isla.dmg** desde la [última versión](https://isla.kyrosrd.com/downloads/Isla.dmg).
 2. Ábrelo y arrastra **Isla** a **Aplicaciones**.
-3. Las versiones de la comunidad se firman sin certificado de pago. La primera vez, haz clic derecho en Isla, elige **Abrir** y confirma.
+3. Las versiones de la comunidad se firman sin un certificado de pago de Apple, así que macOS bloquea la primera apertura. Abre **Ajustes del Sistema › Privacidad y seguridad**, baja hasta el final, pulsa **Abrir igualmente** y confirma. Solo se hace una vez.
 4. El recorrido de bienvenida te deja activar solo los permisos que quieras.
 
 ## Compilar desde el código

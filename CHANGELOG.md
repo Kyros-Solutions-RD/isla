@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1 — 2026-11-05
+
+- A new illustrated installer: drag Isla onto the Caribbean dusk to install, with first-launch help in English and Spanish.
+- The app now shows its new icon. Version 1.0.0 shipped with the previous one.
+- Clearer first-launch steps for macOS 26: System Settings › Privacy & Security › Open Anyway.
+
 ## 1.0.0 — 2026-11-05
 
 First public release.

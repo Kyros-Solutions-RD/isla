@@ -75,7 +75,7 @@
 
 1. Download **Isla.dmg** from the [latest release](https://isla.kyrosrd.com/downloads/Isla.dmg).
 2. Open it and drag **Isla** to **Applications**.
-3. Community builds are signed ad hoc. The first time, right-click Isla, choose **Open** and confirm.
+3. Community builds are signed ad hoc, without a paid Apple certificate, so macOS blocks the first launch. Open **System Settings › Privacy & Security**, scroll down, click **Open Anyway** and confirm. You only do this once.
 4. The welcome tour lets you turn on only the permissions you want.
 
 ## Build from source

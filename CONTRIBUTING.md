@@ -67,3 +67,11 @@ GitHub is the source of truth; the website and the Sparkle feed are served from 
 It builds a universal DMG, signs it for Sparkle with the key in your login Keychain (`generate_keys --account isla`), adds it to `website/updates/appcast.xml`, tags, creates the GitHub Release with the DMG and pushes. Within about ten minutes the server mirrors the DMG and publishes the appcast; installed copies of Isla update within a day.
 
 **Website only:** push to `main`; the server deploys it on its next run.
+
+**Installer design:** `scripts/package-dmg.sh` builds the disk image window: the painted artwork, Isla on the left, the Applications link on the right and the app icon as the volume icon. Finder lays it out through AppleScript, so the first run asks once for permission to control Finder. To change the artwork or the text, edit `design/dmg/artwork.png` or `scripts/lib/dmg-background.swift`, then run:
+
+```bash
+swift scripts/lib/dmg-background.swift design/dmg/artwork.png design/dmg
+```
+
+`design/dmg/preview.png` shows the result. Icon positions in `package-dmg.sh` must match the ones in `dmg-background.swift`.

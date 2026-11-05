@@ -8,8 +8,9 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-BUILD_DIR="${BUILD_DIR:-$HOME/Library/Developer/Xcode/DerivedData/Isla-release}"
-DIST="$ROOT/dist"
+# ".noindex" keeps this build out of Spotlight and Launchpad, so it never shows up as a second Isla.
+BUILD_DIR="${BUILD_DIR:-$HOME/Library/Developer/Xcode/DerivedData/Isla-release.noindex}"
+DIST="${DIST:-$ROOT/dist}"
 SIGN_IDENTITY="${SIGN_IDENTITY:--}"
 
 cd "$ROOT"
@@ -40,15 +41,7 @@ APP="$BUILD_DIR/Build/Products/Release/Isla.app"
 VERSION="$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' "$APP/Contents/Info.plist")"
 
 echo "› Packaging Isla $VERSION…"
-mkdir -p "$DIST"
-STAGING="$(mktemp -d)"
-trap 'rm -rf "${STAGING:?}"' EXIT
-ditto "$APP" "$STAGING/Isla.app"
-ln -s /Applications "$STAGING/Applications"
-
 DMG="$DIST/Isla-$VERSION.dmg"
-rm -f "${DMG:?}"
-hdiutil create -volname "Isla" -srcfolder "$STAGING" -ov -format UDZO -fs HFS+ "$DMG" >/dev/null
+"$ROOT/scripts/package-dmg.sh" "$APP" "$DMG"
 cp -f "$DMG" "$DIST/Isla.dmg"
 
-echo "✓ $DMG"
