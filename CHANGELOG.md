@@ -14,6 +14,6 @@ First public release.
 - Live activities for music, charging, Bluetooth devices, volume and brightness, downloads, meetings, timers and Caps Lock.
 - Optional replacement for the system volume and brightness overlay.
 - Terminal tab powered by SwiftTerm, Quick Actions (keep awake, color picker, capture to Shelf, lock screen, dark mode), Quick Look on the Shelf and synced lyrics under the island.
-- Daily update check against GitHub releases.
+- Automatic updates through Sparkle, signed with EdDSA and served from isla.kyrosrd.com.
 - New app icon.
 - English and Spanish.
