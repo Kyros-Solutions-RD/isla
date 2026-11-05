@@ -5,6 +5,7 @@
 //  Isla asks only for what a feature needs, and only when you turn it on.
 //
 
+import AppKit
 import AVFoundation
 import CoreLocation
 import EventKit
@@ -67,7 +68,34 @@ final class PermissionCenter {
 
     private(set) var granted: Set<PermissionKind> = []
 
-    private init() { refresh() }
+    /// Accessibility has no change notification, and the other grants change in System
+    /// Settings while Isla is in the background. Re-check when Isla comes back to the
+    /// front, and every second while a view that shows permissions is on screen.
+    private var watchers = 0
+    private var timer: Timer?
+
+    private init() {
+        refresh()
+        NotificationCenter.default.addObserver(forName: NSApplication.didBecomeActiveNotification, object: nil, queue: .main) { _ in
+            MainActor.assumeIsolated { PermissionCenter.shared.refresh() }
+        }
+    }
+
+    func startWatching() {
+        watchers += 1
+        refresh()
+        guard timer == nil else { return }
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            MainActor.assumeIsolated { PermissionCenter.shared.refresh() }
+        }
+    }
+
+    func stopWatching() {
+        watchers = max(0, watchers - 1)
+        guard watchers == 0 else { return }
+        timer?.invalidate()
+        timer = nil
+    }
 
     func refresh() {
         var result = Set<PermissionKind>()
@@ -78,7 +106,7 @@ final class PermissionCenter {
         let location = CLLocationManager().authorizationStatus
         if location == .authorizedAlways || location == .authorized { result.insert(.location) }
         if AXIsProcessTrusted() { result.insert(.accessibility) }
-        granted = result
+        if result != granted { granted = result }
     }
 
     func isGranted(_ kind: PermissionKind) -> Bool { granted.contains(kind) }

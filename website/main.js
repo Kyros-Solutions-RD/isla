@@ -7,15 +7,16 @@
 
   const en = {
     'skip': 'Skip to content',
-    'nav.try': 'Try it', 'nav.features': 'Features', 'nav.news': 'What’s new', 'nav.free': 'Free', 'nav.open': 'Open source', 'nav.faq': 'FAQ', 'nav.download': 'Download',
+    'nav.badge': 'FREE', 'nav.try': 'Try it', 'nav.features': 'Features', 'nav.free': 'Price', 'nav.news': 'What’s new', 'nav.faq': 'FAQ', 'nav.download': 'Download',
     'island.label': 'What’s new',
+    'hero.news': 'New in',
     'hero.title1': 'Your notch, now', 'hero.title2': 'an island.',
-    'hero.sub': 'Music with lyrics, a Shelf with AirDrop, calendar, clipboard, terminal and live activities, right under your camera. Native, in Liquid Glass. Free and open source.',
-    'hero.cta': 'Download free', 'hero.try': 'Try it here',
-    'hero.meta': 'macOS 26 Tahoe or later · Apple silicon and Intel · With or without a notch',
-    'demo.title': 'Try it before you download it.',
-    'demo.lead': 'This is the real Isla, captured on a MacBook Pro. Point at the notch, switch tabs, drag a file or turn on a live activity.',
-    'demo.openAria': 'Open the Nook', 'demo.hint': 'Psst… it’s interactive. Drag a file to the notch.',
+    'hero.sub': 'Music with lyrics, a Shelf with AirDrop, calendar, teleprompter, terminal and more: over 40 features under your camera. Free and open source.',
+    'hero.cta': 'Download Isla', 'hero.try': 'Try it here',
+    'hero.meta': 'Free forever · macOS 26 Tahoe or later · also on Macs without a notch',
+    'demo.title': 'Try it before you download it', 'demo.sign': 'TRY IT',
+    'demo.openAria': 'Open the Nook', 'demo.hint': 'try dragging a file to the notch',
+    'demo.after': 'Like it? Download it free: no account, no trial and no limits.', 'demo.news': 'See what’s new →',
     'mb.file': 'File', 'mb.edit': 'Edit',
     'tab.home': 'Nook', 'tab.shelf': 'Shelf', 'tab.clipboard': 'Clipboard', 'tab.calendar': 'Calendar', 'tab.tasks': 'Tasks',
     'tab.timers': 'Focus', 'tab.notes': 'Notes', 'tab.teleprompter': 'Teleprompter', 'tab.terminal': 'Terminal', 'tab.actions': 'Actions',
@@ -23,9 +24,9 @@
     'act.airpods': 'Connect AirPods', 'act.charging': 'Plug in the charger', 'act.volume': 'Turn up the volume', 'act.brightness': 'Dim the screen',
     'act.meeting': 'Meeting in 4 min', 'act.download': 'Download a file', 'act.track': 'Change the song', 'act.lyrics': 'Lyrics under the island',
     'act.timer': 'Pomodoro done', 'act.caps': 'Caps Lock',
-    'live.title': 'The island keeps you posted.',
+    'live.eyebrow': 'LIVE ACTIVITIES', 'live.title': 'The island keeps you posted.',
     'live.lead': 'Charging, AirPods with their battery, volume and brightness, downloads, meetings, timers and your song. They appear around the notch and leave on their own.',
-    'features.title1': 'More than 40 features.', 'features.title2': 'Zero price.',
+    'features.eyebrow': 'FEATURES', 'features.title1': 'More than 40 features.', 'features.title2': 'Zero cost.',
     'features.lead': 'Everything you’d expect from the best notch app, and a few things you wouldn’t.',
     'b.music.t': 'Music you can see', 'b.music.p': 'Any app in Now Playing: Music, Spotify, Podcasts or your browser. Artwork, controls, synced lyrics and glass that takes on the album’s color.',
     'b.shelf.t': 'Drop. Keep. Send.', 'b.shelf.p': 'Drag onto the notch and files wait on the Shelf. AirDrop, share and convert to PNG, JPEG, HEIC, PDF, MP4 or ZIP. Far from the notch? Shake the pointer and a Pocket appears.',
@@ -37,27 +38,42 @@
     'b.actions.t': 'Quick Actions', 'b.actions.p': 'Keep your Mac awake, pick a color, capture to the Shelf, lock the screen or switch to dark mode.',
     'm.tasks.t': 'Tasks', 'm.tasks.p': 'Synced with Reminders.', 'm.notes.t': 'Notes', 'm.notes.p': 'Quick, local, exportable to Notes.',
     'm.mirror.t': 'Mirror', 'm.mirror.p': 'Check yourself before a call.', 'm.shortcuts.t': 'Shortcuts', 'm.shortcuts.p': 'Run your macOS Shortcuts.',
-    'm.weather.t': 'Weather', 'm.weather.p': 'Local, with highs and lows.', 'm.hud.t': 'Volume HUD', 'm.hud.p': 'Replaces the system overlay.',
+    'm.weather.t': 'Weather', 'm.weather.p': 'Now and the next hours, with highs and lows.', 'm.hud.t': 'Volume HUD', 'm.hud.p': 'Replaces the system overlay.',
     'm.gestures.t': 'Gestures', 'm.gestures.p': 'Swipe to open or change songs.', 'm.screens.t': 'Every display', 'm.screens.p': 'Notched, notchless and external monitors.',
     'm.keys.t': 'Keyboard', 'm.keys.p': '⌃⌥Space opens the island from any app.', 'm.lang.t': 'English and Spanish', 'm.lang.p': 'Fully translated.',
     'm.privacy.t': 'Private', 'm.privacy.p': 'No accounts, no analytics.', 'm.updates.t': 'Always up to date', 'm.updates.p': 'Lets you know when a new version ships.',
-    'compare.title': 'Glass or black. Your call.',
-    'compare.lead': 'macOS Liquid Glass lets your wallpaper shine through the island. Classic black melts it into the camera. Slide to compare.',
+    'made.eyebrow': 'MADE IN SANTO DOMINGO', 'made.title': 'Truly native. Truly open.',
+    'made.quote': '“We made it for our own Macs, on an island in the Caribbean. That’s why it’s called Isla.”',
+    'stats.features': 'features under the notch', 'stats.size': 'download, all native', 'stats.trackers': 'accounts, ads or trackers', 'stats.license': 'open source on GitHub',
     'native.title': 'Made the way Apple would.',
     'native.lead': 'Swift and SwiftUI, the system Liquid Glass, SF Symbols, haptics and a Settings window that feels like System Settings. No Electron, no web views.',
-    'stats.native': 'native', 'stats.size': 'download', 'stats.trackers': 'trackers',
-    'free.title': 'Everything included. Free. Forever.',
-    'free.lead': 'No Pro tier, no 48-hour trial, no subscription and no limit on Macs.',
-    'free.note': 'Forever, on every Mac you own.', 'free.cta': 'Download Isla',
-    'free.l1': 'Liquid Glass or classic black', 'free.l2': 'Music with synced lyrics', 'free.l3': 'Shelf, AirDrop and Pocket', 'free.l4': 'On-device file conversion',
-    'free.l5': 'Clipboard history', 'free.l6': 'Calendar, tasks and notes', 'free.l7': 'Pomodoro and focus sounds', 'free.l8': 'A teleprompter that follows your voice',
-    'free.l9': 'A terminal inside the notch', 'free.l10': 'Every live activity', 'free.l11': 'Works on Macs without a notch', 'free.l12': 'Every update',
-    'open.title': 'Open, like the sea.',
-    'open.lead': 'Isla is free and open source under the MIT License. Read the code, suggest improvements or build your own.',
-    'open.made': 'Designed and built by Kyros Solutions RD in Santo Domingo, on an island in the Caribbean. Hence the name.',
-    'open.cta': 'View on GitHub', 'open.contrib': 'How to contribute', 'code.c1': 'Build Isla in a minute',
-    'open.caption': 'Calle las Damas, in Santo Domingo’s Colonial Zone, a short walk from where Isla was born.',
-    'faq.title': 'Questions, answered.',
+    'compare.eyebrow': 'TWO STYLES', 'compare.title': 'Glass or black. Your call.',
+    'compare.lead': 'macOS Liquid Glass lets your wallpaper shine through the island. Classic black melts it into the camera. Slide to compare.',
+    'free.eyebrow': 'PRICE', 'free.title': 'One app for the notch. Zero dollars.',
+    'free.lead': 'No Pro tier, no 48-hour trial, no subscription and no limit on Macs. Download it ready to go, or build it yourself.',
+    'free.compare': 'What’s included? Compare ↓',
+    'plan.flag': 'RECOMMENDED', 'plan.a.badge': 'READY', 'plan.a.kicker': 'Ready to use',
+    'plan.a.text': 'Download the .dmg, drag it to Applications and you’re done. It updates itself, signed and verified.',
+    'plan.a.note': 'free, forever', 'plan.a.chip': 'On every Mac you own', 'plan.a.cta': 'Download Isla',
+    'plan.a.foot': 'Version <span data-latest></span> · see what’s new ↗',
+    'plan.b.badge': 'SOURCE', 'plan.b.kicker': 'To build it yourself',
+    'plan.b.text': 'The same code, on GitHub under the MIT License. Read it, change it or make your own version.',
+    'plan.b.note': 'open source', 'plan.b.chip': 'Xcode 26 and XcodeGen', 'plan.b.cta': 'View on GitHub', 'plan.b.foot': 'How to contribute ↗',
+    'free.l1': 'Liquid Glass or classic black', 'free.l2': 'Music with synced lyrics', 'free.l3': 'Shelf, AirDrop and Pocket',
+    'free.l5': 'Clipboard history', 'free.l6': 'Calendar, tasks and notes', 'free.l8': 'A teleprompter that follows your voice',
+    'free.l9': 'A terminal inside the notch', 'free.l12': 'Every update',
+    'promise.1.t': 'No account', 'promise.1.p': 'No email, sign-up or card. You download it and use it.',
+    'promise.2.t': 'No tracking', 'promise.2.p': 'Zero analytics. Only the weather, lyrics and update check leave your Mac.',
+    'promise.3.t': 'Updates itself', 'promise.3.p': 'Every version arrives signed and lets you know on the island. <a href="novedades/">What’s new</a>.',
+    'cmp.title': 'What changes with Isla?', 'cmp.feature': 'Feature', 'cmp.base': 'THE PLAIN NOTCH', 'cmp.isla': 'WITH ISLA',
+    'cmp.r1': 'Music with synced lyrics under the notch', 'cmp.r2': 'A file Shelf with AirDrop and conversions', 'cmp.r3': 'Calendar with a button to join meetings',
+    'cmp.r4': 'Clipboard history', 'cmp.r5': 'Teleprompter and terminal under the camera', 'cmp.r6': 'Live activities: AirPods, charging, downloads',
+    'cmp.r7': 'A redesigned volume and brightness overlay', 'cmp.r8': 'An island on Macs and displays without a notch',
+    'cmp.note': 'Isla needs macOS 26 Tahoe or later, on a Mac with Apple silicon or Intel.',
+    'open.cta': 'View on GitHub', 'code.c1': 'Build Isla in a minute',
+    'final.title': 'Ready to bring your notch to life?',
+    'final.lead': 'More than 40 features around the notch: music, files, calendar, teleprompter and much more. Free, no account and open source.',
+    'faq.title': 'Questions, answered.', 'faq.lead': 'The short version of what people ask us most.',
     'faq.q1': 'Is Isla really free?', 'faq.a1': 'Yes. Every feature is free, forever, with no trial and no subscription. The code is on GitHub under the MIT License.',
     'faq.q2': 'Which Mac do I need?', 'faq.a2': 'Any Mac running macOS 26 Tahoe or later, with Apple silicon or Intel. Isla uses the system Liquid Glass, which is why it requires Tahoe.',
     'faq.q3': 'What if my Mac has no notch?', 'faq.a3': 'Isla draws a matching island at the top of any display, external monitors included. You choose which displays show it.',
@@ -65,17 +81,19 @@
     'faq.q5': 'What permissions does it ask for, and what happens to my data?', 'faq.a5': 'Only the ones you turn on: Calendar, Reminders, Camera for the Mirror, Location for weather, Microphone for the teleprompter and Accessibility for the volume overlay. Nothing leaves your Mac except the weather lookup with an approximate location, the lyrics search and the update check.',
     'faq.q6': 'macOS says it can’t verify the app. What do I do?', 'faq.a6': 'Community builds are signed without a paid Apple certificate. Open System Settings › Privacy & Security, scroll down, click “Open Anyway” and confirm. You only do this once. Or build it yourself from source.',
     'faq.q7': 'How do I hear about new versions?', 'faq.a7': 'Isla checks for updates once a day and tells you right on the island; they install in one click. Everything that changes is in <a href="novedades/">What’s new</a>. You can turn the check off in Settings.',
-    'final.title': 'Your notch awaits.', 'final.lead': 'Open the .dmg, drag Isla to Applications and move the pointer to the notch.', 'final.cta': 'Download free',
-    'footer.tag': 'Your notch, now an island. Made in Santo Domingo.', 'footer.product': 'Product', 'footer.resources': 'Resources', 'footer.community': 'Community',
-    'footer.releases': 'Releases', 'footer.changelog': 'What’s new', 'footer.issues': 'Report an issue', 'footer.contribute': 'Contribute',
+    'faq.more': 'Still have a question? Write to us on',
+    'footer.tag': 'Your notch, now an island. Made with love, and plenty of coffee, in Santo Domingo.',
+    'footer.product': 'PRODUCT', 'footer.help': 'HELP', 'footer.community': 'COMMUNITY', 'footer.resources': 'RESOURCES',
+    'footer.releases': 'Releases', 'footer.changelog': 'What’s new', 'footer.issues': 'Report an issue', 'footer.contribute': 'Contribute ↗', 'footer.rss': 'RSS feed',
     'footer.license': 'MIT License', 'footer.tm': 'Mac, macOS, AirPods and AirDrop are trademarks of Apple Inc. Isla is not affiliated with Apple.',
-    'footer.photos': 'Photos:', 'footer.bg': 'background of the captures',
-    'log.title': 'What’s new',
+    'footer.photos': 'Photo behind the captures:',
+    'log.title': 'What’s new', 'log.eyebrow': 'VERSION BY VERSION',
     'log.lead': 'Everything that changes in Isla, version by version. The app updates itself and lets you know on the island; here you can see what each version brings.',
     'log.cta': 'Download Isla', 'log.feed': 'Subscribe via RSS', 'log.list': 'Every version',
     'log.foot': 'Looking for something more technical? Every version is also on',
   };
 
+  const latestVersion = document.querySelector('[data-latest]')?.textContent.trim() || '';
   const nodes = [...document.querySelectorAll('[data-i18n]')];
   const original = new Map(nodes.map((node) => [node, node.textContent]));
   const ariaNodes = [...document.querySelectorAll('[data-i18n-aria]')];
@@ -98,6 +116,7 @@
       toggle.textContent = lang === 'en' ? 'ES' : 'EN';
       toggle.setAttribute('aria-label', lang === 'en' ? 'Cambiar a español' : 'Change language to English');
     }
+    document.querySelectorAll('[data-latest]').forEach((node) => { node.textContent = latestVersion; });
     const titles = document.documentElement.dataset;
     document.title = lang === 'en' ? (titles.titleEn || document.title) : (titles.titleEs || document.title);
     updateClock();
@@ -342,16 +361,17 @@
 
   if (!reduceMotion && 'IntersectionObserver' in window) {
     const groups = [
-      ['.section-head', ['.h2', '.lead']],
-      ['.demo', ['.desk', '.demo-controls', '.acts']],
+      ['.section-head', ['.eyebrow', '.h2', '.lead', '.quote', '.quote-by', '.pill-link']],
+      ['.demo', ['.screen', '.demo-controls', '.acts', '.demo-after']],
       ['.bento', ['.tile']],
       ['.mini-grid', ['.mini']],
+      ['.made', ['.stats div', '.tech', '.native-text', '.shot-a', '.shot-b']],
       ['.compare', ['.ba']],
-      ['.native', ['.h2', '.lead', '.stats', '.shot-a', '.shot-b']],
-      ['.free', ['.price']],
-      ['.open', ['.open-photo', '.h2', '.lead', '.body', '.open-ctas', '.code', '.open-street']],
+      ['.plans', ['.plan']],
+      ['.promises', ['.promise']],
+      ['.includes', ['.h3', '.cmp', '.cmp-note']],
+      ['.final', ['.stage', '.h1', '.lead', '.hero-ctas', '.hero-meta']],
       ['.faq-list', ['details']],
-      ['.final', ['.final-icon', '.h1', '.lead', '.btn']],
       ['.release', ['.release-version', '.release-date', '.release-badge', '.release-intro', '.release-shot', 'li', '.release-links']],
       ['.log', ['.log-foot']],
     ];
@@ -373,6 +393,51 @@
         observer.observe(section);
       });
     });
+  }
+
+  /* ---------------- Cocuyos (fireflies) ---------------- */
+
+  const sky = document.querySelector('[data-cocuyos]');
+  if (sky && !reduceMotion) {
+    const context = sky.getContext('2d');
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    let flies = [];
+    const resize = () => {
+      sky.width = innerWidth * ratio;
+      sky.height = innerHeight * ratio;
+      const count = Math.round(Math.min(46, innerWidth / 30));
+      flies = Array.from({ length: count }, () => ({
+        x: Math.random() * innerWidth, y: Math.random() * innerHeight,
+        vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.2,
+        phase: Math.random() * Math.PI * 2, speed: 0.6 + Math.random() * 1.2, size: 1 + Math.random() * 1.6,
+      }));
+    };
+    resize();
+    addEventListener('resize', resize, { passive: true });
+    let running = true;
+    document.addEventListener('visibilitychange', () => { running = !document.hidden; if (running) requestAnimationFrame(tick); });
+    function tick(time) {
+      if (!running) return;
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      context.clearRect(0, 0, innerWidth, innerHeight);
+      for (const fly of flies) {
+        fly.x += fly.vx + Math.sin(time / 2400 + fly.phase) * 0.12;
+        fly.y += fly.vy + Math.cos(time / 2800 + fly.phase) * 0.1;
+        if (fly.x < -10) fly.x = innerWidth + 10; if (fly.x > innerWidth + 10) fly.x = -10;
+        if (fly.y < -10) fly.y = innerHeight + 10; if (fly.y > innerHeight + 10) fly.y = -10;
+        const glow = Math.max(0, Math.sin(time / 1000 * fly.speed + fly.phase));
+        if (glow < 0.05) continue;
+        const radius = fly.size * 5;
+        const light = context.createRadialGradient(fly.x, fly.y, 0, fly.x, fly.y, radius);
+        light.addColorStop(0, `rgba(226, 255, 150, ${0.75 * glow})`);
+        light.addColorStop(0.35, `rgba(200, 255, 120, ${0.25 * glow})`);
+        light.addColorStop(1, 'rgba(200, 255, 120, 0)');
+        context.fillStyle = light;
+        context.beginPath(); context.arc(fly.x, fly.y, radius, 0, Math.PI * 2); context.fill();
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
   }
 
   applyLanguage();

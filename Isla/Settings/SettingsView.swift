@@ -687,7 +687,8 @@ private struct PermissionsPane: View {
                 Button("Show Isla's Data Folder") { NSWorkspace.shared.open(Storage.directory) }
             }
         }
-        .onAppear { permissions.refresh() }
+        .onAppear { permissions.startWatching() }
+        .onDisappear { permissions.stopWatching() }
     }
 }
 

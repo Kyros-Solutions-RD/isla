@@ -92,6 +92,9 @@ def render(english, spanish):
         badge = ('\n          <span class="release-badge"><span class="i18n-es">Versión actual</span>'
                  '<span class="i18n-en" lang="en">Current version</span></span>') if index == 0 else ""
         iso = f' datetime="{date.isoformat()}"' if date else ""
+        # Only the current version is offered as a download; older ones stay on GitHub.
+        download = (f'            <a href="../downloads/Isla.dmg"><span class="i18n-es">Descargar {version}</span>'
+                    f'<span class="i18n-en" lang="en">Download {version}</span></a>\n') if index == 0 else ""
         blocks.append(f'''      <article class="release" id="v{version}">
         <header class="release-head">
           <h3 class="release-version"><a href="#v{version}">{version}</a></h3>
@@ -105,8 +108,7 @@ def render(english, spanish):
 {notes(release, "en", 12)}
           </div>
           <p class="release-links">
-            <a href="../downloads/Isla-{version}.dmg"><span class="i18n-es">Descargar {version}</span><span class="i18n-en" lang="en">Download {version}</span></a>
-            <a href="{GITHUB}{version}"><span class="i18n-es">En GitHub</span><span class="i18n-en" lang="en">On GitHub</span></a>
+{download}            <a href="{GITHUB}{version}"><span class="i18n-es">En GitHub</span><span class="i18n-en" lang="en">On GitHub</span></a>
           </p>
         </div>
       </article>''')

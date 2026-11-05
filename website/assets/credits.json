@@ -1,6 +1,6 @@
 [
   {
-    "file": "website/assets/caribbean-sunrise.jpg",
+    "file": "website/assets/app/wallpaper.jpg",
     "media": "image",
     "ref": "openverse:1ffda8cc-5c80-4784-a182-fdacc9b73265",
     "title": "Sunrise At The Caribbean Sea",
@@ -19,78 +19,7 @@
     "bytes": 326739,
     "credit": "\"Sunrise At The Caribbean Sea\" by Yuri Pustjens, CC BY 3.0, via Wikimedia Commons",
     "notes": [],
-    "saved": "2026-11-05T15:41:28.156Z"
-  },
-  {
-    "file": "website/assets/isla-saona.jpg",
-    "media": "image",
-    "ref": "openverse:893a2635-92ba-44c7-82b8-bc727abc67f6",
-    "title": "Isla Saona",
-    "creator": "Tamas Iklodi",
-    "creatorUrl": "https://en.wikipedia.org/wiki/en:User:It419",
-    "date": null,
-    "license": "CC BY-SA 3.0",
-    "licenseCode": "by-sa",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "creditRequired": true,
-    "page": "https://commons.wikimedia.org/w/index.php?curid=10985671",
-    "via": "Wikimedia Commons",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/Isla_Saona.jpg",
-    "width": 3173,
-    "height": 674,
-    "bytes": 558125,
-    "credit": "\"Isla Saona\" by Tamas Iklodi, CC BY-SA 3.0, via Wikimedia Commons",
-    "notes": [
-      "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
-    ],
-    "saved": "2026-11-05T15:41:32.091Z"
-  },
-  {
-    "file": "website/assets/calle-las-damas.jpg",
-    "media": "image",
-    "ref": "openverse:91899f37-ab5d-49e5-8fb6-82fe704133a5",
-    "title": "Calle las Damas, Santo Domingo, Zona Colonial",
-    "creator": "Desox7x",
-    "creatorUrl": "https://commons.wikimedia.org/w/index.php?title=User:Desox7x&action=edit&redlink=1",
-    "date": null,
-    "license": "CC0",
-    "licenseCode": "cc0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en/",
-    "creditRequired": false,
-    "page": "https://commons.wikimedia.org/w/index.php?curid=185315716",
-    "via": "Wikimedia Commons",
-    "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Calle_las_Damas%2C_Santo_Domingo%2C_Zona_Colonial.jpg/1920px-Calle_las_Damas%2C_Santo_Domingo%2C_Zona_Colonial.jpg",
-    "width": 1920,
-    "height": 1440,
-    "bytes": 973027,
-    "credit": "\"Calle las Damas, Santo Domingo, Zona Colonial\" by Desox7x, CC0, via Wikimedia Commons",
-    "notes": [],
-    "saved": "2026-11-05T15:41:40.895Z"
-  },
-  {
-    "file": "website/assets/caribbean-sea.webm",
-    "media": "video",
-    "poster": "website/assets/caribbean-sea-poster.jpg",
-    "ref": "commons:76893349",
-    "title": "Rivière la Sarcelle Caribbean sea",
-    "creator": "Filo gèn'",
-    "creatorUrl": null,
-    "date": "2019-02-26",
-    "license": "CC BY-SA 4.0",
-    "licenseCode": "by-sa",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "creditRequired": true,
-    "page": "https://commons.wikimedia.org/wiki/File:Rivi%C3%A8re_la_Sarcelle_Caribbean_sea.webm",
-    "via": "Wikimedia Commons",
-    "video": "https://upload.wikimedia.org/wikipedia/commons/transcoded/7/76/Rivi%C3%A8re_la_Sarcelle_Caribbean_sea.webm/Rivi%C3%A8re_la_Sarcelle_Caribbean_sea.webm.480p.vp9.webm",
-    "width": 854,
-    "height": 480,
-    "duration": 10.2,
-    "bytes": 1639239,
-    "credit": "\"Rivière la Sarcelle Caribbean sea\" by Filo gèn', CC BY-SA 4.0, via Wikimedia Commons",
-    "notes": [
-      "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
-    ],
-    "saved": "2026-11-05T15:54:49.801Z"
+    "saved": "2026-11-05T15:41:28.156Z",
+    "used_for": "Desktop wallpaper behind the app captures in the demo"
   }
 ]

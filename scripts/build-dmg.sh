@@ -46,6 +46,15 @@ fi
 APP="$BUILD_DIR/Build/Products/Release/Isla.app"
 VERSION="$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' "$APP/Contents/Info.plist")"
 
+if [ "$SIGN_IDENTITY" = "-" ]; then
+  # An ad-hoc signature's designated requirement is the build's own hash, so macOS
+  # treats every update as a different app and forgets Accessibility and other grants.
+  # Pin it to the bundle identifier instead; nested frameworks keep their signatures.
+  BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$APP/Contents/Info.plist")"
+  codesign --force --sign - --preserve-metadata=entitlements,flags,runtime \
+    --requirements "=designated => identifier \"$BUNDLE_ID\"" "$APP"
+fi
+
 # Never package a build that cannot start (missing or rejected frameworks, signing).
 echo "› Checking that Isla $VERSION launches…"
 codesign --verify --deep --strict "$APP"

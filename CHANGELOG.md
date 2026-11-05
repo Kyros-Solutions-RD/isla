@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3 — 2026-11-05
+
+- Isla now keeps Accessibility and its other permissions across updates. Builds are signed with a stable identity instead of a different one each time. After installing 1.0.3, turn Accessibility on for Isla one last time.
+- The welcome tour and Settings › Privacy update each permission as soon as you allow it, without reopening them.
+- The weather card shows the next hours under the current temperature.
+
 ## 1.0.2 — 2026-11-05
 
 - Fixes Isla not opening: versions 1.0.0 and 1.0.1 closed right after launch on every Mac. If you installed one of them, download Isla again from isla.kyrosrd.com.

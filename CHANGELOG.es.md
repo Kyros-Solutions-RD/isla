@@ -2,6 +2,12 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.0.3 — 2026-11-05
+
+- Isla ya conserva el permiso de Accesibilidad y los demás al actualizarse. Cada versión se firma con una identidad estable en lugar de una distinta cada vez. Después de instalar la 1.0.3, activa Accesibilidad para Isla una última vez.
+- El recorrido de bienvenida y Ajustes › Privacidad muestran cada permiso en cuanto lo concedes, sin volver a abrirlos.
+- La tarjeta del clima muestra las próximas horas debajo de la temperatura actual.
+
 ## 1.0.2 — 2026-11-05
 
 - Corrige que Isla no abriera: las versiones 1.0.0 y 1.0.1 se cerraban justo al iniciar en todos los Mac. Si instalaste una de ellas, descarga Isla de nuevo desde isla.kyrosrd.com.

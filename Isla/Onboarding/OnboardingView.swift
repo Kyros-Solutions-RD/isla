@@ -137,7 +137,8 @@ struct OnboardingView: View {
             .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
             .frame(maxWidth: 560)
         }
-        .onAppear { PermissionCenter.shared.refresh() }
+        .onAppear { PermissionCenter.shared.startWatching() }
+        .onDisappear { PermissionCenter.shared.stopWatching() }
     }
 
     private var ready: some View {
