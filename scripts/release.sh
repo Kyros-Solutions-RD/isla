@@ -4,7 +4,8 @@
 #   1. bumps the version and builds a universal, signed DMG
 #   2. signs the DMG for Sparkle and adds it to the appcast
 #   3. commits, tags and pushes to GitHub, and creates a GitHub Release
-#   4. uploads the DMG to isla.kyrosrd.com/downloads and redeploys the site
+#   4. waits until the cPanel server (cron, scripts/server/sync.sh) mirrors the
+#      DMG and publishes the new appcast on isla.kyrosrd.com
 #
 # usage: ./scripts/release.sh 1.1.0
 #
@@ -12,11 +13,10 @@
 #
 set -euo pipefail
 cd "$(dirname "$0")/.."
-. scripts/lib/cpanel.sh
+ISLA_DOMAIN="${ISLA_DOMAIN:-isla.kyrosrd.com}"
 
 VERSION="${1:?usage: release.sh <version>}"
 [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "✗ Version must look like 1.2.3"; exit 1; }
-cpanel_require_token
 command -v gh >/dev/null || { echo "✗ Install the GitHub CLI (brew install gh) and run gh auth login"; exit 1; }
 [ -z "$(git status --porcelain --untracked-files=no)" ] || { echo "✗ Commit or stash your changes first"; exit 1; }
 
@@ -47,20 +47,23 @@ LENGTH="$(echo "$SIGNATURE_LINE" | sed -n 's/.*length="\([0-9]*\)".*/\1/p')"
 python3 -I scripts/lib/appcast.py website/updates/appcast.xml "$VERSION" "$BUILD" \
   "https://${ISLA_DOMAIN}/downloads/Isla-${VERSION}.dmg" "$SIGNATURE" "$LENGTH" "$NOTES"
 
-# 3. GitHub
+# 3. GitHub: the release (with the DMG) exists before the appcast that points to it.
 git add project.yml Isla.xcodeproj website/updates/appcast.xml
 git commit -q -m "Release ${VERSION}"
 git tag -a "v${VERSION}" -m "Isla ${VERSION}"
-git push -q origin main "v${VERSION}"
-gh release create "v${VERSION}" "$DMG" "dist/Isla.dmg" --title "Isla ${VERSION}" --notes-file "$NOTES"
+git push -q origin "v${VERSION}"
+gh release create "v${VERSION}" "$DMG" "dist/Isla.dmg" --title "Isla ${VERSION}" --notes-file "$NOTES" --verify-tag
+git push -q origin main
 
-# 4. cPanel
-DOCROOT="$(isla_document_root)"
-REMOTE_DIR="${DOCROOT#"$CPANEL_HOME"/}/downloads"
-echo "› Uploading ${DMG} to ${ISLA_DOMAIN}/downloads…"
-cpanel_upload "$REMOTE_DIR" "$DMG" "dist/Isla.dmg" | uapi_result >/dev/null
-./scripts/deploy-site.sh
-
-echo "✓ Isla ${VERSION} is out:"
-echo "  https://${ISLA_DOMAIN}/downloads/Isla.dmg"
-echo "  https://github.com/Kyros-Solutions-RD/isla/releases/tag/v${VERSION}"
+# 4. The server picks it up within ~10 minutes.
+echo "› Waiting for https://${ISLA_DOMAIN} to publish ${VERSION} (cron sync)…"
+for _ in $(seq 1 80); do
+  if curl -fsS --max-time 15 "https://${ISLA_DOMAIN}/updates/appcast.xml" 2>/dev/null | grep -q "<sparkle:shortVersionString>${VERSION}<"; then
+    echo "✓ Isla ${VERSION} is live:"
+    echo "  https://${ISLA_DOMAIN}/downloads/Isla.dmg"
+    echo "  https://github.com/Kyros-Solutions-RD/isla/releases/tag/v${VERSION}"
+    exit 0
+  fi
+  sleep 15
+done
+echo "  Not live yet. Check ~/isla-sync.log on the server; the GitHub Release is already published."

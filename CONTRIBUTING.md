@@ -48,16 +48,22 @@ Open an [issue](https://github.com/Kyros-Solutions-RD/isla/issues) with your mac
 
 ## Releasing (maintainers)
 
-Isla is published from a Mac to the project's cPanel server, with GitHub as the source of truth.
+GitHub is the source of truth; the website and the Sparkle feed are served from the project's cPanel server at **isla.kyrosrd.com**.
 
-1. Save the cPanel API token once in `~/.config/isla/cpanel.env` (see `scripts/cpanel.env.example`).
-2. First time only: `./scripts/setup-server.sh` creates `isla.kyrosrd.com`, requests SSL and connects cPanel Git to this repository.
-3. Add a `## x.y.z` section to `CHANGELOG.md`, commit, then run:
+**Server (one-time):** in cPanel create the subdomain `isla.kyrosrd.com` (document root `isla.kyrosrd.com`) and add this cron job every 10 minutes:
 
-   ```bash
-   ./scripts/release.sh x.y.z
-   ```
+```
+/bin/bash -c 'export PATH=/usr/local/cpanel/3rdparty/bin:/usr/local/bin:/usr/bin:/bin; [ -d "$HOME/repositories/isla" ] || git clone -q https://github.com/Kyros-Solutions-RD/isla.git "$HOME/repositories/isla"; /bin/bash "$HOME/repositories/isla/scripts/server/sync.sh"' >> "$HOME/isla-sync.log" 2>&1
+```
 
-   The script builds a universal DMG, signs it for Sparkle with the key stored in your login Keychain (`generate_keys --account isla`), adds it to `website/updates/appcast.xml`, tags and pushes to GitHub, creates the GitHub Release, uploads the DMG to `isla.kyrosrd.com/downloads` and redeploys the website. Installed copies of Isla pick the update up within a day.
+`scripts/server/sync.sh` pulls `main`, mirrors every DMG referenced by the appcast from GitHub Releases into `/downloads`, and then deploys `website/`. No API tokens are involved.
 
-To publish only website changes: push to `main` and run `./scripts/deploy-site.sh`.
+**New version:** add a `## x.y.z` section to `CHANGELOG.md`, commit, then run:
+
+```bash
+./scripts/release.sh x.y.z
+```
+
+It builds a universal DMG, signs it for Sparkle with the key in your login Keychain (`generate_keys --account isla`), adds it to `website/updates/appcast.xml`, tags, creates the GitHub Release with the DMG and pushes. Within about ten minutes the server mirrors the DMG and publishes the appcast; installed copies of Isla update within a day.
+
+**Website only:** push to `main`; the server deploys it on its next run.
