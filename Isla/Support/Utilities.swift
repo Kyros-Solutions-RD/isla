@@ -22,7 +22,12 @@ enum Haptics {
 enum Storage {
     static let directory: URL = {
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        #if DEBUG
+        // Debug builds keep their own notes, shelf and clipboard history.
+        let url = base.appendingPathComponent("Isla Dev", isDirectory: true)
+        #else
         let url = base.appendingPathComponent("Isla", isDirectory: true)
+        #endif
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         return url
     }()

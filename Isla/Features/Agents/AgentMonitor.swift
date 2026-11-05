@@ -63,6 +63,11 @@ struct AgentSession: Identifiable, Equatable {
     var hostName: String?
     var hostPID: pid_t?
     var hostBundleID: String?
+    /// The model the session talks to, already formatted ("Opus 5.5").
+    var model: String?
+    /// Share of the account's usage limit already used, and the window in minutes (Codex).
+    var limitUsed: Double?
+    var limitWindow: Int?
 
     /// The project the agent works on.
     var project: String? {
@@ -71,6 +76,14 @@ struct AgentSession: Identifiable, Equatable {
     }
 
     var displayTitle: String { title ?? project ?? tool.name }
+
+    /// The project and the folder it sits in: "MACBOOK › NOTCHY CLONE".
+    var shortFolder: String? {
+        guard let folder, folder != "/" else { return nil }
+        if folder == NSHomeDirectory() { return "~" }
+        let parts = folder.split(separator: "/").suffix(2)
+        return parts.joined(separator: " › ")
+    }
 
     /// The folder with the home folder shortened to "~".
     var displayFolder: String? {
@@ -126,7 +139,7 @@ final class AgentMonitor {
     var isEmpty: Bool { sessions.isEmpty && models.isEmpty && apps.isEmpty && servers.isEmpty }
 
     #if DEBUG
-    /// Hides everything to preview the empty state (`isla://demo/agents-empty`). Memory only.
+    /// Hides everything to preview the empty state (`isla-dev://demo/agents-empty`). Memory only.
     @ObservationIgnored private var demoHidesAll = false
     #endif
 
@@ -186,7 +199,8 @@ final class AgentMonitor {
                                                isRegular: app.activationPolicy == .regular)
             },
             previousCPU: cpuBook,
-            previousSample: lastSample)
+            previousSample: lastSample,
+            knownModels: Set(sessions.filter { $0.model != nil }.map(\.pid)))
 
         let result = await Task.detached(priority: .utility) { AgentScanner.scan(request) }.value
         cpuBook = result.cpuBook
@@ -240,7 +254,10 @@ final class AgentMonitor {
                 state: state, stateSince: since,
                 step: raw.step ?? (state == .working ? old?.step : nil),
                 cpu: raw.cpuPercent, memory: raw.memory, history: history,
-                hostName: host?.name, hostPID: host?.pid, hostBundleID: host?.bundleID))
+                hostName: host?.name, hostPID: host?.pid, hostBundleID: host?.bundleID,
+                model: raw.model.map(AgentModelName.display) ?? old?.model,
+                limitUsed: raw.limitUsed ?? old?.limitUsed,
+                limitWindow: raw.limitWindow ?? old?.limitWindow))
         }
 
         next.sort { lhs, rhs in
@@ -428,9 +445,14 @@ final class AgentMonitor {
             try? await Task.sleep(for: .seconds(2))
         }
         for session in sessions {
-            print("isla-agent \(session.tool.name) | pid \(session.pid) | \(session.state) | \(session.displayFolder ?? "-") | \(session.title ?? "-") | host \(session.hostName ?? "-") | cpu \(String(format: "%.1f", session.cpu)) | \(session.step?.text ?? "-")")
+            print("isla-agent \(session.tool.name) | \(session.model ?? "-") | pid \(session.pid) | \(session.state) | \(session.displayFolder ?? "-") | \(session.title ?? "-") | host \(session.hostName ?? "-") | cpu \(String(format: "%.1f", session.cpu)) | \(session.step?.text ?? "-")")
         }
         for app in apps { print("isla-agent-app \(app.name) (\(app.bundleID))") }
+        // Parses a given Codex session log, to check the reader without a running Codex.
+        for path in (ProcessInfo.processInfo.environment["ISLA_CODEX_SAMPLES"] ?? "").split(separator: ":") {
+            let info = CodexTranscript.info(URL(fileURLWithPath: String(path)))
+            print("isla-codex \((String(path) as NSString).lastPathComponent.prefix(36)) | busy \(info.busy.map(String.init) ?? "-") | \(info.model.map(AgentModelName.display) ?? "-") | \(info.step?.text ?? "-") | limit \(info.limitUsed.map { "\($0)%" } ?? "-")/\(info.limitWindow ?? 0)m | \(info.folder ?? "-")")
+        }
         for server in servers { print("isla-agent-server \(server.name) \(server.version ?? "")") }
         for model in models { print("isla-agent-model \(model.name) \(model.detail ?? "")") }
     }
@@ -455,6 +477,8 @@ enum AgentScanner {
         let apps: [RunningApp]
         let previousCPU: [pid_t: UInt64]
         let previousSample: Date?
+        /// Sessions whose model is already known, so idle ones are not read again.
+        let knownModels: Set<pid_t>
     }
 
     struct RawAgent {
@@ -467,6 +491,9 @@ enum AgentScanner {
         let ancestors: [pid_t]
         var session: AgentSessionFile?
         var step: AgentStep?
+        var model: String?
+        var limitUsed: Double?
+        var limitWindow: Int?
     }
 
     struct Result {
@@ -606,14 +633,35 @@ enum AgentScanner {
                 // Some launchers start the session in a child process.
                 session = subtree(of: pid).dropFirst().lazy.compactMap { sessionFiles[$0] }.first
             }
+            var transcript: TranscriptInfo?
+            if toolID == AgentCatalog.codex.id {
+                // Codex has no status file: its session log says whether a turn is running.
+                let folder = ProcessProbe.workingDirectory(of: pid)
+                if let url = CodexTranscript.rollout(for: pid, folder: folder, started: record.started) {
+                    let info = CodexTranscript.info(url)
+                    transcript = info
+                    session = AgentSessionFile(pid: pid, sessionID: nil, folder: info.folder ?? folder, name: nil,
+                                               status: info.busy.map { $0 ? "busy" : "idle" },
+                                               started: nil, statusChanged: info.changed)
+                }
+            } else if let id = session?.sessionID {
+                // Sessions in the middle of a turn have a step worth reading; the others only
+                // once, to learn their model.
+                let busy = session?.status == nil || session?.isBusy == true
+                if (request.wantsSteps && busy) || !request.knownModels.contains(pid) {
+                    transcript = AgentTranscript.info(sessionID: id, folder: session?.folder)
+                }
+            }
             var agent = RawAgent(pid: pid, toolID: toolID,
                                  folder: session?.folder ?? ProcessProbe.workingDirectory(of: pid),
                                  started: record.started, cpuPercent: usage.percent, memory: usage.memory,
                                  ancestors: chain, session: session)
-            // Only sessions in the middle of a turn have a step worth reading.
-            if request.wantsSteps, let id = session?.sessionID, session?.status == nil || session?.isBusy == true {
-                agent.step = AgentTranscript.latestStep(sessionID: id, folder: session?.folder)
+            if request.wantsSteps, session?.status == nil || session?.isBusy == true {
+                agent.step = transcript?.step
             }
+            agent.model = transcript?.model
+            agent.limitUsed = transcript?.limitUsed
+            agent.limitWindow = transcript?.limitWindow
             agents.append(agent)
         }
 

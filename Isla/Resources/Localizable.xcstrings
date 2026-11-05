@@ -21,6 +21,16 @@
         }
       }
     },
+    "%@ limit: %lld%%": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "límite de %@: %lld %%"
+          }
+        }
+      }
+    },
     "%@ — %@": {
       "localizations": {
         "es": {
@@ -3651,6 +3661,16 @@
         }
       }
     },
+    "Searching the web": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando en la web"
+          }
+        }
+      }
+    },
     "Searching the web for %@": {
       "localizations": {
         "es": {
@@ -3697,6 +3717,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ajustes…"
+          }
+        }
+      }
+    },
+    "Share of the account's usage limit already used": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parte del límite de uso de la cuenta que ya se ha consumido"
           }
         }
       }
@@ -4680,6 +4710,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Trabajando"
+          }
+        }
+      }
+    },
+    "Working since %@ · running since %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trabajando desde las %1$@ · en marcha desde las %2$@"
           }
         }
       }

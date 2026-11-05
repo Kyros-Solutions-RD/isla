@@ -197,6 +197,15 @@ enum AgentDuration {
         formatter.maximumUnitCount = 2
         return formatter.string(from: seconds) ?? ""
     }
+
+    /// 300 → "5 h", 10080 → "7 d".
+    static func window(minutes: Int) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .abbreviated
+        formatter.allowedUnits = [.day, .hour, .minute]
+        formatter.maximumUnitCount = 1
+        return formatter.string(from: TimeInterval(minutes * 60)) ?? "\(minutes)m"
+    }
 }
 
 extension AgentMonitor {

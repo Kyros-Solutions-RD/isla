@@ -125,7 +125,9 @@ private struct DayAgenda: View {
                                 EventRow(event: event)
                             }
                         }
+                        .padding(.bottom, 8)
                     }
+                    .scrollFade()
                 }
                 QuickAddField(day: day)
             }

@@ -134,7 +134,9 @@ private struct TimersCard: View {
                                 TimerRow(timer: timer)
                             }
                         }
+                        .padding(.bottom, 8)
                     }
+                    .scrollFade()
                 }
             }
         }

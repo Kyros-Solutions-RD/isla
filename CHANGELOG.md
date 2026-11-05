@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.1 — 2026-11-05
+
+- The AI tab shows the model each session uses, when it started and how long it has been working or waiting.
+- Codex sessions now show whether a turn is running, what Codex is doing (the command it runs or the file it edits) and how much of its 5-hour usage limit is used.
+- Local models list the running servers under the title, and the context size moved to the tooltip, so nothing gets cut.
+- Folder names stay readable: when space is short, the AI tab shows just the project.
+- Lists in the notch (AI, Calendar, Tasks, Focus and Notes) fade out at the edges instead of being cut off.
+
 ## 1.1.0 — 2026-11-05
 
 - New **AI** tab: the coding agents running on your Mac, in Terminal or in their own app, with the folder each one works in, how long it has been running and whether it is working, waiting or needs you. It also shows what each agent is doing right now and its activity over the last minute.

@@ -60,6 +60,32 @@ struct TabSlide: ViewModifier {
     }
 }
 
+/// Fades a scrolling list into its card at the top and bottom edges, so rows slide out of
+/// view softly instead of being cut. Mostly at the bottom, where the list continues.
+struct ScrollFade: ViewModifier {
+    var top: CGFloat = 5
+    var bottom: CGFloat = 16
+
+    func body(content: Content) -> some View {
+        content.mask {
+            VStack(spacing: 0) {
+                LinearGradient(colors: [.black.opacity(0.15), .black], startPoint: .top, endPoint: .bottom)
+                    .frame(height: top)
+                Rectangle()
+                LinearGradient(colors: [.black, .black.opacity(0)], startPoint: .top, endPoint: .bottom)
+                    .frame(height: bottom)
+            }
+        }
+    }
+}
+
+extension View {
+    /// See ``ScrollFade``.
+    func scrollFade(top: CGFloat = 5, bottom: CGFloat = 16) -> some View {
+        modifier(ScrollFade(top: top, bottom: bottom))
+    }
+}
+
 enum IslaMetrics {
     static let cardRadius: CGFloat = 18
     static let innerPadding: CGFloat = 12

@@ -28,7 +28,9 @@ struct NotesView: View {
                                     .onTapGesture { store.selectedID = note.id }
                             }
                         }
+                        .padding(.bottom, 8)
                     }
+                    .scrollFade()
                 }
             }
             .frame(width: 200)

@@ -26,7 +26,9 @@ struct TasksView: View {
                                     TaskRow(task: task)
                                 }
                             }
+                            .padding(.bottom, 8)
                         }
+                        .scrollFade()
                     }
                     composer
                 }

@@ -99,6 +99,28 @@ enum ProcessProbe {
         return path.isEmpty ? nil : path
     }
 
+    /// Paths of the files the process has open that contain `fragment`. Only the kernel's
+    /// record of the open file is read, never the file itself.
+    static func openFiles(of pid: pid_t, containing fragment: String) -> [String] {
+        let needed = proc_pidinfo(pid, PROC_PIDLISTFDS, 0, nil, 0)
+        guard needed > 0 else { return [] }
+        let stride = MemoryLayout<proc_fdinfo>.stride
+        var descriptors = [proc_fdinfo](repeating: proc_fdinfo(), count: Int(needed) / stride + 16)
+        let used = descriptors.withUnsafeMutableBytes { buffer in
+            proc_pidinfo(pid, PROC_PIDLISTFDS, 0, buffer.baseAddress, Int32(buffer.count))
+        }
+        guard used > 0 else { return [] }
+        let size = Int32(MemoryLayout<vnode_fdinfowithpath>.stride)
+        var paths: [String] = []
+        for descriptor in descriptors.prefix(Int(used) / stride) where descriptor.proc_fdtype == UInt32(PROX_FDTYPE_VNODE) {
+            var info = vnode_fdinfowithpath()
+            guard proc_pidfdinfo(pid, descriptor.proc_fd, PROC_PIDFDVNODEPATHINFO, &info, size) == size else { continue }
+            let path = string(from: info.pvip.vip_path)
+            if path.contains(fragment), !paths.contains(path) { paths.append(path) }
+        }
+        return paths
+    }
+
     /// Total CPU time in nanoseconds and the memory footprint in bytes.
     static func usage(of pid: pid_t) -> (cpu: UInt64, memory: UInt64)? {
         var info = rusage_info_v2()

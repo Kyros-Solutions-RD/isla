@@ -71,6 +71,13 @@ targets:
         SWIFT_STRICT_CONCURRENCY: minimal
         ISLA_UPDATE_FEED_URL: "https://isla.kyrosrd.com/updates/appcast.xml"
         ISLA_SPARKLE_PUBLIC_KEY: "F1Iym983uii8gz8DGoGQJ2VaPpyN1o0IL+UoPKkdYkk="
+        ISLA_URL_SCHEME: isla
+      configs:
+        # Debug builds get their own identity so testing never touches the installed
+        # Isla's permissions, settings or data, and never answers its isla:// links.
+        Debug:
+          PRODUCT_BUNDLE_IDENTIFIER: com.kyrossolutions.isla.dev
+          ISLA_URL_SCHEME: isla-dev
 schemes:
   Isla:
     build:

@@ -771,6 +771,7 @@
 				INFOPLIST_FILE = Isla/Resources/Info.plist;
 				ISLA_SPARKLE_PUBLIC_KEY = "F1Iym983uii8gz8DGoGQJ2VaPpyN1o0IL+UoPKkdYkk=";
 				ISLA_UPDATE_FEED_URL = "https://isla.kyrosrd.com/updates/appcast.xml";
+				ISLA_URL_SCHEME = isla;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kyrossolutions.isla;
@@ -793,9 +794,10 @@
 				INFOPLIST_FILE = Isla/Resources/Info.plist;
 				ISLA_SPARKLE_PUBLIC_KEY = "F1Iym983uii8gz8DGoGQJ2VaPpyN1o0IL+UoPKkdYkk=";
 				ISLA_UPDATE_FEED_URL = "https://isla.kyrosrd.com/updates/appcast.xml";
+				ISLA_URL_SCHEME = "isla-dev";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kyrossolutions.isla;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kyrossolutions.isla.dev;
 				PRODUCT_NAME = Isla;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;

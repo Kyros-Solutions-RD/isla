@@ -3,7 +3,7 @@
 //  Isla
 //
 //  Debug-only helpers to preview every live activity without real hardware
-//  events: `open isla://demo/<name>`.
+//  events: `open isla-dev://demo/<name>`.
 //
 
 #if DEBUG

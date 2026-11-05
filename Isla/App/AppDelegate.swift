@@ -63,6 +63,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
 
+        #if DEBUG
+        // Test mode for Debug builds (`--env ISLA_TEST=1`): the notch and the services that need
+        // no permission run, but no welcome tour and nothing that could show a permission prompt.
+        if ProcessInfo.processInfo.environment["ISLA_TEST"] == "1" { return }
+        #endif
+
         if Preferences.shared.hasCompletedOnboarding {
             Self.startDeferredServices()
         } else {
@@ -93,8 +99,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {
-        // isla://open/<tab>, isla://settings[/<pane>]
-        for url in urls where url.scheme == "isla" {
+        // isla://open/<tab>, isla://settings[/<pane>] (isla-dev:// in Debug builds)
+        for url in urls where url.scheme == "isla" || url.scheme == "isla-dev" {
             if url.host() == "settings" {
                 let pane = url.pathComponents.dropFirst().first.flatMap(SettingsPane.init(rawValue:))
                 SettingsWindowController.shared.show(pane: pane)

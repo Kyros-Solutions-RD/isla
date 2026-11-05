@@ -18,15 +18,19 @@ Thanks for helping make Isla better. ¡Gracias por contribuir!
 
 ## Handy tools in Debug builds
 
-Isla registers the `isla://` URL scheme:
+Debug builds have their own identity, so testing never touches an installed Isla: bundle identifier `com.kyrossolutions.isla.dev`, URL scheme `isla-dev://`, and their own settings and data folder (`~/Library/Application Support/Isla Dev`). Quit the installed Isla while testing, or both draw a notch.
+
+Launch with `--env ISLA_TEST=1` (for example `open -n -a Isla.app --env ISLA_TEST=1`) to skip the welcome tour and every service that could ask for a permission. `--env ISLA_AGENTS_REPORT=1 --stdout <file>` prints the agents, AI apps and local models Isla finds, then quits.
+
+Isla registers the `isla://` URL scheme (`isla-dev://` in Debug builds):
 
 | URL | What it does |
 | --- | --- |
-| `isla://open/<tab>` | Opens the Nook on a tab (`home`, `shelf`, `clipboard`, `calendar`, `tasks`, `timers`, `notes`, `mirror`, `teleprompter`, `shortcuts`). Add `?screen=main` to target the built-in display. |
+| `isla://open/<tab>` | Opens the Nook on a tab (`home`, `agents`, `shelf`, `clipboard`, `calendar`, `tasks`, `timers`, `notes`, `mirror`, `teleprompter`, `shortcuts`, `terminal`). Add `?screen=main` to target the built-in display. |
 | `isla://close` | Closes every notch. |
-| `isla://settings` | Opens Settings. |
-| `isla://demo/<activity>` | **Debug only.** Shows a sample live activity: `charging`, `lowbattery`, `airpods`, `volume`, `brightness`, `caps`, `download`, `downloaded`, `meeting`, `timer`, `timerdone`, `shelf`, `track`. |
-| `isla://demo/data` | **Debug only.** Fills every tab with sample content, handy for screenshots. |
+| `isla://settings[/<pane>]` | Opens Settings, optionally on a pane (`general`, `appearance`, `nook`, `activities`, `agents`, `media`, `shelf`, `clipboard`, `calendar`, `focus`, `keyboard`, `permissions`, `about`). |
+| `isla-dev://demo/<activity>` | **Debug only.** Shows a sample live activity: `charging`, `lowbattery`, `airpods`, `volume`, `brightness`, `caps`, `download`, `downloaded`, `meeting`, `timer`, `timerdone`, `shelf`, `track`, `agent-done`, `agent-needs`. `agents-empty` / `agents-live` preview the AI tab's empty state. |
+| `isla-dev://demo/data` | **Debug only.** Fills every tab with sample content, handy for screenshots. |
 
 ## Guidelines
 

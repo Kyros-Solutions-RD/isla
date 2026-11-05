@@ -9,6 +9,19 @@
 
 import Foundation
 
+/// What a transcript says about its session.
+struct TranscriptInfo {
+    var step: AgentStep?
+    var model: String?
+    /// For agents without a status file: whether a turn is in progress.
+    var busy: Bool?
+    var changed: Date?
+    var folder: String?
+    /// Share of the account's usage limit already used, and the limit's window in minutes.
+    var limitUsed: Double?
+    var limitWindow: Int?
+}
+
 /// What an agent is doing right now, read from its transcript.
 struct AgentStep: Equatable {
     var text: String
@@ -73,26 +86,19 @@ enum AgentTranscript {
     private static let lock = NSLock()
     nonisolated(unsafe) private static var locations: [String: URL] = [:]
 
-    /// The latest thing the session did, from the tail of its transcript.
-    static func latestStep(sessionID: String, folder: String?) -> AgentStep? {
-        guard let url = location(sessionID: sessionID, folder: folder),
-              let handle = try? FileHandle(forReadingFrom: url) else { return nil }
-        defer { try? handle.close() }
-        guard let size = try? handle.seekToEnd(), size > 0 else { return nil }
-
-        for window in [UInt64(96 * 1024), UInt64(768 * 1024)] {
-            let start = size > window ? size - window : 0
-            try? handle.seek(toOffset: start)
-            guard let data = try? handle.readToEnd() else { return nil }
-            var lines = data.split(separator: UInt8(ascii: "\n"), omittingEmptySubsequences: true)
-            if start > 0, !lines.isEmpty { lines.removeFirst() } // partial line
-            for line in lines.reversed().prefix(60) {
-                guard let object = try? JSONSerialization.jsonObject(with: Data(line)) as? [String: Any] else { continue }
-                if let step = step(from: object) { return step }
+    /// The latest thing the session did and the model it uses, from the tail of its transcript.
+    static func info(sessionID: String, folder: String?) -> TranscriptInfo {
+        guard let url = location(sessionID: sessionID, folder: folder) else { return TranscriptInfo() }
+        var info = TranscriptInfo()
+        JSONLines.scanTail(of: url, windows: [96 * 1024, 768 * 1024], limit: 60) { object in
+            if info.step == nil { info.step = step(from: object) }
+            if info.model == nil, object["type"] as? String == "assistant",
+               let model = (object["message"] as? [String: Any])?["model"] as? String, model.hasPrefix("claude") {
+                info.model = model
             }
-            if start == 0 { break }
+            return info.step != nil && info.model != nil
         }
-        return nil
+        return info
     }
 
     private static func location(sessionID: String, folder: String?) -> URL? {
@@ -124,7 +130,7 @@ enum AgentTranscript {
     private static func step(from object: [String: Any]) -> AgentStep? {
         guard let type = object["type"] as? String, type == "assistant" || type == "user" else { return nil }
         if object["isSidechain"] as? Bool == true || object["isMeta"] as? Bool == true { return nil }
-        let date = (object["timestamp"] as? String).flatMap(parseDate)
+        let date = (object["timestamp"] as? String).flatMap(JSONLines.date)
         let message = object["message"] as? [String: Any]
         let content = message?["content"]
 
@@ -199,10 +205,233 @@ enum AgentTranscript {
         }
     }
 
-    private static func parseDate(_ string: String) -> Date? {
+}
+
+// MARK: - Codex sessions
+
+enum CodexTranscript {
+    private static var root: URL {
+        FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".codex/sessions", isDirectory: true)
+    }
+
+    /// The session file a Codex process writes: the one it keeps open, or else the newest
+    /// one for its folder that changed since it started.
+    static func rollout(for pid: pid_t, folder: String?, started: Date) -> URL? {
+        let open = ProcessProbe.openFiles(of: pid, containing: "/.codex/sessions/").filter { $0.hasSuffix(".jsonl") }
+        if let newest = open.max(by: { modified($0) < modified($1) }) { return URL(fileURLWithPath: newest) }
+
+        guard let folder else { return nil }
+        let calendar = Calendar.current
+        var days = [Date()]
+        if !calendar.isDateInToday(started) { days.append(started) }
+        var candidates: [(URL, Date)] = []
+        for day in days {
+            let parts = calendar.dateComponents([.year, .month, .day], from: day)
+            let dayFolder = root.appendingPathComponent(String(format: "%04d/%02d/%02d", parts.year ?? 0, parts.month ?? 0, parts.day ?? 0))
+            let files = (try? FileManager.default.contentsOfDirectory(at: dayFolder, includingPropertiesForKeys: [.contentModificationDateKey])) ?? []
+            for file in files where file.pathExtension == "jsonl" {
+                let date = modified(file.path)
+                if date >= started.addingTimeInterval(-5) { candidates.append((file, date)) }
+            }
+        }
+        for (file, _) in candidates.sorted(by: { $0.1 > $1.1 }).prefix(6) where sessionFolder(of: file) == folder {
+            return file
+        }
+        return nil
+    }
+
+    /// Whether a turn is running, its latest step, the model and the usage limit.
+    static func info(_ url: URL) -> TranscriptInfo {
+        var info = TranscriptInfo()
+        var settled = false
+        JSONLines.scanTail(of: url, windows: [256 * 1024, 2 * 1024 * 1024], limit: 120) { object in
+            let payload = object["payload"] as? [String: Any] ?? [:]
+            let kind = payload["type"] as? String ?? ""
+            let date = (object["timestamp"] as? String).flatMap(JSONLines.date)
+            switch object["type"] as? String {
+            case "event_msg":
+                if !settled, ["task_complete", "turn_aborted", "shutdown_complete"].contains(kind) {
+                    info.busy = false
+                    info.changed = date
+                    settled = true
+                } else if !settled, ["task_started", "user_message"].contains(kind) {
+                    info.busy = true
+                    info.changed = date
+                    info.step = AgentStep(text: String(localized: "Thinking…"), symbol: "brain", date: date)
+                    settled = true
+                } else if kind == "token_count", info.limitUsed == nil,
+                          let primary = (payload["rate_limits"] as? [String: Any])?["primary"] as? [String: Any] {
+                    info.limitUsed = (primary["used_percent"] as? NSNumber)?.doubleValue
+                    info.limitWindow = (primary["window_minutes"] as? NSNumber)?.intValue
+                }
+            case "response_item":
+                if !settled, let step = step(kind: kind, payload: payload, date: date) {
+                    info.busy = true
+                    info.changed = date
+                    info.step = step
+                    settled = true
+                }
+            case "turn_context":
+                if info.model == nil { info.model = payload["model"] as? String }
+                if info.folder == nil { info.folder = payload["cwd"] as? String }
+            case "session_meta":
+                if info.folder == nil { info.folder = payload["cwd"] as? String }
+            default:
+                break
+            }
+            return settled && info.model != nil && info.limitUsed != nil
+        }
+        if info.model == nil || info.folder == nil {
+            // The session's folder and model are written when each turn starts, near the top.
+            JSONLines.scanHead(of: url, bytes: 512 * 1024, limit: 60) { object in
+                let payload = object["payload"] as? [String: Any] ?? [:]
+                let type = object["type"] as? String
+                if type == "session_meta" || type == "turn_context", info.folder == nil { info.folder = payload["cwd"] as? String }
+                if type == "turn_context", info.model == nil { info.model = payload["model"] as? String }
+                return info.model != nil && info.folder != nil
+            }
+        }
+        return info
+    }
+
+    private static func step(kind: String, payload: [String: Any], date: Date?) -> AgentStep? {
+        switch kind {
+        case "function_call", "custom_tool_call", "local_shell_call":
+            let name = payload["name"] as? String ?? "shell"
+            let input = (payload["arguments"] as? String) ?? (payload["input"] as? String) ?? ""
+            var step = describe(tool: name, input: input)
+            step.date = date
+            return step
+        case "reasoning":
+            return AgentStep(text: String(localized: "Thinking…"), symbol: "brain", date: date)
+        case "function_call_output", "custom_tool_call_output", "local_shell_call_output":
+            return AgentStep(text: String(localized: "Thinking…"), symbol: "brain", date: date)
+        case "message":
+            let role = payload["role"] as? String
+            if role == "assistant" { return AgentStep(text: String(localized: "Writing a reply"), symbol: "text.cursor", date: date) }
+            if role == "user" { return AgentStep(text: String(localized: "Reading your message"), symbol: "text.bubble", date: date) }
+            return nil
+        default:
+            return nil
+        }
+    }
+
+    private static func describe(tool: String, input: String) -> AgentStep {
+        func clipped(_ text: String, _ limit: Int = 60) -> String {
+            let line = text.split(whereSeparator: \.isNewline).first.map(String.init) ?? text
+            return line.count > limit ? String(line.prefix(limit)) + "…" : line
+        }
+        if input.contains("*** Begin Patch") || tool == "apply_patch" {
+            let file = input.components(separatedBy: "\n")
+                .first { $0.hasPrefix("*** Update File: ") || $0.hasPrefix("*** Add File: ") }?
+                .components(separatedBy: ": ").last
+                .map { ($0 as NSString).lastPathComponent } ?? ""
+            return AgentStep(text: String(localized: "Editing \(file)"), symbol: "pencil")
+        }
+        switch tool {
+        case "shell", "exec", "exec_command", "shell_command", "local_shell":
+            return AgentStep(text: String(localized: "Running \(clipped(command(in: input)))"), symbol: "terminal")
+        case "update_plan":
+            return AgentStep(text: String(localized: "Updating its plan"), symbol: "checklist")
+        case "web_search", "web.run", "search":
+            return AgentStep(text: String(localized: "Searching the web"), symbol: "globe")
+        default:
+            let name = (tool.components(separatedBy: "__").last ?? tool).replacingOccurrences(of: "_", with: " ")
+            return AgentStep(text: String(localized: "Using \(name)"), symbol: "hammer.fill")
+        }
+    }
+
+    /// The command line inside a shell call: `{"command": [...]}`, `{"cmd": "..."}` or `cmd:"..."`.
+    private static func command(in input: String) -> String {
+        if let object = try? JSONSerialization.jsonObject(with: Data(input.utf8)) as? [String: Any] {
+            if let parts = object["command"] as? [String] { return parts.last ?? "" }
+            if let line = (object["cmd"] as? String) ?? (object["command"] as? String) { return line }
+        }
+        if let range = input.range(of: #"cmd:\s*"((?:[^"\\]|\\.)*)""#, options: .regularExpression) {
+            let match = String(input[range])
+            return String(match.drop(while: { $0 != "\"" }).dropFirst().dropLast())
+                .replacingOccurrences(of: "\\\"", with: "\"")
+        }
+        return input
+    }
+
+    private static func sessionFolder(of url: URL) -> String? {
+        guard let handle = try? FileHandle(forReadingFrom: url) else { return nil }
+        defer { try? handle.close() }
+        guard let data = try? handle.read(upToCount: 256 * 1024),
+              let end = data.firstIndex(of: UInt8(ascii: "\n")),
+              let object = try? JSONSerialization.jsonObject(with: data[..<end]) as? [String: Any] else { return nil }
+        return (object["payload"] as? [String: Any])?["cwd"] as? String
+    }
+
+    private static func modified(_ path: String) -> Date {
+        ((try? FileManager.default.attributesOfItem(atPath: path))?[.modificationDate] as? Date) ?? .distantPast
+    }
+}
+
+// MARK: - JSON lines
+
+enum JSONLines {
+    /// Reads the last lines of a JSON-lines file, newest first, until `visit` returns true.
+    /// Tries a small window first and a bigger one only when nothing useful was found.
+    static func scanTail(of url: URL, windows: [UInt64], limit: Int, visit: ([String: Any]) -> Bool) {
+        guard let handle = try? FileHandle(forReadingFrom: url) else { return }
+        defer { try? handle.close() }
+        guard let size = try? handle.seekToEnd(), size > 0 else { return }
+        var visited = 0
+        for window in windows {
+            let start = size > window ? size - window : 0
+            try? handle.seek(toOffset: start)
+            guard let data = try? handle.readToEnd() else { return }
+            var lines = data.split(separator: UInt8(ascii: "\n"), omittingEmptySubsequences: true)
+            if start > 0, !lines.isEmpty { lines.removeFirst() } // partial line
+            visited = 0
+            for line in lines.reversed().prefix(limit) {
+                guard let object = try? JSONSerialization.jsonObject(with: Data(line)) as? [String: Any] else { continue }
+                visited += 1
+                if visit(object) { return }
+            }
+            if start == 0 || visited >= limit { return }
+        }
+    }
+
+    /// Reads the first lines of a JSON-lines file until `visit` returns true.
+    static func scanHead(of url: URL, bytes: Int, limit: Int, visit: ([String: Any]) -> Bool) {
+        guard let handle = try? FileHandle(forReadingFrom: url) else { return }
+        defer { try? handle.close() }
+        guard let data = try? handle.read(upToCount: bytes) else { return }
+        var lines = data.split(separator: UInt8(ascii: "\n"), omittingEmptySubsequences: true)
+        if data.count == bytes, !lines.isEmpty { lines.removeLast() } // partial line
+        for line in lines.prefix(limit) {
+            guard let object = try? JSONSerialization.jsonObject(with: Data(line)) as? [String: Any] else { continue }
+            if visit(object) { return }
+        }
+    }
+
+    static func date(_ string: String) -> Date? {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         return formatter.date(from: string) ?? ISO8601DateFormatter().date(from: string)
+    }
+}
+
+/// "claude-opus-5-5" → "Opus 5.5", "gpt-5.5-codex" → "GPT-5.5-Codex".
+enum AgentModelName {
+    static func display(_ raw: String) -> String {
+        let lower = raw.lowercased()
+        if lower.hasPrefix("claude") {
+            let parts = lower.split(whereSeparator: { $0 == "-" || $0 == "_" || $0 == "." || $0 == "@" }).map(String.init)
+            guard let family = parts.first(where: { ["opus", "sonnet", "haiku", "fable"].contains($0) }) else { return raw }
+            // Version numbers, skipping dated snapshots such as 20250929.
+            let version = parts.filter { $0.allSatisfy(\.isNumber) && $0.count <= 2 }.joined(separator: ".")
+            return family.capitalized + (version.isEmpty ? "" : " \(version)")
+        }
+        if lower.hasPrefix("gpt") {
+            return lower.split(separator: "-").enumerated().map { index, part in
+                index == 0 ? part.uppercased() : (part.first?.isNumber == true ? String(part) : part.capitalized)
+            }.joined(separator: "-")
+        }
+        return raw
     }
 }
 

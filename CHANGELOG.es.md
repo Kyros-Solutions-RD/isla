@@ -2,6 +2,14 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.1 — 2026-11-05
+
+- La pestaña IA muestra el modelo que usa cada sesión, cuándo empezó y cuánto tiempo lleva trabajando o esperando.
+- Las sesiones de Codex ahora muestran si hay un turno en marcha, qué está haciendo (el comando que ejecuta o el archivo que edita) y cuánto lleva usado de su límite de uso de 5 horas.
+- Los modelos locales muestran los servidores en marcha debajo del título, y el tamaño de contexto pasó a la ayuda emergente, así que nada se corta.
+- Los nombres de carpeta se leen bien: cuando falta espacio, la pestaña IA muestra solo el proyecto.
+- Las listas del notch (IA, Calendario, Tareas, Enfoque y Notas) se desvanecen en los bordes en lugar de cortarse.
+
 ## 1.1.0 — 2026-11-05
 
 - Nueva pestaña **IA**: los agentes de programación que corren en tu Mac, en Terminal o en su propia app, con la carpeta en la que trabaja cada uno, desde cuándo está en marcha y si está trabajando, esperando o te necesita. También muestra qué hace cada agente en este momento y su actividad del último minuto.

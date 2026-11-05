@@ -31,7 +31,7 @@ struct AgentsView: View {
                             }
                             if !monitor.apps.isEmpty || !prefs.agentsLocalModels {
                                 AIAppsCard()
-                                    .frame(height: prefs.agentsLocalModels ? 74 : nil)
+                                    .frame(height: prefs.agentsLocalModels ? 70 : nil)
                                     .emerge(delay: 0.16)
                             }
                         }
@@ -108,8 +108,9 @@ private struct AgentsListCard: View {
                                         removal: AnyTransition(.blurReplace).combined(with: .opacity)))
                             }
                         }
+                        .padding(.bottom, 8)
                     }
-                    .scrollClipDisabled(false)
+                    .scrollFade()
                 }
             }
         }
@@ -153,7 +154,7 @@ private struct AgentRow: View {
                         .font(.system(size: 12.5, weight: .semibold))
                         .lineLimit(1)
                     if session.title != nil || session.project != nil {
-                        Text(verbatim: session.tool.name)
+                        Text(verbatim: [session.tool.name, session.model].compactMap { $0 }.joined(separator: " · "))
                             .font(.system(size: 9, weight: .bold))
                             .foregroundStyle(session.tool.tint)
                             .padding(.horizontal, 5)
@@ -203,24 +204,48 @@ private struct AgentRow: View {
         .help(session.folder ?? session.tool.name)
     }
 
+    /// Folder, host app, start time and usage limit. Drops the least useful parts when
+    /// the row is narrow instead of cutting the folder.
     private var detailLine: some View {
+        ViewThatFits(in: .horizontal) {
+            detailParts(folder: session.shortFolder, host: true)
+            detailParts(folder: session.project ?? session.shortFolder, host: true)
+            detailParts(folder: session.project ?? session.shortFolder, host: false)
+        }
+        .font(.system(size: 10.5))
+        .foregroundStyle(.secondary)
+    }
+
+    private func detailParts(folder: String?, host showsHost: Bool) -> some View {
         HStack(spacing: 4) {
-            if let folder = session.displayFolder {
+            if let folder {
                 Image(systemName: "folder.fill")
                     .font(.system(size: 8.5))
                 Text(verbatim: folder)
                     .lineLimit(1)
-                    .truncationMode(.head)
+                    .fixedSize()
             }
-            if let host = session.hostName, session.tool.kind == .cli {
+            if showsHost, let host = session.hostName, session.tool.kind == .cli {
                 Text(verbatim: "·")
                 Text("in \(host)")
                     .lineLimit(1)
                     .fixedSize()
             }
+            Text(verbatim: "·")
+            Image(systemName: "clock")
+                .font(.system(size: 8.5))
+            Text(session.started, format: .dateTime.hour().minute())
+                .monospacedDigit()
+                .fixedSize()
+            if let used = session.limitUsed, let window = session.limitWindow {
+                Text(verbatim: "·")
+                Text("\(AgentDuration.window(minutes: window)) limit: \(Int(used.rounded()))%")
+                    .foregroundStyle(used >= 80 ? AgentState.needsYou.tint : .secondary)
+                    .lineLimit(1)
+                    .fixedSize()
+                    .help(String(localized: "Share of the account's usage limit already used"))
+            }
         }
-        .font(.system(size: 10.5))
-        .foregroundStyle(.secondary)
     }
 
     @ViewBuilder private var stepLine: some View {
@@ -247,7 +272,7 @@ private struct AgentRow: View {
                 ActivitySparkline(values: session.history, tint: session.state == .working ? session.state.tint : .white.opacity(0.45))
                     .frame(width: 40, height: 12)
                 TimelineView(.periodic(from: .now, by: 20)) { context in
-                    Text(verbatim: AgentDuration.label(since: session.state == .working ? session.started : session.stateSince, now: context.date))
+                    Text(verbatim: AgentDuration.label(since: session.stateSince, now: context.date))
                         .font(.system(size: 10, weight: .medium, design: .rounded))
                         .monospacedDigit()
                         .foregroundStyle(.tertiary)
@@ -261,7 +286,9 @@ private struct AgentRow: View {
     private var timeHelp: String {
         let started = session.started.formatted(date: .omitted, time: .shortened)
         switch session.state {
-        case .working, .idle:
+        case .working:
+            return String(localized: "Working since \(session.stateSince.formatted(date: .omitted, time: .shortened)) · running since \(started)")
+        case .idle:
             return String(localized: "Running since \(started)")
         case .waiting, .needsYou:
             return String(localized: "Waiting since \(session.stateSince.formatted(date: .omitted, time: .shortened)) · running since \(started)")
@@ -298,12 +325,16 @@ private struct LocalModelsCard: View {
     var body: some View {
         IslaCard(padding: 10) {
             VStack(alignment: .leading, spacing: 6) {
-                CardHeader(title: "Local models", symbol: "cpu", tint: .purple) {
-                    HStack(spacing: 3) {
+                CardHeader(title: "Local models", symbol: "cpu", tint: .purple)
+                if !monitor.servers.isEmpty {
+                    // Which model servers are running, under the title so it never gets cut.
+                    HStack(spacing: 4) {
                         ForEach(monitor.servers) { server in
                             ServerDot(server: server)
+                                .transition(.scale(scale: 0.6).combined(with: .opacity))
                         }
                     }
+                    .padding(.top, -2)
                 }
                 if monitor.models.isEmpty {
                     VStack(alignment: .leading, spacing: 3) {
@@ -326,7 +357,9 @@ private struct LocalModelsCard: View {
                                     .transition(AnyTransition(.blurReplace).combined(with: .scale(scale: 0.96, anchor: .top)))
                             }
                         }
+                        .padding(.bottom, 8)
                     }
+                    .scrollFade()
                 }
             }
         }
@@ -367,11 +400,11 @@ private struct LocalModelRow: View {
                         .font(.system(size: 11.5, weight: .semibold))
                         .lineLimit(1)
                         .truncationMode(.middle)
-                    Text(verbatim: [model.detail, model.context.map { String(localized: "\($0.formatted(.number.notation(.compactName))) context") }]
-                        .compactMap { $0 }.joined(separator: " · "))
+                    Text(verbatim: model.detail ?? AgentCatalog.tool(id: model.serverID)?.name ?? "")
                         .font(.system(size: 9.5))
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
+                        .help(model.context.map { String(localized: "\($0.formatted(.number.notation(.compactName))) context") } ?? "")
                 }
                 Spacer(minLength: 2)
                 if let bytes = model.bytes {
