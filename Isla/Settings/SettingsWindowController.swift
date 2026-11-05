@@ -7,7 +7,7 @@ import AppKit
 import SwiftUI
 
 enum SettingsPane: String, CaseIterable, Identifiable, Hashable {
-    case general, appearance, nook, activities, media, shelf, clipboard, calendar, focus, keyboard, permissions, about
+    case general, appearance, nook, activities, agents, media, shelf, clipboard, calendar, focus, keyboard, permissions, about
 
     var id: String { rawValue }
 
@@ -17,6 +17,7 @@ enum SettingsPane: String, CaseIterable, Identifiable, Hashable {
         case .appearance: "Appearance"
         case .nook: "Nook & Widgets"
         case .activities: "Live Activities"
+        case .agents: "AI Agents"
         case .media: "Music"
         case .shelf: "Shelf"
         case .clipboard: "Clipboard"
@@ -34,6 +35,7 @@ enum SettingsPane: String, CaseIterable, Identifiable, Hashable {
         case .appearance: "paintbrush.fill"
         case .nook: "square.grid.2x2.fill"
         case .activities: "capsule.inset.filled"
+        case .agents: "sparkles"
         case .media: "music.note"
         case .shelf: "tray.full.fill"
         case .clipboard: "doc.on.clipboard.fill"
@@ -51,6 +53,7 @@ enum SettingsPane: String, CaseIterable, Identifiable, Hashable {
         case .appearance: .blue
         case .nook: .indigo
         case .activities: .purple
+        case .agents: .orange
         case .media: .pink
         case .shelf: .teal
         case .clipboard: .orange
@@ -64,7 +67,7 @@ enum SettingsPane: String, CaseIterable, Identifiable, Hashable {
 
     static let groups: [[SettingsPane]] = [
         [.general, .appearance],
-        [.nook, .activities],
+        [.nook, .activities, .agents],
         [.media, .shelf, .clipboard, .calendar, .focus],
         [.keyboard, .permissions],
         [.about],

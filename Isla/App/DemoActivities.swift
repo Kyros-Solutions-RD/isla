@@ -55,6 +55,8 @@ enum DemoActivities {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                 NotchManager.shared.controllers.values.forEach { $0.panel.makeFirstResponder(nil) }
             }
+        case "agent-done", "agent-needs", "agents-empty", "agents-live":
+            AgentMonitor.shared.runDemo(name)
         case "clear":
             for timer in TimerStore.shared.timers { TimerStore.shared.remove(timer) }
             center.dismissTransient()

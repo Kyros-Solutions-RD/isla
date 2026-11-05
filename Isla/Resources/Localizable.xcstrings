@@ -1,6 +1,16 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "%@ context": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ de contexto"
+          }
+        }
+      }
+    },
     "%@ copied": {
       "localizations": {
         "es": {
@@ -141,12 +151,32 @@
         }
       }
     },
+    "%lld working": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld trabajando"
+          }
+        }
+      }
+    },
     "%lld%%": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld%%"
+          }
+        }
+      }
+    },
+    "%lld%% of this Mac's memory": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld %% de la memoria de este Mac"
           }
         }
       }
@@ -201,6 +231,76 @@
         }
       }
     },
+    "AI": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IA"
+          }
+        }
+      }
+    },
+    "AI Agents": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agentes de IA"
+          }
+        }
+      }
+    },
+    "AI agents at work": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agentes de IA trabajando"
+          }
+        }
+      }
+    },
+    "AI agents at work on this Mac, their folders and the local models in memory.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los agentes de IA que trabajan en este Mac, sus carpetas y los modelos locales en memoria."
+          }
+        }
+      }
+    },
+    "AI apps": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps de IA"
+          }
+        }
+      }
+    },
+    "AI apps open": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps de IA abiertas"
+          }
+        }
+      }
+    },
+    "AI tab": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pestaña IA"
+          }
+        }
+      }
+    },
     "About Isla": {
       "localizations": {
         "es": {
@@ -217,6 +317,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Accesibilidad"
+          }
+        }
+      }
+    },
+    "Add": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir"
           }
         }
       }
@@ -307,6 +417,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Añadido"
+          }
+        }
+      }
+    },
+    "Agents": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agentes"
           }
         }
       }
@@ -921,6 +1041,16 @@
         }
       }
     },
+    "Command name": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre del comando"
+          }
+        }
+      }
+    },
     "Compact": {
       "localizations": {
         "es": {
@@ -1021,6 +1151,16 @@
         }
       }
     },
+    "Copy folder path": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar la ruta de la carpeta"
+          }
+        }
+      }
+    },
     "Copy text, links, images or files and they will show up here. Passwords are never saved.": {
       "localizations": {
         "es": {
@@ -1097,6 +1237,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Eliminar"
+          }
+        }
+      }
+    },
+    "Detected now": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detectado ahora"
           }
         }
       }
@@ -1267,6 +1417,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Editar guion"
+          }
+        }
+      }
+    },
+    "Editing %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editando %@"
           }
         }
       }
@@ -1531,6 +1691,16 @@
         }
       }
     },
+    "Idle": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En reposo"
+          }
+        }
+      }
+    },
     "Image": {
       "localizations": {
         "es": {
@@ -1621,12 +1791,32 @@
         }
       }
     },
+    "Isla already knows the popular coding agents. Add the command of any other one you run and it shows up while it runs.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla ya conoce los agentes de programación más usados. Añade el comando de cualquier otro que uses y aparecerá mientras se ejecute."
+          }
+        }
+      }
+    },
     "Isla already switched on in System Settings › Accessibility but not allowed here? Select it there, remove it with −, then click Allow… again.": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "¿Isla ya aparece activada en Ajustes del Sistema › Accesibilidad pero aquí no? Selecciónala allí, quítala con − y vuelve a pulsar «Permitir…»."
+          }
+        }
+      }
+    },
+    "Isla asks Ollama (port 11434) and LM Studio (port 1234) on this Mac which models are in memory. It never loads or unloads a model.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla pregunta a Ollama (puerto 11434) y a LM Studio (puerto 1234) de este Mac qué modelos tienen en memoria. Nunca carga ni descarga un modelo."
           }
         }
       }
@@ -1831,6 +2021,16 @@
         }
       }
     },
+    "Let me know when an agent finishes or needs me": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avisarme cuando un agente termine o me necesite"
+          }
+        }
+      }
+    },
     "Lets the Teleprompter follow your voice.": {
       "localizations": {
         "es": {
@@ -1877,6 +2077,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Actividades en vivo"
+          }
+        }
+      }
+    },
+    "Local models": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelos locales"
           }
         }
       }
@@ -2071,6 +2281,26 @@
         }
       }
     },
+    "Model in memory": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelo en memoria"
+          }
+        }
+      }
+    },
+    "Models you load in Ollama or LM Studio appear here with the memory they use.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los modelos que cargues en Ollama o LM Studio aparecen aquí con la memoria que usan."
+          }
+        }
+      }
+    },
     "Moments": {
       "localizations": {
         "es": {
@@ -2137,6 +2367,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Requiere acceso a %@"
+          }
+        }
+      }
+    },
+    "Needs you": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te necesita"
           }
         }
       }
@@ -2221,12 +2461,42 @@
         }
       }
     },
+    "No AI apps open": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ninguna app de IA abierta"
+          }
+        }
+      }
+    },
     "No accounts, no analytics, no tracking.": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sin cuentas, sin analíticas, sin rastreo."
+          }
+        }
+      }
+    },
+    "No agents at work": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ningún agente trabajando"
+          }
+        }
+      }
+    },
+    "No agents running": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ningún agente en marcha"
           }
         }
       }
@@ -2261,6 +2531,16 @@
         }
       }
     },
+    "No model loaded": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ningún modelo cargado"
+          }
+        }
+      }
+    },
     "No more events today": {
       "localizations": {
         "es": {
@@ -2277,6 +2557,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ninguna nota seleccionada"
+          }
+        }
+      }
+    },
+    "No permissions needed. Nothing leaves your Mac.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No necesita permisos. Nada sale de tu Mac."
+          }
+        }
+      }
+    },
+    "No permissions needed: Isla only looks at your own processes and the files agents keep in your home folder.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No necesita permisos: Isla solo mira tus propios procesos y los archivos que los agentes guardan en tu carpeta de inicio."
           }
         }
       }
@@ -2371,12 +2671,32 @@
         }
       }
     },
+    "Nothing leaves your Mac.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada sale de tu Mac."
+          }
+        }
+      }
+    },
     "Nothing playing": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "No se está reproduciendo nada"
+          }
+        }
+      }
+    },
+    "Nothing running right now.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ahora mismo no hay nada en marcha."
           }
         }
       }
@@ -2611,6 +2931,16 @@
         }
       }
     },
+    "Open the AI Tab": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir la pestaña IA"
+          }
+        }
+      }
+    },
     "Open the Shelf when dragging files near the notch": {
       "localizations": {
         "es": {
@@ -2637,6 +2967,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Open-Meteo"
+          }
+        }
+      }
+    },
+    "Other agents": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otros agentes"
           }
         }
       }
@@ -2931,6 +3271,36 @@
         }
       }
     },
+    "Reading %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leyendo %@"
+          }
+        }
+      }
+    },
+    "Reading your message": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leyendo tu mensaje"
+          }
+        }
+      }
+    },
+    "Ready, no model loaded": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listo, sin modelos cargados"
+          }
+        }
+      }
+    },
     "Record Shortcut": {
       "localizations": {
         "es": {
@@ -3141,6 +3511,36 @@
         }
       }
     },
+    "Running": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En marcha"
+          }
+        }
+      }
+    },
+    "Running %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ejecutando %@"
+          }
+        }
+      }
+    },
+    "Running since %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En marcha desde las %@"
+          }
+        }
+      }
+    },
     "Sample script": {
       "localizations": {
         "es": {
@@ -3237,6 +3637,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Historial con búsqueda. Nunca contraseñas."
+          }
+        }
+      }
+    },
+    "Searching for %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando «%@»"
+          }
+        }
+      }
+    },
+    "Searching the web for %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando en la web «%@»"
           }
         }
       }
@@ -3341,6 +3761,16 @@
         }
       }
     },
+    "Show %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar %@"
+          }
+        }
+      }
+    },
     "Show Converted Files in Finder": {
       "localizations": {
         "es": {
@@ -3391,6 +3821,26 @@
         }
       }
     },
+    "Show local models": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar modelos locales"
+          }
+        }
+      }
+    },
+    "Show the AI tab in the notch": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar la pestaña IA en el notch"
+          }
+        }
+      }
+    },
     "Show the lyric line under the island": {
       "localizations": {
         "es": {
@@ -3417,6 +3867,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mostrar la canción al cambiar de pista"
+          }
+        }
+      }
+    },
+    "Show what each agent is doing": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar qué hace cada agente"
+          }
+        }
+      }
+    },
+    "Show working agents around the closed notch": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar los agentes trabajando alrededor del notch cerrado"
           }
         }
       }
@@ -3540,6 +4010,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Empezar a usar Isla"
+          }
+        }
+      }
+    },
+    "Start a coding agent in Terminal or in its app, or load a local model. Isla shows which folder it works in, since when and whether it is working or waiting for you.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicia un agente de programación en Terminal o en su app, o carga un modelo local. Isla te muestra en qué carpeta trabaja, desde cuándo y si está trabajando o esperándote."
+          }
+        }
+      }
+    },
+    "Start one in Terminal or in its app and it shows up here.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicia uno en Terminal o en su app y aparecerá aquí."
+          }
+        }
+      }
+    },
+    "Steps are read from the agent's own session files on this Mac, only while it is working.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los pasos se leen de los archivos de sesión del propio agente en este Mac, solo mientras trabaja."
           }
         }
       }
@@ -3794,6 +4294,16 @@
         }
       }
     },
+    "Thinking…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pensando…"
+          }
+        }
+      }
+    },
     "Thunderstorm": {
       "localizations": {
         "es": {
@@ -3880,6 +4390,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pulsa el atajo…"
+          }
+        }
+      }
+    },
+    "Unloading soon": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se descarga pronto"
+          }
+        }
+      }
+    },
+    "Unloads in %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se descarga en %@"
           }
         }
       }
@@ -3974,6 +4504,16 @@
         }
       }
     },
+    "Updating its plan": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualizando su plan"
+          }
+        }
+      }
+    },
     "Use Local Tasks Instead": {
       "localizations": {
         "es": {
@@ -3994,6 +4534,16 @@
         }
       }
     },
+    "Using %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usando %@"
+          }
+        }
+      }
+    },
     "Version %@": {
       "localizations": {
         "es": {
@@ -4010,6 +4560,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Volumen y brillo"
+          }
+        }
+      }
+    },
+    "Waiting": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esperando"
+          }
+        }
+      }
+    },
+    "Waiting for your answer": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esperando tu respuesta"
+          }
+        }
+      }
+    },
+    "Waiting since %@ · running since %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esperando desde las %1$@ · en marcha desde las %2$@"
           }
         }
       }
@@ -4094,6 +4674,26 @@
         }
       }
     },
+    "Working": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trabajando"
+          }
+        }
+      }
+    },
+    "Working with a helper agent": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trabajando con un agente ayudante"
+          }
+        }
+      }
+    },
     "Write something…": {
       "localizations": {
         "es": {
@@ -4110,6 +4710,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Escribe tu guion para empezar."
+          }
+        }
+      }
+    },
+    "Writing %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escribiendo %@"
+          }
+        }
+      }
+    },
+    "Writing a reply": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escribiendo la respuesta"
           }
         }
       }
@@ -4194,12 +4814,32 @@
         }
       }
     },
+    "in %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "en %@"
+          }
+        }
+      }
+    },
     "in %lldm": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "en %lld min"
+          }
+        }
+      }
+    },
+    "just now": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ahora mismo"
           }
         }
       }

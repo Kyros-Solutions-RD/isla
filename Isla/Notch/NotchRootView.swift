@@ -153,6 +153,7 @@ struct NotchContextMenu: View {
         Button("Open Nook") { model.controller?.open(.home, makeKey: true) }
         Button("Shelf") { model.controller?.open(.shelf, makeKey: true) }
         Button("Clipboard") { model.controller?.open(.clipboard, makeKey: true) }
+        Button("AI Agents") { model.controller?.open(.agents, makeKey: true) }
         Divider()
         Button("Customize Nook…") { SettingsWindowController.shared.show(pane: .nook) }
         Button("Settings…") { SettingsWindowController.shared.show() }
@@ -189,6 +190,7 @@ struct TabContent: View {
         ZStack {
             switch model.tab {
             case .home: HomeView(model: model)
+            case .agents: AgentsView(model: model)
             case .shelf: ShelfView(model: model)
             case .clipboard: ClipboardView(model: model)
             case .calendar: CalendarView(model: model)
@@ -275,8 +277,17 @@ struct NotchHeader: View {
                     .frame(minWidth: 13, minHeight: 13)
                     .background(Capsule().fill(.white))
                     .offset(x: 2, y: -2)
+            } else if tab == .agents, let state = AgentMonitor.shared.activeSessions.first?.state {
+                // A live dot while an agent works (green) or waits on an answer (orange).
+                Circle()
+                    .fill(state.tint)
+                    .frame(width: 6, height: 6)
+                    .background(Circle().stroke(.black.opacity(0.6), lineWidth: 1.5))
+                    .offset(x: -3, y: 2)
+                    .transition(.scale(scale: 0.3).combined(with: .opacity))
             }
         }
+        .animation(IslaMotion.snappy, value: AgentMonitor.shared.activeSessions.first?.state)
     }
 }
 

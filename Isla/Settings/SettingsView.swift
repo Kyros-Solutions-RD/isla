@@ -36,6 +36,7 @@ struct SettingsRootView: View {
                 case .appearance: AppearancePane()
                 case .nook: NookPane()
                 case .activities: ActivitiesPane()
+                case .agents: AgentsPane()
                 case .media: MediaPane()
                 case .shelf: ShelfPane()
                 case .clipboard: ClipboardPane()
@@ -339,6 +340,7 @@ private struct ActivitiesPane: View {
                 Toggle("Timers and Pomodoro", isOn: $prefs.activityTimers)
                 Toggle("Downloads", isOn: $prefs.activityDownloads)
                     .onChange(of: prefs.activityDownloads) { _, on in on ? DownloadsWatcher.shared.start() : DownloadsWatcher.shared.stop() }
+                Toggle("AI agents at work", isOn: $prefs.activityAgents)
                 Toggle("Upcoming meetings", isOn: $prefs.activityMeetings)
                 if prefs.activityMeetings {
                     Stepper("Start \(prefs.meetingLeadMinutes) minutes before", value: $prefs.meetingLeadMinutes, in: 1...30)

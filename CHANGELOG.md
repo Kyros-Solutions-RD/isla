@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0 — 2026-11-05
+
+- New **AI** tab: the coding agents running on your Mac, in Terminal or in their own app, with the folder each one works in, how long it has been running and whether it is working, waiting or needs you. It also shows what each agent is doing right now and its activity over the last minute.
+- Editors built around an agent, such as Antigravity and Cursor, appear with their open project, and the AI apps you have open are one click away.
+- Local models: see which models Ollama and LM Studio keep in memory, how much memory they use and when they unload.
+- While an agent works, its icon and project appear around the closed notch. When it finishes or stops to ask you something, the island lets you know, and a dot on the AI tab shows it too.
+- Settings › AI Agents turns the tab, the notch activity and the alerts on or off, and lets you add any other agent by its command name. No new permissions: Isla only looks at your own processes, and nothing leaves your Mac.
+
 ## 1.0.5 — 2026-11-05
 
 - The Updates section in Settings › About is now fully translated.

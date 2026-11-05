@@ -2,6 +2,14 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.0 — 2026-11-05
+
+- Nueva pestaña **IA**: los agentes de programación que corren en tu Mac, en Terminal o en su propia app, con la carpeta en la que trabaja cada uno, desde cuándo está en marcha y si está trabajando, esperando o te necesita. También muestra qué hace cada agente en este momento y su actividad del último minuto.
+- Los editores con agente, como Antigravity y Cursor, aparecen con su proyecto abierto, y las apps de IA que tienes abiertas quedan a un clic.
+- Modelos locales: mira qué modelos tienen Ollama y LM Studio en memoria, cuánta memoria usan y cuándo se descargan.
+- Mientras un agente trabaja, su ícono y su proyecto aparecen alrededor del notch cerrado. Cuando termina o se para a preguntarte algo, la isla te avisa, y un punto en la pestaña IA también lo indica.
+- Ajustes › Agentes de IA activa o desactiva la pestaña, la actividad en el notch y los avisos, y te deja añadir cualquier otro agente por el nombre de su comando. Sin permisos nuevos: Isla solo mira tus propios procesos y nada sale de tu Mac.
+
 ## 1.0.5 — 2026-11-05
 
 - La sección Actualizaciones de Ajustes › Acerca de ya está traducida por completo.

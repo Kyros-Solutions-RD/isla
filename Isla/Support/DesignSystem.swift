@@ -103,6 +103,7 @@ struct CardHeader<Trailing: View>: View {
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
                 .kerning(0.4)
+                .lineLimit(1)
             Spacer(minLength: 4)
             trailing
         }

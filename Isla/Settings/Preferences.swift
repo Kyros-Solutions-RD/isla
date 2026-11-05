@@ -182,6 +182,13 @@ final class Preferences {
     var prompterFontSize: Double { didSet { set(prompterFontSize, "prompterFontSize") } }
     var prompterMirror: Bool { didSet { set(prompterMirror, "prompterMirror") } }
 
+    // MARK: AI agents
+    var activityAgents: Bool { didSet { set(activityAgents, "activityAgents") } }
+    var agentsNotifyFinished: Bool { didSet { set(agentsNotifyFinished, "agentsNotifyFinished") } }
+    var agentsShowSteps: Bool { didSet { set(agentsShowSteps, "agentsShowSteps") } }
+    var agentsLocalModels: Bool { didSet { set(agentsLocalModels, "agentsLocalModels") } }
+    var agentsCustomCommands: [String] { didSet { setCodable(agentsCustomCommands, "agentsCustomCommands") } }
+
     // MARK: Shortcuts
     var favoriteShortcuts: [String] { didSet { setCodable(favoriteShortcuts, "favoriteShortcuts") } }
 
@@ -265,11 +272,26 @@ final class Preferences {
         prompterFontSize = double("prompterFontSize", 22)
         prompterMirror = bool("prompterMirror", false)
 
+        activityAgents = bool("activityAgents", true)
+        agentsNotifyFinished = bool("agentsNotifyFinished", true)
+        agentsShowSteps = bool("agentsShowSteps", true)
+        agentsLocalModels = bool("agentsLocalModels", true)
+        agentsCustomCommands = codable("agentsCustomCommands", [String]())
+
         favoriteShortcuts = codable("favoriteShortcuts", [String]())
 
         toggleHotKey = codable("toggleHotKey", Optional(KeyCombo.defaultToggle))
         clipboardHotKey = codable("clipboardHotKey", Optional(KeyCombo.defaultClipboard))
         shelfHotKey = codable("shelfHotKey", Optional<KeyCombo>.none)
+
+        // The AI tab arrived in an update: add it once for people who already chose their tabs.
+        if !bool("agentsTabIntroduced", false) {
+            if d.data(forKey: "enabledTabs") != nil, !enabledTabs.contains(.agents) {
+                enabledTabs.insert(.agents, at: min(1, enabledTabs.count))
+                setCodable(enabledTabs, "enabledTabs")
+            }
+            d.set(true, forKey: "agentsTabIntroduced")
+        }
     }
 
     private func set(_ value: Any?, _ key: String) {

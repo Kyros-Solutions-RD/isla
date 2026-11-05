@@ -20,6 +20,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         CapsLockMonitor.shared.start()
         NowPlayingService.shared.start()
         ClipboardStore.shared.start()
+        AgentMonitor.shared.start()
         NotchManager.shared.start()
         Self.registerHotKeys()
 
@@ -38,6 +39,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }
             return
         }
+
+        #if DEBUG
+        // Agents report: prints the agents, apps and local models Isla detects, then quits.
+        if ProcessInfo.processInfo.environment["ISLA_AGENTS_REPORT"] == "1" {
+            Task {
+                await AgentMonitor.shared.report()
+                exit(0)
+            }
+            return
+        }
+        #endif
 
         // Launch check run by scripts/build-dmg.sh: it exercises the launch path that needs
         // no permission (frameworks, notch, media helper, welcome window and its activation),
@@ -81,10 +93,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {
-        // isla://open/<tab>, isla://settings
+        // isla://open/<tab>, isla://settings[/<pane>]
         for url in urls where url.scheme == "isla" {
             if url.host() == "settings" {
-                SettingsWindowController.shared.show()
+                let pane = url.pathComponents.dropFirst().first.flatMap(SettingsPane.init(rawValue:))
+                SettingsWindowController.shared.show(pane: pane)
             } else if url.host() == "close" {
                 NotchManager.shared.closeAll()
             } else if url.host() == "demo" {

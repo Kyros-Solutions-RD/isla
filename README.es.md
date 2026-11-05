@@ -34,6 +34,7 @@
 | | |
 | --- | --- |
 | **Nook** | Una fila de widgets que eliges y ordenas: Reproduciendo, A continuación, Clima, Enfoque, Batería y dispositivos, Atajos, Bandeja y Nota rápida. |
+| **IA** | Los agentes de programación que corren en tu Mac, en Terminal o en su propia app: la carpeta en la que trabaja cada uno, desde cuándo, si está trabajando, esperando o te necesita, y qué hace en este momento. Además, los modelos que Ollama y LM Studio tienen en memoria y las apps de IA que tienes abiertas. No necesita permisos. |
 | **Música** | Sigue cualquier app de «Reproduciendo» del Centro de control (Música, Spotify, Podcasts, navegadores). Portada, barra para adelantar, controles, **letras sincronizadas** de LRCLIB (también bajo la isla), vidrio teñido con la portada y ecualizador animado. Desliza de lado sobre el notch para cambiar de canción. |
 | **Bandeja** | Suelta archivos en el notch y arrástralos fuera donde quieras. **AirDrop**, Compartir y conversión a PNG, JPEG, HEIC, TIFF, PDF, PDF combinado, MP4, M4A o ZIP. El texto y las imágenes que sueltas se vuelven archivos. |
 | **Bolsillo** | Agita el puntero mientras arrastras archivos y aparece un Bolsillo de vidrio justo ahí para recibirlos. |
@@ -48,7 +49,7 @@
 | **Terminal** | Una terminal real bajo el notch (SwiftTerm) que sigue funcionando aunque cambies de pestaña o cierres el panel. |
 | **Acciones rápidas** | Mantén el Mac despierto, toma un color de cualquier parte, captura a la Bandeja, bloquea la pantalla o cambia a modo oscuro. |
 | **Actualizaciones** | Actualizador integrado (Sparkle) con versiones firmadas. Revisa una vez al día y te avisa en la isla cuando hay versión nueva. |
-| **Actividades en vivo** | Música, cambio de canción, carga y batería baja, **AirPods y dispositivos Bluetooth con batería**, volumen y brillo, descargas con progreso, próximas reuniones, temporizadores y Bloq Mayús. |
+| **Actividades en vivo** | Música, cambio de canción, carga y batería baja, **AirPods y dispositivos Bluetooth con batería**, volumen y brillo, descargas con progreso, próximas reuniones, temporizadores, **agentes de IA trabajando** y Bloq Mayús. |
 | **HUD del sistema** | Puede reemplazar el indicador de volumen y brillo por un control fino bajo el notch (⌥⇧ para pasos finos). |
 | **Gestos y teclas** | Pasa el puntero o desliza hacia abajo para abrir, hacia arriba para cerrar, ⌃⌥Espacio para abrir o cerrar, ⌃⌥V para el portapapeles, ⌘1…⌘9 para cambiar de pestaña. Todo es configurable. |
 | **Idiomas** | Español e inglés. |

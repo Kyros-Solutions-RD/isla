@@ -80,6 +80,9 @@ enum LiveActivityKind: Equatable {
     case capsLock(Bool)
     case shelf(count: Int)
     case message(symbol: String, title: String)
+    /// AI agents working; the views read the details from `AgentMonitor`.
+    case agents
+    case agentFinished(toolID: String, title: String, needsYou: Bool)
 
     /// Activities in the same category update in place instead of re-animating.
     var category: String {
@@ -96,6 +99,8 @@ enum LiveActivityKind: Equatable {
         case .capsLock: "caps"
         case .shelf: "shelf"
         case .message: "message"
+        case .agents: "agents"
+        case .agentFinished: "agent-finished"
         }
     }
 
@@ -129,6 +134,8 @@ enum LiveActivityKind: Equatable {
         case .capsLock: return (110, 34)
         case .shelf: return (128, 40)
         case .message: return (140, 34)
+        case .agents: return (square + 100, 52)
+        case .agentFinished: return (150, 64)
         }
     }
 }
@@ -170,6 +177,9 @@ final class LiveActivityCenter {
         }
         if prefs.activityMeetings, let meeting = CalendarService.shared.imminentMeeting {
             return LiveActivity(.meeting(title: meeting.title, start: meeting.start, url: meeting.meetingURL))
+        }
+        if prefs.activityAgents, AgentMonitor.shared.hasActiveAgents {
+            return LiveActivity(.agents)
         }
         if prefs.activityMedia, NowPlayingService.shared.hasActiveMedia, NowPlayingService.shared.isPlaying {
             return LiveActivity(.nowPlaying)

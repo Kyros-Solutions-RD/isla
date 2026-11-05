@@ -7,6 +7,7 @@ import SwiftUI
 
 enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
     case home
+    case agents
     case shelf
     case clipboard
     case calendar
@@ -20,11 +21,12 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
 
     var id: String { rawValue }
 
-    static let defaultTabs: [NotchTab] = [.home, .shelf, .clipboard, .calendar, .tasks, .timers, .notes, .mirror, .terminal]
+    static let defaultTabs: [NotchTab] = [.home, .agents, .shelf, .clipboard, .calendar, .tasks, .timers, .notes, .mirror, .terminal]
 
     var title: LocalizedStringKey {
         switch self {
         case .home: "Nook"
+        case .agents: "AI"
         case .shelf: "Shelf"
         case .clipboard: "Clipboard"
         case .calendar: "Calendar"
@@ -41,6 +43,7 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
     var titleString: String {
         switch self {
         case .home: String(localized: "Nook")
+        case .agents: String(localized: "AI")
         case .shelf: String(localized: "Shelf")
         case .clipboard: String(localized: "Clipboard")
         case .calendar: String(localized: "Calendar")
@@ -57,6 +60,7 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
     var symbol: String {
         switch self {
         case .home: "square.grid.2x2.fill"
+        case .agents: "sparkles"
         case .shelf: "tray.full.fill"
         case .clipboard: "doc.on.clipboard.fill"
         case .calendar: "calendar"
@@ -73,6 +77,7 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
     var summary: LocalizedStringKey {
         switch self {
         case .home: "Your widgets: music, up next, weather and more."
+        case .agents: "AI agents at work on this Mac, their folders and the local models in memory."
         case .shelf: "Drop files to hold them, then drag them anywhere or AirDrop them."
         case .clipboard: "Everything you copied, searchable. Passwords are never saved."
         case .calendar: "Your agenda for the week with one-click meeting links."

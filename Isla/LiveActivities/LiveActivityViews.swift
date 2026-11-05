@@ -154,6 +154,10 @@ struct ClosedActivityView: View {
                     .font(.system(size: 11.5, weight: .semibold))
                     .lineLimit(1)
             }
+        case .agents:
+            AgentsEarLeading()
+        case .agentFinished(let toolID, let title, let needsYou):
+            AgentFinishedEarLeading(toolID: toolID, title: title, needsYou: needsYou)
         }
     }
 
@@ -234,6 +238,10 @@ struct ClosedActivityView: View {
                 .foregroundStyle(Color.accentColor)
         case .message:
             EmptyView()
+        case .agents:
+            AgentsEarTrailing()
+        case .agentFinished(_, _, let needsYou):
+            AgentFinishedEarTrailing(needsYou: needsYou)
         }
     }
 
@@ -272,6 +280,8 @@ struct ClosedActivityView: View {
             model.controller?.open(.timers)
         case .shelf:
             model.controller?.open(.shelf)
+        case .agents, .agentFinished:
+            model.controller?.open(.agents)
         default:
             model.controller?.open()
         }
