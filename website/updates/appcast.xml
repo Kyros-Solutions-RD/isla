@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.0.3</title>
+      <pubDate>Thu, 05 Nov 2026 20:01:31 GMT</pubDate>
+      <sparkle:version>5</sparkle:version>
+      <sparkle:shortVersionString>1.0.3</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>Isla now keeps Accessibility and its other permissions across updates. Builds are signed with a stable identity instead of a different one each time. After installing 1.0.3, turn Accessibility on for Isla one last time.</li><li>The welcome tour and Settings › Privacy update each permission as soon as you allow it, without reopening them.</li><li>The weather card shows the next hours under the current temperature.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.0.3.dmg" sparkle:edSignature="hox+RYYVxXZcPHZX7OlgcIs6NDbPm0ZYVErD7fvLWX2eTxPFuYGvKSgG25gJiClr/+oKpRrXT/7Jv9k2BnllBw==" length="10937227" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.0.2</title>
       <pubDate>Thu, 05 Nov 2026 19:01:28 GMT</pubDate>
       <sparkle:version>4</sparkle:version>
