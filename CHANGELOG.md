@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.2 — 2026-11-05
+
+- Fixes Isla not opening: versions 1.0.0 and 1.0.1 closed right after launch on every Mac. If you installed one of them, download Isla again from isla.kyrosrd.com.
+- The welcome window, Settings, AirDrop and Quick Look now come to the front with keyboard focus.
+- Closing the welcome window early no longer leaves Calendar, Weather, Bluetooth and update checks off until the next launch.
+- Every build is now opened and checked before it is published.
+
 ## 1.0.1 — 2026-11-05
 
 ![The new installer: Isla floats on the horizon, the dotted path of the sun leads to Applications](website/assets/app/installer.jpg)

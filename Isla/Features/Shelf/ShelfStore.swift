@@ -207,14 +207,14 @@ final class ShelfStore {
         guard let service = NSSharingService(named: .sendViaAirDrop) else { return }
         let urls = items.map(\.url)
         if service.canPerform(withItems: urls) {
-            NSApp.activate()
+            Activation.bringToFront()
             service.perform(withItems: urls)
         }
     }
 
     func airDrop(urls: [URL]) {
         guard let service = NSSharingService(named: .sendViaAirDrop), service.canPerform(withItems: urls) else { return }
-        NSApp.activate()
+        Activation.bringToFront()
         service.perform(withItems: urls)
     }
 

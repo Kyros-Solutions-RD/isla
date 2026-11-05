@@ -30,8 +30,9 @@ final class OnboardingWindowController: NSObject, NSWindowDelegate {
             self.window = window
         }
         NSApp.setActivationPolicy(.regular)
-        NSApp.activate()
         window?.makeKeyAndOrderFront(nil)
+        // The new activation policy takes effect on the next turn of the run loop.
+        DispatchQueue.main.async { [weak self] in Activation.bringToFront(self?.window) }
     }
 
     private func finish() {
@@ -44,7 +45,9 @@ final class OnboardingWindowController: NSObject, NSWindowDelegate {
     }
 
     func windowWillClose(_ notification: Notification) {
+        // Closing the window also ends the tour, so everything it was holding back starts now.
         Preferences.shared.hasCompletedOnboarding = true
+        AppDelegate.startDeferredServices()
         DispatchQueue.main.async { NSApp.setActivationPolicy(.accessory) }
     }
 }

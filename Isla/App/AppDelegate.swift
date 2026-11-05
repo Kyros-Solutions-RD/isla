@@ -22,6 +22,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NotchManager.shared.start()
         Self.registerHotKeys()
 
+        // Launch check run by scripts/build-dmg.sh: it exercises the launch path that needs
+        // no permission (frameworks, notch, media helper, welcome window and its activation),
+        // then reports. Nothing is saved and no permission prompt is triggered.
+        if ProcessInfo.processInfo.environment["ISLA_LAUNCH_CHECK"] == "1" {
+            OnboardingWindowController.shared.show()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                print("isla-launch-check-ok")
+                exit(0)
+            }
+            return
+        }
+
         if Preferences.shared.hasCompletedOnboarding {
             Self.startDeferredServices()
         } else {

@@ -48,7 +48,7 @@ final class UpdateManager: NSObject {
 
     /// Opens Sparkle's native "Check for Updates" window.
     func checkForUpdates() {
-        NSApp.activate()
+        Activation.bringToFront()
         controller?.checkForUpdates(nil)
     }
 }

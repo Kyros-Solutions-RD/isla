@@ -28,6 +28,7 @@
 		4121CB2F44D4E2A9E0CE08C2 /* TimersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89EE9EA28773EB52B2E396E /* TimersView.swift */; };
 		4A8D04285091D0F550194071 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = F7A2742541DE43577CFA553B /* Sparkle */; };
 		4B6D5CA4BFF80977729E9DA8 /* MediaViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C473C02827A9819385064E72 /* MediaViews.swift */; };
+		4FC114CFE803E4266E456DF7 /* Activation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87BE65978A7FF7B98E6BA83 /* Activation.swift */; };
 		5737F94EE3A8628E8C1261CE /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58432C1A070DDC2DC1E1DC10 /* WeatherService.swift */; };
 		599ABB7D41A021BED76C5460 /* ShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41A51B03D8D6656377DF063 /* ShelfView.swift */; };
 		5B2DED0BE61B6707A22399B9 /* IslaMediaBridge.dylib in Resources */ = {isa = PBXBuildFile; fileRef = C8FAAECF6F750EE71D1B04AF /* IslaMediaBridge.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -137,6 +138,7 @@
 		D3A203F65422FE6661B5ABD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DF8F600152B790ED41E78740 /* LiveActivityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityViews.swift; sourceTree = "<group>"; };
 		E249BE512544F0B283FB0399 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		E87BE65978A7FF7B98E6BA83 /* Activation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activation.swift; sourceTree = "<group>"; };
 		EE6163C212419F81DC5D7DC0 /* NotchGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchGeometry.swift; sourceTree = "<group>"; };
 		F3982F24E5E37777009DBD26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA03D16295A5C5DAF23B9CFD /* DemoActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoActivities.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 		8129708508D653360D629966 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				E87BE65978A7FF7B98E6BA83 /* Activation.swift */,
 				1054E8CAD28529BA4A7ACCA8 /* DesignSystem.swift */,
 				6304914144CDD8B3E9300D76 /* HotKey.swift */,
 				62C3D61C86FE6E097326CBBF /* IslaGlyph.swift */,
@@ -545,6 +548,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FC114CFE803E4266E456DF7 /* Activation.swift in Sources */,
 				0717A1E7FF0DF6FBB48D34BE /* AppDelegate.swift in Sources */,
 				1D6BD9CE1C6E9EAB5016F0F4 /* BatteryMonitor.swift in Sources */,
 				2BD8DF5506B1339D9997EBF2 /* BluetoothMonitor.swift in Sources */,

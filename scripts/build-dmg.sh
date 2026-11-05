@@ -31,6 +31,12 @@ BUILD_ARGS=(
   -skipMacroValidation
   build
 )
+if [ "$SIGN_IDENTITY" = "-" ]; then
+  # Ad-hoc signatures carry no Team ID, so the hardened runtime's library validation
+  # refuses the embedded Sparkle.framework and the app dies at launch. Only notarized
+  # (Developer ID) builds need the hardened runtime; they keep it.
+  BUILD_ARGS+=(ENABLE_HARDENED_RUNTIME=NO)
+fi
 if command -v xcbeautify >/dev/null 2>&1; then
   xcodebuild "${BUILD_ARGS[@]}" | xcbeautify
 else
@@ -39,6 +45,16 @@ fi
 
 APP="$BUILD_DIR/Build/Products/Release/Isla.app"
 VERSION="$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' "$APP/Contents/Info.plist")"
+
+# Never package a build that cannot start (missing or rejected frameworks, signing).
+echo "› Checking that Isla $VERSION launches…"
+codesign --verify --deep --strict "$APP"
+LAUNCH_OUTPUT="$(perl -e 'alarm 60; exec @ARGV' /usr/bin/env ISLA_LAUNCH_CHECK=1 "$APP/Contents/MacOS/Isla" 2>&1 || true)"
+if ! grep -q "isla-launch-check-ok" <<<"$LAUNCH_OUTPUT"; then
+  echo "✗ The built app does not launch:"
+  echo "$LAUNCH_OUTPUT" | tail -20
+  exit 1
+fi
 
 echo "› Packaging Isla $VERSION…"
 DMG="$DIST/Isla-$VERSION.dmg"

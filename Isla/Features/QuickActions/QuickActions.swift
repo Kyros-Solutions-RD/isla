@@ -125,7 +125,7 @@ final class QuickLookController: NSObject, QLPreviewPanelDataSource {
     func show(_ urls: [URL]) {
         guard !urls.isEmpty, let panel = QLPreviewPanel.shared() else { return }
         self.urls = urls
-        NSApp.activate()
+        Activation.bringToFront()
         panel.dataSource = self
         panel.reloadData()
         panel.currentPreviewItemIndex = 0

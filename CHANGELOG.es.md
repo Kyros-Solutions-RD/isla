@@ -2,6 +2,13 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.0.2 — 2026-11-05
+
+- Corrige que Isla no abriera: las versiones 1.0.0 y 1.0.1 se cerraban justo al iniciar en todos los Mac. Si instalaste una de ellas, descarga Isla de nuevo desde isla.kyrosrd.com.
+- La ventana de bienvenida, los Ajustes, AirDrop y Vista rápida ahora aparecen al frente y responden al teclado.
+- Cerrar la bienvenida antes de tiempo ya no deja apagados el calendario, el clima, el Bluetooth ni la búsqueda de actualizaciones hasta el siguiente inicio.
+- Ahora cada versión se abre y se comprueba antes de publicarse.
+
 ## 1.0.1 — 2026-11-05
 
 ![El instalador nuevo: Isla flota sobre el horizonte y el camino punteado del sol lleva a Aplicaciones](website/assets/app/installer.jpg)

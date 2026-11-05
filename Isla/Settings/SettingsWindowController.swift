@@ -105,8 +105,9 @@ final class SettingsWindowController: NSObject, NSWindowDelegate {
             self.window = window
         }
         NSApp.setActivationPolicy(.regular)
-        NSApp.activate()
         window?.makeKeyAndOrderFront(nil)
+        // The new activation policy takes effect on the next turn of the run loop.
+        DispatchQueue.main.async { [weak self] in Activation.bringToFront(self?.window) }
     }
 
     func windowWillClose(_ notification: Notification) {
