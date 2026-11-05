@@ -6,6 +6,15 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.0.1</title>
+      <pubDate>Thu, 05 Nov 2026 18:00:03 GMT</pubDate>
+      <sparkle:version>3</sparkle:version>
+      <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<ul><li>A new illustrated installer: drag Isla onto the Caribbean dusk to install, with first-launch help in English and Spanish.</li><li>The app now shows its new icon. Version 1.0.0 shipped with the previous one.</li><li>Clearer first-launch steps for macOS 26: System Settings › Privacy &amp; Security › Open Anyway.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.0.1.dmg" sparkle:edSignature="UhvCeseagpIwvQ9daOB5PSiiReVg7ZKJmRNxYsFvsScQP7NwEhzrlcZZGrARUhtoM98iUftqF7e78a6vRHenDw==" length="10915420" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.0.0</title>
       <pubDate>Thu, 05 Nov 2026 17:26:07 GMT</pubDate>
       <sparkle:version>2</sparkle:version>
