@@ -2,6 +2,6 @@
 # cPanel Git Version Control deploys the website on every "Deploy HEAD Commit".
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/neetjbte/isla.kyrosrd.com/
+    - export DEPLOYPATH=/home2/neetjbte/isla.kyrosrd.com/
     - /bin/mkdir -p $DEPLOYPATH
     - /bin/cp -R website/. $DEPLOYPATH
