@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.5 — 2026-11-05
+
+- The Updates section in Settings › About is now fully translated.
+- Settings › Privacy explains what to do when Accessibility looks switched on in System Settings but doesn't apply to Isla.
+- Confirmed on a real Mac: permissions granted to Isla stay granted across updates.
+
 ## 1.0.4 — 2026-11-05
 
 - The Nook now opens like the Dynamic Island: a touch of bounce, and the cards come out of the notch one after another.

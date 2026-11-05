@@ -471,6 +471,16 @@
         }
       }
     },
+    "Automatic updates (MIT)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualizaciones automáticas (MIT)"
+          }
+        }
+      }
+    },
     "Awake": {
       "localizations": {
         "es": {
@@ -687,6 +697,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Buscar actualizaciones"
+          }
+        }
+      }
+    },
+    "Check for Updates…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones…"
           }
         }
       }
@@ -1127,6 +1147,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Descargar"
+          }
+        }
+      }
+    },
+    "Download updates automatically": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargar actualizaciones automáticamente"
           }
         }
       }
@@ -1591,6 +1621,16 @@
         }
       }
     },
+    "Isla already switched on in System Settings › Accessibility but not allowed here? Select it there, remove it with −, then click Allow… again.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Isla ya aparece activada en Ajustes del Sistema › Accesibilidad pero aquí no? Selecciónala allí, quítala con − y vuelve a pulsar «Permitir…»."
+          }
+        }
+      }
+    },
     "Isla follows any app that shows up in Control Center's Now Playing: Music, Spotify, Podcasts, browsers and more.": {
       "localizations": {
         "es": {
@@ -1777,6 +1817,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Grande"
+          }
+        }
+      }
+    },
+    "Last checked": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Última comprobación"
           }
         }
       }
@@ -3440,6 +3490,9 @@
           }
         }
       }
+    },
+    "Sparkle": {
+      "shouldTranslate": false
     },
     "Speed": {
       "localizations": {

@@ -2,6 +2,12 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.0.5 — 2026-11-05
+
+- La sección Actualizaciones de Ajustes › Acerca de ya está traducida por completo.
+- Ajustes › Privacidad explica qué hacer cuando Accesibilidad aparece activada en Ajustes del Sistema pero no se aplica a Isla.
+- Comprobado en un Mac real: los permisos que concedes a Isla se conservan al actualizar.
+
 ## 1.0.4 — 2026-11-05
 
 - El Nook ahora se abre como la Dynamic Island: con un rebote suave, y las tarjetas salen del notch una tras otra.

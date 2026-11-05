@@ -111,6 +111,19 @@ final class PermissionCenter {
 
     func isGranted(_ kind: PermissionKind) -> Bool { granted.contains(kind) }
 
+    /// The system's own answer for each permission (0 = not asked yet, 2 = denied, 3 = allowed…),
+    /// for the permission report.
+    static func rawStatuses() -> String {
+        [
+            "calendar=\(EKEventStore.authorizationStatus(for: .event).rawValue)",
+            "reminders=\(EKEventStore.authorizationStatus(for: .reminder).rawValue)",
+            "camera=\(AVCaptureDevice.authorizationStatus(for: .video).rawValue)",
+            "microphone=\(AVCaptureDevice.authorizationStatus(for: .audio).rawValue)",
+            "location=\(CLLocationManager().authorizationStatus.rawValue)",
+            "accessibility=\(AXIsProcessTrusted() ? 1 : 0)",
+        ].joined(separator: " ")
+    }
+
     func request(_ kind: PermissionKind) {
         Task {
             switch kind {

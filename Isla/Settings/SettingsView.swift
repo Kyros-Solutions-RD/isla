@@ -677,7 +677,14 @@ private struct PermissionsPane: View {
             } header: {
                 Text("Permissions")
             } footer: {
-                Text("Isla works without any of these. Each one only unlocks the feature it describes.")
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Isla works without any of these. Each one only unlocks the feature it describes.")
+                    if !permissions.isGranted(.accessibility) {
+                        // A toggle left over from an older copy of Isla looks on in System Settings
+                        // but no longer applies; removing it lets macOS add this copy.
+                        Text("Isla already switched on in System Settings › Accessibility but not allowed here? Select it there, remove it with −, then click Allow… again.")
+                    }
+                }
             }
 
             Section("Your data") {

@@ -4,6 +4,7 @@
 //
 
 import AppKit
+import CoreLocation
 import SwiftUI
 
 @MainActor
@@ -25,10 +26,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // Permission report: prints which grants this build has, without asking for any.
         // Used to confirm that updates keep their permissions.
         if ProcessInfo.processInfo.environment["ISLA_PERMISSION_REPORT"] == "1" {
-            PermissionCenter.shared.refresh()
-            let report = PermissionKind.allCases.map { "\($0.rawValue)=\(PermissionCenter.shared.isGranted($0) ? "granted" : "missing")" }
-            print("isla-permissions " + report.joined(separator: " "))
-            exit(0)
+            // Location's answer arrives a moment after the first location manager exists.
+            let locationProbe = CLLocationManager()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                _ = locationProbe
+                PermissionCenter.shared.refresh()
+                let report = PermissionKind.allCases.map { "\($0.rawValue)=\(PermissionCenter.shared.isGranted($0) ? "granted" : "missing")" }
+                print("isla-permissions " + report.joined(separator: " "))
+                print("isla-permissions-raw " + PermissionCenter.rawStatuses())
+                exit(0)
+            }
+            return
         }
 
         // Launch check run by scripts/build-dmg.sh: it exercises the launch path that needs
