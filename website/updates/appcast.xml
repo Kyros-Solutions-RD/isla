@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.3</title>
+      <pubDate>Thu, 05 Nov 2026 23:41:20 GMT</pubDate>
+      <sparkle:version>11</sparkle:version>
+      <sparkle:shortVersionString>1.1.3</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>Much lighter on the battery: the notch&#x27;s animations (the agents&#x27; dots, the halo and the music equalizer) now run on Core Animation. With an agent working or music playing and the notch closed, Isla went from about 12 % of a core to about 0.2 %, and the open AI tab from about 45 % to under 2 %.</li><li>An agent waiting for your permission, an answer or a dialog now shows as **Needs you**, with the reason and what it asked for, and the island lets you know right away. Codex approvals count too.</li><li>The AI tab shows how big each session&#x27;s context is when you point at its model.</li><li>Optional sound when an agent finishes or needs you, in Settings › AI Agents.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.3.dmg" sparkle:edSignature="30TwgaaoXvCTopFUc354wZGOFiBVJlmn2QmfLiedSXqujA1qj0l5OVg5U4y/uZ9XJS4fSnX3/qXU3ymEzZqtDQ==" length="11715972" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.2</title>
       <pubDate>Thu, 05 Nov 2026 23:17:40 GMT</pubDate>
       <sparkle:version>10</sparkle:version>
