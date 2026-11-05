@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.0.5</title>
+      <pubDate>Thu, 05 Nov 2026 20:49:00 GMT</pubDate>
+      <sparkle:version>7</sparkle:version>
+      <sparkle:shortVersionString>1.0.5</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>The Updates section in Settings › About is now fully translated.</li><li>Settings › Privacy explains what to do when Accessibility looks switched on in System Settings but doesn&#x27;t apply to Isla.</li><li>Confirmed on a real Mac: permissions granted to Isla stay granted across updates.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.0.5.dmg" sparkle:edSignature="B7QA8tvw6Ubf4ehh2Sk4U3LfRbT4+w2Q8i/Wd2+zQCMThKYMLEL9ni77HuzgmFbMZ8HKec4Sq4O1v3c/vwkrBg==" length="10978196" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.0.4</title>
       <pubDate>Thu, 05 Nov 2026 20:25:52 GMT</pubDate>
       <sparkle:version>6</sparkle:version>
