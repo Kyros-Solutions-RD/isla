@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Isla</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>es</string>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.kyrossolutions.isla</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>isla</string>
+			</array>
+		</dict>
+	</array>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.productivity</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>© 2026 Kyros Solutions RD. Free and open source under the MIT License.</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Isla controls your music apps, saves notes to Apple Notes and runs your Shortcuts when you ask it to.</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Isla shows your upcoming events and meeting countdowns right under the notch.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Isla shows your upcoming events and meeting countdowns right under the notch.</string>
+	<key>NSRemindersFullAccessUsageDescription</key>
+	<string>Isla shows and adds tasks from your Reminders lists.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Isla shows and adds tasks from your Reminders lists.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Isla uses the camera only for the Mirror, so you can check how you look before a call. Video never leaves your Mac.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Isla listens only while the Teleprompter follows your voice. Audio is never recorded or saved.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Isla turns your voice into text on your Mac so the Teleprompter can scroll at your pace.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Isla shows a live activity with battery level when your AirPods and other Bluetooth devices connect.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Isla uses your approximate location to show local weather.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Isla uses your approximate location to show local weather.</string>
+	<key>NSDownloadsFolderUsageDescription</key>
+	<string>Isla shows a live activity while files download and lets you drop finished downloads on the Shelf.</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSSupportsAutomaticTermination</key>
+	<false/>
+	<key>NSSupportsSuddenTermination</key>
+	<false/>
+</dict>
+</plist>

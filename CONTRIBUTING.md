@@ -1,0 +1,47 @@
+# Contributing to Isla
+
+Thanks for helping make Isla better. ¡Gracias por contribuir!
+
+## Getting set up
+
+1. Install Xcode 26 or later and [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`).
+2. Clone the repository and generate the project:
+
+   ```bash
+   git clone https://github.com/Kyros-Solutions-RD/isla.git
+   cd isla
+   xcodegen generate
+   open Isla.xcodeproj
+   ```
+
+3. Run the **Isla** scheme. The project is defined in `project.yml`; edit that file rather than the generated `.xcodeproj`, then run `xcodegen generate` again.
+
+## Handy tools in Debug builds
+
+Isla registers the `isla://` URL scheme:
+
+| URL | What it does |
+| --- | --- |
+| `isla://open/<tab>` | Opens the Nook on a tab (`home`, `shelf`, `clipboard`, `calendar`, `tasks`, `timers`, `notes`, `mirror`, `teleprompter`, `shortcuts`). Add `?screen=main` to target the built-in display. |
+| `isla://close` | Closes every notch. |
+| `isla://settings` | Opens Settings. |
+| `isla://demo/<activity>` | **Debug only.** Shows a sample live activity: `charging`, `lowbattery`, `airpods`, `volume`, `brightness`, `caps`, `download`, `downloaded`, `meeting`, `timer`, `timerdone`, `shelf`, `track`. |
+| `isla://demo/data` | **Debug only.** Fills every tab with sample content, handy for screenshots. |
+
+## Guidelines
+
+- **Feel native.** Use system materials (Liquid Glass), SF Symbols, the shared styles in `Support/DesignSystem.swift` and the motion curves in `IslaMotion`.
+- **Ask for permissions lazily.** A feature should request access only when the user turns it on, and work gracefully without it.
+- **Keep data local.** Do not add analytics or send user content anywhere. Network calls must be essential to a feature and documented in the README.
+- **Localize.** User-facing strings go through `LocalizedStringKey` or `String(localized:)`. Add the Spanish translation in `Isla/Resources/Localizable.xcstrings`.
+- **Stay warning free.** The project builds with zero warnings; please keep it that way.
+
+## Pull requests
+
+1. Create a branch from `main`.
+2. Keep each pull request focused on one change and describe what it does and how you tested it.
+3. Include a screenshot or short recording for visual changes.
+
+## Reporting bugs
+
+Open an [issue](https://github.com/Kyros-Solutions-RD/isla/issues) with your macOS version, Mac model, whether the display has a notch, and the steps to reproduce.

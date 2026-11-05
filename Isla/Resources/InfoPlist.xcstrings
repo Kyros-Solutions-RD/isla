@@ -1,0 +1,258 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "CFBundleDisplayName": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla"
+          }
+        }
+      }
+    },
+    "NSAppleEventsUsageDescription": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla controls your music apps, saves notes to Apple Notes and runs your Shortcuts when you ask it to."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla controla tus apps de música, guarda notas en Notas y ejecuta tus atajos cuando se lo pides."
+          }
+        }
+      }
+    },
+    "NSBluetoothAlwaysUsageDescription": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla shows a live activity with battery level when your AirPods and other Bluetooth devices connect."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla muestra una actividad en vivo con el nivel de batería cuando se conectan tus AirPods y otros dispositivos Bluetooth."
+          }
+        }
+      }
+    },
+    "NSCalendarsFullAccessUsageDescription": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla shows your upcoming events and meeting countdowns right under the notch."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla muestra tus próximos eventos y la cuenta regresiva de tus reuniones justo debajo del notch."
+          }
+        }
+      }
+    },
+    "NSCalendarsUsageDescription": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla shows your upcoming events and meeting countdowns right under the notch."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla muestra tus próximos eventos y la cuenta regresiva de tus reuniones justo debajo del notch."
+          }
+        }
+      }
+    },
+    "NSCameraUsageDescription": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla uses the camera only for the Mirror, so you can check how you look before a call. Video never leaves your Mac."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla usa la cámara solo para el Espejo, para que te veas antes de una llamada. El video nunca sale de tu Mac."
+          }
+        }
+      }
+    },
+    "NSDownloadsFolderUsageDescription": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla shows a live activity while files download and lets you drop finished downloads on the Shelf."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla muestra una actividad en vivo mientras se descargan archivos y te deja enviar las descargas a la Bandeja."
+          }
+        }
+      }
+    },
+    "NSHumanReadableCopyright": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "© 2026 Kyros Solutions RD. Free and open source under the MIT License."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "© 2026 Kyros Solutions RD. Libre y de código abierto bajo la licencia MIT."
+          }
+        }
+      }
+    },
+    "NSLocationUsageDescription": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla uses your approximate location to show local weather."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla usa tu ubicación aproximada para mostrar el clima local."
+          }
+        }
+      }
+    },
+    "NSLocationWhenInUseUsageDescription": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla uses your approximate location to show local weather."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla usa tu ubicación aproximada para mostrar el clima local."
+          }
+        }
+      }
+    },
+    "NSMicrophoneUsageDescription": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla listens only while the Teleprompter follows your voice. Audio is never recorded or saved."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla escucha solo mientras el Teleprompter sigue tu voz. El audio nunca se graba ni se guarda."
+          }
+        }
+      }
+    },
+    "NSRemindersFullAccessUsageDescription": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla shows and adds tasks from your Reminders lists."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla muestra y añade tareas de tus listas de Recordatorios."
+          }
+        }
+      }
+    },
+    "NSRemindersUsageDescription": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla shows and adds tasks from your Reminders lists."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla muestra y añade tareas de tus listas de Recordatorios."
+          }
+        }
+      }
+    },
+    "NSSpeechRecognitionUsageDescription": {
+      "comment": "",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla turns your voice into text on your Mac so the Teleprompter can scroll at your pace."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla convierte tu voz en texto en tu Mac para que el Teleprompter avance a tu ritmo."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

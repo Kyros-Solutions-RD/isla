@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Isla: tu notch es una isla. Gratis y de código abierto para macOS</title>
+  <meta name="description" content="Isla convierte el notch de tu MacBook en una isla viva: música con letras, bandeja de archivos con AirDrop, calendario, portapapeles, Pomodoro, teleprompter y actividades en vivo. Nativa, en Liquid Glass, gratis y de código abierto.">
+  <meta name="theme-color" content="#0a1420">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/isla-icon-512.png">
+  <link rel="alternate" hreflang="es" href="https://kyros-solutions-rd.github.io/isla/">
+  <link rel="alternate" hreflang="en" href="https://kyros-solutions-rd.github.io/isla/?lang=en">
+  <meta property="og:title" content="Isla: tu notch es una isla">
+  <meta property="og:description" content="La app nativa y gratuita que convierte el notch de tu Mac en una isla viva. Código abierto, hecha en Santo Domingo.">
+  <meta property="og:image" content="https://kyros-solutions-rd.github.io/isla/assets/app/glass-home.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+  <header class="bar" id="top">
+    <a class="wordmark" href="#top" aria-label="Isla">
+      <img src="assets/favicon.png" width="28" height="28" alt="">
+      <span>Isla</span>
+    </a>
+    <nav class="bar-links" aria-label="Principal">
+      <a href="#funciones" data-i18n="nav.features">Funciones</a>
+      <a href="#pruebalo" data-i18n="nav.try">Pruébala</a>
+      <a href="#abierto" data-i18n="nav.open">Código abierto</a>
+      <a href="#preguntas" data-i18n="nav.faq">Preguntas</a>
+    </nav>
+    <div class="bar-actions">
+      <button class="lang" type="button" data-lang-toggle aria-label="Change language to English">EN</button>
+      <a class="button" href="https://github.com/Kyros-Solutions-RD/isla/releases/latest" data-i18n="nav.download">Descargar</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero: the sentence split by the notch reel -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-stage">
+        <h1 id="hero-title" class="hero-line">
+          <span class="hero-half hero-left" data-i18n="hero.left">Tu notch,</span>
+          <span class="hero-half hero-right" data-i18n="hero.right">ahora es isla.</span>
+        </h1>
+        <div class="reel" aria-hidden="true">
+          <div class="reel-track">
+            <img src="assets/app/glass-home.jpg" width="2160" height="640" alt="">
+            <img src="assets/app/glass-shelf.jpg" width="2160" height="640" alt="">
+            <img src="assets/app/glass-calendar.jpg" width="2160" height="640" alt="">
+            <img src="assets/app/glass-timers.jpg" width="2160" height="640" alt="">
+          </div>
+        </div>
+        <div class="hero-foot">
+          <p class="hero-lead" data-i18n="hero.lead">Música, archivos, calendario y actividades en vivo justo debajo de tu cámara. Nativa, en Liquid Glass, gratis y de código abierto.</p>
+          <div class="hero-cta">
+            <a class="button button-large" href="https://github.com/Kyros-Solutions-RD/isla/releases/latest" data-i18n="hero.cta">Descargar gratis para Mac</a>
+            <span class="hero-note" data-i18n="hero.note">macOS 26 Tahoe o posterior · con o sin notch</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Showcase: the live thing -->
+    <section class="showcase" id="pruebalo" aria-labelledby="try-title">
+      <h2 id="try-title" class="head" data-i18n="try.title">Pásale el puntero al notch.</h2>
+      <p class="section-lead" data-i18n="try.lead">Esto es Isla de verdad, capturada en un MacBook Pro. Abre el Nook, cambia de pestaña o dispara una actividad en vivo.</p>
+
+      <div class="screen" data-ui data-screen>
+        <div class="screen-canvas">
+          <img class="screen-wallpaper" src="assets/app/wallpaper.jpg" width="1746" height="1134" alt="Pantalla de un MacBook con el amanecer del mar Caribe de fondo y el notch negro en la parte superior">
+          <button class="notch-hit" type="button" data-open aria-label="Abrir el Nook" data-i18n-aria="try.openAria"></button>
+          <div class="activity" data-activity aria-live="polite">
+            <img data-activity-img src="assets/app/act-media.jpg" width="1280" height="160" alt="">
+          </div>
+          <div class="panel" data-panel>
+            <img data-panel-img src="assets/app/glass-home.jpg" width="2160" height="640" alt="El Nook abierto con la música, lo próximo del calendario y el clima de Santo Domingo">
+            <button class="tab-hit" style="--x:192" type="button" data-tab="home" aria-label="Nook"></button>
+            <button class="tab-hit" style="--x:225" type="button" data-tab="shelf" aria-label="Bandeja"></button>
+            <button class="tab-hit" style="--x:257" type="button" data-tab="clipboard" aria-label="Portapapeles"></button>
+            <button class="tab-hit" style="--x:291" type="button" data-tab="calendar" aria-label="Calendario"></button>
+            <button class="tab-hit" style="--x:324" type="button" data-tab="tasks" aria-label="Tareas"></button>
+            <button class="tab-hit" style="--x:357" type="button" data-tab="timers" aria-label="Enfoque"></button>
+            <button class="tab-hit" style="--x:390" type="button" data-tab="more" aria-label="Más"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="try-actions" role="group" aria-label="Probar actividades en vivo">
+        <button type="button" class="try" data-show="home" data-i18n="try.nook">Abrir el Nook</button>
+        <button type="button" class="try" data-act="airpods" data-i18n="try.airpods">Conectar AirPods</button>
+        <button type="button" class="try" data-act="charging" data-i18n="try.charging">Enchufar el cargador</button>
+        <button type="button" class="try" data-act="volume" data-i18n="try.volume">Subir el volumen</button>
+        <button type="button" class="try" data-act="meeting" data-i18n="try.meeting">Reunión en 4 minutos</button>
+        <button type="button" class="try" data-act="download" data-i18n="try.download">Descargar un archivo</button>
+        <button type="button" class="try" data-act="track" data-i18n="try.track">Cambiar de canción</button>
+        <button type="button" class="try" data-act="caps" data-i18n="try.caps">Bloq Mayús</button>
+      </div>
+    </section>
+
+    <!-- Features: rows with margin pictures -->
+    <section class="features" id="funciones" aria-labelledby="features-title">
+      <div class="features-intro">
+        <h2 id="features-title" class="head" data-i18n="features.title">Todo lo que usas, a un gesto.</h2>
+      </div>
+
+      <article class="row">
+        <div class="row-text">
+          <h3 class="row-title" data-i18n="f1.title">Música que se ve</h3>
+          <p data-i18n="f1.text">Isla sigue lo que suene en Música, Spotify, Podcasts o tu navegador. Portada, controles, barra para adelantar y letras sincronizadas. Desliza de lado sobre el notch para cambiar de canción.</p>
+        </div>
+        <figure class="row-media w-wide"><img src="assets/app/glass-home.jpg" width="2160" height="640" loading="lazy" alt="Nook con la canción Brisa del Malecón reproduciéndose, la agenda y el clima"></figure>
+      </article>
+
+      <article class="row">
+        <div class="row-text">
+          <h3 class="row-title" data-i18n="f2.title">Suelta, guarda, envía</h3>
+          <p data-i18n="f2.text">Arrastra archivos al notch y quedan en la Bandeja para soltarlos donde quieras. Envíalos por AirDrop o conviértelos a PNG, JPEG, HEIC, PDF, MP4 o ZIP. ¿Lejos del notch? Agita el puntero y aparece un Bolsillo.</p>
+        </div>
+        <figure class="row-media w-mid"><img src="assets/app/glass-shelf.jpg" width="2160" height="640" loading="lazy" alt="La Bandeja con cinco archivos y las acciones AirDrop, Compartir y Convertir"></figure>
+      </article>
+
+      <article class="row">
+        <div class="row-text">
+          <h3 class="row-title" data-i18n="f3.title">Tu semana, sin abrir nada</h3>
+          <p data-i18n="f3.text">Lee los calendarios que ya tienes en el Mac (iCloud, Google, Exchange) y te avisa antes de cada reunión con un botón para unirte. Las tareas se sincronizan con Recordatorios.</p>
+        </div>
+        <figure class="row-media w-wide"><img src="assets/app/glass-calendar.jpg" width="2160" height="640" loading="lazy" alt="Calendario con la semana y los eventos de hoy, con botón Unirse"></figure>
+      </article>
+
+      <article class="row">
+        <div class="row-text">
+          <h3 class="row-title" data-i18n="f4.title">Todo lo que copiaste</h3>
+          <p data-i18n="f4.text">Historial del portapapeles con búsqueda, filtros y elementos fijados. Haz clic para pegar. Lo que copias desde gestores de contraseñas nunca se guarda.</p>
+        </div>
+        <figure class="row-media w-mid"><img src="assets/app/glass-clipboard.jpg" width="2160" height="640" loading="lazy" alt="Historial del portapapeles con un enlace fijado, un texto y un color"></figure>
+      </article>
+
+      <article class="row">
+        <div class="row-text">
+          <h3 class="row-title" data-i18n="f5.title">Concéntrate y habla a cámara</h3>
+          <p data-i18n="f5.text">Pomodoro, varios temporizadores a la vez, cronómetro y ruido marrón generado en tu Mac. Y un teleprompter justo bajo el lente que avanza a tu ritmo o sigue tu voz.</p>
+        </div>
+        <figure class="row-media w-wide"><img src="assets/app/glass-teleprompter.jpg" width="2160" height="640" loading="lazy" alt="Teleprompter con un guion en español bajo la cámara"></figure>
+      </article>
+    </section>
+
+    <!-- Proof: the live activities, named in one sentence -->
+    <section class="moments" aria-labelledby="moments-title">
+      <p class="moments-sentence" id="moments-title">
+        <span class="moments-intro" data-i18n="moments.intro">El notch te avisa de</span>
+        <span class="moment" data-moment="track" data-i18n="moments.track">la canción que empieza,</span>
+        <span class="moment" data-moment="charging" data-i18n="moments.charging">la carga de tu Mac,</span>
+        <span class="moment" data-moment="airpods" data-i18n="moments.airpods">tus AirPods con su batería,</span>
+        <span class="moment" data-moment="volume" data-i18n="moments.volume">el volumen y el brillo,</span>
+        <span class="moment" data-moment="download" data-i18n="moments.download">tus descargas,</span>
+        <span class="moment" data-moment="meeting" data-i18n="moments.meeting">tu próxima reunión</span>
+        <span class="moment" data-moment="caps" data-i18n="moments.caps">y hasta el Bloq Mayús.</span>
+      </p>
+      <figure class="moments-figure" data-ui>
+        <img data-moment-img src="assets/app/act-track.jpg" width="1280" height="200" loading="lazy" alt="Actividad en vivo: la canción Brisa del Malecón aparece alrededor del notch">
+      </figure>
+    </section>
+
+    <!-- How it works: stages as one bar -->
+    <section class="stages" aria-labelledby="stages-title">
+      <h2 id="stages-title" class="head" data-i18n="stages.title">Lista en un minuto.</h2>
+      <div class="bar-diagram" data-ui>
+        <div class="stage stage-a"><span class="stage-time" data-i18n="stages.a.time">10 segundos</span></div>
+        <div class="stage stage-b"><span class="stage-time" data-i18n="stages.b.time">Un minuto</span></div>
+        <div class="stage stage-c"><span class="stage-time" data-i18n="stages.c.time">Todo el día</span></div>
+      </div>
+      <div class="stage-notes">
+        <p class="note-a" data-i18n="stages.a.text">Primero, descarga el .dmg y arrastra Isla a Aplicaciones.</p>
+        <p class="note-b" data-i18n="stages.b.text">Luego, el recorrido de bienvenida te deja activar solo los permisos que quieras.</p>
+        <p class="note-c" data-i18n="stages.c.text">Después, lleva el puntero al notch o pulsa ⌃⌥Espacio desde cualquier app.</p>
+      </div>
+    </section>
+
+    <!-- Native: settings and onboarding -->
+    <section class="native" aria-labelledby="native-title">
+      <div class="native-text">
+        <h2 id="native-title" class="head" data-i18n="native.title">Hecha como lo haría Apple.</h2>
+        <p data-i18n="native.text">Escrita en Swift y SwiftUI, con el Liquid Glass de macOS, SF Symbols, respuesta háptica y Ajustes que se sienten de casa. Elige vidrio o negro clásico, el tamaño del panel, las pestañas y los widgets. En español y en inglés.</p>
+      </div>
+      <figure class="native-shot"><img src="assets/app/settings.png" width="1600" height="1170" loading="lazy" alt="Ventana de Ajustes de Isla en español con la barra lateral de secciones"></figure>
+      <figure class="native-shot native-shot-b"><img src="assets/app/onboarding.png" width="1600" height="1180" loading="lazy" alt="Pantalla de bienvenida de Isla"></figure>
+    </section>
+
+    <!-- Open source & made in Santo Domingo -->
+    <section class="open" id="abierto" aria-labelledby="open-title">
+      <figure class="open-strip">
+        <video src="assets/caribbean-sea.webm" poster="assets/caribbean-sea-poster.jpg" width="1280" height="720" muted loop playsinline autoplay preload="metadata" aria-label="El agua del mar Caribe moviéndose en la desembocadura de un río"></video>
+      </figure>
+      <div class="open-grid">
+        <div class="open-text">
+          <h2 id="open-title" class="head" data-i18n="open.title">Abierta, como el mar.</h2>
+          <p data-i18n="open.text">Isla es libre y de código abierto bajo la licencia MIT. Sin cuentas, sin analíticas, sin suscripciones. Tus notas, tu Bandeja y tu portapapeles se quedan en tu Mac. Lee el código, propón mejoras o crea tu propia versión.</p>
+          <p data-i18n="open.made">Diseñada y desarrollada por Kyros Solutions RD en Santo Domingo, en una isla del Caribe. De ahí el nombre.</p>
+          <a class="button" href="https://github.com/Kyros-Solutions-RD/isla" data-i18n="open.cta">Ver en GitHub</a>
+        </div>
+        <div class="open-code">
+          <pre><code>git clone https://github.com/Kyros-Solutions-RD/isla.git
+cd isla
+brew install xcodegen
+xcodegen generate
+open Isla.xcodeproj</code></pre>
+          <figure class="open-photo"><img src="assets/calle-las-damas.jpg" width="1920" height="1440" loading="lazy" alt="Calle las Damas en la Zona Colonial de Santo Domingo"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="preguntas" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="head" data-i18n="faq.title">Preguntas, respondidas.</h2>
+      <div class="faq-list">
+        <details>
+          <summary data-i18n="faq.q1">¿Isla es gratis de verdad?</summary>
+          <p data-i18n="faq.a1">Sí. Todas las funciones son gratis, para siempre, sin prueba ni suscripción. El código está en GitHub bajo la licencia MIT.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q2">¿Qué Mac necesito?</summary>
+          <p data-i18n="faq.a2">Cualquier Mac con macOS 26 Tahoe o posterior. Isla usa el Liquid Glass del sistema, por eso requiere Tahoe. Funciona en Mac con Apple silicon y con Intel.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q3">¿Y si mi Mac no tiene notch?</summary>
+          <p data-i18n="faq.a3">Isla dibuja una isla equivalente en la parte superior de cualquier pantalla, incluidos los monitores externos. Tú eliges en qué pantallas aparece.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q4">¿Con qué apps de música funciona?</summary>
+          <p data-i18n="faq.a4">Con cualquier app que aparezca en «Reproduciendo» del Centro de control: Música, Spotify, Podcasts, YouTube en el navegador y más. Las letras vienen de LRCLIB, una base de datos abierta.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q5">¿Qué permisos pide y qué hace con mis datos?</summary>
+          <p data-i18n="faq.a5">Solo los que tú actives: Calendario, Recordatorios, Cámara para el Espejo, Ubicación para el clima, Micrófono para el teleprompter y Accesibilidad para reemplazar el indicador de volumen. Nada sale de tu Mac salvo la consulta del clima, con ubicación aproximada, y la búsqueda de letras.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q6">macOS dice que no puede verificar la app, ¿qué hago?</summary>
+          <p data-i18n="faq.a6">Las versiones de la comunidad se firman sin un certificado de pago. Haz clic derecho en Isla, elige Abrir y confirma. O compílala tú desde el código fuente en un par de minutos.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- The island itself -->
+    <figure class="saona"><img src="assets/isla-saona.jpg" width="3173" height="674" loading="lazy" alt="Panorámica de la playa de Isla Saona, República Dominicana, con palmeras y agua turquesa"></figure>
+
+    <!-- Closing -->
+    <section class="cta" aria-labelledby="cta-title">
+      <h2 id="cta-title" class="cta-line">
+        <span data-i18n="cta.line">Tu notch te espera.</span>
+        <a class="cta-button" href="https://github.com/Kyros-Solutions-RD/isla/releases/latest" data-i18n="cta.button">Descargar</a>
+      </h2>
+      <p class="cta-note" data-i18n="cta.note">Gratis, sin cuentas. Abre el .dmg, arrastra Isla a Aplicaciones y lleva el puntero al notch.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-invite">
+        <p class="footer-line" data-i18n="footer.line">Construyamos Isla juntos.</p>
+        <a class="button button-inverse" href="https://github.com/Kyros-Solutions-RD/isla/blob/main/CONTRIBUTING.md" data-i18n="footer.cta">Cómo contribuir</a>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Kyros-Solutions-RD/isla">GitHub</a></li>
+        <li><a href="https://github.com/Kyros-Solutions-RD/isla/issues" data-i18n="footer.issues">Reportar un problema</a></li>
+        <li><a href="https://github.com/Kyros-Solutions-RD/isla/releases" data-i18n="footer.releases">Versiones</a></li>
+        <li><a href="https://github.com/Kyros-Solutions-RD" data-i18n="footer.org">Kyros Solutions RD</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>© 2026 Kyros Solutions RD · <a href="https://github.com/Kyros-Solutions-RD/isla/blob/main/LICENSE" data-i18n="footer.license">Licencia MIT</a> · <span data-i18n="footer.trademark">Mac, macOS, AirPods y AirDrop son marcas de Apple Inc. Isla no está afiliada a Apple.</span></p>
+      <p class="credits"><span data-i18n="footer.photos">Fotos:</span> <a href="https://commons.wikimedia.org/w/index.php?curid=73622023">“Sunrise At The Caribbean Sea”</a> de Yuri Pustjens, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>, fondo de las capturas; <a href="https://commons.wikimedia.org/w/index.php?curid=10985671">“Isla Saona”</a> de Tamas Iklodi, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=76893349">“Rivière la Sarcelle Caribbean sea”</a> (video) de Filo gèn', <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=185315716">“Calle las Damas, Santo Domingo, Zona Colonial”</a> de Desox7x, <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en/">CC0</a>; vía Wikimedia Commons.</p>
+    </div>
+    <p class="footer-name" aria-hidden="true">Isla</p>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

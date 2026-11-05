@@ -1,0 +1,3836 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%@ — %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ — %@"
+          }
+        }
+      }
+    },
+    "%lld": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
+          }
+        }
+      }
+    },
+    "%lld events": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld eventos"
+          }
+        }
+      }
+    },
+    "%lld h %lld min remaining": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quedan %lld h %lld min"
+          }
+        }
+      }
+    },
+    "%lld h %lld min timer": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temporizador de %lld h %lld min"
+          }
+        }
+      }
+    },
+    "%lld h timer": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temporizador de %lld h"
+          }
+        }
+      }
+    },
+    "%lld items": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld elementos"
+          }
+        }
+      }
+    },
+    "%lld min focused today": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min de enfoque hoy"
+          }
+        }
+      }
+    },
+    "%lld min timer": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temporizador de %lld min"
+          }
+        }
+      }
+    },
+    "%lld notes": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld notas"
+          }
+        }
+      }
+    },
+    "%lld open": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld pendientes"
+          }
+        }
+      }
+    },
+    "%lld selected": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld seleccionados"
+          }
+        }
+      }
+    },
+    "%lld words": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld palabras"
+          }
+        }
+      }
+    },
+    "%lld%%": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        }
+      }
+    },
+    "%lldh": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lldh"
+          }
+        }
+      }
+    },
+    "%lldm": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lldm"
+          }
+        }
+      }
+    },
+    "%lld°": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld°"
+          }
+        }
+      }
+    },
+    "/ %lld done": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "/ %lld hechas"
+          }
+        }
+      }
+    },
+    "About Isla": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de Isla"
+          }
+        }
+      }
+    },
+    "Accessibility": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accesibilidad"
+          }
+        }
+      }
+    },
+    "Add App": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir app"
+          }
+        }
+      }
+    },
+    "Add Widget": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir widget"
+          }
+        }
+      }
+    },
+    "Add a minute": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir un minuto"
+          }
+        }
+      }
+    },
+    "Add a task": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añade una tarea"
+          }
+        }
+      }
+    },
+    "Add a task below. It syncs with Reminders when connected.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añade una tarea abajo. Se sincroniza con Recordatorios si lo conectas."
+          }
+        }
+      }
+    },
+    "Add favorites from the Shortcuts tab.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añade favoritos desde la pestaña Atajos."
+          }
+        }
+      }
+    },
+    "Add to Favorites": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir a favoritos"
+          }
+        }
+      }
+    },
+    "Add to Shelf": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir a la Bandeja"
+          }
+        }
+      }
+    },
+    "Added": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadido"
+          }
+        }
+      }
+    },
+    "AirDrop": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirDrop"
+          }
+        }
+      }
+    },
+    "AirPods and Bluetooth devices": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPods y dispositivos Bluetooth"
+          }
+        }
+      }
+    },
+    "Alerts": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alertas"
+          }
+        }
+      }
+    },
+    "All": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo"
+          }
+        }
+      }
+    },
+    "All clear": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo listo"
+          }
+        }
+      }
+    },
+    "All day": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo el día"
+          }
+        }
+      }
+    },
+    "All displays": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas las pantallas"
+          }
+        }
+      }
+    },
+    "Allow Calendar Access": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir acceso al Calendario"
+          }
+        }
+      }
+    },
+    "Allow only what you want. You can change this anytime in Settings.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permite solo lo que quieras. Puedes cambiarlo cuando quieras en Ajustes."
+          }
+        }
+      }
+    },
+    "Allowed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitido"
+          }
+        }
+      }
+    },
+    "Allow…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir…"
+          }
+        }
+      }
+    },
+    "Animated equalizer": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ecualizador animado"
+          }
+        }
+      }
+    },
+    "Any player, with synced lyrics.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cualquier reproductor, con letras sincronizadas."
+          }
+        }
+      }
+    },
+    "Appearance": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apariencia"
+          }
+        }
+      }
+    },
+    "Archive": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivo"
+          }
+        }
+      }
+    },
+    "Audio (M4A)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audio (M4A)"
+          }
+        }
+      }
+    },
+    "Back": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atrás"
+          }
+        }
+      }
+    },
+    "Battery": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Batería"
+          }
+        }
+      }
+    },
+    "Battery & Devices": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Batería y dispositivos"
+          }
+        }
+      }
+    },
+    "Behavior": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comportamiento"
+          }
+        }
+      }
+    },
+    "Bluetooth Device": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dispositivo Bluetooth"
+          }
+        }
+      }
+    },
+    "Break over": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fin del descanso"
+          }
+        }
+      }
+    },
+    "Brown Noise": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruido marrón"
+          }
+        }
+      }
+    },
+    "Calendar": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendario"
+          }
+        }
+      }
+    },
+    "Calendar & Tasks": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendario y tareas"
+          }
+        }
+      }
+    },
+    "Calendars": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendarios"
+          }
+        }
+      }
+    },
+    "Camera": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cámara"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        }
+      }
+    },
+    "Caps Lock": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloq Mayús"
+          }
+        }
+      }
+    },
+    "Celsius (°C)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Celsius (°C)"
+          }
+        }
+      }
+    },
+    "Charging": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cargando"
+          }
+        }
+      }
+    },
+    "Charging and battery": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carga y batería"
+          }
+        }
+      }
+    },
+    "Charging — full in %lld h %lld min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cargando — completa en %lld h %lld min"
+          }
+        }
+      }
+    },
+    "Charging, AirPods, volume and downloads.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carga, AirPods, volumen y descargas."
+          }
+        }
+      }
+    },
+    "Check your camera before a call.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisa tu cámara antes de una llamada."
+          }
+        }
+      }
+    },
+    "Check yourself before a call": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mírate antes de una llamada"
+          }
+        }
+      }
+    },
+    "Classic Black": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Negro clásico"
+          }
+        }
+      }
+    },
+    "Clear": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despejado"
+          }
+        }
+      }
+    },
+    "Clear Clipboard History": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Borrar historial del portapapeles"
+          }
+        }
+      }
+    },
+    "Clear Done": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Borrar hechas"
+          }
+        }
+      }
+    },
+    "Clear Everything, Including Pinned": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Borrar todo, incluidos los fijados"
+          }
+        }
+      }
+    },
+    "Clear History": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Borrar historial"
+          }
+        }
+      }
+    },
+    "Clear Shelf": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vaciar Bandeja"
+          }
+        }
+      }
+    },
+    "Click to paste": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haz clic para pegar"
+          }
+        }
+      }
+    },
+    "Clipboard": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portapapeles"
+          }
+        }
+      }
+    },
+    "Clipboard History": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historial del portapapeles"
+          }
+        }
+      }
+    },
+    "Clipboard history": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historial del portapapeles"
+          }
+        }
+      }
+    },
+    "Close": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
+          }
+        }
+      }
+    },
+    "Close when the pointer leaves": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar cuando el puntero se aleje"
+          }
+        }
+      }
+    },
+    "Cloudy": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nublado"
+          }
+        }
+      }
+    },
+    "Colors": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colores"
+          }
+        }
+      }
+    },
+    "Compact": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compacto"
+          }
+        }
+      }
+    },
+    "Compress (ZIP)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comprimir (ZIP)"
+          }
+        }
+      }
+    },
+    "Connect Calendar": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectar Calendario"
+          }
+        }
+      }
+    },
+    "Connected": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectado"
+          }
+        }
+      }
+    },
+    "Connection": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conexión"
+          }
+        }
+      }
+    },
+    "Continue": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar"
+          }
+        }
+      }
+    },
+    "Convert": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Convertir"
+          }
+        }
+      }
+    },
+    "Converting…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Convirtiendo…"
+          }
+        }
+      }
+    },
+    "Copied": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiado"
+          }
+        }
+      }
+    },
+    "Copy": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar"
+          }
+        }
+      }
+    },
+    "Copy text, links, images or files and they will show up here. Passwords are never saved.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia texto, enlaces, imágenes o archivos y aparecerán aquí. Las contraseñas nunca se guardan."
+          }
+        }
+      }
+    },
+    "Create shortcuts in the Shortcuts app and run them from here.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea atajos en la app Atajos y ejecútalos desde aquí."
+          }
+        }
+      }
+    },
+    "Customize Nook…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personalizar Nook…"
+          }
+        }
+      }
+    },
+    "Dark": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oscuro"
+          }
+        }
+      }
+    },
+    "Delay": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retraso"
+          }
+        }
+      }
+    },
+    "Delete": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
+          }
+        }
+      }
+    },
+    "Disconnected": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desconectado"
+          }
+        }
+      }
+    },
+    "Displays": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantallas"
+          }
+        }
+      }
+    },
+    "Displays with a notch": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantallas con notch"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listo"
+          }
+        }
+      }
+    },
+    "Downloads": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargas"
+          }
+        }
+      }
+    },
+    "Drag files onto the notch to keep them handy. Shake while dragging to open a Pocket anywhere.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrastra archivos al notch para tenerlos a mano. Agita el puntero mientras arrastras para abrir un Bolsillo donde estés."
+          }
+        }
+      }
+    },
+    "Drag to reorder. ⌘1…⌘9 switch tabs while the Nook is open.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrastra para reordenar. ⌘1…⌘9 cambian de pestaña con el Nook abierto."
+          }
+        }
+      }
+    },
+    "Drag up or down to change": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrastra arriba o abajo para cambiar"
+          }
+        }
+      }
+    },
+    "Drizzle": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Llovizna"
+          }
+        }
+      }
+    },
+    "Drop files here": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suelta archivos aquí"
+          }
+        }
+      }
+    },
+    "Drop files on the notch": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suelta archivos en el notch"
+          }
+        }
+      }
+    },
+    "Drop files on the notch, drag them anywhere.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suelta archivos en el notch y arrástralos a donde quieras."
+          }
+        }
+      }
+    },
+    "Drop files to hold them, then drag them anywhere or AirDrop them.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suelta archivos para guardarlos y luego arrástralos o envíalos por AirDrop."
+          }
+        }
+      }
+    },
+    "Drop shadow": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sombra"
+          }
+        }
+      }
+    },
+    "Edit Script": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar guion"
+          }
+        }
+      }
+    },
+    "Enjoy the free time.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disfruta el tiempo libre."
+          }
+        }
+      }
+    },
+    "Everything you copied, searchable. Passwords are never saved.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo lo que copiaste, con búsqueda. Las contraseñas nunca se guardan."
+          }
+        }
+      }
+    },
+    "Everything, one hover away": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo, a un gesto de distancia"
+          }
+        }
+      }
+    },
+    "Fahrenheit (°F)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fahrenheit (°F)"
+          }
+        }
+      }
+    },
+    "Files": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivos"
+          }
+        }
+      }
+    },
+    "Flip": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voltear"
+          }
+        }
+      }
+    },
+    "Focus": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enfoque"
+          }
+        }
+      }
+    },
+    "Focus & Timers": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enfoque y temporizadores"
+          }
+        }
+      }
+    },
+    "Focus Timer": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temporizador de enfoque"
+          }
+        }
+      }
+    },
+    "Focus done": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enfoque completado"
+          }
+        }
+      }
+    },
+    "Focus: %lld min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enfoque: %lld min"
+          }
+        }
+      }
+    },
+    "Fog": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niebla"
+          }
+        }
+      }
+    },
+    "Follow voice": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seguir voz"
+          }
+        }
+      }
+    },
+    "Freezing Drizzle": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Llovizna helada"
+          }
+        }
+      }
+    },
+    "Freezing Rain": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lluvia helada"
+          }
+        }
+      }
+    },
+    "General": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "General"
+          }
+        }
+      }
+    },
+    "Glass tint": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tinte del vidrio"
+          }
+        }
+      }
+    },
+    "Global shortcuts": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atajos globales"
+          }
+        }
+      }
+    },
+    "Google, Exchange and other accounts appear here once added in System Settings → Internet Accounts.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Google, Exchange y otras cuentas aparecen aquí cuando las añades en Ajustes del Sistema → Cuentas de internet."
+          }
+        }
+      }
+    },
+    "Grant…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conceder…"
+          }
+        }
+      }
+    },
+    "H:%lld°  L:%lld°": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Máx:%lld°  Mín:%lld°"
+          }
+        }
+      }
+    },
+    "Haptic feedback": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respuesta háptica"
+          }
+        }
+      }
+    },
+    "Heavy Rain": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lluvia intensa"
+          }
+        }
+      }
+    },
+    "Hi everyone, and thanks for joining.\n\nToday I want to show you how Isla turns the notch into a place where your music, files and calendar live, right under the camera.\n\nThe teleprompter keeps your eyes close to the lens, so you look at your audience while you read.\n\nTurn on Follow My Voice and the text moves only when you speak.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hola a todos y gracias por acompañarnos.\n\nHoy quiero mostrarles cómo Isla convierte el notch en el lugar donde viven tu música, tus archivos y tu calendario, justo debajo de la cámara.\n\nEl teleprompter mantiene tus ojos cerca del lente, así miras a tu audiencia mientras lees.\n\nActiva Seguir voz y el texto avanzará solo cuando hables."
+          }
+        }
+      }
+    },
+    "Hide when an app is full screen": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar cuando una app está en pantalla completa"
+          }
+        }
+      }
+    },
+    "History size": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamaño del historial"
+          }
+        }
+      }
+    },
+    "Image": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imagen"
+          }
+        }
+      }
+    },
+    "Images": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imágenes"
+          }
+        }
+      }
+    },
+    "Images to PDF": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imágenes a PDF"
+          }
+        }
+      }
+    },
+    "Inside the Nook": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dentro del Nook"
+          }
+        }
+      }
+    },
+    "Instant": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instantáneo"
+          }
+        }
+      }
+    },
+    "Isla": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla"
+          }
+        }
+      }
+    },
+    "Isla Settings": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes de Isla"
+          }
+        }
+      }
+    },
+    "Isla follows any app that shows up in Control Center's Now Playing: Music, Spotify, Podcasts, browsers and more.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla sigue cualquier app que aparezca en «Reproduciendo» del Centro de control: Música, Spotify, Podcasts, navegadores y más."
+          }
+        }
+      }
+    },
+    "Isla handles the volume and brightness keys itself and shows a compact slider under the notch. Hold ⌥⇧ for finer steps.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla gestiona las teclas de volumen y brillo y muestra un control compacto bajo el notch. Mantén ⌥⇧ para pasos más finos."
+          }
+        }
+      }
+    },
+    "Isla needs camera access to show the Mirror. Video never leaves your Mac.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla necesita acceso a la cámara para mostrar el Espejo. El video nunca sale de tu Mac."
+          }
+        }
+      }
+    },
+    "Isla reads the calendars already on your Mac — iCloud, Google, Exchange — and never sends them anywhere.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla lee los calendarios que ya tienes en tu Mac — iCloud, Google, Exchange — y nunca los envía a ningún sitio."
+          }
+        }
+      }
+    },
+    "Isla will quit. Your notes, shelf and clipboard history are kept.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla se cerrará. Tus notas, la Bandeja y el historial del portapapeles se conservan."
+          }
+        }
+      }
+    },
+    "Isla works without any of these. Each one only unlocks the feature it describes.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla funciona sin ninguno de estos permisos. Cada uno solo activa la función que describe."
+          }
+        }
+      }
+    },
+    "Items copied from password managers and anything marked as concealed are never saved. History stays on this Mac.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nunca se guarda lo copiado desde gestores de contraseñas ni lo marcado como oculto. El historial se queda en este Mac."
+          }
+        }
+      }
+    },
+    "Join": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unirse"
+          }
+        }
+      }
+    },
+    "Join %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unirse a %@"
+          }
+        }
+      }
+    },
+    "Keep clipboard history": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar historial del portapapeles"
+          }
+        }
+      }
+    },
+    "Keep on Shelf": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar en la Bandeja"
+          }
+        }
+      }
+    },
+    "Keep open": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantener abierto"
+          }
+        }
+      }
+    },
+    "Keyboard": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teclado"
+          }
+        }
+      }
+    },
+    "Kyros Solutions RD": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kyros Solutions RD"
+          }
+        }
+      }
+    },
+    "LRCLIB": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LRCLIB"
+          }
+        }
+      }
+    },
+    "Large": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grande"
+          }
+        }
+      }
+    },
+    "Lets the Teleprompter follow your voice.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permite que el Teleprompter siga tu voz."
+          }
+        }
+      }
+    },
+    "License": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licencia"
+          }
+        }
+      }
+    },
+    "Links": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enlaces"
+          }
+        }
+      }
+    },
+    "Liquid Glass": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liquid Glass"
+          }
+        }
+      }
+    },
+    "Live Activities": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actividades en vivo"
+          }
+        }
+      }
+    },
+    "Local weather in the Nook.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El clima local en el Nook."
+          }
+        }
+      }
+    },
+    "Location": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ubicación"
+          }
+        }
+      }
+    },
+    "Location is off for Isla.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La ubicación está desactivada para Isla."
+          }
+        }
+      }
+    },
+    "Long Break": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso largo"
+          }
+        }
+      }
+    },
+    "Long break every %lld sessions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso largo cada %lld sesiones"
+          }
+        }
+      }
+    },
+    "Long break: %lld min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso largo: %lld min"
+          }
+        }
+      }
+    },
+    "Low Battery": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Batería baja"
+          }
+        }
+      }
+    },
+    "Low battery alert": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerta de batería baja"
+          }
+        }
+      }
+    },
+    "Lyrics": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letras"
+          }
+        }
+      }
+    },
+    "Lyrics come from LRCLIB, a free and open lyrics database. Only the song title, artist and album are sent.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las letras vienen de LRCLIB, una base de datos libre y abierta. Solo se envían el título, el artista y el álbum."
+          }
+        }
+      }
+    },
+    "Mac": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mac"
+          }
+        }
+      }
+    },
+    "Made by": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Creado por"
+          }
+        }
+      }
+    },
+    "Main display only": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo la pantalla principal"
+          }
+        }
+      }
+    },
+    "Mark as Done": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marcar como hecha"
+          }
+        }
+      }
+    },
+    "Mark as Not Done": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marcar como pendiente"
+          }
+        }
+      }
+    },
+    "Merge PDFs": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Combinar PDF"
+          }
+        }
+      }
+    },
+    "Microphone & Speech": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Micrófono y voz"
+          }
+        }
+      }
+    },
+    "Mirror": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espejo"
+          }
+        }
+      }
+    },
+    "Moments": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Momentos"
+          }
+        }
+      }
+    },
+    "Mostly Clear": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mayormente despejado"
+          }
+        }
+      }
+    },
+    "Move the pointer to the notch, or swipe down on it with two fingers. Press ⌃⌥Space from anywhere.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lleva el puntero al notch o desliza hacia abajo con dos dedos sobre él. Pulsa ⌃⌥Espacio desde cualquier lugar."
+          }
+        }
+      }
+    },
+    "Music": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Música"
+          }
+        }
+      }
+    },
+    "Music & Spotify (AppleScript)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Música y Spotify (AppleScript)"
+          }
+        }
+      }
+    },
+    "My Location": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mi ubicación"
+          }
+        }
+      }
+    },
+    "Needs %@ access": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Requiere acceso a %@"
+          }
+        }
+      }
+    },
+    "Never record from": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nunca registrar desde"
+          }
+        }
+      }
+    },
+    "New Note": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva nota"
+          }
+        }
+      }
+    },
+    "New Script": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo guion"
+          }
+        }
+      }
+    },
+    "New event at the next hour": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo evento a la próxima hora"
+          }
+        }
+      }
+    },
+    "New script": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo guion"
+          }
+        }
+      }
+    },
+    "Next / previous tab": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pestaña siguiente / anterior"
+          }
+        }
+      }
+    },
+    "Next Track": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siguiente canción"
+          }
+        }
+      }
+    },
+    "No accounts, no analytics, no tracking.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin cuentas, sin analíticas, sin rastreo."
+          }
+        }
+      }
+    },
+    "No camera found": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se encontró una cámara"
+          }
+        }
+      }
+    },
+    "No devices connected": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay dispositivos conectados"
+          }
+        }
+      }
+    },
+    "No matches": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin resultados"
+          }
+        }
+      }
+    },
+    "No more events today": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay más eventos hoy"
+          }
+        }
+      }
+    },
+    "No note selected": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ninguna nota seleccionada"
+          }
+        }
+      }
+    },
+    "No script": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin guion"
+          }
+        }
+      }
+    },
+    "No shortcuts found": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se encontraron atajos"
+          }
+        }
+      }
+    },
+    "Nook": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nook"
+          }
+        }
+      }
+    },
+    "Nook & Widgets": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nook y widgets"
+          }
+        }
+      }
+    },
+    "Nook widgets": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widgets del Nook"
+          }
+        }
+      }
+    },
+    "Notes": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notas"
+          }
+        }
+      }
+    },
+    "Notes unavailable": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notas no disponible"
+          }
+        }
+      }
+    },
+    "Notes, tasks, shelf and clipboard history are stored only on this Mac.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las notas, tareas, la Bandeja y el historial del portapapeles se guardan solo en este Mac."
+          }
+        }
+      }
+    },
+    "Nothing copied yet": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no has copiado nada"
+          }
+        }
+      }
+    },
+    "Nothing playing": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se está reproduciendo nada"
+          }
+        }
+      }
+    },
+    "Nothing scheduled": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada programado"
+          }
+        }
+      }
+    },
+    "Now": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ahora"
+          }
+        }
+      }
+    },
+    "Now Playing": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reproduciendo"
+          }
+        }
+      }
+    },
+    "Now · until %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ahora · hasta las %@"
+          }
+        }
+      }
+    },
+    "On Battery": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con batería"
+          }
+        }
+      }
+    },
+    "On Shelf": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En la Bandeja"
+          }
+        }
+      }
+    },
+    "On battery": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con batería"
+          }
+        }
+      }
+    },
+    "On displays without a notch, Isla draws a matching island at the top of the screen.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En pantallas sin notch, Isla dibuja una isla equivalente en la parte superior."
+          }
+        }
+      }
+    },
+    "On this Mac": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En este Mac"
+          }
+        }
+      }
+    },
+    "Open": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir"
+          }
+        }
+      }
+    },
+    "Open %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir %@"
+          }
+        }
+      }
+    },
+    "Open Calendar": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Calendario"
+          }
+        }
+      }
+    },
+    "Open Camera Settings": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir ajustes de Cámara"
+          }
+        }
+      }
+    },
+    "Open Isla at login": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Isla al iniciar sesión"
+          }
+        }
+      }
+    },
+    "Open Link": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir enlace"
+          }
+        }
+      }
+    },
+    "Open Nook": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Nook"
+          }
+        }
+      }
+    },
+    "Open Reminders": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Recordatorios"
+          }
+        }
+      }
+    },
+    "Open Settings": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Ajustes"
+          }
+        }
+      }
+    },
+    "Open Shelf": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Bandeja"
+          }
+        }
+      }
+    },
+    "Open Shortcuts": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Atajos"
+          }
+        }
+      }
+    },
+    "Open or close Isla": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir o cerrar Isla"
+          }
+        }
+      }
+    },
+    "Open panel": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Panel abierto"
+          }
+        }
+      }
+    },
+    "Open the Shelf when dragging files near the notch": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir la Bandeja al arrastrar archivos cerca del notch"
+          }
+        }
+      }
+    },
+    "Open when the pointer rests on the notch": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir al posar el puntero sobre el notch"
+          }
+        }
+      }
+    },
+    "Open-Meteo": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open-Meteo"
+          }
+        }
+      }
+    },
+    "Overcast": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cubierto"
+          }
+        }
+      }
+    },
+    "Partly Cloudy": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parcialmente nublado"
+          }
+        }
+      }
+    },
+    "Paste": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegar"
+          }
+        }
+      }
+    },
+    "Paste directly into the current app": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegar directamente en la app actual"
+          }
+        }
+      }
+    },
+    "Pause": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pausar"
+          }
+        }
+      }
+    },
+    "Pause capture": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pausar captura"
+          }
+        }
+      }
+    },
+    "Permissions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permisos"
+          }
+        }
+      }
+    },
+    "Pin": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fijar"
+          }
+        }
+      }
+    },
+    "Pink Noise": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruido rosa"
+          }
+        }
+      }
+    },
+    "Play": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reproducir"
+          }
+        }
+      }
+    },
+    "Play during focus": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reproducir durante el enfoque"
+          }
+        }
+      }
+    },
+    "Play something in Music, Spotify or your browser and it will appear here.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reproduce algo en Música, Spotify o tu navegador y aparecerá aquí."
+          }
+        }
+      }
+    },
+    "Plugged In": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectado"
+          }
+        }
+      }
+    },
+    "Plugged in": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectado a la corriente"
+          }
+        }
+      }
+    },
+    "Pocket": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bolsillo"
+          }
+        }
+      }
+    },
+    "Pocket: shake while dragging to drop anywhere": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bolsillo: agita al arrastrar para soltar donde estés"
+          }
+        }
+      }
+    },
+    "Pomodoro": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pomodoro"
+          }
+        }
+      }
+    },
+    "Pomodoro, timers and focus sounds.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pomodoro, temporizadores y sonidos de enfoque."
+          }
+        }
+      }
+    },
+    "Preview the Nook": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previsualizar el Nook"
+          }
+        }
+      }
+    },
+    "Privacy & Permissions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacidad y permisos"
+          }
+        }
+      }
+    },
+    "Quick Note": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nota rápida"
+          }
+        }
+      }
+    },
+    "Quick notes that stay on your Mac.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notas rápidas que se quedan en tu Mac."
+          }
+        }
+      }
+    },
+    "Quick tasks synced with Reminders.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tareas rápidas sincronizadas con Recordatorios."
+          }
+        }
+      }
+    },
+    "Quit Isla": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir de Isla"
+          }
+        }
+      }
+    },
+    "Rain": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lluvia"
+          }
+        }
+      }
+    },
+    "Read scripts right under your camera, at your pace or following your voice.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lee guiones justo debajo de tu cámara, a tu ritmo o siguiendo tu voz."
+          }
+        }
+      }
+    },
+    "Record Shortcut": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grabar atajo"
+          }
+        }
+      }
+    },
+    "Regular": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Normal"
+          }
+        }
+      }
+    },
+    "Relaxed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pausado"
+          }
+        }
+      }
+    },
+    "Remember files after restarting": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recordar archivos al reiniciar"
+          }
+        }
+      }
+    },
+    "Reminders": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recordatorios"
+          }
+        }
+      }
+    },
+    "Reminders list": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista de Recordatorios"
+          }
+        }
+      }
+    },
+    "Remove All": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitar todo"
+          }
+        }
+      }
+    },
+    "Remove from Favorites": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitar de favoritos"
+          }
+        }
+      }
+    },
+    "Remove from Shelf": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitar de la Bandeja"
+          }
+        }
+      }
+    },
+    "Reopen the last tab": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reabrir la última pestaña"
+          }
+        }
+      }
+    },
+    "Replace the system volume and brightness overlay": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reemplazar el indicador de volumen y brillo del sistema"
+          }
+        }
+      }
+    },
+    "Replace the volume and brightness overlay, and paste from the clipboard history.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reemplazar el indicador de volumen y brillo, y pegar desde el historial del portapapeles."
+          }
+        }
+      }
+    },
+    "Report an Issue": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reportar un problema"
+          }
+        }
+      }
+    },
+    "Reset": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restablecer"
+          }
+        }
+      }
+    },
+    "Reset All Settings…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restablecer todos los ajustes…"
+          }
+        }
+      }
+    },
+    "Reset all settings?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Restablecer todos los ajustes?"
+          }
+        }
+      }
+    },
+    "Restart": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reiniciar"
+          }
+        }
+      }
+    },
+    "Resume capture": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reanudar captura"
+          }
+        }
+      }
+    },
+    "Run": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ejecutar"
+          }
+        }
+      }
+    },
+    "Run as many timers as you like. They stay in the notch while they count down.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea todos los temporizadores que quieras. Se quedan en el notch mientras cuentan."
+          }
+        }
+      }
+    },
+    "Run your favorite Shortcuts from the notch.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ejecuta tus atajos favoritos desde el notch."
+          }
+        }
+      }
+    },
+    "Sample script": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guion de ejemplo"
+          }
+        }
+      }
+    },
+    "Santo Domingo, Dominican Republic": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Santo Domingo, República Dominicana"
+          }
+        }
+      }
+    },
+    "Save": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar"
+          }
+        }
+      }
+    },
+    "Save to Apple Notes": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar en Notas"
+          }
+        }
+      }
+    },
+    "Saved to Notes": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardado en Notas"
+          }
+        }
+      }
+    },
+    "Scripts": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guiones"
+          }
+        }
+      }
+    },
+    "Search Shortcuts": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar atajos"
+          }
+        }
+      }
+    },
+    "Search clipboard": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar en el portapapeles"
+          }
+        }
+      }
+    },
+    "Searchable history. Never passwords.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historial con búsqueda. Nunca contraseñas."
+          }
+        }
+      }
+    },
+    "See local weather at a glance.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mira el clima local de un vistazo."
+          }
+        }
+      }
+    },
+    "See your agenda here": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mira tu agenda aquí"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes"
+          }
+        }
+      }
+    },
+    "Settings…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes…"
+          }
+        }
+      }
+    },
+    "Share…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compartir…"
+          }
+        }
+      }
+    },
+    "Shelf": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bandeja"
+          }
+        }
+      }
+    },
+    "Shelf & AirDrop": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bandeja y AirDrop"
+          }
+        }
+      }
+    },
+    "Short Break": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso corto"
+          }
+        }
+      }
+    },
+    "Short break: %lld min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso corto: %lld min"
+          }
+        }
+      }
+    },
+    "Shortcuts": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atajos"
+          }
+        }
+      }
+    },
+    "Show Converted Files in Finder": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar archivos convertidos en Finder"
+          }
+        }
+      }
+    },
+    "Show Isla's Data Folder": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar la carpeta de datos de Isla"
+          }
+        }
+      }
+    },
+    "Show Welcome Tour…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar recorrido de bienvenida…"
+          }
+        }
+      }
+    },
+    "Show icon in the menu bar": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar icono en la barra de menús"
+          }
+        }
+      }
+    },
+    "Show in Finder": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar en Finder"
+          }
+        }
+      }
+    },
+    "Show the notch on": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar el notch en"
+          }
+        }
+      }
+    },
+    "Show the song when the track changes": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar la canción al cambiar de pista"
+          }
+        }
+      }
+    },
+    "Size": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamaño"
+          }
+        }
+      }
+    },
+    "Skip": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saltar"
+          }
+        }
+      }
+    },
+    "Snow": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nieve"
+          }
+        }
+      }
+    },
+    "Soft Rain": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lluvia suave"
+          }
+        }
+      }
+    },
+    "Sound": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonido"
+          }
+        }
+      }
+    },
+    "Source": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Origen"
+          }
+        }
+      }
+    },
+    "Source Code": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Código fuente"
+          }
+        }
+      }
+    },
+    "Speed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velocidad"
+          }
+        }
+      }
+    },
+    "Spotify": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spotify"
+          }
+        }
+      }
+    },
+    "Start": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar"
+          }
+        }
+      }
+    },
+    "Start %lld minutes before": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar %lld minutos antes"
+          }
+        }
+      }
+    },
+    "Start Using Isla": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar a usar Isla"
+          }
+        }
+      }
+    },
+    "Stop": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detener"
+          }
+        }
+      }
+    },
+    "Stopwatch": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cronómetro"
+          }
+        }
+      }
+    },
+    "Storage": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Almacenamiento"
+          }
+        }
+      }
+    },
+    "Style": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estilo"
+          }
+        }
+      }
+    },
+    "Swipe down on the notch to open it, swipe up to close, and swipe sideways to change tracks.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desliza hacia abajo sobre el notch para abrirlo, hacia arriba para cerrarlo y de lado para cambiar de canción."
+          }
+        }
+      }
+    },
+    "Switch tab": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambiar de pestaña"
+          }
+        }
+      }
+    },
+    "Sync with Reminders": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizar con Recordatorios"
+          }
+        }
+      }
+    },
+    "Sync with Reminders…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizar con Recordatorios…"
+          }
+        }
+      }
+    },
+    "Synced lyrics": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letras sincronizadas"
+          }
+        }
+      }
+    },
+    "System Now Playing": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Reproduciendo» del sistema"
+          }
+        }
+      }
+    },
+    "Tabs": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pestañas"
+          }
+        }
+      }
+    },
+    "Tasks": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tareas"
+          }
+        }
+      }
+    },
+    "Tasks synced with your Reminders lists.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tareas sincronizadas con tus listas de Recordatorios."
+          }
+        }
+      }
+    },
+    "Teleprompter": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teleprompter"
+          }
+        }
+      }
+    },
+    "Text": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texto"
+          }
+        }
+      }
+    },
+    "Text size": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamaño del texto"
+          }
+        }
+      }
+    },
+    "Thanks to": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gracias a"
+          }
+        }
+      }
+    },
+    "The Mirror, to check yourself before a call.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El Espejo, para revisarte antes de una llamada."
+          }
+        }
+      }
+    },
+    "The Nook fits up to four columns. Now Playing uses two.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El Nook admite hasta cuatro columnas. Reproduciendo usa dos."
+          }
+        }
+      }
+    },
+    "The Shelf keeps a reference to your files; it never moves or copies them. Text, images and conversions you drop are saved in Isla's folder.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La Bandeja guarda una referencia a tus archivos; nunca los mueve ni los copia. El texto, las imágenes y las conversiones se guardan en la carpeta de Isla."
+          }
+        }
+      }
+    },
+    "These stay around the notch while they are running.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estas permanecen alrededor del notch mientras están activas."
+          }
+        }
+      }
+    },
+    "Thunderstorm": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tormenta"
+          }
+        }
+      }
+    },
+    "Timers": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temporizadores"
+          }
+        }
+      }
+    },
+    "Timers and Pomodoro": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temporizadores y Pomodoro"
+          }
+        }
+      }
+    },
+    "Tint with album artwork": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teñir con la portada del álbum"
+          }
+        }
+      }
+    },
+    "Title": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Título"
+          }
+        }
+      }
+    },
+    "Today": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy"
+          }
+        }
+      }
+    },
+    "Trackpad gestures": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gestos del trackpad"
+          }
+        }
+      }
+    },
+    "Turn On Mirror": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activar Espejo"
+          }
+        }
+      }
+    },
+    "Type shortcut…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsa el atajo…"
+          }
+        }
+      }
+    },
+    "Unpin": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dejar de fijar"
+          }
+        }
+      }
+    },
+    "Untitled event": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Evento sin título"
+          }
+        }
+      }
+    },
+    "Up Next": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A continuación"
+          }
+        }
+      }
+    },
+    "Up next and one-click meeting links.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo próximo y enlaces de reunión con un clic."
+          }
+        }
+      }
+    },
+    "Upcoming events and meeting countdowns.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximos eventos y cuentas regresivas de reuniones."
+          }
+        }
+      }
+    },
+    "Upcoming meetings": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximas reuniones"
+          }
+        }
+      }
+    },
+    "Use Local Tasks Instead": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar tareas locales"
+          }
+        }
+      }
+    },
+    "Use My Location": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar mi ubicación"
+          }
+        }
+      }
+    },
+    "Version %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versión %@"
+          }
+        }
+      }
+    },
+    "Volume and brightness": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volumen y brillo"
+          }
+        }
+      }
+    },
+    "Weather": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clima"
+          }
+        }
+      }
+    },
+    "Weather data": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datos del clima"
+          }
+        }
+      }
+    },
+    "Weather uses an approximate location, and lyrics send only song details.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El clima usa una ubicación aproximada y las letras solo envían los datos de la canción."
+          }
+        }
+      }
+    },
+    "Website": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sitio web"
+          }
+        }
+      }
+    },
+    "Welcome to Isla": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te damos la bienvenida a Isla"
+          }
+        }
+      }
+    },
+    "Welcome to Isla Notes\nJot anything down. Notes stay on this Mac.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bienvenido a Notas de Isla\nApunta lo que quieras. Las notas se quedan en este Mac."
+          }
+        }
+      }
+    },
+    "While it matters": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mientras importa"
+          }
+        }
+      }
+    },
+    "White Noise": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruido blanco"
+          }
+        }
+      }
+    },
+    "Write something…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escribe algo…"
+          }
+        }
+      }
+    },
+    "Write your script to get started.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escribe tu guion para empezar."
+          }
+        }
+      }
+    },
+    "You're all set": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo listo"
+          }
+        }
+      }
+    },
+    "You're in control": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tú tienes el control"
+          }
+        }
+      }
+    },
+    "Your agenda for the week with one-click meeting links.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu agenda de la semana con enlaces de reunión con un clic."
+          }
+        }
+      }
+    },
+    "Your data": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus datos"
+          }
+        }
+      }
+    },
+    "Your notch, turned into an island. Free and open source.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu notch, convertido en una isla. Libre y de código abierto."
+          }
+        }
+      }
+    },
+    "Your notch, turned into an island. Music, files, calendar, focus timers and more live right under your camera.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu notch, convertido en una isla. Música, archivos, calendario, temporizadores de enfoque y más, justo debajo de tu cámara."
+          }
+        }
+      }
+    },
+    "Your widgets: music, up next, weather and more.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus widgets: música, lo próximo, clima y más."
+          }
+        }
+      }
+    },
+    "in %lldm": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "en %lld min"
+          }
+        }
+      }
+    },
+    "min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min"
+          }
+        }
+      }
+    },
+    "—": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "—"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

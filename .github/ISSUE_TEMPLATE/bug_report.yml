@@ -1,0 +1,35 @@
+name: Bug report
+description: Something is not working as expected
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Tell us what you expected and what you saw instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Open the Nook\n2. …"
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: macOS 26.1
+    validations:
+      required: true
+  - type: input
+    id: mac
+    attributes:
+      label: Mac model and displays
+      placeholder: MacBook Pro 14" (M3) + external 4K display
+  - type: input
+    id: version
+    attributes:
+      label: Isla version
+      placeholder: "1.0.0"
