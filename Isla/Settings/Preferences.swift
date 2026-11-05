@@ -65,7 +65,7 @@ enum TemperatureUnit: String, CaseIterable, Identifiable, Codable {
 }
 
 enum HomeWidget: String, CaseIterable, Identifiable, Codable {
-    case media, calendar, weather, timer, battery, shortcuts, shelf, note, actions
+    case media, calendar, weather, timer, battery, shortcuts, shelf, note, actions, agents
 
     var id: String { rawValue }
 
@@ -80,6 +80,7 @@ enum HomeWidget: String, CaseIterable, Identifiable, Codable {
         case .shelf: "Shelf"
         case .note: "Quick Note"
         case .actions: "Quick Actions"
+        case .agents: "AI Agents"
         }
     }
 
@@ -94,6 +95,7 @@ enum HomeWidget: String, CaseIterable, Identifiable, Codable {
         case .shelf: "tray.full.fill"
         case .note: "note.text"
         case .actions: "bolt.fill"
+        case .agents: "sparkles"
         }
     }
 

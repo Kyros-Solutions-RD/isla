@@ -2,6 +2,11 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.2 — 2026-11-05
+
+- Nuevo widget **Agentes de IA** para el Nook: los agentes trabajando, su proyecto, su estado y el tiempo, de un vistazo junto a tu música y el clima. Haz clic para abrir la pestaña IA. Añádelo en Ajustes › Nook y widgets.
+- La barra de progreso de Tareas ahora va a juego con el resto del notch y se queda vacía hasta que terminas algo.
+
 ## 1.1.1 — 2026-11-05
 
 - La pestaña IA muestra el modelo que usa cada sesión, cuándo empezó y cuánto tiempo lleva trabajando o esperando.

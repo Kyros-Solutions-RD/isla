@@ -221,6 +221,16 @@
         }
       }
     },
+    "+%lld": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+%lld"
+          }
+        }
+      }
+    },
     "/ %lld done": {
       "localizations": {
         "es": {
@@ -2297,6 +2307,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Modelo en memoria"
+          }
+        }
+      }
+    },
+    "Models in memory: %lld": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelos en memoria: %lld"
           }
         }
       }

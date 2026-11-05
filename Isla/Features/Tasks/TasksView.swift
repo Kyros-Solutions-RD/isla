@@ -105,12 +105,25 @@ struct TasksView: View {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Text("\(done.count)")
                         .font(.system(size: 34, weight: .bold, design: .rounded))
+                        .contentTransition(.numericText(value: Double(done.count)))
                     Text("/ \(open.count + done.count) done")
                         .font(.system(size: 12, weight: .medium))
                         .foregroundStyle(.secondary)
                 }
-                ProgressView(value: Double(done.count), total: Double(total))
-                    .tint(.green)
+                .animation(IslaMotion.snappy, value: done.count)
+                // A slim bar in the notch's own style; empty (no stray dot) when nothing is done.
+                GeometryReader { proxy in
+                    let share = Double(done.count) / Double(total)
+                    ZStack(alignment: .leading) {
+                        Capsule().fill(.white.opacity(0.12))
+                        Capsule()
+                            .fill(Color.green.gradient)
+                            .frame(width: proxy.size.width * share)
+                            .opacity(done.isEmpty ? 0 : 1)
+                    }
+                    .animation(IslaMotion.content, value: share)
+                }
+                .frame(height: 5)
                 Spacer(minLength: 0)
                 if !store.usesReminders {
                     Button("Sync with Reminders") { Task { await store.requestRemindersAccess() } }

@@ -33,7 +33,7 @@
 
 | | |
 | --- | --- |
-| **Nook** | Una fila de widgets que eliges y ordenas: Reproduciendo, A continuación, Clima, Enfoque, Batería y dispositivos, Atajos, Bandeja y Nota rápida. |
+| **Nook** | Una fila de widgets que eliges y ordenas: Reproduciendo, A continuación, Clima, Enfoque, Batería y dispositivos, Atajos, Bandeja, Nota rápida, Acciones rápidas y Agentes de IA. |
 | **IA** | Los agentes de programación que corren en tu Mac, en Terminal o en su propia app: la carpeta en la que trabaja cada uno, desde cuándo, si está trabajando, esperando o te necesita, y qué hace en este momento. Además, los modelos que Ollama y LM Studio tienen en memoria y las apps de IA que tienes abiertas. No necesita permisos. |
 | **Música** | Sigue cualquier app de «Reproduciendo» del Centro de control (Música, Spotify, Podcasts, navegadores). Portada, barra para adelantar, controles, **letras sincronizadas** de LRCLIB (también bajo la isla), vidrio teñido con la portada y ecualizador animado. Desliza de lado sobre el notch para cambiar de canción. |
 | **Bandeja** | Suelta archivos en el notch y arrástralos fuera donde quieras. **AirDrop**, Compartir y conversión a PNG, JPEG, HEIC, TIFF, PDF, PDF combinado, MP4, M4A o ZIP. El texto y las imágenes que sueltas se vuelven archivos. |

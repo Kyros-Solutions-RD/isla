@@ -33,7 +33,7 @@
 
 | | |
 | --- | --- |
-| **Nook** | A row of widgets you pick and order: Now Playing, Up Next, Weather, Focus, Battery & Devices, Shortcuts, Shelf and Quick Note. |
+| **Nook** | A row of widgets you pick and order: Now Playing, Up Next, Weather, Focus, Battery & Devices, Shortcuts, Shelf, Quick Note, Quick Actions and AI Agents. |
 | **AI** | The coding agents running on your Mac, in Terminal or in their own app: the folder each one works in, since when, whether it is working, waiting or needs you, and what it is doing right now. Plus the models Ollama and LM Studio keep in memory and the AI apps you have open. No permissions needed. |
 | **Now Playing** | Follows any app in Control Center's Now Playing (Music, Spotify, Podcasts, browsers). Artwork, scrubber, controls, **synced lyrics** from LRCLIB (optionally shown right under the island), artwork-tinted glass and an animated equalizer. Swipe sideways on the notch to change tracks. |
 | **Shelf** | Drop files on the notch and drag them back out anywhere. **AirDrop**, Share, Quick Look (Space), convert to PNG, JPEG, HEIC, TIFF, PDF, merged PDF, MP4, M4A or ZIP. Text and images you drop become files. |

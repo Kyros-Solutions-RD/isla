@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.2 — 2026-11-05
+
+- New **AI Agents** widget for the Nook: the agents at work, their project, state and time at a glance, next to your music and weather. Click it to open the AI tab. Add it in Settings › Nook & Widgets.
+- The Tasks progress bar now matches the rest of the notch and stays empty until you finish something.
+
 ## 1.1.1 — 2026-11-05
 
 - The AI tab shows the model each session uses, when it started and how long it has been working or waiting.
