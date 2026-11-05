@@ -1121,6 +1121,26 @@
         }
       }
     },
+    "Context: %@ of %@ tokens (%lld%%)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contexto: %1$@ de %2$@ tokens (%3$lld %%)"
+          }
+        }
+      }
+    },
+    "Context: %@ tokens": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contexto: %@ tokens"
+          }
+        }
+      }
+    },
     "Continue": {
       "localizations": {
         "es": {
@@ -2627,6 +2647,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No se encontraron atajos"
+          }
+        }
+      }
+    },
+    "No sound": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin sonido"
           }
         }
       }
@@ -4624,12 +4654,32 @@
         }
       }
     },
+    "Waiting for you in a dialog": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esperándote en un diálogo"
+          }
+        }
+      }
+    },
     "Waiting for your answer": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Esperando tu respuesta"
+          }
+        }
+      }
+    },
+    "Waiting for your permission": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esperando tu permiso"
           }
         }
       }

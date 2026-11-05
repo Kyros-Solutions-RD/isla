@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.3 — 2026-11-05
+
+- Much lighter on the battery: the notch's animations (the agents' dots, the halo and the music equalizer) now run on Core Animation. With an agent working or music playing and the notch closed, Isla went from about 12 % of a core to about 0.2 %, and the open AI tab from about 45 % to under 2 %.
+- An agent waiting for your permission, an answer or a dialog now shows as **Needs you**, with the reason and what it asked for, and the island lets you know right away. Codex approvals count too.
+- The AI tab shows how big each session's context is when you point at its model.
+- Optional sound when an agent finishes or needs you, in Settings › AI Agents.
+
 ## 1.1.2 — 2026-11-05
 
 - New **AI Agents** widget for the Nook: the agents at work, their project, state and time at a glance, next to your music and weather. Click it to open the AI tab. Add it in Settings › Nook & Widgets.

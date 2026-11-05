@@ -187,6 +187,8 @@ final class Preferences {
     // MARK: AI agents
     var activityAgents: Bool { didSet { set(activityAgents, "activityAgents") } }
     var agentsNotifyFinished: Bool { didSet { set(agentsNotifyFinished, "agentsNotifyFinished") } }
+    /// System sound played with that moment; empty for silence (the default).
+    var agentsSound: String { didSet { set(agentsSound, "agentsSound") } }
     var agentsShowSteps: Bool { didSet { set(agentsShowSteps, "agentsShowSteps") } }
     var agentsLocalModels: Bool { didSet { set(agentsLocalModels, "agentsLocalModels") } }
     var agentsCustomCommands: [String] { didSet { setCodable(agentsCustomCommands, "agentsCustomCommands") } }
@@ -276,6 +278,7 @@ final class Preferences {
 
         activityAgents = bool("activityAgents", true)
         agentsNotifyFinished = bool("agentsNotifyFinished", true)
+        agentsSound = string("agentsSound", "")
         agentsShowSteps = bool("agentsShowSteps", true)
         agentsLocalModels = bool("agentsLocalModels", true)
         agentsCustomCommands = codable("agentsCustomCommands", [String]())

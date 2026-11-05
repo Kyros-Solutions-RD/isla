@@ -2,6 +2,13 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.3 — 2026-11-05
+
+- Mucho más ligera con la batería: las animaciones del notch (los puntos de los agentes, el halo y el ecualizador de la música) ahora usan Core Animation. Con un agente trabajando o música sonando y el notch cerrado, Isla pasó de un 12 % de un núcleo a un 0,2 %, y la pestaña IA abierta de un 45 % a menos de un 2 %.
+- Un agente que espera tu permiso, una respuesta o un diálogo ahora aparece como **Te necesita**, con el motivo y lo que pidió, y la isla te avisa al instante. También cuenta cuando Codex pide aprobación.
+- La pestaña IA muestra el tamaño del contexto de cada sesión al pasar el puntero sobre su modelo.
+- Sonido opcional cuando un agente termina o te necesita, en Ajustes › Agentes de IA.
+
 ## 1.1.2 — 2026-11-05
 
 - Nuevo widget **Agentes de IA** para el Nook: los agentes trabajando, su proyecto, su estado y el tiempo, de un vistazo junto a tu música y el clima. Haz clic para abrir la pestaña IA. Añádelo en Ajustes › Nook y widgets.

@@ -6,6 +6,7 @@
 //  its working halo, the thinking dots, the activity sparkline and the state pill.
 //
 
+import AppKit
 import SwiftUI
 
 // MARK: - Glyph
@@ -37,7 +38,6 @@ struct AgentGlyph: View {
                     .font(.system(size: size * 0.46, weight: .bold))
                     .foregroundStyle(.white)
                     .shadow(color: .black.opacity(0.25), radius: 1, y: 0.5)
-                    .symbolEffect(.breathe, options: .repeating, isActive: working && !reduceMotion)
             }
         }
         .frame(width: size, height: size)
@@ -52,20 +52,68 @@ struct AgentGlyph: View {
     }
 }
 
-/// A light that travels around the glyph while the agent works.
-private struct WorkingHalo: View {
+/// A light that travels around the glyph while the agent works, rotated by Core Animation.
+private struct WorkingHalo: NSViewRepresentable {
     let tint: Color
     let radius: CGFloat
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    var body: some View {
-        TimelineView(.animation(minimumInterval: 1 / 30, paused: reduceMotion)) { timeline in
-            let angle = reduceMotion ? 0 : timeline.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 2.4) / 2.4 * 360
-            RoundedRectangle(cornerRadius: radius, style: .continuous)
-                .strokeBorder(
-                    AngularGradient(colors: [tint.opacity(0), tint.opacity(0.15), tint, tint.opacity(0)],
-                                    center: .center, angle: .degrees(angle)),
-                    lineWidth: 1.6)
+    func makeNSView(context: Context) -> HaloView { HaloView() }
+
+    func updateNSView(_ view: HaloView, context: Context) {
+        view.configure(color: NSColor(tint), radius: radius,
+                       animated: !context.environment.accessibilityReduceMotion)
+    }
+}
+
+final class HaloView: NSView {
+    private let gradient = CAGradientLayer()
+    private let ring = CAShapeLayer()
+    private var color = NSColor.white
+    private var radius: CGFloat = 8
+    private var animated = true
+
+    override init(frame: NSRect) {
+        super.init(frame: frame)
+        wantsLayer = true
+        gradient.type = .conic
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
+        gradient.endPoint = CGPoint(x: 0.5, y: 0)
+        ring.fillColor = nil
+        ring.strokeColor = NSColor.black.cgColor
+        ring.lineWidth = 1.6
+        layer?.addSublayer(gradient)
+        layer?.mask = ring
+    }
+
+    required init?(coder: NSCoder) { fatalError("init(coder:) is not used") }
+
+    func configure(color: NSColor, radius: CGFloat, animated: Bool) {
+        self.color = color
+        self.radius = radius
+        self.animated = animated
+        needsLayout = true
+    }
+
+    override func layout() {
+        super.layout()
+        // The ring stays put; only the light inside it turns.
+        let side = max(bounds.width, bounds.height) * 1.5
+        gradient.bounds = CGRect(x: 0, y: 0, width: side, height: side)
+        gradient.position = CGPoint(x: bounds.midX, y: bounds.midY)
+        gradient.colors = [color.withAlphaComponent(0), color.withAlphaComponent(0.15), color, color.withAlphaComponent(0)].map(\.cgColor)
+        ring.frame = bounds
+        ring.path = CGPath(roundedRect: bounds.insetBy(dx: 0.8, dy: 0.8),
+                           cornerWidth: radius, cornerHeight: radius, transform: nil)
+        if animated, gradient.animation(forKey: "spin") == nil {
+            let spin = CABasicAnimation(keyPath: "transform.rotation.z")
+            spin.fromValue = 0
+            spin.toValue = -2 * Double.pi
+            spin.duration = 2.4
+            spin.repeatCount = .infinity
+            spin.isRemovedOnCompletion = false
+            gradient.add(spin, forKey: "spin")
+        } else if !animated {
+            gradient.removeAnimation(forKey: "spin")
         }
     }
 }
@@ -92,26 +140,68 @@ struct AgentGlyphStack: View {
 
 // MARK: - Thinking dots
 
-struct ThinkingDots: View {
+/// Three dots rising and fading in a wave. Core Animation runs the wave in the window
+/// server, so it costs almost nothing even when it stays on around the closed notch for
+/// hours (a SwiftUI timeline redrawing at 30 fps cost about 12 % of a core).
+struct ThinkingDots: NSViewRepresentable {
     var tint: Color = .white
     var dot: CGFloat = 4.5
     var active = true
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    var body: some View {
-        TimelineView(.animation(minimumInterval: 1 / 30, paused: !active || reduceMotion)) { timeline in
-            let t = timeline.date.timeIntervalSinceReferenceDate
-            HStack(spacing: dot * 0.6) {
-                ForEach(0..<3, id: \.self) { index in
-                    let wave = active && !reduceMotion ? (sin(t * 5.4 - Double(index) * 0.75) + 1) / 2 : 0.5
-                    Circle()
-                        .fill(tint)
-                        .frame(width: dot, height: dot)
-                        .opacity(0.5 + 0.5 * wave)
-                        .offset(y: -dot * 0.45 * wave)
-                }
+    func makeNSView(context: Context) -> WaveDotsView { WaveDotsView() }
+
+    func updateNSView(_ view: WaveDotsView, context: Context) {
+        view.configure(color: NSColor(tint), dot: dot,
+                       animated: active && !context.environment.accessibilityReduceMotion)
+    }
+
+    func sizeThatFits(_ proposal: ProposedViewSize, nsView: WaveDotsView, context: Context) -> CGSize? {
+        CGSize(width: dot * 4.2, height: dot * 1.6)
+    }
+}
+
+final class WaveDotsView: NSView {
+    private var dots: [CALayer] = []
+    private var signature = ""
+
+    override init(frame: NSRect) {
+        super.init(frame: frame)
+        wantsLayer = true
+        layer?.masksToBounds = false
+    }
+
+    required init?(coder: NSCoder) { fatalError("init(coder:) is not used") }
+
+    override var isFlipped: Bool { false }
+
+    func configure(color: NSColor, dot: CGFloat, animated: Bool) {
+        let key = "\(color.description)-\(dot)-\(animated)"
+        guard key != signature, let root = layer else { return }
+        signature = key
+        dots.forEach { $0.removeFromSuperlayer() }
+        dots = (0..<3).map { index in
+            let layer = CALayer()
+            layer.backgroundColor = color.cgColor
+            layer.cornerRadius = dot / 2
+            layer.frame = CGRect(x: CGFloat(index) * dot * 1.6, y: 0, width: dot, height: dot)
+            layer.opacity = animated ? 0.5 : 0.75
+            if animated {
+                let rise = CAKeyframeAnimation(keyPath: "transform.translation.y")
+                rise.values = [0, dot * 0.45, 0]
+                let glow = CAKeyframeAnimation(keyPath: "opacity")
+                glow.values = [0.5, 1, 0.5]
+                let wave = CAAnimationGroup()
+                wave.animations = [rise, glow]
+                wave.duration = 1.16
+                wave.repeatCount = .infinity
+                wave.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+                // Each dot starts a little later, so the wave travels left to right.
+                wave.beginTime = CACurrentMediaTime() + Double(index) * 0.14
+                wave.isRemovedOnCompletion = false
+                layer.add(wave, forKey: "wave")
             }
-            .frame(height: dot * 1.6, alignment: .bottom)
+            root.addSublayer(layer)
+            return layer
         }
     }
 }
@@ -253,7 +343,8 @@ struct AgentsEarTrailing: View {
                 Image(systemName: "hand.raised.fill")
                     .font(.system(size: 12, weight: .bold))
                     .foregroundStyle(AgentState.needsYou.tint)
-                    .symbolEffect(.wiggle, options: .repeating)
+                    // One wave when it appears; the color keeps saying it after that, at no cost.
+                    .symbolEffect(.wiggle, value: waitsOnYou)
                     .transition(.blurReplace)
             } else {
                 ThinkingDots(tint: monitor.workingSessions.first?.tool.tint ?? .white, dot: 4.2)

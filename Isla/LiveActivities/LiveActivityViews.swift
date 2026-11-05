@@ -5,6 +5,7 @@
 //  Content that lives in the "ears" on both sides of the camera housing.
 //
 
+import AppKit
 import SwiftUI
 
 struct ClosedActivityView: View {
@@ -377,30 +378,90 @@ struct BatteryGlyph: View {
 }
 
 /// Lively equalizer bars. They breathe while music plays and rest when paused.
-struct AudioBars: View {
+/// Core Animation plays the motion in the window server: a SwiftUI timeline redrawing
+/// the bars 24 times a second kept a core about 10 % busy for as long as music played.
+struct AudioBars: NSViewRepresentable {
     var isPlaying: Bool
     var tint: Color = .white
     var barCount = 4
 
-    var body: some View {
-        TimelineView(.animation(minimumInterval: 1 / 24, paused: !isPlaying)) { timeline in
-            let t = timeline.date.timeIntervalSinceReferenceDate
-            GeometryReader { proxy in
-                HStack(alignment: .center, spacing: proxy.size.width * 0.12) {
-                    ForEach(0..<barCount, id: \.self) { index in
-                        let phase = Double(index) * 1.7
-                        let wave = (sin(t * (5.2 + Double(index) * 1.3) + phase) + 1) / 2
-                        let wobble = (sin(t * 2.3 + phase * 2) + 1) / 2
-                        let level = isPlaying ? 0.22 + 0.78 * (wave * 0.7 + wobble * 0.3) : 0.18
-                        Capsule()
-                            .fill(tint.gradient)
-                            .frame(height: max(2, proxy.size.height * level))
-                    }
-                }
-                .frame(width: proxy.size.width, height: proxy.size.height)
+    func makeNSView(context: Context) -> EqualizerView { EqualizerView() }
+
+    func updateNSView(_ view: EqualizerView, context: Context) {
+        view.configure(color: NSColor(tint), bars: barCount,
+                       playing: isPlaying && !context.environment.accessibilityReduceMotion)
+    }
+}
+
+final class EqualizerView: NSView {
+    private var bars: [CALayer] = []
+    private var color = NSColor.white
+    private var playing = false
+    private var count = 4
+
+    override init(frame: NSRect) {
+        super.init(frame: frame)
+        wantsLayer = true
+    }
+
+    required init?(coder: NSCoder) { fatalError("init(coder:) is not used") }
+
+    func configure(color: NSColor, bars count: Int, playing: Bool) {
+        guard color != self.color || count != self.count || playing != self.playing || bars.isEmpty else { return }
+        self.color = color
+        self.count = count
+        self.playing = playing
+        needsLayout = true
+    }
+
+    override func layout() {
+        super.layout()
+        guard let root = layer, bounds.width > 0 else { return }
+        if bars.count != count {
+            bars.forEach { $0.removeFromSuperlayer() }
+            bars = (0..<count).map { _ in
+                let bar = CALayer()
+                root.addSublayer(bar)
+                return bar
             }
         }
-        .animation(.smooth(duration: 0.3), value: isPlaying)
+        let spacing = bounds.width * 0.12
+        let width = (bounds.width - spacing * CGFloat(count - 1)) / CGFloat(count)
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(0.3)
+        for (index, bar) in bars.enumerated() {
+            bar.backgroundColor = color.cgColor
+            bar.cornerRadius = width / 2
+            bar.position = CGPoint(x: CGFloat(index) * (width + spacing) + width / 2, y: bounds.midY)
+            bar.bounds = CGRect(x: 0, y: 0, width: width, height: max(2, bounds.height * 0.18))
+            if playing {
+                if bar.animation(forKey: "level") == nil { bar.add(levelAnimation(for: index), forKey: "level") }
+            } else {
+                bar.removeAnimation(forKey: "level")
+            }
+        }
+        CATransaction.commit()
+    }
+
+    /// The same blend of a fast wave and a slow wobble the bars always had, sampled into keyframes.
+    private func levelAnimation(for index: Int) -> CAAnimation {
+        let phase = Double(index) * 1.7
+        let fast = 5.2 + Double(index) * 1.3
+        let duration = 2 * Double.pi / 2.3 * 2 // a whole wobble cycle, so the loop is seamless
+        let steps = 48
+        let values: [CGFloat] = (0...steps).map { step in
+            let t = duration * Double(step) / Double(steps)
+            let wave = (sin(t * fast + phase) + 1) / 2
+            let wobble = (sin(t * 2.3 + phase * 2) + 1) / 2
+            return max(2, bounds.height * CGFloat(0.22 + 0.78 * (wave * 0.7 + wobble * 0.3)))
+        }
+        let animation = CAKeyframeAnimation(keyPath: "bounds.size.height")
+        animation.values = values
+        animation.duration = duration
+        animation.calculationMode = .cubic
+        animation.repeatCount = .infinity
+        animation.isRemovedOnCompletion = false
+        return animation
     }
 }
 

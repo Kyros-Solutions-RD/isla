@@ -85,7 +85,6 @@ private struct AgentsListCard: View {
                         Image(systemName: "moon.zzz.fill")
                             .font(.system(size: 20, weight: .light))
                             .foregroundStyle(.tertiary)
-                            .symbolEffect(.breathe, options: .repeating)
                         Text("No agents running")
                             .font(.system(size: 12, weight: .semibold))
                             .foregroundStyle(.secondary)
@@ -161,6 +160,7 @@ private struct AgentRow: View {
                             .padding(.vertical, 1.5)
                             .background(Capsule().fill(session.tool.tint.opacity(0.16)))
                             .fixedSize()
+                            .help(session.contextSummary ?? session.tool.name)
                     }
                 }
                 detailLine

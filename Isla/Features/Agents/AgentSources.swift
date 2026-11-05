@@ -20,6 +20,11 @@ struct TranscriptInfo {
     /// Share of the account's usage limit already used, and the limit's window in minutes.
     var limitUsed: Double?
     var limitWindow: Int?
+    /// The turn is paused on an approval the user has to give.
+    var needsUser = false
+    /// Tokens in the conversation the model saw last, and the model's window when known.
+    var contextTokens: Int?
+    var contextWindow: Int?
 }
 
 /// What an agent is doing right now, read from its transcript.
@@ -42,8 +47,29 @@ struct AgentSessionFile {
     let status: String?
     let started: Date?
     let statusChanged: Date?
+    /// Why a waiting session stopped: "permission prompt", "input needed", "dialog open".
+    var waitingFor: String? = nil
 
     var isBusy: Bool { status.map(Self.isBusy) ?? false }
+
+    /// The session stopped until the user does something (approves a tool, answers, closes a dialog).
+    var needsUser: Bool {
+        guard let lower = status?.lowercased() else { return false }
+        return lower == "waiting" || ["permission", "approv", "input", "blocked", "requires_action", "attention"].contains { lower.contains($0) }
+    }
+
+    /// What the session waits for, in the user's words.
+    var waitingStep: AgentStep? {
+        guard needsUser else { return nil }
+        let reason = (waitingFor ?? "").lowercased()
+        if reason.contains("permission") {
+            return AgentStep(text: String(localized: "Waiting for your permission"), symbol: "hand.raised.fill", asksUser: true)
+        }
+        if reason.contains("dialog") {
+            return AgentStep(text: String(localized: "Waiting for you in a dialog"), symbol: "macwindow", asksUser: true)
+        }
+        return AgentStep(text: String(localized: "Waiting for your answer"), symbol: "questionmark.bubble.fill", asksUser: true)
+    }
 
     static func isBusy(_ status: String) -> Bool {
         let lower = status.lowercased()
@@ -57,20 +83,24 @@ enum AgentSessionFiles {
         guard let files = try? FileManager.default.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil) else { return [:] }
         var result: [pid_t: AgentSessionFile] = [:]
         for url in files where url.pathExtension == "json" {
-            guard let data = try? Data(contentsOf: url),
-                  let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                  let pidNumber = object["pid"] as? NSNumber else { continue }
-            let pid = pid_t(truncating: pidNumber)
-            result[pid] = AgentSessionFile(
-                pid: pid,
-                sessionID: object["sessionId"] as? String,
-                folder: object["cwd"] as? String,
-                name: (object["name"] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines).nonEmpty,
-                status: object["status"] as? String,
-                started: date(object["startedAt"]),
-                statusChanged: date(object["statusUpdatedAt"]) ?? date(object["updatedAt"]))
+            if let session = parse(url) { result[session.pid] = session }
         }
         return result
+    }
+
+    static func parse(_ url: URL) -> AgentSessionFile? {
+        guard let data = try? Data(contentsOf: url),
+              let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+              let pidNumber = object["pid"] as? NSNumber else { return nil }
+        return AgentSessionFile(
+            pid: pid_t(truncating: pidNumber),
+            sessionID: object["sessionId"] as? String,
+            folder: object["cwd"] as? String,
+            name: (object["name"] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines).nonEmpty,
+            status: object["status"] as? String,
+            started: date(object["startedAt"]),
+            statusChanged: date(object["statusUpdatedAt"]) ?? date(object["updatedAt"]),
+            waitingFor: object["waitingFor"] as? String)
     }
 
     private static func date(_ value: Any?) -> Date? {
@@ -92,11 +122,17 @@ enum AgentTranscript {
         var info = TranscriptInfo()
         JSONLines.scanTail(of: url, windows: [96 * 1024, 768 * 1024], limit: 60) { object in
             if info.step == nil { info.step = step(from: object) }
-            if info.model == nil, object["type"] as? String == "assistant",
-               let model = (object["message"] as? [String: Any])?["model"] as? String, model.hasPrefix("claude") {
-                info.model = model
+            if object["type"] as? String == "assistant", let message = object["message"] as? [String: Any] {
+                if info.model == nil, let model = message["model"] as? String, model.hasPrefix("claude") {
+                    info.model = model
+                }
+                if info.contextTokens == nil, let usage = message["usage"] as? [String: Any] {
+                    let parts = ["input_tokens", "cache_creation_input_tokens", "cache_read_input_tokens", "output_tokens"]
+                    let total = parts.compactMap { (usage[$0] as? NSNumber)?.intValue }.reduce(0, +)
+                    if total > 0 { info.contextTokens = total }
+                }
             }
-            return info.step != nil && info.model != nil
+            return info.step != nil && info.model != nil && info.contextTokens != nil
         }
         return info
     }
@@ -250,7 +286,18 @@ enum CodexTranscript {
             let date = (object["timestamp"] as? String).flatMap(JSONLines.date)
             switch object["type"] as? String {
             case "event_msg":
-                if !settled, ["task_complete", "turn_aborted", "shutdown_complete"].contains(kind) {
+                if !settled, kind.hasSuffix("approval_request") {
+                    info.busy = true
+                    info.needsUser = true
+                    info.changed = date
+                    settled = true
+                    // What it asks to do: the command it wants to run or the file it wants to change.
+                    if let parts = payload["command"] as? [String], let line = parts.last {
+                        info.step = describe(tool: "shell", input: line)
+                    } else if let changes = payload["changes"] as? [String: Any], let file = changes.keys.sorted().first {
+                        info.step = AgentStep(text: String(localized: "Editing \((file as NSString).lastPathComponent)"), symbol: "pencil")
+                    }
+                } else if !settled, ["task_complete", "turn_aborted", "shutdown_complete"].contains(kind) {
                     info.busy = false
                     info.changed = date
                     settled = true
@@ -259,10 +306,17 @@ enum CodexTranscript {
                     info.changed = date
                     info.step = AgentStep(text: String(localized: "Thinking…"), symbol: "brain", date: date)
                     settled = true
-                } else if kind == "token_count", info.limitUsed == nil,
-                          let primary = (payload["rate_limits"] as? [String: Any])?["primary"] as? [String: Any] {
-                    info.limitUsed = (primary["used_percent"] as? NSNumber)?.doubleValue
-                    info.limitWindow = (primary["window_minutes"] as? NSNumber)?.intValue
+                } else if kind == "token_count" {
+                    if info.limitUsed == nil, let primary = (payload["rate_limits"] as? [String: Any])?["primary"] as? [String: Any] {
+                        info.limitUsed = (primary["used_percent"] as? NSNumber)?.doubleValue
+                        info.limitWindow = (primary["window_minutes"] as? NSNumber)?.intValue
+                    }
+                    if info.contextTokens == nil, let usage = payload["info"] as? [String: Any],
+                       let last = usage["last_token_usage"] as? [String: Any] {
+                        info.contextTokens = (last["total_tokens"] as? NSNumber)?.intValue
+                            ?? [last["input_tokens"], last["output_tokens"]].compactMap { ($0 as? NSNumber)?.intValue }.reduce(0, +)
+                        info.contextWindow = (usage["model_context_window"] as? NSNumber)?.intValue
+                    }
                 }
             case "response_item":
                 if !settled, let step = step(kind: kind, payload: payload, date: date) {

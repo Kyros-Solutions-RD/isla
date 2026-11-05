@@ -5,6 +5,7 @@
 //  Settings › AI Agents.
 //
 
+import AppKit
 import SwiftUI
 
 struct AgentsPane: View {
@@ -18,6 +19,16 @@ struct AgentsPane: View {
                 Toggle("Show the AI tab in the notch", isOn: tabBinding)
                 Toggle("Show working agents around the closed notch", isOn: $prefs.activityAgents)
                 Toggle("Let me know when an agent finishes or needs me", isOn: $prefs.agentsNotifyFinished)
+                if prefs.agentsNotifyFinished {
+                    Picker("Sound", selection: $prefs.agentsSound) {
+                        Text("No sound").tag("")
+                        Divider()
+                        ForEach(Self.sounds, id: \.self) { Text(verbatim: $0).tag($0) }
+                    }
+                    .onChange(of: prefs.agentsSound) { _, name in
+                        if !name.isEmpty { NSSound(named: NSSound.Name(name))?.play() }
+                    }
+                }
                 Toggle("Show what each agent is doing", isOn: $prefs.agentsShowSteps)
             } header: {
                 Text("AI tab")
@@ -110,6 +121,8 @@ struct AgentsPane: View {
         }
         .onAppear { monitor.refreshNow() }
     }
+
+    private static let sounds = ["Glass", "Hero", "Ping", "Pop", "Purr", "Submarine", "Tink", "Blow", "Bottle", "Frog", "Funk", "Morse", "Sosumi"]
 
     private var tabBinding: Binding<Bool> {
         Binding {

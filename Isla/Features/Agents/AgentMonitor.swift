@@ -68,6 +68,20 @@ struct AgentSession: Identifiable, Equatable {
     /// Share of the account's usage limit already used, and the window in minutes (Codex).
     var limitUsed: Double?
     var limitWindow: Int?
+    /// Tokens in the conversation the model saw last, and its window when the agent says.
+    var contextTokens: Int?
+    var contextWindow: Int?
+
+    /// "Context: 128K tokens", or "Context: 128K of 272K tokens (47%)".
+    var contextSummary: String? {
+        guard let tokens = contextTokens else { return nil }
+        let used = tokens.formatted(.number.notation(.compactName))
+        if let window = contextWindow, window > 0 {
+            let share = Int((Double(tokens) / Double(window) * 100).rounded())
+            return String(localized: "Context: \(used) of \(window.formatted(.number.notation(.compactName))) tokens (\(share)%)")
+        }
+        return String(localized: "Context: \(used) tokens")
+    }
 
     /// The project the agent works on.
     var project: String? {
@@ -252,12 +266,14 @@ final class AgentMonitor {
                 folder: raw.folder,
                 started: raw.session?.started ?? raw.started,
                 state: state, stateSince: since,
-                step: raw.step ?? (state == .working ? old?.step : nil),
+                step: Self.step(for: state, raw: raw, previous: old),
                 cpu: raw.cpuPercent, memory: raw.memory, history: history,
                 hostName: host?.name, hostPID: host?.pid, hostBundleID: host?.bundleID,
                 model: raw.model.map(AgentModelName.display) ?? old?.model,
                 limitUsed: raw.limitUsed ?? old?.limitUsed,
-                limitWindow: raw.limitWindow ?? old?.limitWindow))
+                limitWindow: raw.limitWindow ?? old?.limitWindow,
+                contextTokens: raw.contextTokens ?? old?.contextTokens,
+                contextWindow: raw.contextWindow ?? old?.contextWindow))
         }
 
         next.sort { lhs, rhs in
@@ -291,11 +307,9 @@ final class AgentMonitor {
         if raw.step?.asksUser == true, raw.session?.status.map(AgentSessionFile.isBusy) != false {
             return .needsYou
         }
-        if let status = raw.session?.status?.lowercased() {
+        if let session = raw.session, let status = session.status?.lowercased() {
+            if session.needsUser { return .needsYou }
             if AgentSessionFile.isBusy(status) { return .working }
-            if ["permission", "approv", "input", "waiting_for", "blocked", "action", "attention"].contains(where: status.contains) {
-                return .needsYou
-            }
             return .waiting
         }
         // No status to read: judge by CPU, with a little patience before calling it quiet.
@@ -310,6 +324,15 @@ final class AgentMonitor {
         return tool.kind == .editor ? .idle : .waiting
     }
 
+    /// While waiting on the user, the reason comes first and the tool it is about after it.
+    private static func step(for state: AgentState, raw: AgentScanner.RawAgent, previous: AgentSession?) -> AgentStep? {
+        if state == .needsYou, var waiting = raw.session?.waitingStep {
+            if let detail = raw.step ?? previous?.step, !detail.asksUser { waiting.text += " · " + detail.text }
+            return waiting
+        }
+        return raw.step ?? (state == .working ? previous?.step : nil)
+    }
+
     private func hostApp(for raw: AgentScanner.RawAgent, running: [AgentScanner.RunningApp]) -> AgentScanner.RunningApp? {
         let byPID = Dictionary(running.filter(\.isRegular).map { ($0.pid, $0) }, uniquingKeysWith: { first, _ in first })
         if let own = byPID[raw.pid] { return own }
@@ -321,11 +344,15 @@ final class AgentMonitor {
         guard Preferences.shared.agentsNotifyFinished, hasScanned else { return }
         for session in next {
             guard let old = previous[session.id], old.state == .working, session.state != .working else { continue }
-            guard session.tool.kind == .cli, now.timeIntervalSince(old.stateSince) >= 8 else { continue }
+            // Asking for something is worth a moment right away; finishing only after real work.
+            guard session.tool.kind == .cli,
+                  session.state == .needsYou || now.timeIntervalSince(old.stateSince) >= 8 else { continue }
             LiveActivityCenter.shared.post(.agentFinished(toolID: session.tool.id,
                                                           title: session.project ?? session.tool.name,
                                                           needsYou: session.state == .needsYou),
                                            duration: 5)
+            let sound = Preferences.shared.agentsSound
+            if !sound.isEmpty { NSSound(named: NSSound.Name(sound))?.play() }
             return
         }
     }
@@ -445,13 +472,18 @@ final class AgentMonitor {
             try? await Task.sleep(for: .seconds(2))
         }
         for session in sessions {
-            print("isla-agent \(session.tool.name) | \(session.model ?? "-") | pid \(session.pid) | \(session.state) | \(session.displayFolder ?? "-") | \(session.title ?? "-") | host \(session.hostName ?? "-") | cpu \(String(format: "%.1f", session.cpu)) | \(session.step?.text ?? "-")")
+            print("isla-agent \(session.tool.name) | \(session.model ?? "-") | \(session.contextSummary ?? "-") | pid \(session.pid) | \(session.state) | \(session.displayFolder ?? "-") | \(session.title ?? "-") | host \(session.hostName ?? "-") | cpu \(String(format: "%.1f", session.cpu)) | \(session.step?.text ?? "-")")
         }
         for app in apps { print("isla-agent-app \(app.name) (\(app.bundleID))") }
+        // Parses given session files, to check the mapping without a session in that state.
+        for path in (ProcessInfo.processInfo.environment["ISLA_SESSION_SAMPLES"] ?? "").split(separator: ":") {
+            guard let session = AgentSessionFiles.parse(URL(fileURLWithPath: String(path))) else { continue }
+            print("isla-session \((String(path) as NSString).lastPathComponent) | status \(session.status ?? "-") | needs user \(session.needsUser) | \(session.waitingStep?.text ?? "-")")
+        }
         // Parses a given Codex session log, to check the reader without a running Codex.
         for path in (ProcessInfo.processInfo.environment["ISLA_CODEX_SAMPLES"] ?? "").split(separator: ":") {
             let info = CodexTranscript.info(URL(fileURLWithPath: String(path)))
-            print("isla-codex \((String(path) as NSString).lastPathComponent.prefix(36)) | busy \(info.busy.map(String.init) ?? "-") | \(info.model.map(AgentModelName.display) ?? "-") | \(info.step?.text ?? "-") | limit \(info.limitUsed.map { "\($0)%" } ?? "-")/\(info.limitWindow ?? 0)m | \(info.folder ?? "-")")
+            print("isla-codex \((String(path) as NSString).lastPathComponent.prefix(36)) | busy \(info.busy.map(String.init) ?? "-") | needs user \(info.needsUser) | ctx \(info.contextTokens ?? 0)/\(info.contextWindow ?? 0) | \(info.model.map(AgentModelName.display) ?? "-") | \(info.step?.text ?? "-") | limit \(info.limitUsed.map { "\($0)%" } ?? "-")/\(info.limitWindow ?? 0)m | \(info.folder ?? "-")")
         }
         for server in servers { print("isla-agent-server \(server.name) \(server.version ?? "")") }
         for model in models { print("isla-agent-model \(model.name) \(model.detail ?? "")") }
@@ -494,6 +526,8 @@ enum AgentScanner {
         var model: String?
         var limitUsed: Double?
         var limitWindow: Int?
+        var contextTokens: Int?
+        var contextWindow: Int?
     }
 
     struct Result {
@@ -641,13 +675,14 @@ enum AgentScanner {
                     let info = CodexTranscript.info(url)
                     transcript = info
                     session = AgentSessionFile(pid: pid, sessionID: nil, folder: info.folder ?? folder, name: nil,
-                                               status: info.busy.map { $0 ? "busy" : "idle" },
-                                               started: nil, statusChanged: info.changed)
+                                               status: info.needsUser ? "waiting" : info.busy.map { $0 ? "busy" : "idle" },
+                                               started: nil, statusChanged: info.changed,
+                                               waitingFor: info.needsUser ? "permission prompt" : nil)
                 }
             } else if let id = session?.sessionID {
                 // Sessions in the middle of a turn have a step worth reading; the others only
                 // once, to learn their model.
-                let busy = session?.status == nil || session?.isBusy == true
+                let busy = session?.status == nil || session?.isBusy == true || session?.needsUser == true
                 if (request.wantsSteps && busy) || !request.knownModels.contains(pid) {
                     transcript = AgentTranscript.info(sessionID: id, folder: session?.folder)
                 }
@@ -656,12 +691,14 @@ enum AgentScanner {
                                  folder: session?.folder ?? ProcessProbe.workingDirectory(of: pid),
                                  started: record.started, cpuPercent: usage.percent, memory: usage.memory,
                                  ancestors: chain, session: session)
-            if request.wantsSteps, session?.status == nil || session?.isBusy == true {
+            if request.wantsSteps, session?.status == nil || session?.isBusy == true || session?.needsUser == true {
                 agent.step = transcript?.step
             }
             agent.model = transcript?.model
             agent.limitUsed = transcript?.limitUsed
             agent.limitWindow = transcript?.limitWindow
+            agent.contextTokens = transcript?.contextTokens
+            agent.contextWindow = transcript?.contextWindow
             agents.append(agent)
         }
 
