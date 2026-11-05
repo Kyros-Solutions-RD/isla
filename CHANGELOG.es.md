@@ -4,7 +4,7 @@ Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` s
 
 ## 1.0.3 — 2026-11-05
 
-- Isla ya conserva el permiso de Accesibilidad y los demás al actualizarse. Cada versión se firma con una identidad estable en lugar de una distinta cada vez. Después de instalar la 1.0.3, activa Accesibilidad para Isla una última vez.
+- Isla ya conserva el permiso de Accesibilidad y los demás al actualizarse. Cada versión se firma con una identidad estable en lugar de una distinta cada vez. Como la identidad cambia una sola vez, macOS vuelve a pedir los permisos de Isla después de instalar la 1.0.3: permite de nuevo Calendario, Recordatorios, Ubicación y los demás desde el Nook o Ajustes › Privacidad, y apaga y enciende Accesibilidad para Isla en Ajustes del Sistema.
 - El recorrido de bienvenida y Ajustes › Privacidad muestran cada permiso en cuanto lo concedes, sin volver a abrirlos.
 - La tarjeta del clima muestra las próximas horas debajo de la temperatura actual.
 

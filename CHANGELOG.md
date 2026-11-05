@@ -2,7 +2,7 @@
 
 ## 1.0.3 — 2026-11-05
 
-- Isla now keeps Accessibility and its other permissions across updates. Builds are signed with a stable identity instead of a different one each time. After installing 1.0.3, turn Accessibility on for Isla one last time.
+- Isla now keeps Accessibility and its other permissions across updates. Builds are signed with a stable identity instead of a different one each time. Because the identity changes once, macOS asks for Isla’s permissions one last time after installing 1.0.3: allow Calendar, Reminders, Location and the rest again from the Nook or Settings › Privacy, and turn Accessibility off and on for Isla in System Settings.
 - The welcome tour and Settings › Privacy update each permission as soon as you allow it, without reopening them.
 - The weather card shows the next hours under the current temperature.
 
