@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.0.4</title>
+      <pubDate>Thu, 05 Nov 2026 20:25:52 GMT</pubDate>
+      <sparkle:version>6</sparkle:version>
+      <sparkle:shortVersionString>1.0.4</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>The Nook now opens like the Dynamic Island: a touch of bounce, and the cards come out of the notch one after another.</li><li>Tabs slide in from the side you picked, and the tab icons light up under the pointer.</li><li>Live activities emerge from the camera toward each side.</li><li>A new song swaps the cover with a soft blur, and the notch swells when you drag a file onto it.</li><li>Permissions you grant to 1.0.3 or later stay granted after every update.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.0.4.dmg" sparkle:edSignature="WqkVCYlEVXG17EH1UxRd355sdFk8NBgHEXq61R/e0jjERjDdCNz1yDOW+SO3J9BDoa6A3PfwyOSWtgKnhcWCBg==" length="10973724" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.0.3</title>
       <pubDate>Thu, 05 Nov 2026 20:01:31 GMT</pubDate>
       <sparkle:version>5</sparkle:version>
