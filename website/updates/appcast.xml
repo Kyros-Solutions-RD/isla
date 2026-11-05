@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.0.2</title>
+      <pubDate>Thu, 05 Nov 2026 19:01:28 GMT</pubDate>
+      <sparkle:version>4</sparkle:version>
+      <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>Fixes Isla not opening: versions 1.0.0 and 1.0.1 closed right after launch on every Mac. If you installed one of them, download Isla again from isla.kyrosrd.com.</li><li>The welcome window, Settings, AirDrop and Quick Look now come to the front with keyboard focus.</li><li>Closing the welcome window early no longer leaves Calendar, Weather, Bluetooth and update checks off until the next launch.</li><li>Every build is now opened and checked before it is published.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.0.2.dmg" sparkle:edSignature="J83jyt+k9YP6wjHO7IdDBvPxgmalqkxyQ4umM9One7q3IHifAwYU0s9C+LBhZPb039LYG2i8s3NRqzpxLYPXDQ==" length="10917488" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.0.1</title>
       <pubDate>Thu, 05 Nov 2026 18:00:03 GMT</pubDate>
       <sparkle:version>3</sparkle:version>
