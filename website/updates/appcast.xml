@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.2</title>
+      <pubDate>Thu, 05 Nov 2026 23:17:40 GMT</pubDate>
+      <sparkle:version>10</sparkle:version>
+      <sparkle:shortVersionString>1.1.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>New **AI Agents** widget for the Nook: the agents at work, their project, state and time at a glance, next to your music and weather. Click it to open the AI tab. Add it in Settings › Nook &amp; Widgets.</li><li>The Tasks progress bar now matches the rest of the notch and stays empty until you finish something.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.2.dmg" sparkle:edSignature="Ta/UzTtRnL+OiYWsUEHYExInlCFthmna3h8HiZZ4taEJQK47x5xZyiC6xyTPOYnfZbJWzCwgkQDJzINSNLUoDw==" length="11697480" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.1</title>
       <pubDate>Thu, 05 Nov 2026 22:52:05 GMT</pubDate>
       <sparkle:version>9</sparkle:version>
