@@ -5,5 +5,14 @@
     <link>https://isla.kyrosrd.com</link>
     <description>Isla updates</description>
     <language>es</language>
+    <item>
+      <title>Isla 1.0.0</title>
+      <pubDate>Thu, 05 Nov 2026 17:26:07 GMT</pubDate>
+      <sparkle:version>2</sparkle:version>
+      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<p>First public release.</p><ul><li>Notch panel for every display, with Liquid Glass or Classic Black, three sizes and an island on displays without a notch.</li><li>Nook with configurable widgets: Now Playing, Up Next, Weather, Focus, Battery &amp; Devices, Shortcuts, Shelf and Quick Note.</li><li>Now Playing for any app in the system Now Playing session, with synced lyrics and AppleScript fallback for Music and Spotify.</li><li>Shelf with drag and drop, AirDrop, sharing and on-device conversions, plus the shake-to-open Pocket.</li><li>Clipboard history with search, filters, pins and auto-paste.</li><li>Calendar with meeting links, Tasks synced with Reminders, Notes, Mirror, Teleprompter with voice follow and Shortcuts.</li><li>Pomodoro, countdown timers, stopwatch and generated focus sounds.</li><li>Live activities for music, charging, Bluetooth devices, volume and brightness, downloads, meetings, timers and Caps Lock.</li><li>Optional replacement for the system volume and brightness overlay.</li><li>Terminal tab powered by SwiftTerm, Quick Actions (keep awake, color picker, capture to Shelf, lock screen, dark mode), Quick Look on the Shelf and synced lyrics under the island.</li><li>Automatic updates through Sparkle, signed with EdDSA and served from isla.kyrosrd.com.</li><li>New app icon.</li><li>English and Spanish.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.0.0.dmg" sparkle:edSignature="lGa8sOtjjcJ1BTI6KU+FYCUCUzyPKuE0tgE3/iyTeOspPWolJVZq52Vstc1vCkek7F+xTU+SmPED3polBp90BA==" length="10165118" type="application/octet-stream"/>
+    </item>
   </channel>
 </rss>
