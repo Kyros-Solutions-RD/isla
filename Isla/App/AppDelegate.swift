@@ -22,6 +22,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NotchManager.shared.start()
         Self.registerHotKeys()
 
+        // Permission report: prints which grants this build has, without asking for any.
+        // Used to confirm that updates keep their permissions.
+        if ProcessInfo.processInfo.environment["ISLA_PERMISSION_REPORT"] == "1" {
+            PermissionCenter.shared.refresh()
+            let report = PermissionKind.allCases.map { "\($0.rawValue)=\(PermissionCenter.shared.isGranted($0) ? "granted" : "missing")" }
+            print("isla-permissions " + report.joined(separator: " "))
+            exit(0)
+        }
+
         // Launch check run by scripts/build-dmg.sh: it exercises the launch path that needs
         // no permission (frameworks, notch, media helper, welcome window and its activation),
         // then reports. Nothing is saved and no permission prompt is triggered.

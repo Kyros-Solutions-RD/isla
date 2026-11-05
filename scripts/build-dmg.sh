@@ -3,7 +3,11 @@
 # Builds a Release copy of Isla and packages it as dist/Isla.dmg.
 #
 #   ./scripts/build-dmg.sh            # ad-hoc signed (community build)
-#   SIGN_IDENTITY="Developer ID Application: …" ./scripts/build-dmg.sh
+#   SIGN_IDENTITY="Developer ID Application: Name (TEAMID)" ISLA_TEAM_ID=TEAMID ./scripts/build-dmg.sh
+#
+# With a Developer ID the app keeps the hardened runtime, gets a secure timestamp and no
+# debugging entitlement, and the disk image is signed too. scripts/release.sh then
+# notarizes and staples it when NOTARY_PROFILE is set (see CONTRIBUTING.md).
 #
 set -euo pipefail
 
@@ -12,6 +16,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BUILD_DIR="${BUILD_DIR:-$HOME/Library/Developer/Xcode/DerivedData/Isla-release.noindex}"
 DIST="${DIST:-$ROOT/dist}"
 SIGN_IDENTITY="${SIGN_IDENTITY:--}"
+export SIGN_IDENTITY
 
 cd "$ROOT"
 
@@ -36,6 +41,10 @@ if [ "$SIGN_IDENTITY" = "-" ]; then
   # refuses the embedded Sparkle.framework and the app dies at launch. Only notarized
   # (Developer ID) builds need the hardened runtime; they keep it.
   BUILD_ARGS+=(ENABLE_HARDENED_RUNTIME=NO)
+else
+  : "${ISLA_TEAM_ID:?Set ISLA_TEAM_ID to the Team ID of the Developer ID certificate}"
+  BUILD_ARGS+=(DEVELOPMENT_TEAM="$ISLA_TEAM_ID" ENABLE_HARDENED_RUNTIME=YES CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO
+               "OTHER_CODE_SIGN_FLAGS=--timestamp")
 fi
 if command -v xcbeautify >/dev/null 2>&1; then
   xcodebuild "${BUILD_ARGS[@]}" | xcbeautify

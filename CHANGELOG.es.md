@@ -2,6 +2,14 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.0.4 — 2026-11-05
+
+- El Nook ahora se abre como la Dynamic Island: con un rebote suave, y las tarjetas salen del notch una tras otra.
+- Las pestañas entran desde el lado que elegiste, y sus íconos se iluminan bajo el puntero.
+- Las actividades en vivo salen de la cámara hacia cada lado.
+- Una canción nueva cambia la portada con un desenfoque suave, y el notch se infla cuando le arrastras un archivo.
+- Los permisos que concedas a la 1.0.3 o posterior se conservan en cada actualización.
+
 ## 1.0.3 — 2026-11-05
 
 - Isla ya conserva el permiso de Accesibilidad y los demás al actualizarse. Cada versión se firma con una identidad estable en lugar de una distinta cada vez. Como la identidad cambia una sola vez, macOS vuelve a pedir los permisos de Isla después de instalar la 1.0.3: permite de nuevo Calendario, Recordatorios, Ubicación y los demás desde el Nook o Ajustes › Privacidad, y apaga y enciende Accesibilidad para Isla en Ajustes del Sistema.

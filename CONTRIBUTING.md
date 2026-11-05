@@ -66,6 +66,25 @@ GitHub is the source of truth; the website and the Sparkle feed are served from 
 
 It builds a universal DMG, signs it for Sparkle with the key in your login Keychain (`generate_keys --account isla`), adds it to `website/updates/appcast.xml`, regenerates the changelog page `website/novedades/` (`scripts/lib/changelog_page.py`), tags, creates the GitHub Release with the DMG and pushes. Within about ten minutes the server mirrors the DMG and publishes the appcast; installed copies of Isla update within a day.
 
+**Signed and notarized builds (Developer ID):** community builds are signed ad hoc, so macOS asks people to confirm the first launch. With an Apple Developer Program membership:
+
+1. In Xcode › Settings › Accounts, add the account and create a **Developer ID Application** certificate (Manage Certificates › +).
+2. Store notarization credentials in the Keychain once (you type your Apple ID and an app-specific password yourself):
+
+   ```bash
+   xcrun notarytool store-credentials isla-notary --apple-id you@example.com --team-id TEAMID
+   ```
+
+3. Release with:
+
+   ```bash
+   SIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)" ISLA_TEAM_ID=TEAMID NOTARY_PROFILE=isla-notary ./scripts/release.sh x.y.z
+   ```
+
+The app then keeps the hardened runtime, the disk image is signed, notarized and stapled, and Gatekeeper opens it without warnings. Moving from ad-hoc to Developer ID changes the app's identity once, so macOS asks for its permissions one more time.
+
+**Permissions check:** `ISLA_PERMISSION_REPORT=1 /Applications/Isla.app/Contents/MacOS/Isla` prints which permissions a build has, without asking for any.
+
 **Website only:** push to `main`; the server deploys it on its next run.
 
 **Installer design:** `scripts/package-dmg.sh` builds the disk image window: the painted artwork, Isla on the left, the Applications link on the right and the app icon as the volume icon. Finder lays it out through AppleScript, so the first run asks once for permission to control Finder. To change the artwork or the text, edit `design/dmg/artwork.png` or `scripts/lib/dmg-background.swift`, then run:

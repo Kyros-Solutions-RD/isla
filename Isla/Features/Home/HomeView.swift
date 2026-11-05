@@ -18,9 +18,11 @@ struct HomeView: View {
             let totalSpan = widgets.reduce(0) { $0 + $1.span }
             let unit = (proxy.size.width - spacing * CGFloat(widgets.count - 1)) / max(1, totalSpan)
             HStack(spacing: spacing) {
-                ForEach(widgets) { widget in
+                ForEach(Array(widgets.enumerated()), id: \.element) { index, widget in
                     widgetView(widget)
                         .frame(width: unit * widget.span)
+                        // Cards come out of the notch one after another, left to right.
+                        .emerge(delay: 0.06 + Double(index) * 0.05)
                 }
             }
         }

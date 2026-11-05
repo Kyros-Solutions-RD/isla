@@ -97,4 +97,7 @@ MOUNT=""
 mkdir -p "$(dirname "$DMG")"
 rm -f "$DMG"
 hdiutil convert "$RW" -quiet -format UDZO -imagekey zlib-level=9 -o "$DMG"
+if [ -n "${SIGN_IDENTITY:-}" ] && [ "$SIGN_IDENTITY" != "-" ]; then
+  codesign --sign "$SIGN_IDENTITY" --timestamp "$DMG"
+fi
 echo "✓ $DMG"

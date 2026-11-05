@@ -26,8 +26,8 @@ struct NotchRootView: View {
                 if model.isOpen {
                     OpenNotchView(model: model)
                         .transition(.asymmetric(
-                            insertion: .opacity.combined(with: .scale(scale: 0.94, anchor: .top)).animation(IslaMotion.open.delay(0.05)),
-                            removal: .opacity.animation(.easeOut(duration: 0.12))))
+                            insertion: .opacity.animation(.easeOut(duration: 0.16).delay(0.04)),
+                            removal: AnyTransition(.blurReplace).combined(with: .opacity).animation(.easeIn(duration: 0.13))))
                 } else if let activity = activities.presented {
                     ClosedActivityView(activity: activity, model: model)
                         .id(activity.id)
@@ -71,6 +71,9 @@ struct NotchRootView: View {
             if !model.isOpen { model.controller?.open() }
         }
         .contextMenu { NotchContextMenu(model: model) }
+        // A file dragged over the closed notch makes it swell, inviting the drop.
+        .scaleEffect(model.isDropTargeted && !model.isOpen ? 1.07 : 1, anchor: .top)
+        .animation(IslaMotion.activity, value: model.isDropTargeted)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .animation(model.isOpen ? IslaMotion.open : IslaMotion.close, value: model.phase)
         .animation(IslaMotion.activity, value: activities.presented?.id)
@@ -199,7 +202,11 @@ struct TabContent: View {
             }
         }
         .id(model.tab)
-        .transition(.blurReplace.combined(with: .opacity))
+        .transition(.asymmetric(
+            insertion: .modifier(active: TabSlide(x: 22 * model.tabDirection, blur: 6, opacity: 0),
+                                 identity: TabSlide(x: 0, blur: 0, opacity: 1)),
+            removal: .modifier(active: TabSlide(x: 0, blur: 6, opacity: 0),
+                               identity: TabSlide(x: 0, blur: 0, opacity: 1)).animation(.easeIn(duration: 0.12))))
     }
 }
 
@@ -254,26 +261,10 @@ struct NotchHeader: View {
     }
 
     private func tabButton(_ tab: NotchTab) -> some View {
-        let selected = model.tab == tab
-        return Button {
+        HeaderTabButton(tab: tab, selected: model.tab == tab, selection: selection) {
             model.select(tab)
             Haptics.tap()
-        } label: {
-            Image(systemName: tab.symbol)
-                .font(.system(size: 12.5, weight: .semibold))
-                .symbolRenderingMode(.hierarchical)
-                .frame(width: 30, height: 24)
-                .foregroundStyle(selected ? Color.white : Color.white.opacity(0.5))
-                .background {
-                    if selected {
-                        Capsule()
-                            .fill(.white.opacity(0.17))
-                            .matchedGeometryEffect(id: "selected-tab", in: selection)
-                    }
-                }
-                .contentShape(Capsule())
         }
-        .buttonStyle(.plain)
         .help(tab.titleString)
         .overlay(alignment: .topTrailing) {
             if tab == .shelf, ShelfStore.shared.items.count > 0 {
@@ -286,6 +277,48 @@ struct NotchHeader: View {
                     .offset(x: 2, y: -2)
             }
         }
+    }
+}
+
+/// A tab icon in the Nook header: a hover plate, a press squeeze and the shared
+/// selection capsule that glides between tabs.
+private struct HeaderTabButton: View {
+    let tab: NotchTab
+    let selected: Bool
+    let selection: Namespace.ID
+    let action: () -> Void
+    @State private var hovering = false
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: tab.symbol)
+                .font(.system(size: 12.5, weight: .semibold))
+                .symbolRenderingMode(.hierarchical)
+                .frame(width: 30, height: 24)
+                .foregroundStyle(selected ? Color.white : Color.white.opacity(hovering ? 0.85 : 0.5))
+                .background {
+                    if selected {
+                        Capsule()
+                            .fill(.white.opacity(0.17))
+                            .matchedGeometryEffect(id: "selected-tab", in: selection)
+                    } else if hovering {
+                        Capsule().fill(.white.opacity(0.08))
+                    }
+                }
+                .contentShape(Capsule())
+        }
+        .buttonStyle(PressSqueeze())
+        .onHover { hovering = $0 }
+        .animation(IslaMotion.snappy, value: hovering)
+    }
+}
+
+/// Shrinks a control slightly while it is pressed.
+struct PressSqueeze: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.9 : 1)
+            .animation(IslaMotion.snappy, value: configuration.isPressed)
     }
 }
 

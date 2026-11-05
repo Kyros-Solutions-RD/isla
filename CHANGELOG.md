@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.4 — 2026-11-05
+
+- The Nook now opens like the Dynamic Island: a touch of bounce, and the cards come out of the notch one after another.
+- Tabs slide in from the side you picked, and the tab icons light up under the pointer.
+- Live activities emerge from the camera toward each side.
+- A new song swaps the cover with a soft blur, and the notch swells when you drag a file onto it.
+- Permissions you grant to 1.0.3 or later stay granted after every update.
+
 ## 1.0.3 — 2026-11-05
 
 - Isla now keeps Accessibility and its other permissions across updates. Builds are signed with a stable identity instead of a different one each time. Because the identity changes once, macOS asks for Isla’s permissions one last time after installing 1.0.3: allow Calendar, Reminders, Location and the rest again from the Nook or Settings › Privacy, and turn Accessibility off and on for Isla in System Settings.

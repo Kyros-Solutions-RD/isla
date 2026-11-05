@@ -25,6 +25,8 @@ final class NotchViewModel {
     var isHovering = false
     var isDropTargeted = false
     var isDraggingFiles = false
+    /// +1 when the newly chosen tab sits to the right of the previous one, -1 to the left.
+    var tabDirection: CGFloat = 1
     /// Reasons that temporarily prevent auto-closing (open menus, editing…).
     var holds: Set<String> = []
     @ObservationIgnored weak var controller: NotchWindowController?
@@ -124,7 +126,11 @@ final class NotchViewModel {
 
     func select(_ tab: NotchTab) {
         guard self.tab != tab else { return }
-        withAnimation(IslaMotion.content) { self.tab = tab }
+        let order = Preferences.shared.visibleTabs
+        if let from = order.firstIndex(of: self.tab), let to = order.firstIndex(of: tab) {
+            tabDirection = to > from ? 1 : -1
+        }
+        withAnimation(IslaMotion.emerge) { self.tab = tab }
         Preferences.shared.lastTab = tab
     }
 

@@ -9,11 +9,55 @@
 import SwiftUI
 
 enum IslaMotion {
-    static let open = Animation.spring(response: 0.44, dampingFraction: 0.8)
-    static let close = Animation.spring(response: 0.36, dampingFraction: 0.92)
-    static let activity = Animation.spring(response: 0.4, dampingFraction: 0.78)
+    /// Opening has a touch of bounce, like the Dynamic Island; closing is quick and settles flat.
+    static let open = Animation.spring(response: 0.42, dampingFraction: 0.76)
+    static let close = Animation.spring(response: 0.32, dampingFraction: 0.94)
+    static let activity = Animation.spring(response: 0.4, dampingFraction: 0.76)
     static let snappy = Animation.snappy(duration: 0.26)
     static let content = Animation.smooth(duration: 0.3)
+    /// Content rising out of the camera housing once the shape has room for it.
+    static let emerge = Animation.spring(response: 0.5, dampingFraction: 0.82)
+}
+
+// MARK: - Emerging from the notch
+
+/// Content that comes out of the notch: blurred, a little smaller and tucked toward the
+/// camera, then it settles. Each Nook card uses a growing delay so they arrive in order.
+struct EmergeModifier: ViewModifier {
+    var delay: Double = 0
+    var offset: CGSize = CGSize(width: 0, height: -8)
+    @State private var shown = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    func body(content: Content) -> some View {
+        let settled = shown || reduceMotion
+        content
+            .opacity(shown ? 1 : 0)
+            .blur(radius: settled ? 0 : 7)
+            .scaleEffect(settled ? 1 : 0.95, anchor: .top)
+            .offset(settled ? .zero : offset)
+            .onAppear {
+                withAnimation(reduceMotion ? .easeOut(duration: 0.15) : IslaMotion.emerge.delay(delay)) { shown = true }
+            }
+    }
+}
+
+extension View {
+    /// See ``EmergeModifier``.
+    func emerge(delay: Double = 0, offset: CGSize = CGSize(width: 0, height: -8)) -> some View {
+        modifier(EmergeModifier(delay: delay, offset: offset))
+    }
+}
+
+/// A tab's content sliding in from the side of the tab that was chosen.
+struct TabSlide: ViewModifier {
+    var x: CGFloat
+    var blur: CGFloat
+    var opacity: Double
+
+    func body(content: Content) -> some View {
+        content.offset(x: x).blur(radius: blur).opacity(opacity)
+    }
 }
 
 enum IslaMetrics {

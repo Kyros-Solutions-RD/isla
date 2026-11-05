@@ -42,7 +42,18 @@ grep -q "^## ${VERSION}" CHANGELOG.es.md 2>/dev/null || echo "  ! CHANGELOG.es.m
 ./scripts/build-dmg.sh
 DMG="dist/Isla-${VERSION}.dmg"
 
-# 2. Sparkle signature and appcast
+# 2. Notarization (Developer ID builds): Apple checks the DMG, then the ticket is stapled
+#    so Gatekeeper accepts it offline. This happens before the Sparkle signature, which
+#    covers the final bytes.
+if [ -n "${NOTARY_PROFILE:-}" ]; then
+  echo "› Notarizing with Apple…"
+  xcrun notarytool submit "$DMG" --keychain-profile "$NOTARY_PROFILE" --wait
+  xcrun stapler staple "$DMG"
+  spctl --assess --type open --context context:primary-signature --verbose=2 "$DMG"
+  cp -f "$DMG" "dist/Isla.dmg"
+fi
+
+# 3. Sparkle signature and appcast
 SIGNATURE_LINE="$("$SPARKLE_BIN/sign_update" --account isla "$DMG")"
 SIGNATURE="$(echo "$SIGNATURE_LINE" | sed -n 's/.*sparkle:edSignature="\([^"]*\)".*/\1/p')"
 LENGTH="$(echo "$SIGNATURE_LINE" | sed -n 's/.*length="\([0-9]*\)".*/\1/p')"
@@ -50,7 +61,7 @@ python3 -I scripts/lib/appcast.py website/updates/appcast.xml "$VERSION" "$BUILD
   "https://${ISLA_DOMAIN}/downloads/Isla-${VERSION}.dmg" "$SIGNATURE" "$LENGTH" "$NOTES"
 python3 -I scripts/lib/changelog_page.py
 
-# 3. GitHub: the release (with the DMG) exists before the appcast that points to it.
+# 4. GitHub: the release (with the DMG) exists before the appcast that points to it.
 git add project.yml Isla.xcodeproj website/updates/appcast.xml website/novedades/index.html website/index.html
 git commit -q -m "Release ${VERSION}"
 git tag -a "v${VERSION}" -m "Isla ${VERSION}"
@@ -60,7 +71,7 @@ sed "s#](website/#](https://${ISLA_DOMAIN}/#g" "$NOTES" > "$NOTES.gh"
 gh release create "v${VERSION}" "$DMG" "dist/Isla.dmg" --title "Isla ${VERSION}" --notes-file "$NOTES.gh" --verify-tag
 git push -q origin main
 
-# 4. The server picks it up within ~10 minutes.
+# 5. The server picks it up within ~10 minutes.
 echo "› Waiting for https://${ISLA_DOMAIN} to publish ${VERSION} (cron sync)…"
 for _ in $(seq 1 80); do
   if curl -fsS --max-time 15 "https://${ISLA_DOMAIN}/updates/appcast.xml" 2>/dev/null | grep -q "<sparkle:shortVersionString>${VERSION}<"; then

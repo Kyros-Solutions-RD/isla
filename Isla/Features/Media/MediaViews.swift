@@ -66,6 +66,10 @@ struct NowPlayingCard: View {
             ZStack(alignment: .bottomTrailing) {
                 ArtworkThumbnail(size: side, radius: 14)
                     .shadow(color: (media.accentColor ?? .black).opacity(0.45), radius: 14, y: 6)
+                    // A new song swaps the cover with a soft blur instead of a cut.
+                    .id(media.info.map { "\($0.title)|\($0.artist)" } ?? "")
+                    .transition(.blurReplace)
+                    .animation(IslaMotion.content, value: media.info?.title)
                     .scaleEffect(media.isPlaying ? 1 : 0.94)
                     .animation(IslaMotion.activity, value: media.isPlaying)
                 if let icon = media.appIcon, media.artwork != nil {

@@ -18,13 +18,16 @@ struct ClosedActivityView: View {
 
         VStack(spacing: 0) {
             HStack(spacing: 0) {
+                // Both ears slide out of the camera housing toward their side.
                 leading
                     .frame(width: earWidth - 12, alignment: .leading)
                     .padding(.leading, 12)
+                    .emerge(delay: 0.05, offset: CGSize(width: 16, height: 0))
                 Color.clear.frame(width: notch.width)
                 trailing
                     .frame(width: earWidth - 12, alignment: .trailing)
                     .padding(.trailing, 12)
+                    .emerge(delay: 0.05, offset: CGSize(width: -16, height: 0))
             }
             .frame(height: notch.height)
 
@@ -32,10 +35,12 @@ struct ClosedActivityView: View {
                 detail
                     .frame(height: activity.kind.detailHeight)
                     .padding(.horizontal, 16)
+                    .emerge(delay: 0.1, offset: CGSize(width: 0, height: -6))
             } else if model.showsIslandLyrics, let info = NowPlayingService.shared.info {
                 IslandLyricLine(info: info)
                     .frame(height: 26)
                     .padding(.horizontal, 18)
+                    .emerge(delay: 0.1, offset: CGSize(width: 0, height: -6))
             }
         }
         .foregroundStyle(.white)
