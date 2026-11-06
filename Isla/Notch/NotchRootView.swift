@@ -251,6 +251,7 @@ struct NotchHeader: View {
                     .buttonStyle(.plain)
                     .menuIndicator(.hidden)
                     .fixedSize()
+                    .accessibilityLabel(Text("More Tabs"))
                 }
             }
             .frame(width: sideWidth, alignment: .leading)
@@ -321,6 +322,9 @@ private struct HeaderTabButton: View {
         .buttonStyle(PressSqueeze())
         .onHover { hovering = $0 }
         .animation(IslaMotion.snappy, value: hovering)
+        // VoiceOver says the tab's name, not the symbol's ("Grid 2x2", "Sparkle"…).
+        .accessibilityLabel(Text(tab.title))
+        .accessibilityAddTraits(selected ? .isSelected : [])
     }
 }
 
@@ -345,6 +349,7 @@ struct HeaderActions: View {
                 }
                 .buttonStyle(NotchIconButtonStyle(size: 26))
                 .help(String(localized: "Update available"))
+                .accessibilityLabel(Text("Update available"))
             }
             if QuickActions.shared.keepAwake {
                 Button { QuickActions.shared.stopKeepAwake() } label: {
@@ -352,6 +357,7 @@ struct HeaderActions: View {
                 }
                 .buttonStyle(NotchIconButtonStyle(size: 26))
                 .help(String(localized: "Keeping your Mac awake. Click to stop."))
+                .accessibilityLabel(Text("Keeping your Mac awake. Click to stop."))
                 .transition(.scale.combined(with: .opacity))
             }
             if battery.hasBattery {
@@ -364,6 +370,8 @@ struct HeaderActions: View {
                 }
                 .padding(.trailing, 6)
                 .help(battery.statusDescription)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(Text(verbatim: "\(battery.level)% · \(battery.statusDescription)"))
             }
 
             Button {
@@ -375,6 +383,7 @@ struct HeaderActions: View {
             }
             .buttonStyle(NotchIconButtonStyle(size: 26))
             .help(model.isPinned ? String(localized: "Unpin") : String(localized: "Keep open"))
+            .accessibilityLabel(model.isPinned ? Text("Unpin") : Text("Keep open"))
 
             Button {
                 SettingsWindowController.shared.show()
@@ -383,6 +392,7 @@ struct HeaderActions: View {
             }
             .buttonStyle(NotchIconButtonStyle(size: 26))
             .help(String(localized: "Settings"))
+            .accessibilityLabel(Text("Settings"))
         }
     }
 }

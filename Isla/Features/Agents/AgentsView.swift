@@ -190,6 +190,13 @@ private struct AgentRow: View {
         .contentShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         .onHover { hovering = $0 }
         .onTapGesture { monitor.bringToFront(session) }
+        // One element for VoiceOver: who, what state, where, and the row's actions.
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: accessibilitySummary))
+        .accessibilityAddTraits(.isButton)
+        .accessibilityAction { monitor.bringToFront(session) }
+        .accessibilityAction(named: Text("Show in Finder")) { monitor.showFolder(session) }
+        .accessibilityAction(named: Text("Copy folder path")) { monitor.copyFolder(session) }
         .animation(IslaMotion.snappy, value: hovering)
         .animation(IslaMotion.content, value: session.state)
         .help(session.folder ?? session.tool.name)
@@ -197,6 +204,12 @@ private struct AgentRow: View {
 
     /// Folder, host app, start time and usage limit. Drops the least useful parts when
     /// the row is narrow instead of cutting the folder.
+    private var accessibilitySummary: String {
+        [session.displayTitle, session.tool.name, session.model, session.state.titleString,
+         session.step?.text, session.project.map { String(localized: "in \($0)") }]
+            .compactMap { $0 }.joined(separator: ", ")
+    }
+
     private func titleLine(badge: String) -> some View {
         HStack(spacing: 6) {
             Text(verbatim: session.displayTitle)

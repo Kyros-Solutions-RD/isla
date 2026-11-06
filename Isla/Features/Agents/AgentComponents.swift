@@ -148,7 +148,11 @@ struct ThinkingDots: NSViewRepresentable {
     var dot: CGFloat = 4.5
     var active = true
 
-    func makeNSView(context: Context) -> WaveDotsView { WaveDotsView() }
+    func makeNSView(context: Context) -> WaveDotsView {
+        let view = WaveDotsView()
+        view.setAccessibilityElement(false)
+        return view
+    }
 
     func updateNSView(_ view: WaveDotsView, context: Context) {
         view.configure(color: NSColor(tint), dot: dot,
@@ -312,6 +316,14 @@ struct AgentsEarLeading: View {
     private let monitor = AgentMonitor.shared
 
     var body: some View {
+        content
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text(verbatim: monitor.activeSessions
+                .map { "\($0.project ?? $0.tool.name), \($0.state.titleString)" }
+                .joined(separator: "; ")))
+    }
+
+    @ViewBuilder private var content: some View {
         let active = monitor.activeSessions
         let working = active.filter { $0.state == .working }
         HStack(spacing: 6) {

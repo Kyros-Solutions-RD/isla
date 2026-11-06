@@ -1371,12 +1371,12 @@
         }
       }
     },
-    "Drag to reorder. ⌘1…⌘9 switch tabs while the Nook is open.": {
+    "Drag to reorder. ⌘1…⌘0 switch tabs while the Nook is open.": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arrastra para reordenar. ⌘1…⌘9 cambian de pestaña con el Nook abierto."
+            "value": "Arrastra para reordenar. ⌘1…⌘0 cambian de pestaña con el Nook abierto."
           }
         }
       }
@@ -2357,6 +2357,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Momentos"
+          }
+        }
+      }
+    },
+    "More Tabs": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más pestañas"
           }
         }
       }

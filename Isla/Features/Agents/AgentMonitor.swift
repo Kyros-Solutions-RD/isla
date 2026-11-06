@@ -28,6 +28,16 @@ enum AgentState: Equatable {
         }
     }
 
+    /// The state as plain text, for VoiceOver.
+    var titleString: String {
+        switch self {
+        case .working: String(localized: "Working")
+        case .waiting: String(localized: "Waiting")
+        case .needsYou: String(localized: "Needs you")
+        case .idle: String(localized: "Idle")
+        }
+    }
+
     var tint: Color {
         switch self {
         case .working: Color(red: 0.36, green: 0.86, blue: 0.52)

@@ -34,6 +34,22 @@ private struct MenuBarContent: View {
         Button("Shelf") { NotchManager.shared.open(.shelf) }
         Button("Clipboard History") { NotchManager.shared.open(.clipboard) }
         Button("Focus Timer") { NotchManager.shared.open(.timers) }
+        Button("AI Agents") { NotchManager.shared.open(.agents) }
+
+        // Agents at work or waiting, one click from their app.
+        let agents = AgentMonitor.shared.sessions.filter { $0.state != .idle }.prefix(5)
+        if !agents.isEmpty {
+            Divider()
+            ForEach(Array(agents)) { session in
+                Button { AgentMonitor.shared.bringToFront(session) } label: {
+                    Label {
+                        Text("\(Self.menuName(session)) — \(Text(session.state.title))")
+                    } icon: {
+                        Image(systemName: session.state.symbol)
+                    }
+                }
+            }
+        }
 
         if media.hasActiveMedia, let info = media.info {
             Divider()
@@ -58,5 +74,11 @@ private struct MenuBarContent: View {
         Divider()
         Button("Quit Isla") { NSApp.terminate(nil) }
             .keyboardShortcut("q")
+    }
+
+    /// The session's own title tells two agents in one folder apart; the folder otherwise.
+    private static func menuName(_ session: AgentSession) -> String {
+        let name = session.title ?? session.project ?? session.tool.name
+        return name.count > 42 ? String(name.prefix(41)) + "…" : name
     }
 }

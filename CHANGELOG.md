@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.6 — 2026-11-05
+
+- The menu bar menu lists the agents at work or waiting, with their state; click one to bring its app forward. It also opens the AI tab.
+- ⌘0 switches to the tenth tab, after ⌘1…⌘9.
+- VoiceOver reads the notch header by name (Nook, AI, Shelf… Keep open, Settings) instead of describing the icons, and reads each agent with its tool, model, state, current step and folder.
+
 ## 1.1.5 — 2026-11-05
 
 - The Settings window is named after the pane you are in, like System Settings.

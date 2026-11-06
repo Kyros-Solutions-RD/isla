@@ -255,7 +255,7 @@ private struct NookPane: View {
             } header: {
                 Text("Tabs")
             } footer: {
-                Text("Drag to reorder. ⌘1…⌘9 switch tabs while the Nook is open.")
+                Text("Drag to reorder. ⌘1…⌘0 switch tabs while the Nook is open.")
             }
 
             Section {
@@ -608,7 +608,7 @@ private struct KeyboardPane: View {
 
             Section("Inside the Nook") {
                 LabeledContent("Close", value: "⎋")
-                LabeledContent("Switch tab", value: "⌘1 … ⌘9")
+                LabeledContent("Switch tab", value: "⌘1 … ⌘0")
                 LabeledContent("Next / previous tab", value: "⌃⇥ / ⌃⇧⇥")
                 LabeledContent("Settings", value: "⌘,")
             }

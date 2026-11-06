@@ -2,6 +2,12 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.6 — 2026-11-05
+
+- El menú de la barra de menús muestra los agentes trabajando o esperando, con su estado; haz clic en uno para traer su app al frente. También abre la pestaña IA.
+- ⌘0 cambia a la décima pestaña, después de ⌘1…⌘9.
+- VoiceOver lee la cabecera del notch por su nombre (Nook, IA, Bandeja… Mantener abierto, Ajustes) en lugar de describir los íconos, y lee cada agente con su herramienta, modelo, estado, paso actual y carpeta.
+
 ## 1.1.5 — 2026-11-05
 
 - La ventana de Ajustes se llama como el panel en el que estás, como los Ajustes del Sistema.

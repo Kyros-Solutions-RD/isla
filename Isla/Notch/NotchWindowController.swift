@@ -367,10 +367,12 @@ final class NotchWindowController {
                 SettingsWindowController.shared.show()
                 return true
             }
-            if let number = Int(characters), number >= 1 {
+            if let number = Int(characters), (0...9).contains(number) {
+                // ⌘1…⌘9 are the first nine tabs and ⌘0 the tenth, like browser tabs.
                 let tabs = Preferences.shared.visibleTabs
-                if number <= tabs.count {
-                    model.select(tabs[number - 1])
+                let index = number == 0 ? 9 : number - 1
+                if index < tabs.count {
+                    model.select(tabs[index])
                     return true
                 }
             }
