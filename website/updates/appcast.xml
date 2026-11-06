@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.5</title>
+      <pubDate>Fri, 06 Nov 2026 00:40:40 GMT</pubDate>
+      <sparkle:version>13</sparkle:version>
+      <sparkle:shortVersionString>1.1.5</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>The Settings window is named after the pane you are in, like System Settings.</li><li>In the AI tab, a long session title keeps its room: the badge shortens to the model, since the icon already shows the tool.</li><li>Empty states in every tab come out of the notch line by line, like the Nook&#x27;s cards.</li><li>The welcome tour introduces AI Agents.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.5.dmg" sparkle:edSignature="OQspyDiIVA9YOciYE2l56Ugi/nF36lr/PYyQ+61mdb+nIEY+gATRT/Ze3KQ7sSVPY+iAVo2ODgGYkaG9VeNaAw==" length="11724171" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.4</title>
       <pubDate>Fri, 06 Nov 2026 00:15:04 GMT</pubDate>
       <sparkle:version>12</sparkle:version>
