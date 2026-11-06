@@ -21,6 +21,19 @@ final class BatteryMonitor {
     @ObservationIgnored private var runLoopSource: CFRunLoopSource?
     @ObservationIgnored private var lastAlertLevel: Int?
     @ObservationIgnored private var started = false
+    #if DEBUG
+    @ObservationIgnored private var demoLocked = false
+
+    /// A full, charging battery for screenshots (`isla-dev://demo/battery-full`). Memory only.
+    func applyDemo() {
+        demoLocked = true
+        hasBattery = true
+        level = 100
+        isCharging = true
+        isPluggedIn = true
+        minutesRemaining = nil
+    }
+    #endif
 
     private init() {}
 
@@ -51,6 +64,9 @@ final class BatteryMonitor {
     }
 
     private func read(announce: Bool) {
+        #if DEBUG
+        if demoLocked { return }
+        #endif
         guard let info = IOPSCopyPowerSourcesInfo()?.takeRetainedValue(),
               let list = IOPSCopyPowerSourcesList(info)?.takeRetainedValue() as? [CFTypeRef] else { return }
 

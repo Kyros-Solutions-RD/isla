@@ -2,6 +2,13 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.9 — 2026-11-05
+
+![La pestaña IA con agentes trabajando y modelos locales](website/assets/app/glass-agents.jpg)
+
+- Corrige que salir de la pestaña Teleprompter tocara el micrófono: si nunca se había respondido al permiso del micrófono, macOS lo pedía e Isla se quedaba congelada hasta contestar, aunque no usaras «Seguir voz». Ahora el micrófono solo se usa mientras «Seguir voz» está activo.
+- La web muestra la pestaña IA, con capturas nuevas de todas las pestañas.
+
 ## 1.1.8 — 2026-11-05
 
 - Dos cosas a la vez, como la Dynamic Island: cuando hay una segunda actividad en marcha (un agente trabajando mientras suena música, un temporizador y una descarga…), se separa en una burbuja pequeña junto a la isla con la portada de la canción, el ícono del agente o un anillo de progreso. Haz clic en la burbuja para abrir su pestaña. Puedes apagarlo en Ajustes › Actividades en vivo.

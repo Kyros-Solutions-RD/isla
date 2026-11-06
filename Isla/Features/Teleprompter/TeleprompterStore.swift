@@ -27,7 +27,10 @@ final class TeleprompterStore {
     var isPlaying = false
     var offset: CGFloat = 0
     var followVoice = false {
-        didSet { followVoice ? follower.start() : follower.stop() }
+        didSet {
+            guard followVoice != oldValue else { return }
+            followVoice ? follower.start() : follower.stop()
+        }
     }
 
     @ObservationIgnored let follower = SpeechFollower()
@@ -105,6 +108,7 @@ final class SpeechFollower: @unchecked Sendable {
 
     private var words: [String] = []
     private var position = 0
+    private var listening = false
     private let engine = AVAudioEngine()
     private var request: SFSpeechAudioBufferRecognitionRequest?
     private var task: SFSpeechRecognitionTask?
@@ -129,6 +133,10 @@ final class SpeechFollower: @unchecked Sendable {
     }
 
     func stop() {
+        // Touching `inputNode` opens the microphone (and asks for it when undecided),
+        // so only a follower that is actually listening shuts the engine down.
+        guard listening else { return }
+        listening = false
         engine.stop()
         engine.inputNode.removeTap(onBus: 0)
         request?.endAudio()
@@ -152,6 +160,7 @@ final class SpeechFollower: @unchecked Sendable {
         }
         engine.prepare()
         try? engine.start()
+        listening = true
 
         task = recognizer.recognitionTask(with: request) { [weak self] result, error in
             guard let self else { return }

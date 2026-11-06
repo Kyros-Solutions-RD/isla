@@ -20,12 +20,14 @@
     'mb.file': 'File', 'mb.edit': 'Edit',
     'tab.home': 'Nook', 'tab.shelf': 'Shelf', 'tab.clipboard': 'Clipboard', 'tab.calendar': 'Calendar', 'tab.tasks': 'Tasks',
     'tab.timers': 'Focus', 'tab.notes': 'Notes', 'tab.teleprompter': 'Teleprompter', 'tab.terminal': 'Terminal', 'tab.actions': 'Actions',
+    'tab.agents': 'AI', 'act.agents': 'An agent at work',
+    'b.agents.t': 'Your AI agents, in sight', 'b.agents.p': 'Codex, Gemini CLI, Antigravity and the other agents working on your Mac: which folder, since when, what they are doing now and whether they need you. Plus the models Ollama and LM Studio keep in memory. No permissions, and nothing leaves your Mac.',
     'style.classic': 'Classic',
     'act.airpods': 'Connect AirPods', 'act.charging': 'Plug in the charger', 'act.volume': 'Turn up the volume', 'act.brightness': 'Dim the screen',
     'act.meeting': 'Meeting in 4 min', 'act.download': 'Download a file', 'act.track': 'Change the song', 'act.lyrics': 'Lyrics under the island',
     'act.timer': 'Pomodoro done', 'act.caps': 'Caps Lock',
     'live.eyebrow': 'LIVE ACTIVITIES', 'live.title': 'The island keeps you posted.',
-    'live.lead': 'Charging, AirPods with their battery, volume and brightness, downloads, meetings, timers and your song. They appear around the notch and leave on their own.',
+    'live.lead': 'Charging, AirPods with their battery, volume and brightness, downloads, meetings, timers, your AI agents and your song. They appear around the notch and leave on their own; when two happen at once, the second waits in a bubble.',
     'features.eyebrow': 'FEATURES', 'features.title1': 'More than 40 features.', 'features.title2': 'Zero cost.',
     'features.lead': 'Everything you’d expect from the best notch app, and a few things you wouldn’t.',
     'b.music.t': 'Music you can see', 'b.music.p': 'Any app in Now Playing: Music, Spotify, Podcasts or your browser. Artwork, controls, synced lyrics and glass that takes on the album’s color.',
@@ -167,10 +169,10 @@
     const styleButtons = [...document.querySelectorAll('[data-styles] [data-style]')];
     const actButtons = [...document.querySelectorAll('[data-act]')];
 
-    const tabs = ['home', 'shelf', 'clipboard', 'calendar', 'tasks', 'timers', 'notes', 'teleprompter', 'terminal', 'home-actions', 'dragging'];
+    const tabs = ['home', 'agents', 'shelf', 'clipboard', 'calendar', 'tasks', 'timers', 'notes', 'teleprompter', 'terminal', 'home-actions', 'dragging'];
     const activities = {
       media: { x: 436, w: 640, h: 80 }, airpods: {}, charging: {}, volume: {}, brightness: {}, meeting: {}, download: {}, caps: {}, timerdone: {}, shelf: {},
-      track: { h: 100 }, lyrics: { x: 376, w: 760, h: 100 },
+      track: { h: 100 }, lyrics: { x: 376, w: 760, h: 100 }, agents: {},
     };
     let style = 'glass';
     let tab = 'home';

@@ -177,6 +177,8 @@ final class AgentMonitor {
     #if DEBUG
     /// Hides everything to preview the empty state (`isla-dev://demo/agents-empty`). Memory only.
     @ObservationIgnored private var demoHidesAll = false
+    /// Keeps a sample set on screen (`isla-dev://demo/agents-sample`), for the website's screenshots.
+    @ObservationIgnored private var demoFrozen = false
     #endif
 
     // MARK: Lifecycle
@@ -262,6 +264,7 @@ final class AgentMonitor {
             sessions = []; apps = []; models = []; servers = []
             return
         }
+        if demoFrozen { return }
         #endif
         let now = result.date
         let previous = Dictionary(uniqueKeysWithValues: sessions.map { ($0.id, $0) })
@@ -447,7 +450,7 @@ final class AgentMonitor {
         }
 
         #if DEBUG
-        if demoHidesAll { return }
+        if demoHidesAll || demoFrozen { return }
         #endif
         if nextModels != models || nextServers != servers {
             withAnimation(IslaMotion.content) {
@@ -527,10 +530,67 @@ final class AgentMonitor {
             }
         case "agents-live":
             demoHidesAll = false
+            demoFrozen = false
             refreshNow()
+        case "agents-sample", "agents-sample-working":
+            applySample(asksUser: name == "agents-sample")
         default:
             break
         }
+    }
+
+    /// Fictional agents, models and apps for screenshots: made-up projects, nothing read from disk.
+    private func applySample(asksUser: Bool) {
+        demoFrozen = true
+        let now = Date()
+        let home = NSHomeDirectory()
+        func wave(_ peak: Double, _ phase: Double) -> [Double] {
+            (0..<26).map { max(0, peak * (0.55 + 0.45 * sin(Double($0) * 0.6 + phase))) }
+        }
+        let codex = AgentSession(
+            id: "sample-codex", pid: 0, tool: AgentCatalog.codex, title: nil,
+            folder: home + "/Proyectos/isla-web", started: now.addingTimeInterval(-42 * 60),
+            state: .working, stateSince: now.addingTimeInterval(-3 * 60),
+            step: AgentStep(text: String(localized: "Editing \("hero.css")"), symbol: "pencil"),
+            cpu: 18, memory: 210_000_000, history: wave(24, 0), hostName: "Terminal", hostPID: nil, hostBundleID: nil,
+            model: "GPT-5.5-Codex", limitUsed: 23, limitWindow: 300, contextTokens: 84_000, contextWindow: 272_000)
+        let gemini = AgentSession(
+            id: "sample-gemini", pid: 0, tool: AgentCatalog.gemini, title: nil,
+            folder: home + "/Proyectos/kyros-finance", started: now.addingTimeInterval(-18 * 60),
+            state: asksUser ? .needsYou : .waiting, stateSince: now.addingTimeInterval(-40),
+            step: asksUser ? AgentStep(text: String(localized: "Waiting for your permission") + " · " + String(localized: "Running \("npm run migrate")"),
+                                       symbol: "hand.raised.fill", asksUser: true) : nil,
+            cpu: 0.4, memory: 160_000_000, history: wave(9, 2), hostName: "Ghostty", hostPID: nil, hostBundleID: nil,
+            model: "Gemini 3 Pro")
+        let aider = AgentSession(
+            id: "sample-aider", pid: 0, tool: AgentCatalog.cli.first { $0.id == "aider" } ?? AgentCatalog.gemini, title: nil,
+            folder: home + "/Proyectos/colmado-api", started: now.addingTimeInterval(-2 * 3600),
+            state: .waiting, stateSince: now.addingTimeInterval(-12 * 60),
+            step: nil, cpu: 0.2, memory: 120_000_000, history: wave(4, 4), hostName: "Terminal", hostPID: nil, hostBundleID: nil,
+            model: "Qwen3 Coder")
+        let antigravity = AgentSession(
+            id: "sample-antigravity", pid: 0, tool: AgentCatalog.editors[0], title: nil,
+            folder: home + "/Proyectos/malecon-app", started: now.addingTimeInterval(-3 * 3600),
+            state: .idle, stateSince: now.addingTimeInterval(-25 * 60),
+            step: nil, cpu: 3, memory: 900_000_000, history: wave(6, 1), hostName: "Antigravity", hostPID: nil, hostBundleID: nil)
+        withAnimation(IslaMotion.content) {
+            sessions = [gemini, codex, aider, antigravity].sorted { lhs, rhs in
+                let order: (AgentState) -> Int = { [.needsYou: 0, .working: 1, .waiting: 2, .idle: 3][$0] ?? 4 }
+                return order(lhs.state) < order(rhs.state)
+            }
+            ended = []
+            apps = [AIApp(bundleID: "com.openai.codex", name: "ChatGPT", pid: 0),
+                    AIApp(bundleID: "com.microsoft.m365copilot", name: "Copilot", pid: 0)]
+            servers = [LocalServer(id: AgentCatalog.ollama.id, name: AgentCatalog.ollama.name, version: "0.13.0"),
+                       LocalServer(id: AgentCatalog.lmStudio.id, name: AgentCatalog.lmStudio.name, version: nil)]
+            models = [
+                LocalModel(id: "sample-qwen", serverID: AgentCatalog.ollama.id, name: "qwen3-coder:30b", detail: "30.5B · Q4_K_M",
+                           bytes: 18_600_000_000, gpuBytes: 18_600_000_000, expires: now.addingTimeInterval(4 * 60 + 20), context: 32_768),
+                LocalModel(id: "sample-gemma", serverID: AgentCatalog.lmStudio.id, name: "google/gemma-4-12b-qat", detail: "gemma4 · Q4_0",
+                           bytes: 7_150_000_000, gpuBytes: nil, expires: nil, context: 8_192),
+            ]
+        }
+        hasScanned = true
     }
 
     /// Prints what the monitor sees (`ISLA_AGENTS_REPORT=1`), for checking detection.

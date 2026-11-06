@@ -108,12 +108,12 @@
             <img data-panel-img src="assets/app/glass-home.jpg" width="2160" height="640" alt="El Nook de Isla abierto">
             <div class="panel-hits">
               <button type="button" style="--x:192" data-tab="home" aria-label="Nook"></button>
-              <button type="button" style="--x:225" data-tab="shelf" aria-label="Bandeja"></button>
-              <button type="button" style="--x:257" data-tab="clipboard" aria-label="Portapapeles"></button>
-              <button type="button" style="--x:291" data-tab="calendar" aria-label="Calendario"></button>
-              <button type="button" style="--x:324" data-tab="tasks" aria-label="Tareas"></button>
-              <button type="button" style="--x:357" data-tab="timers" aria-label="Enfoque"></button>
-              <button type="button" style="--x:390" data-tab="terminal" aria-label="Terminal"></button>
+              <button type="button" style="--x:225" data-tab="agents" aria-label="IA"></button>
+              <button type="button" style="--x:257" data-tab="shelf" aria-label="Bandeja"></button>
+              <button type="button" style="--x:291" data-tab="clipboard" aria-label="Portapapeles"></button>
+              <button type="button" style="--x:324" data-tab="calendar" aria-label="Calendario"></button>
+              <button type="button" style="--x:357" data-tab="tasks" aria-label="Tareas"></button>
+              <button type="button" style="--x:390" data-tab="timers" aria-label="Enfoque"></button>
             </div>
           </div>
           <div class="files" data-files>
@@ -129,6 +129,7 @@
       <div class="demo-controls">
         <div class="seg seg-tabs" role="group" aria-label="Pestañas" data-tabs>
           <button type="button" data-tab="home" class="is-on"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span data-i18n="tab.home">Nook</span></button>
+          <button type="button" data-tab="agents"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3.5c.6 3.9 2.6 5.9 6.5 6.5-3.9.6-5.9 2.6-6.5 6.5-.6-3.9-2.6-5.9-6.5-6.5 3.9-.6 5.9-2.6 6.5-6.5z"/><path d="M18 14.5c.3 1.9 1.1 2.7 3 3-1.9.3-2.7 1.1-3 3-.3-1.9-1.1-2.7-3-3 1.9-.3 2.7-1.1 3-3z"/></svg><span data-i18n="tab.agents">IA</span></button>
           <button type="button" data-tab="shelf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13l2.5-7h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 13h5l1.5 2.5h5L16 13h5"/></svg><span data-i18n="tab.shelf">Bandeja</span></button>
           <button type="button" data-tab="clipboard"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2.5"/><path d="M9 4h6v3H9z"/></svg><span data-i18n="tab.clipboard">Portapapeles</span></button>
           <button type="button" data-tab="calendar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span data-i18n="tab.calendar">Calendario</span></button>
@@ -155,6 +156,7 @@
         <button type="button" class="pill" data-act="lyrics" data-i18n="act.lyrics">Letra bajo la isla</button>
         <button type="button" class="pill" data-act="timerdone" data-i18n="act.timer">Fin del Pomodoro</button>
         <button type="button" class="pill" data-act="caps" data-i18n="act.caps">Bloq Mayús</button>
+        <button type="button" class="pill" data-act="agents" data-i18n="act.agents">Un agente trabajando</button>
       </div>
       <div class="demo-after">
         <p data-i18n="demo.after">¿Te gustó? Descárgala gratis: sin cuenta, sin prueba y sin límites.</p>
@@ -170,7 +172,7 @@
       <div class="section-head center">
         <p class="eyebrow" data-i18n="live.eyebrow">ACTIVIDADES EN VIVO</p>
         <h2 id="live-title" class="h2" data-i18n="live.title">La isla te avisa.</h2>
-        <p class="lead" data-i18n="live.lead">Carga, AirPods con su batería, volumen y brillo, descargas, reuniones, temporizadores y tu canción. Aparecen alrededor del notch y se van solas.</p>
+        <p class="lead" data-i18n="live.lead">Carga, AirPods con su batería, volumen y brillo, descargas, reuniones, temporizadores, tus agentes de IA y tu canción. Aparecen alrededor del notch y se van solas; si hay dos a la vez, la segunda espera en una burbuja.</p>
       </div>
       <div class="marquee" aria-hidden="true">
         <div class="marquee-track">
@@ -180,6 +182,7 @@
           <img src="assets/app/act-meeting.jpg" width="1280" height="160" alt="">
           <img src="assets/app/act-download.jpg" width="1280" height="160" alt="">
           <img src="assets/app/act-media.jpg" width="1280" height="160" alt="">
+          <img src="assets/app/act-agents.jpg" width="1280" height="160" alt="">
           <img src="assets/app/act-brightness.jpg" width="1280" height="160" alt="">
           <img src="assets/app/act-shelf.jpg" width="1280" height="160" alt="">
         </div>
@@ -188,13 +191,21 @@
 
     <!-- ============ Features ============ -->
     <section class="features" id="funciones" aria-labelledby="features-title">
-      <span class="neon neon-v neon-teal neon-sm neon-side" style="--x:4%;--y:4%" aria-hidden="true">MÚSICA</span>
+      <span class="neon neon-v neon-violet neon-sm neon-side" style="--x:95%;--y:5%" aria-hidden="true">IA</span>
+      <span class="neon neon-v neon-teal neon-sm neon-side" style="--x:4%;--y:24%" aria-hidden="true">MÚSICA</span>
       <div class="section-head center">
         <p class="eyebrow" data-i18n="features.eyebrow">FUNCIONES</p>
         <h2 id="features-title" class="h2"><span data-i18n="features.title1">Más de 40 funciones.</span> <span class="grad" data-i18n="features.title2">Cero pesos.</span></h2>
         <p class="lead" data-i18n="features.lead">Todo lo que esperarías de la mejor app del notch, y un par de cosas que no.</p>
       </div>
       <div class="bento">
+        <article class="tile t-full card">
+          <div class="tile-text">
+            <h3 data-i18n="b.agents.t">Tus agentes de IA, a la vista</h3>
+            <p data-i18n="b.agents.p">Codex, Gemini CLI, Antigravity y los demás agentes que trabajan en tu Mac: en qué carpeta, desde cuándo, qué hacen ahora y si te necesitan. Más los modelos que Ollama y LM Studio tienen en memoria. Sin permisos y sin que nada salga de tu Mac.</p>
+          </div>
+          <div class="tile-shot"><img src="assets/app/glass-agents.jpg" width="2160" height="640" loading="lazy" alt="Pestaña IA con agentes trabajando, esperando y modelos locales"></div>
+        </article>
         <article class="tile t-wide card">
           <div class="tile-text">
             <h3 data-i18n="b.music.t">Música que se ve</h3>

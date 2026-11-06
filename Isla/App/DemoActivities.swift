@@ -56,10 +56,12 @@ enum DemoActivities {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                 NotchManager.shared.controllers.values.forEach { $0.panel.makeFirstResponder(nil) }
             }
+        case "battery-full":
+            BatteryMonitor.shared.applyDemo()
         case "music":
             // Only Now Playing, in memory: a song "playing" to preview the music ear.
             NowPlayingService.shared.applyDemo()
-        case "agent-done", "agent-needs", "agents-empty", "agents-live":
+        case "agent-done", "agent-needs", "agents-empty", "agents-live", "agents-sample", "agents-sample-working":
             AgentMonitor.shared.runDemo(name)
         case "clear":
             for timer in TimerStore.shared.timers { TimerStore.shared.remove(timer) }

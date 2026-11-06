@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.9 — 2026-11-05
+
+![The AI tab with agents at work and local models](website/assets/app/glass-agents.jpg)
+
+- Fixes leaving the Teleprompter tab touching the microphone: if the microphone permission had never been answered, macOS asked for it and Isla froze until you replied, even if you never used “Follow voice”. Now the microphone is only used while Follow voice is on.
+- The website shows the AI tab, with new screenshots of every tab.
+
 ## 1.1.8 — 2026-11-05
 
 - Two things at once, like the Dynamic Island: when a second activity is going on (an agent working while music plays, a timer and a download…), it splits off into a small bubble beside the island with the song's cover, the agent's icon or a progress ring. Click the bubble to open its tab. You can turn it off in Settings › Live Activities.
