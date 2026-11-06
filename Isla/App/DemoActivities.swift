@@ -63,6 +63,11 @@ enum DemoActivities {
             NowPlayingService.shared.applyDemo()
         case "agent-done", "agent-needs", "agents-empty", "agents-live", "agents-sample", "agents-sample-working":
             AgentMonitor.shared.runDemo(name)
+        case "peek", "unpeek":
+            // The hover state, without moving the real pointer.
+            guard let model = NotchManager.shared.controllers.values.first(where: { $0.model.geometry.hasHardwareNotch })?.model
+                ?? NotchManager.shared.controllers.values.first?.model else { return }
+            if name == "peek" { model.peek() } else { model.unpeek() }
         case "clear":
             for timer in TimerStore.shared.timers { TimerStore.shared.remove(timer) }
             center.dismissTransient()

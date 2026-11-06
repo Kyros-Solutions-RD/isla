@@ -100,6 +100,17 @@ extension View {
     func scrollFade(top: CGFloat = 5, bottom: CGFloat = 16) -> some View {
         modifier(ScrollFade(top: top, bottom: bottom))
     }
+
+    /// Items glide in and out at the edges of a scrolling list: a little smaller and fainter
+    /// until they are fully in view, instead of being cut by the edge. SwiftUI only works this
+    /// out while the list moves, so it costs nothing at rest.
+    func scrollEdgeEase(_ axis: Axis = .vertical) -> some View {
+        scrollTransition(.interactive, axis: axis) { content, phase in
+            content
+                .opacity(phase.isIdentity ? 1 : 0.45)
+                .scaleEffect(phase.isIdentity ? 1 : 0.95)
+        }
+    }
 }
 
 enum IslaMetrics {

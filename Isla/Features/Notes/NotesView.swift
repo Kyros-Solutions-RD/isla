@@ -27,6 +27,7 @@ struct NotesView: View {
                             ForEach(store.sorted) { note in
                                 NoteRow(note: note, selected: store.selectedID == note.id)
                                     .onTapGesture { store.selectedID = note.id }
+                                    .scrollEdgeEase()
                             }
                         }
                         .padding(.bottom, 8)

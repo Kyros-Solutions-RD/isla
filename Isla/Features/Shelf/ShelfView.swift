@@ -110,6 +110,7 @@ private struct ShelfGrid: View {
             LazyHStack(spacing: 8) {
                 ForEach(shelf.items) { item in
                     ShelfTile(item: item)
+                        .scrollEdgeEase(.horizontal)
                 }
             }
             .padding(.horizontal, 4)

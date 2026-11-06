@@ -180,6 +180,9 @@ private struct AppearancePane: View {
                     ForEach(PanelSize.allCases) { Text($0.title).tag($0) }
                 }
                 .pickerStyle(.segmented)
+                PanelSizePreview(size: prefs.panelSize, style: prefs.notchStyle)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 4)
             }
 
             Section {
@@ -222,6 +225,56 @@ private struct StylePreview: View {
                 .font(.callout.weight(selected ? .semibold : .regular))
         }
         .contentShape(Rectangle())
+    }
+}
+
+/// The top of a Mac screen at a fifth of its size, with the Nook open at the chosen size.
+/// Changing the size makes the panel spring to it, the way the real one opens.
+private struct PanelSizePreview: View {
+    let size: PanelSize
+    let style: NotchStyle
+    private let scale: CGFloat = 0.22
+
+    var body: some View {
+        let panel = CGSize(width: size.size.width * scale, height: size.size.height * scale)
+        let shape = NotchShape(topRadius: 4, bottomRadius: 9)
+
+        ZStack(alignment: .top) {
+            LinearGradient(colors: [Color(red: 0.98, green: 0.55, blue: 0.4), Color(red: 0.45, green: 0.3, blue: 0.85)],
+                           startPoint: .topLeading, endPoint: .bottomTrailing)
+            Rectangle().fill(.black.opacity(0.22)).frame(height: 7)
+            ZStack(alignment: .top) {
+                if style == .liquidGlass {
+                    Color.clear.glassEffect(.regular.tint(.black.opacity(0.3)), in: shape)
+                } else {
+                    shape.fill(.black)
+                }
+                HStack(spacing: 3) {
+                    ForEach(0..<3, id: \.self) { index in
+                        RoundedRectangle(cornerRadius: 3.5, style: .continuous)
+                            .fill(.white.opacity(0.13))
+                            .frame(maxWidth: index == 0 ? .infinity : nil)
+                            .frame(width: index == 0 ? nil : panel.width * 0.22)
+                    }
+                }
+                .padding(.horizontal, 5)
+                .padding(.top, 10)
+                .padding(.bottom, 6)
+                NotchShape(topRadius: 2, bottomRadius: 3).fill(.black).frame(width: 40, height: 7)
+            }
+            .frame(width: panel.width, height: panel.height)
+        }
+        .frame(width: 1512 * scale, height: 86)
+        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+        .overlay(alignment: .bottomTrailing) {
+            Text(verbatim: "\(Int(size.size.width)) × \(Int(size.size.height)) pt")
+                .font(.caption2.monospacedDigit())
+                .foregroundStyle(.white.opacity(0.85))
+                .contentTransition(.numericText())
+                .padding(6)
+        }
+        .animation(.spring(response: 0.42, dampingFraction: 0.74), value: size)
+        .accessibilityHidden(true)
     }
 }
 

@@ -104,6 +104,15 @@ enum LiveActivityKind: Equatable {
         }
     }
 
+    /// Moments that need you: the island gives a small nudge when one of them arrives.
+    var wantsAttention: Bool {
+        switch self {
+        case .lowBattery, .timerFinished: true
+        case .agentFinished(_, _, let needsYou): needsYou
+        default: false
+        }
+    }
+
     /// Extra height below the camera housing for activities with a detail row.
     var detailHeight: CGFloat {
         switch self {

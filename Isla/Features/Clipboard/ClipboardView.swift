@@ -85,6 +85,7 @@ struct ClipboardView: View {
                     LazyHStack(spacing: 8) {
                         ForEach(filtered) { item in
                             ClipCard(item: item, model: model)
+                                .scrollEdgeEase(.horizontal)
                         }
                     }
                 }

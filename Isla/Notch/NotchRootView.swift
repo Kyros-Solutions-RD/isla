@@ -45,6 +45,9 @@ struct NotchRootView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             }
+            .overlay(alignment: .bottom) {
+                PeekHandle(visible: model.phase == .peek)
+            }
         .clipShape(shape)
         .contentShape(shape)
         .overlay(alignment: .topTrailing) {
@@ -89,6 +92,7 @@ struct NotchRootView: View {
         // A file dragged over the closed notch makes it swell, inviting the drop.
         .scaleEffect(model.isDropTargeted && !model.isOpen ? 1.07 : 1, anchor: .top)
         .animation(IslaMotion.activity, value: model.isDropTargeted)
+        .modifier(AttentionNudge(model: model))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .animation(model.isOpen ? IslaMotion.open : IslaMotion.close, value: model.phase)
         .animation(IslaMotion.activity, value: activities.presented?.id)
@@ -97,6 +101,51 @@ struct NotchRootView: View {
         .animation(IslaMotion.activity, value: size)
         .environment(\.colorScheme, .dark)
         .preferredColorScheme(.dark)
+    }
+}
+
+/// Under the pointer, a small handle appears at the foot of the island: it can be pulled open.
+private struct PeekHandle: View {
+    let visible: Bool
+
+    var body: some View {
+        Capsule()
+            .fill(.white.opacity(0.4))
+            .frame(width: visible ? 26 : 8, height: 3)
+            .padding(.bottom, 2.5)
+            .opacity(visible ? 1 : 0)
+            .animation(visible ? IslaMotion.activity.delay(0.06) : .easeOut(duration: 0.12), value: visible)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+    }
+}
+
+/// When something needs you (an agent waiting on an answer, a timer that ended, a low
+/// battery), the island gives one small shake once it has grown, like the Dynamic Island.
+private struct AttentionNudge: ViewModifier {
+    let model: NotchViewModel
+    @State private var trigger = 0
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    func body(content: Content) -> some View {
+        content
+            .keyframeAnimator(initialValue: CGFloat(0), trigger: trigger) { view, x in
+                view.offset(x: x)
+            } keyframes: { _ in
+                KeyframeTrack {
+                    LinearKeyframe(0, duration: 0.32)
+                    CubicKeyframe(-7, duration: 0.07)
+                    CubicKeyframe(6, duration: 0.09)
+                    CubicKeyframe(-4, duration: 0.08)
+                    CubicKeyframe(2, duration: 0.08)
+                    SpringKeyframe(0, duration: 0.24, spring: .snappy)
+                }
+            }
+            .onChange(of: LiveActivityCenter.shared.presented?.id) { _, _ in
+                guard !reduceMotion, !model.isOpen,
+                      LiveActivityCenter.shared.presented?.kind.wantsAttention == true else { return }
+                trigger += 1
+            }
     }
 }
 
@@ -247,6 +296,7 @@ struct OpenNotchView: View {
             NotchHeader(model: model)
                 .frame(height: model.notchSize.height)
                 .padding(.horizontal, 22)
+                .zIndex(1)
 
             TabContent(model: model)
                 .padding(.horizontal, 18)
@@ -351,11 +401,11 @@ struct NotchHeader: View {
             model.select(tab)
             Haptics.tap()
         }
-        .help(tab.titleString)
         .overlay(alignment: .topTrailing) {
             if tab == .shelf, ShelfStore.shared.items.count > 0 {
                 Text("\(ShelfStore.shared.items.count)")
                     .font(.system(size: 8.5, weight: .bold, design: .rounded))
+                    .contentTransition(.numericText(value: Double(ShelfStore.shared.items.count)))
                     .foregroundStyle(.black)
                     .padding(.horizontal, 3.5)
                     .frame(minWidth: 13, minHeight: 13)
@@ -372,6 +422,7 @@ struct NotchHeader: View {
             }
         }
         .animation(IslaMotion.snappy, value: AgentMonitor.shared.activeSessions.first?.state)
+        .animation(IslaMotion.snappy, value: ShelfStore.shared.items.count)
     }
 }
 
@@ -385,6 +436,9 @@ private struct HeaderTabButton: View {
     @State private var hovering = false
     /// Bumped each time this tab becomes the selected one, for a single bounce.
     @State private var bounce = 0
+    /// The tab's name, shown under the icon after a short hover (quicker than a tooltip).
+    @State private var showsName = false
+    @State private var nameDelay: Task<Void, Never>?
 
     var body: some View {
         Button(action: action) {
@@ -406,7 +460,36 @@ private struct HeaderTabButton: View {
                 .contentShape(Capsule())
         }
         .buttonStyle(PressSqueeze())
-        .onHover { hovering = $0 }
+        .onHover { inside in
+            hovering = inside
+            nameDelay?.cancel()
+            if inside {
+                nameDelay = Task {
+                    try? await Task.sleep(for: .milliseconds(380))
+                    if !Task.isCancelled { showsName = true }
+                }
+            } else {
+                showsName = false
+            }
+        }
+        .overlay(alignment: .bottom) {
+            if showsName {
+                Text(tab.title)
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .fixedSize()
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Capsule().fill(Color(white: 0.1)))
+                    .overlay(Capsule().strokeBorder(.white.opacity(0.14), lineWidth: 0.5))
+                    .offset(y: 26)
+                    .transition(.offset(y: -5).combined(with: .opacity).combined(with: .scale(scale: 0.88, anchor: .top)))
+                    .allowsHitTesting(false)
+                    .accessibilityHidden(true)
+            }
+        }
+        .animation(IslaMotion.snappy, value: showsName)
         .onChange(of: selected) { _, isSelected in
             if isSelected { bounce += 1 }
         }
@@ -454,6 +537,8 @@ struct HeaderActions: View {
                     Text("\(battery.level)%")
                         .font(.system(size: 11, weight: .semibold, design: .rounded))
                         .monospacedDigit()
+                        .contentTransition(.numericText(value: Double(battery.level)))
+                        .animation(IslaMotion.snappy, value: battery.level)
                         .foregroundStyle(.white.opacity(0.75))
                     BatteryGlyph(level: battery.level, charging: battery.isCharging || battery.isPluggedIn, width: 22)
                 }

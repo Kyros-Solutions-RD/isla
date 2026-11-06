@@ -2,6 +2,16 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.12 — 2026-11-06
+
+- Cuando algo te necesita (un agente esperando tu respuesta, un temporizador que terminó, la batería baja), la isla da una pequeña sacudida después de crecer, como la Dynamic Island.
+- Al apoyar el puntero en el notch aparece un pequeño tirador al pie de la isla: se puede abrir tirando de ella.
+- Al apoyar el puntero en el ícono de una pestaña del Nook, su nombre aparece justo debajo, más rápido que la ayuda del sistema.
+- Las listas del notch se deslizan con suavidad: las filas de la pestaña IA, Calendario, Tareas, Notas y Atajos, y los elementos de la Bandeja y del Portapapeles, entran y salen por los bordes al desplazarte en vez de cortarse.
+- La cifra de la batería y el contador de la Bandeja ruedan hasta su nuevo valor.
+- Ajustes › Apariencia muestra el panel abierto en sus proporciones reales sobre la pantalla de un Mac, y salta con un resorte al tamaño que eliges.
+- La web es más limpia y fluida: superficies planas sin bordes ni brillos sobrantes, texto más grande, la isla de la demo se ensancha primero y luego baja como en la app, las pestañas se funden, el paisaje se mueve al desplazarte y cambiar de idioma o ir a Novedades se funde en vez de saltar.
+
 ## 1.1.11 — 2026-11-05
 
 - La isla se abre como un líquido que sale de la cámara: primero se ensancha y luego baja con un pequeño rebote, y al cerrarse se pliega hacia arriba antes de recogerse en la cámara. El ancho y el alto se mueven ahora con su propio resorte, y el contenido se recoge con el panel en vez de solo desvanecerse.

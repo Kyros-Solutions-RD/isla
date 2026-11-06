@@ -103,6 +103,7 @@ private struct AgentsListCard: View {
                         VStack(spacing: 2) {
                             ForEach(Array(rows.enumerated()), id: \.element.id) { index, session in
                                 AgentRow(session: session)
+                                    .scrollEdgeEase()
                                     .emerge(delay: 0.1 + Double(min(index, 5)) * 0.04, offset: CGSize(width: 0, height: -6))
                                     .transition(.asymmetric(
                                         insertion: AnyTransition(.blurReplace).combined(with: .scale(scale: 0.96, anchor: .top)),
@@ -397,6 +398,7 @@ private struct LocalModelsCard: View {
                         VStack(spacing: 6) {
                             ForEach(monitor.models) { model in
                                 LocalModelRow(model: model)
+                                    .scrollEdgeEase()
                                     .transition(AnyTransition(.blurReplace).combined(with: .scale(scale: 0.96, anchor: .top)))
                             }
                         }

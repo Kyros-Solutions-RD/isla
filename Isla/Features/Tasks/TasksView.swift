@@ -24,6 +24,7 @@ struct TasksView: View {
                             VStack(spacing: 2) {
                                 ForEach(store.tasks) { task in
                                     TaskRow(task: task)
+                                        .scrollEdgeEase()
                                 }
                             }
                             .padding(.bottom, 8)

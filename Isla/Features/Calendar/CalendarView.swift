@@ -124,6 +124,7 @@ private struct DayAgenda: View {
                         VStack(spacing: 4) {
                             ForEach(events) { event in
                                 EventRow(event: event)
+                                    .scrollEdgeEase()
                             }
                         }
                         .padding(.bottom, 8)

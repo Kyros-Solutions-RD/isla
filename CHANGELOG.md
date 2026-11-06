@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.12 — 2026-11-06
+
+- When something needs you (an agent waiting on your answer, a timer that ended, a low battery), the island gives one small shake once it has grown, like the Dynamic Island.
+- Rest the pointer on the notch and a small handle appears at its foot: it can be pulled open.
+- Rest the pointer on a tab icon in the Nook and its name appears right under it, quicker than a tooltip.
+- Lists in the notch glide: rows in the AI tab, Calendar, Tasks, Notes and Shortcuts, and items on the Shelf and in the Clipboard, ease in and out at the edges as you scroll instead of being cut.
+- The battery figure and the Shelf count roll to their new value.
+- Settings › Appearance shows the open panel at its real proportions on a Mac screen, and it springs to the size you pick.
+- The website is cleaner and more fluid: flat surfaces without stray outlines or glows, larger text, the demo's island opens wide first and then drops down like the app, tabs cross-fade, the scenery drifts as you scroll, and switching language or going to What's new fades instead of jumping.
+
 ## 1.1.11 — 2026-11-05
 
 - The island opens like liquid pouring out of the camera: it widens first and then drops down with a little bounce, and closing it folds up before drawing back into the camera. Width and height now move on their own springs, and the content folds away with the panel instead of just fading.

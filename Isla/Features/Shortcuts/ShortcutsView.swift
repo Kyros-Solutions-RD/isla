@@ -95,6 +95,7 @@ struct ShortcutsView: View {
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 4), spacing: 8) {
                         ForEach(list, id: \.self) { name in
                             ShortcutTile(name: name)
+                                .scrollEdgeEase()
                         }
                     }
                 }

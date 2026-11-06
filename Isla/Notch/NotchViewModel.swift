@@ -86,7 +86,7 @@ final class NotchViewModel {
             return openSize
         case .peek:
             let closed = closedSize
-            return CGSize(width: closed.width + 18, height: closed.height + 5)
+            return CGSize(width: closed.width + 18, height: closed.height + 8)
         case .closed:
             return closedSize
         }
