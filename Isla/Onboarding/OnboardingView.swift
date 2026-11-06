@@ -109,7 +109,7 @@ struct OnboardingView: View {
                 FeatureTile(symbol: "tray.full.fill", tint: .teal, title: "Shelf & AirDrop", text: "Drop files on the notch, drag them anywhere.")
                 FeatureTile(symbol: "calendar", tint: .red, title: "Calendar", text: "Up next and one-click meeting links.")
                 FeatureTile(symbol: "doc.on.clipboard.fill", tint: .orange, title: "Clipboard", text: "Searchable history. Never passwords.")
-                FeatureTile(symbol: "timer", tint: .orange, title: "Focus", text: "Pomodoro, timers and focus sounds.")
+                FeatureTile(symbol: "sparkles", tint: .orange, title: "AI Agents", text: "Your agents and local models, live.")
                 FeatureTile(symbol: "capsule.inset.filled", tint: .purple, title: "Live Activities", text: "Charging, AirPods, volume and downloads.")
             }
         }

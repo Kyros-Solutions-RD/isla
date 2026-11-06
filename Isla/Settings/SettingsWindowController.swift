@@ -29,6 +29,25 @@ enum SettingsPane: String, CaseIterable, Identifiable, Hashable {
         }
     }
 
+    /// The pane's name as plain text, for the window title.
+    var titleString: String {
+        switch self {
+        case .general: String(localized: "General")
+        case .appearance: String(localized: "Appearance")
+        case .nook: String(localized: "Nook & Widgets")
+        case .activities: String(localized: "Live Activities")
+        case .agents: String(localized: "AI Agents")
+        case .media: String(localized: "Music")
+        case .shelf: String(localized: "Shelf")
+        case .clipboard: String(localized: "Clipboard")
+        case .calendar: String(localized: "Calendar & Tasks")
+        case .focus: String(localized: "Focus & Timers")
+        case .keyboard: String(localized: "Keyboard")
+        case .permissions: String(localized: "Privacy & Permissions")
+        case .about: String(localized: "About Isla")
+        }
+    }
+
     var symbol: String {
         switch self {
         case .general: "gearshape.fill"
@@ -106,11 +125,21 @@ final class SettingsWindowController: NSObject, NSWindowDelegate {
             window.center()
             window.setFrameAutosaveName("IslaSettings")
             self.window = window
+            followSelectionInTitle()
         }
         NSApp.setActivationPolicy(.regular)
         window?.makeKeyAndOrderFront(nil)
         // The new activation policy takes effect on the next turn of the run loop.
         DispatchQueue.main.async { [weak self] in Activation.bringToFront(self?.window) }
+    }
+
+    /// Like System Settings, the window is named after the pane on screen.
+    private func followSelectionInTitle() {
+        withObservationTracking {
+            window?.title = (navigation.selection ?? .general).titleString
+        } onChange: { [weak self] in
+            DispatchQueue.main.async { self?.followSelectionInTitle() }
+        }
     }
 
     func windowWillClose(_ notification: Notification) {

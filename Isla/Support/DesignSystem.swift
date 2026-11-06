@@ -237,25 +237,30 @@ struct NotchEmptyState: View {
     var action: (() -> Void)? = nil
 
     var body: some View {
+        // Each line comes out of the notch a beat after the one above, like the Nook's cards.
         VStack(spacing: 8) {
             Image(systemName: symbol)
                 .font(.system(size: 26, weight: .light))
                 .foregroundStyle(.tertiary)
                 .symbolRenderingMode(.hierarchical)
+                .emerge(delay: 0.08)
             Text(title)
                 .font(.system(size: 13, weight: .semibold))
                 .foregroundStyle(.secondary)
+                .emerge(delay: 0.12, offset: CGSize(width: 0, height: -5))
             if let message {
                 Text(message)
                     .font(.system(size: 11.5))
                     .foregroundStyle(.tertiary)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: 320)
+                    .emerge(delay: 0.16, offset: CGSize(width: 0, height: -5))
             }
             if let actionTitle, let action {
                 Button(actionTitle, action: action)
                     .buttonStyle(NotchPillButtonStyle())
                     .padding(.top, 2)
+                    .emerge(delay: 0.2, offset: CGSize(width: 0, height: -5))
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

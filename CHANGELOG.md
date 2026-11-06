@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.5 — 2026-11-05
+
+- The Settings window is named after the pane you are in, like System Settings.
+- In the AI tab, a long session title keeps its room: the badge shortens to the model, since the icon already shows the tool.
+- Empty states in every tab come out of the notch line by line, like the Nook's cards.
+- The welcome tour introduces AI Agents.
+
 ## 1.1.4 — 2026-11-05
 
 - More battery savings, measured tab by tab: the Focus tab with a timer running went from about 39 % of a core to under 2 %, and a timer around the closed notch from about 10 % to under 1.5 %.

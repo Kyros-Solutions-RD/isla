@@ -4884,6 +4884,16 @@
         }
       }
     },
+    "Your agents and local models, live.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus agentes y modelos locales, en vivo."
+          }
+        }
+      }
+    },
     "Your data": {
       "localizations": {
         "es": {

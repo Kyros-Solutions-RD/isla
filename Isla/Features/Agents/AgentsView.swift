@@ -148,20 +148,11 @@ private struct AgentRow: View {
                 .padding(.leading, 1)
 
             VStack(alignment: .leading, spacing: 2) {
-                HStack(spacing: 6) {
-                    Text(verbatim: session.displayTitle)
-                        .font(.system(size: 12.5, weight: .semibold))
-                        .lineLimit(1)
-                    if session.title != nil || session.project != nil {
-                        Text(verbatim: [session.tool.name, session.model].compactMap { $0 }.joined(separator: " · "))
-                            .font(.system(size: 9, weight: .bold))
-                            .foregroundStyle(session.tool.tint)
-                            .padding(.horizontal, 5)
-                            .padding(.vertical, 1.5)
-                            .background(Capsule().fill(session.tool.tint.opacity(0.16)))
-                            .fixedSize()
-                            .help(session.contextSummary ?? session.tool.name)
-                    }
+                // A long title keeps its room: the badge shrinks to the model, since the
+                // glyph already says which tool it is.
+                ViewThatFits(in: .horizontal) {
+                    titleLine(badge: [session.tool.name, session.model].compactMap { $0 }.joined(separator: " · "))
+                    titleLine(badge: session.model ?? session.tool.name)
                 }
                 detailLine
                 stepLine
@@ -206,6 +197,24 @@ private struct AgentRow: View {
 
     /// Folder, host app, start time and usage limit. Drops the least useful parts when
     /// the row is narrow instead of cutting the folder.
+    private func titleLine(badge: String) -> some View {
+        HStack(spacing: 6) {
+            Text(verbatim: session.displayTitle)
+                .font(.system(size: 12.5, weight: .semibold))
+                .lineLimit(1)
+            if session.title != nil || session.project != nil {
+                Text(verbatim: badge)
+                    .font(.system(size: 9, weight: .bold))
+                    .foregroundStyle(session.tool.tint)
+                    .padding(.horizontal, 5)
+                    .padding(.vertical, 1.5)
+                    .background(Capsule().fill(session.tool.tint.opacity(0.16)))
+                    .fixedSize()
+                    .help([session.tool.name, session.contextSummary].compactMap { $0 }.joined(separator: " · "))
+            }
+        }
+    }
+
     private var detailLine: some View {
         ViewThatFits(in: .horizontal) {
             detailParts(folder: session.shortFolder, host: true)

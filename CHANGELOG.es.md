@@ -2,6 +2,13 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.5 — 2026-11-05
+
+- La ventana de Ajustes se llama como el panel en el que estás, como los Ajustes del Sistema.
+- En la pestaña IA, un título de sesión largo conserva su espacio: la etiqueta se acorta al modelo, porque el ícono ya muestra la herramienta.
+- Los estados vacíos de todas las pestañas salen del notch línea por línea, como las tarjetas del Nook.
+- El recorrido de bienvenida presenta los Agentes de IA.
+
 ## 1.1.4 — 2026-11-05
 
 - Más ahorro de batería, medido pestaña por pestaña: la pestaña Enfoque con un temporizador en marcha pasó de un 39 % de un núcleo a menos de un 2 %, y un temporizador alrededor del notch cerrado de un 10 % a menos de un 1,5 %.
