@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.10</title>
+      <pubDate>Fri, 06 Nov 2026 03:11:34 GMT</pubDate>
+      <sparkle:version>18</sparkle:version>
+      <sparkle:shortVersionString>1.1.10</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>VoiceOver names every icon button in the notch by what it does: lyrics, join a meeting, open Calendar, fewer or more minutes, reset, play the focus sound, new note, delete, restart, faster or slower, bigger or smaller text. Before, some were read by their symbol (“bubble”, “circle”, “trash can”).</li><li>Task checkboxes are read as the task and whether it is completed.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.10.dmg" sparkle:edSignature="aTBSMeZW/tQtj0IKgPPqNlnBvtOLPx2rhTxNkrX9ke6ax7Lui7PWS9Gf5QpJwbqVI43zyHG3ePURlG9nwyAdCA==" length="11844884" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.9</title>
       <pubDate>Fri, 06 Nov 2026 02:45:35 GMT</pubDate>
       <sparkle:version>17</sparkle:version>
