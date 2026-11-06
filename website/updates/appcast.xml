@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.12</title>
+      <pubDate>Fri, 06 Nov 2026 14:18:38 GMT</pubDate>
+      <sparkle:version>20</sparkle:version>
+      <sparkle:shortVersionString>1.1.12</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>When something needs you (an agent waiting on your answer, a timer that ended, a low battery), the island gives one small shake once it has grown, like the Dynamic Island.</li><li>Rest the pointer on the notch and a small handle appears at its foot: it can be pulled open.</li><li>Rest the pointer on a tab icon in the Nook and its name appears right under it, quicker than a tooltip.</li><li>Lists in the notch glide: rows in the AI tab, Calendar, Tasks, Notes and Shortcuts, and items on the Shelf and in the Clipboard, ease in and out at the edges as you scroll instead of being cut.</li><li>The battery figure and the Shelf count roll to their new value.</li><li>Settings › Appearance shows the open panel at its real proportions on a Mac screen, and it springs to the size you pick.</li><li>The website is cleaner and more fluid: flat surfaces without stray outlines or glows, larger text, the demo&#x27;s island opens wide first and then drops down like the app, tabs cross-fade, the scenery drifts as you scroll, and switching language or going to What&#x27;s new fades instead of jumping.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.12.dmg" sparkle:edSignature="OYdRlOk+6Mk0b80tNifLltWv3BgYY44uvIyGKmeTLSpZBub0w0yJEGhdrswPudPSJEsRGdTy2SobA+ax4oXCCQ==" length="11956450" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.11</title>
       <pubDate>Fri, 06 Nov 2026 03:59:13 GMT</pubDate>
       <sparkle:version>19</sparkle:version>
