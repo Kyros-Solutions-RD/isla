@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.6</title>
+      <pubDate>Fri, 06 Nov 2026 01:19:14 GMT</pubDate>
+      <sparkle:version>14</sparkle:version>
+      <sparkle:shortVersionString>1.1.6</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>The menu bar menu lists the agents at work or waiting, with their state; click one to bring its app forward. It also opens the AI tab.</li><li>⌘0 switches to the tenth tab, after ⌘1…⌘9.</li><li>VoiceOver reads the notch header by name (Nook, AI, Shelf… Keep open, Settings) instead of describing the icons, and reads each agent with its tool, model, state, current step and folder.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.6.dmg" sparkle:edSignature="YfR032Ro5wurAhKWmq4y5P+5mybmQcXUYjl4QLYNEBkjsyv8Oxc7oOZRGtG0rwvUHaSWguUI2A8fgT7CHhdmBw==" length="11757579" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.5</title>
       <pubDate>Fri, 06 Nov 2026 00:40:40 GMT</pubDate>
       <sparkle:version>13</sparkle:version>
