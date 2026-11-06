@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.4</title>
+      <pubDate>Fri, 06 Nov 2026 00:15:04 GMT</pubDate>
+      <sparkle:version>12</sparkle:version>
+      <sparkle:shortVersionString>1.1.4</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>More battery savings, measured tab by tab: the Focus tab with a timer running went from about 39 % of a core to under 2 %, and a timer around the closed notch from about 10 % to under 1.5 %.</li><li>The stopwatch only redraws while it runs, and timer rings no longer animate a change too small to see every second.</li><li>Downloads of unknown size spin their ring with Core Animation instead of redrawing the notch.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.4.dmg" sparkle:edSignature="cdR/WPtqeRw+qC3pFRAlhyQc3HqLrT5TqNHoW8MlPKIulALymFzjyJs3Q0xwINGRYfgc1dqlJ9KUIfGKFfNUAA==" length="11716456" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.3</title>
       <pubDate>Thu, 05 Nov 2026 23:41:20 GMT</pubDate>
       <sparkle:version>11</sparkle:version>
