@@ -2,6 +2,11 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.10 — 2026-11-05
+
+- VoiceOver nombra cada botón con ícono del notch por lo que hace: letras, unirse a una reunión, abrir Calendario, menos o más minutos, restablecer, reproducir el sonido de enfoque, nueva nota, eliminar, reiniciar, más o menos velocidad, texto más grande o más pequeño. Antes algunos se leían por su símbolo («burbuja», «círculo», «basurero»).
+- Las casillas de las tareas se leen como la tarea y si está completada.
+
 ## 1.1.9 — 2026-11-05
 
 ![La pestaña IA con agentes trabajando y modelos locales](website/assets/app/glass-agents.jpg)

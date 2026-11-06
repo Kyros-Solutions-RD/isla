@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.10 — 2026-11-05
+
+- VoiceOver names every icon button in the notch by what it does: lyrics, join a meeting, open Calendar, fewer or more minutes, reset, play the focus sound, new note, delete, restart, faster or slower, bigger or smaller text. Before, some were read by their symbol (“bubble”, “circle”, “trash can”).
+- Task checkboxes are read as the task and whether it is completed.
+
 ## 1.1.9 — 2026-11-05
 
 ![The AI tab with agents at work and local models](website/assets/app/glass-agents.jpg)

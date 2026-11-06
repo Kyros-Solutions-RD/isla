@@ -1081,6 +1081,16 @@
         }
       }
     },
+    "Completed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Completada"
+          }
+        }
+      }
+    },
     "Compress (ZIP)": {
       "localizations": {
         "es": {
@@ -1257,6 +1267,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Oscuro"
+          }
+        }
+      }
+    },
+    "Decrease %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reducir %@"
           }
         }
       }
@@ -1531,6 +1551,16 @@
         }
       }
     },
+    "Fewer minutes": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menos minutos"
+          }
+        }
+      }
+    },
     "Files": {
       "localizations": {
         "es": {
@@ -1787,6 +1817,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Imágenes a PDF"
+          }
+        }
+      }
+    },
+    "Increase %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aumentar %@"
           }
         }
       }
@@ -2391,6 +2431,16 @@
         }
       }
     },
+    "More minutes": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más minutos"
+          }
+        }
+      }
+    },
     "Mostly Clear": {
       "localizations": {
         "es": {
@@ -2717,6 +2767,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Widgets del Nook"
+          }
+        }
+      }
+    },
+    "Not completed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pendiente"
           }
         }
       }
@@ -3197,6 +3257,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reproduce algo en Música, Spotify o tu navegador y aparecerá aquí."
+          }
+        }
+      }
+    },
+    "Play the focus sound": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reproducir el sonido de enfoque"
           }
         }
       }
@@ -4180,6 +4250,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dejar de mantener despierto"
+          }
+        }
+      }
+    },
+    "Stop the focus sound": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detener el sonido de enfoque"
           }
         }
       }

@@ -153,6 +153,10 @@ private struct TaskRow: View {
                         .contentTransition(.symbolEffect(.replace))
                 }
                 .buttonStyle(.plain)
+                // VoiceOver: the task and whether it is done, not "circle" / "selected".
+                .accessibilityLabel(Text(verbatim: task.title))
+                .accessibilityValue(task.isDone ? Text("Completed") : Text("Not completed"))
+                .accessibilityAddTraits(.isToggle)
 
                 Text(task.title)
                     .font(.system(size: 12))

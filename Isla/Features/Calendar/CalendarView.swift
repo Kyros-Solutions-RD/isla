@@ -50,6 +50,7 @@ private struct WeekStrip: View {
                     }
                     .buttonStyle(NotchIconButtonStyle(size: 22))
                     .help(String(localized: "Open Calendar"))
+                    .accessibilityLabel(Text("Open Calendar"))
                 }
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 2), count: 7), spacing: 4) {
                     ForEach(days, id: \.self) { day in
@@ -249,6 +250,8 @@ struct UpNextCard: View {
                                 Button { NSWorkspace.shared.open(url) } label: { Image(systemName: "video.fill") }
                                     .buttonStyle(NotchIconButtonStyle(size: 22))
                                     .foregroundStyle(.green)
+                                    .help(String(localized: "Join"))
+                                    .accessibilityLabel(Text("Join \(event.title)"))
                             }
                         }
                     }

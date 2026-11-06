@@ -76,9 +76,11 @@ struct PomodoroCard: View {
                             Button { store.skipPomodoroPhase() } label: { Image(systemName: "forward.end.fill") }
                                 .buttonStyle(NotchIconButtonStyle(size: 28))
                                 .help(String(localized: "Skip"))
+                                .accessibilityLabel(Text("Skip"))
                             Button { store.resetPomodoro() } label: { Image(systemName: "arrow.counterclockwise") }
                                 .buttonStyle(NotchIconButtonStyle(size: 28))
                                 .help(String(localized: "Reset"))
+                                .accessibilityLabel(Text("Reset"))
                         }
                     }
                     Spacer(minLength: 0)
@@ -152,6 +154,7 @@ private struct MinuteWheel: View {
         HStack(spacing: 2) {
             Button { step(-1) } label: { Image(systemName: "minus") }
                 .buttonStyle(NotchIconButtonStyle(size: 22))
+                .accessibilityLabel(Text("Fewer minutes"))
             Text("\(Int(minutes))")
                 .font(.system(size: 22, weight: .bold, design: .rounded))
                 .monospacedDigit()
@@ -173,6 +176,7 @@ private struct MinuteWheel: View {
                     .onEnded { _ in dragStart = nil })
             Button { step(1) } label: { Image(systemName: "plus") }
                 .buttonStyle(NotchIconButtonStyle(size: 22))
+                .accessibilityLabel(Text("More minutes"))
         }
         .padding(.horizontal, 4)
         .frame(height: 34)
@@ -208,6 +212,7 @@ private struct TimerRow: View {
                     Button { store.addMinute(to: timer) } label: { Image(systemName: "plus") }
                         .buttonStyle(NotchIconButtonStyle(size: 20))
                         .help(String(localized: "Add a minute"))
+                        .accessibilityLabel(Text("Add a minute"))
                     Button { store.toggle(timer) } label: { Image(systemName: timer.isRunning ? "pause.fill" : "play.fill") }
                         .buttonStyle(NotchIconButtonStyle(size: 20))
                     Button { store.remove(timer) } label: { Image(systemName: "xmark") }
@@ -249,6 +254,8 @@ private struct FocusExtrasCard: View {
                     }
                     .buttonStyle(NotchIconButtonStyle(size: 26, prominent: true))
                     Button { store.resetStopwatch() } label: { Image(systemName: "arrow.counterclockwise") }
+                        .help(String(localized: "Reset"))
+                        .accessibilityLabel(Text("Reset"))
                         .buttonStyle(NotchIconButtonStyle(size: 26))
                 }
                 Divider().overlay(.white.opacity(0.1))
@@ -273,6 +280,8 @@ private struct FocusExtrasCard: View {
                             .contentTransition(.symbolEffect(.replace))
                     }
                     .buttonStyle(NotchIconButtonStyle(size: 24))
+                    .help(sounds.isPlaying ? String(localized: "Stop the focus sound") : String(localized: "Play the focus sound"))
+                    .accessibilityLabel(sounds.isPlaying ? Text("Stop the focus sound") : Text("Play the focus sound"))
                 }
                 Slider(value: $sounds.volume, in: 0...1)
                     .controlSize(.mini)

@@ -105,6 +105,7 @@ struct TeleprompterView: View {
                 Button { store.restart() } label: { Image(systemName: "backward.end.fill") }
                     .buttonStyle(NotchIconButtonStyle(size: 30))
                     .help(String(localized: "Restart"))
+                    .accessibilityLabel(Text("Restart"))
                 Button {
                     lastTick = nil
                     store.togglePlay()
@@ -150,12 +151,14 @@ private struct ValueStepper: View {
         HStack(spacing: 2) {
             Button { value = max(range.lowerBound, value - step) } label: { Image(systemName: "minus") }
                 .buttonStyle(NotchIconButtonStyle(size: 22))
+                .accessibilityLabel(Text("Decrease \(help)"))
             Image(systemName: symbol)
                 .font(.system(size: 10.5, weight: .semibold))
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity)
             Button { value = min(range.upperBound, value + step) } label: { Image(systemName: "plus") }
                 .buttonStyle(NotchIconButtonStyle(size: 22))
+                .accessibilityLabel(Text("Increase \(help)"))
         }
         .padding(.horizontal, 3)
         .frame(height: 28)
@@ -179,6 +182,8 @@ private struct ScriptPicker: View {
                         editing = true
                     } label: { Image(systemName: "plus") }
                     .buttonStyle(NotchIconButtonStyle(size: 22))
+                    .help(String(localized: "New Script"))
+                    .accessibilityLabel(Text("New Script"))
                 }
                 .padding(.horizontal, 4)
                 ScrollView(showsIndicators: false) {

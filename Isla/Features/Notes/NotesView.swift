@@ -19,6 +19,7 @@ struct NotesView: View {
                         Button { store.create() } label: { Image(systemName: "square.and.pencil") }
                             .buttonStyle(NotchIconButtonStyle(size: 24))
                             .help(String(localized: "New Note"))
+                            .accessibilityLabel(Text("New Note"))
                     }
                     .padding(.horizontal, 4)
                     ScrollView(showsIndicators: false) {
@@ -113,9 +114,11 @@ private struct NoteEditor: View {
                 Button { store.exportToAppleNotes(note) } label: { Image(systemName: "square.and.arrow.up") }
                     .buttonStyle(NotchIconButtonStyle(size: 22))
                     .help(String(localized: "Save to Apple Notes"))
+                    .accessibilityLabel(Text("Save to Apple Notes"))
                 Button { store.delete(note) } label: { Image(systemName: "trash") }
                     .buttonStyle(NotchIconButtonStyle(size: 22))
                     .help(String(localized: "Delete"))
+                    .accessibilityLabel(Text("Delete"))
             }
             .padding(6)
         }

@@ -35,6 +35,7 @@ struct NowPlayingCard: View {
                                 }
                                 .buttonStyle(NotchIconButtonStyle(size: 24))
                                 .help(String(localized: "Lyrics"))
+                                .accessibilityLabel(Text("Lyrics"))
                             }
                         }
 
