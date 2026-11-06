@@ -177,7 +177,9 @@ struct OpenNotchView: View {
                 .padding(.horizontal, 18)
                 .padding(.top, 8)
                 .padding(.bottom, 16)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                // minHeight 0: a tab that asks for more room than the panel has can never
+                // push the header up under the camera.
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
         .frame(width: model.openSize.width, height: model.openSize.height)
     }

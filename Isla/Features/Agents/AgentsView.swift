@@ -31,7 +31,7 @@ struct AgentsView: View {
                             }
                             if !monitor.apps.isEmpty || !prefs.agentsLocalModels {
                                 AIAppsCard()
-                                    .frame(height: prefs.agentsLocalModels ? 70 : nil)
+                                    .fixedSize(horizontal: false, vertical: prefs.agentsLocalModels)
                                     .emerge(delay: 0.16)
                             }
                         }
@@ -55,6 +55,8 @@ private struct AgentsListCard: View {
 
     var body: some View {
         let sessions = monitor.sessions
+        // Finished runs stay at the end of the list for a few minutes.
+        let rows = sessions + monitor.ended
         let working = sessions.filter { $0.state == .working }.count
         let attention = sessions.filter { $0.state == .needsYou }.count
 
@@ -79,7 +81,7 @@ private struct AgentsListCard: View {
                 }
                 .padding(.horizontal, 4)
 
-                if sessions.isEmpty {
+                if rows.isEmpty {
                     VStack(spacing: 6) {
                         Spacer(minLength: 0)
                         Image(systemName: "moon.zzz.fill")
@@ -99,7 +101,7 @@ private struct AgentsListCard: View {
                 } else {
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 2) {
-                            ForEach(Array(sessions.enumerated()), id: \.element.id) { index, session in
+                            ForEach(Array(rows.enumerated()), id: \.element.id) { index, session in
                                 AgentRow(session: session)
                                     .emerge(delay: 0.1 + Double(min(index, 5)) * 0.04, offset: CGSize(width: 0, height: -6))
                                     .transition(.asymmetric(
@@ -187,6 +189,7 @@ private struct AgentRow: View {
                     .transition(.scale(scale: 0.2, anchor: .center).combined(with: .opacity))
             }
         }
+        .opacity(session.state == .ended ? 0.55 : 1)
         .contentShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         .onHover { hovering = $0 }
         .onTapGesture { monitor.bringToFront(session) }
@@ -312,6 +315,8 @@ private struct AgentRow: View {
             return String(localized: "Working since \(session.stateSince.formatted(date: .omitted, time: .shortened)) · running since \(started)")
         case .idle:
             return String(localized: "Running since \(started)")
+        case .ended:
+            return String(localized: "Ended at \(session.stateSince.formatted(date: .omitted, time: .shortened)) · started at \(started)")
         case .waiting, .needsYou:
             return String(localized: "Waiting since \(session.stateSince.formatted(date: .omitted, time: .shortened)) · running since \(started)")
         }
@@ -364,10 +369,26 @@ private struct LocalModelsCard: View {
                         Text(monitor.servers.isEmpty ? "No model loaded" : "Ready, no model loaded")
                             .font(.system(size: 11.5, weight: .semibold))
                             .foregroundStyle(.secondary)
-                        Text("Models you load in Ollama or LM Studio appear here with the memory they use.")
-                            .font(.system(size: 10.5))
-                            .foregroundStyle(.tertiary)
-                            .fixedSize(horizontal: false, vertical: true)
+                        if let server = monitor.servers.first(where: { monitor.canOpen($0) }) {
+                            Button {
+                                monitor.open(server)
+                            } label: {
+                                Label {
+                                    Text("Open \(server.name)")
+                                } icon: {
+                                    Image(systemName: "arrow.up.forward.app")
+                                }
+                            }
+                            .buttonStyle(NotchPillButtonStyle(tint: .purple))
+                            .padding(.top, 4)
+                            .transition(.blurReplace)
+                            .help(String(localized: "Models you load in Ollama or LM Studio appear here with the memory they use."))
+                        } else {
+                            Text("Models you load in Ollama or LM Studio appear here with the memory they use.")
+                                .font(.system(size: 10.5))
+                                .foregroundStyle(.tertiary)
+                                .lineLimit(4)
+                        }
                         Spacer(minLength: 0)
                     }
                     .transition(.blurReplace)
@@ -484,12 +505,11 @@ private struct AIAppsCard: View {
                         .font(.system(size: 11))
                         .foregroundStyle(.tertiary)
                 } else {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 6) {
-                            ForEach(monitor.apps) { app in
-                                AppIconButton(app: app)
-                                    .transition(.scale(scale: 0.5).combined(with: .opacity))
-                            }
+                    // Named chips, two to a row: an icon alone left most of the card empty.
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 92), spacing: 6)], alignment: .leading, spacing: 6) {
+                        ForEach(monitor.apps.prefix(6)) { app in
+                            AppChip(app: app)
+                                .transition(.scale(scale: 0.6).combined(with: .opacity))
                         }
                     }
                 }
@@ -498,27 +518,39 @@ private struct AIAppsCard: View {
     }
 }
 
-private struct AppIconButton: View {
+private struct AppChip: View {
     let app: AIApp
     @State private var hovering = false
 
     var body: some View {
         Button { AgentMonitor.shared.activate(app) } label: {
-            Group {
-                if let icon = AgentMonitor.shared.icon(bundleID: app.bundleID) {
-                    Image(nsImage: icon).resizable().aspectRatio(contentMode: .fit)
-                } else {
-                    Image(systemName: "app.fill").font(.system(size: 20))
+            HStack(spacing: 6) {
+                Group {
+                    if let icon = AgentMonitor.shared.icon(bundleID: app.bundleID) {
+                        Image(nsImage: icon).resizable().aspectRatio(contentMode: .fit)
+                    } else {
+                        Image(systemName: "app.fill").font(.system(size: 14))
+                    }
                 }
+                .frame(width: 20, height: 20)
+                .scaleEffect(hovering ? 1.1 : 1)
+                Text(verbatim: app.name)
+                    .font(.system(size: 11, weight: .semibold))
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+                Spacer(minLength: 0)
             }
-            .frame(width: 30, height: 30)
-            .scaleEffect(hovering ? 1.12 : 1, anchor: .bottom)
-            .shadow(color: .black.opacity(hovering ? 0.35 : 0), radius: 4, y: 2)
+            .padding(.leading, 4)
+            .padding(.trailing, 8)
+            .padding(.vertical, 4)
+            .background(Capsule().fill(.white.opacity(hovering ? 0.14 : 0.07)))
+            .contentShape(Capsule())
         }
         .buttonStyle(PressSqueeze())
         .onHover { hovering = $0 }
         .animation(IslaMotion.snappy, value: hovering)
         .help(app.name)
+        .accessibilityLabel(Text(verbatim: app.name))
     }
 }
 

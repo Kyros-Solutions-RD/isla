@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.7 — 2026-11-05
+
+- An agent that finishes and exits (a one-shot run, a closed terminal) no longer just disappears: it stays in the AI tab for ten minutes as **Ended**, and the island says it is done.
+- The AI apps you have open show as named chips, and when LM Studio or Ollama is running with no model loaded, a button opens it.
+- A tab with a lot to show can no longer push the notch's header up under the camera.
+
 ## 1.1.6 — 2026-11-05
 
 - The menu bar menu lists the agents at work or waiting, with their state; click one to bring its app forward. It also opens the AI tab.

@@ -18,6 +18,8 @@ enum AgentState: Equatable {
     case needsYou
     /// An editor that is open but quiet.
     case idle
+    /// The process is gone; kept for a few minutes so the user sees it finished.
+    case ended
 
     var title: LocalizedStringKey {
         switch self {
@@ -25,6 +27,7 @@ enum AgentState: Equatable {
         case .waiting: "Waiting"
         case .needsYou: "Needs you"
         case .idle: "Idle"
+        case .ended: "Ended"
         }
     }
 
@@ -35,6 +38,7 @@ enum AgentState: Equatable {
         case .waiting: String(localized: "Waiting")
         case .needsYou: String(localized: "Needs you")
         case .idle: String(localized: "Idle")
+        case .ended: String(localized: "Ended")
         }
     }
 
@@ -44,6 +48,7 @@ enum AgentState: Equatable {
         case .waiting: Color(red: 1.0, green: 0.8, blue: 0.32)
         case .needsYou: Color(red: 1.0, green: 0.55, blue: 0.3)
         case .idle: Color.white.opacity(0.6)
+        case .ended: Color.white.opacity(0.5)
         }
     }
 
@@ -53,6 +58,7 @@ enum AgentState: Equatable {
         case .waiting: "hourglass"
         case .needsYou: "hand.raised.fill"
         case .idle: "moon.fill"
+        case .ended: "checkmark.circle"
         }
     }
 }
@@ -81,6 +87,8 @@ struct AgentSession: Identifiable, Equatable {
     /// Tokens in the conversation the model saw last, and its window when the agent says.
     var contextTokens: Int?
     var contextWindow: Int?
+    /// When the process went away (ended sessions only).
+    var endedAt: Date? = nil
 
     /// "Context: 128K tokens", or "Context: 128K of 272K tokens (47%)".
     var contextSummary: String? {
@@ -132,6 +140,8 @@ final class AgentMonitor {
     static let shared = AgentMonitor()
 
     private(set) var sessions: [AgentSession] = []
+    /// Sessions whose process ended in the last few minutes, newest first.
+    private(set) var ended: [AgentSession] = []
     private(set) var apps: [AIApp] = []
     private(set) var models: [LocalModel] = []
     private(set) var servers: [LocalServer] = []
@@ -160,7 +170,9 @@ final class AgentMonitor {
         sessions.filter { $0.state == .needsYou } + sessions.filter { $0.state == .working }
     }
     var hasActiveAgents: Bool { sessions.contains { $0.state == .working || $0.state == .needsYou } }
-    var isEmpty: Bool { sessions.isEmpty && models.isEmpty && apps.isEmpty && servers.isEmpty }
+    var isEmpty: Bool { sessions.isEmpty && ended.isEmpty && models.isEmpty && apps.isEmpty && servers.isEmpty }
+
+    private static let endedLifetime: TimeInterval = 10 * 60
 
     #if DEBUG
     /// Hides everything to preview the empty state (`isla-dev://demo/agents-empty`). Memory only.
@@ -293,8 +305,10 @@ final class AgentMonitor {
         }
 
         announceChanges(from: previous, to: next, now: now)
+        let nextEnded = endedSessions(after: next, now: now)
 
         let structural = next.map(\.id) != sessions.map(\.id) || next.map(\.state) != sessions.map(\.state)
+            || nextEnded.map(\.id) != ended.map(\.id)
         // Editors already have their own row, so they are not repeated among the apps.
         let editorPIDs = Set(next.filter { $0.tool.kind == .editor }.map(\.pid))
         let nextApps = running
@@ -305,10 +319,12 @@ final class AgentMonitor {
         if structural || nextApps != apps {
             withAnimation(IslaMotion.content) {
                 sessions = next
+                ended = nextEnded
                 apps = nextApps
             }
         } else {
             sessions = next
+            ended = nextEnded
         }
         lowStreak = lowStreak.filter { key, _ in next.contains { $0.id == key } }
     }
@@ -357,14 +373,45 @@ final class AgentMonitor {
             // Asking for something is worth a moment right away; finishing only after real work.
             guard session.tool.kind == .cli,
                   session.state == .needsYou || now.timeIntervalSince(old.stateSince) >= 8 else { continue }
-            LiveActivityCenter.shared.post(.agentFinished(toolID: session.tool.id,
-                                                          title: session.project ?? session.tool.name,
-                                                          needsYou: session.state == .needsYou),
-                                           duration: 5)
-            let sound = Preferences.shared.agentsSound
-            if !sound.isEmpty { NSSound(named: NSSound.Name(sound))?.play() }
+            postMoment(for: session, needsYou: session.state == .needsYou)
             return
         }
+    }
+
+    private func postMoment(for session: AgentSession, needsYou: Bool) {
+        LiveActivityCenter.shared.post(.agentFinished(toolID: session.tool.id,
+                                                      title: session.project ?? session.tool.name,
+                                                      needsYou: needsYou),
+                                       duration: 5)
+        let sound = Preferences.shared.agentsSound
+        if !sound.isEmpty { NSSound(named: NSSound.Name(sound))?.play() }
+    }
+
+    /// Sessions whose process just went away stay a few minutes, dimmed, so a run that
+    /// finished on its own (a one-shot command, a closed terminal) does not simply vanish.
+    private func endedSessions(after next: [AgentSession], now: Date) -> [AgentSession] {
+        let alive = Set(next.map(\.id))
+        var result = ended.filter { session in
+            !alive.contains(session.id) && now.timeIntervalSince(session.endedAt ?? now) < Self.endedLifetime
+        }
+        guard hasScanned else { return result }
+        for old in sessions where !alive.contains(old.id) && old.tool.kind == .cli {
+            var gone = old
+            gone.state = .ended
+            gone.stateSince = now
+            gone.endedAt = now
+            gone.step = nil
+            gone.cpu = 0
+            result.insert(gone, at: 0)
+            if old.state == .working, now.timeIntervalSince(old.stateSince) >= 8, Preferences.shared.agentsNotifyFinished {
+                postMoment(for: old, needsYou: false)
+            }
+        }
+        // A session that restarted under a new process is not "ended".
+        result.removeAll { gone in
+            next.contains { $0.tool == gone.tool && $0.folder == gone.folder && $0.title == gone.title }
+        }
+        return Array(result.prefix(4))
     }
 
     // MARK: Local models
@@ -443,6 +490,20 @@ final class AgentMonitor {
         guard let folder = session.folder else { return }
         NSPasteboard.general.clearContents()
         NSPasteboard.general.setString(folder, forType: .string)
+    }
+
+    /// The app behind a model server (LM Studio, Ollama), if it is installed as an app.
+    private func appURL(for server: LocalServer) -> URL? {
+        let match: (String?) -> Bool = server.id == AgentCatalog.lmStudio.id ? AgentCatalog.isLMStudio : AgentCatalog.isOllama
+        return NSWorkspace.shared.runningApplications.first { match($0.bundleIdentifier) }?.bundleURL
+    }
+
+    func canOpen(_ server: LocalServer) -> Bool { appURL(for: server) != nil }
+
+    /// Brings the server's app forward, so a model can be loaded there.
+    func open(_ server: LocalServer) {
+        guard let url = appURL(for: server) else { return }
+        NSWorkspace.shared.openApplication(at: url, configuration: NSWorkspace.OpenConfiguration())
     }
 
     func activate(_ app: AIApp) {

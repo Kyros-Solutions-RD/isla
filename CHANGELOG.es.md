@@ -2,6 +2,12 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.7 — 2026-11-05
+
+- Un agente que termina y se cierra (una ejecución puntual, una terminal cerrada) ya no desaparece sin más: se queda diez minutos en la pestaña IA como **Terminado**, y la isla avisa de que acabó.
+- Las apps de IA abiertas aparecen como fichas con su nombre, y cuando LM Studio u Ollama están en marcha sin ningún modelo cargado, un botón los abre.
+- Una pestaña con mucho contenido ya no puede empujar la cabecera del notch hacia arriba, bajo la cámara.
+
 ## 1.1.6 — 2026-11-05
 
 - El menú de la barra de menús muestra los agentes trabajando o esperando, con su estado; haz clic en uno para traer su app al frente. También abre la pestaña IA.

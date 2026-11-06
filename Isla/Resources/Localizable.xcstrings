@@ -1471,6 +1471,26 @@
         }
       }
     },
+    "Ended": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminado"
+          }
+        }
+      }
+    },
+    "Ended at %@ · started at %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminó a las %1$@ · empezó a las %2$@"
+          }
+        }
+      }
+    },
     "Enjoy the free time.": {
       "localizations": {
         "es": {
