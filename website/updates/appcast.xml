@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.9</title>
+      <pubDate>Fri, 06 Nov 2026 02:45:35 GMT</pubDate>
+      <sparkle:version>17</sparkle:version>
+      <sparkle:shortVersionString>1.1.9</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>Fixes leaving the Teleprompter tab touching the microphone: if the microphone permission had never been answered, macOS asked for it and Isla froze until you replied, even if you never used “Follow voice”. Now the microphone is only used while Follow voice is on.</li><li>The website shows the AI tab, with new screenshots of every tab.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.9.dmg" sparkle:edSignature="YojE6rH4cd3Q3ay1Oe4dWh+6VFc0OOv5V0BFIqpkbzMSw+zMaPOTDqZjtceP4rN5WHiZCZ+gsOc87nKF4HJpBA==" length="11840647" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.8</title>
       <pubDate>Fri, 06 Nov 2026 02:19:16 GMT</pubDate>
       <sparkle:version>16</sparkle:version>
