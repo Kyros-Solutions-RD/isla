@@ -3911,6 +3911,16 @@
         }
       }
     },
+    "Show a second activity in a bubble beside the island": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar una segunda actividad en una burbuja junto a la isla"
+          }
+        }
+      }
+    },
     "Show icon in the menu bar": {
       "localizations": {
         "es": {
@@ -4394,12 +4404,12 @@
         }
       }
     },
-    "These stay around the notch while they are running.": {
+    "These stay around the notch while they are running. When two are going on, the second one waits in a small bubble beside the island; click it to open its tab.": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Estas permanecen alrededor del notch mientras están activas."
+            "value": "Se quedan alrededor del notch mientras están en marcha. Cuando hay dos a la vez, la segunda espera en una burbuja pequeña junto a la isla; haz clic en ella para abrir su pestaña."
           }
         }
       }

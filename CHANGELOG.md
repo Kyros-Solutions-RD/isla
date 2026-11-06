@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.8 — 2026-11-05
+
+- Two things at once, like the Dynamic Island: when a second activity is going on (an agent working while music plays, a timer and a download…), it splits off into a small bubble beside the island with the song's cover, the agent's icon or a progress ring. Click the bubble to open its tab. You can turn it off in Settings › Live Activities.
+
 ## 1.1.7 — 2026-11-05
 
 - An agent that finishes and exits (a one-shot run, a closed terminal) no longer just disappears: it stays in the AI tab for ten minutes as **Ended**, and the island says it is done.

@@ -2,6 +2,10 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.8 — 2026-11-05
+
+- Dos cosas a la vez, como la Dynamic Island: cuando hay una segunda actividad en marcha (un agente trabajando mientras suena música, un temporizador y una descarga…), se separa en una burbuja pequeña junto a la isla con la portada de la canción, el ícono del agente o un anillo de progreso. Haz clic en la burbuja para abrir su pestaña. Puedes apagarlo en Ajustes › Actividades en vivo.
+
 ## 1.1.7 — 2026-11-05
 
 - Un agente que termina y se cierra (una ejecución puntual, una terminal cerrada) ya no desaparece sin más: se queda diez minutos en la pestaña IA como **Terminado**, y la isla avisa de que acabó.

@@ -214,8 +214,10 @@ final class NotchWindowController {
     func evaluatePointer() {
         let location = NSEvent.mouseLocation
         let inside = interactiveRect.contains(location) || (model.isDraggingFiles && dragAttractionRect.contains(location))
-        if panel.ignoresMouseEvents == inside {
-            panel.ignoresMouseEvents = !inside
+        // The bubble of a second activity takes clicks, but resting on it does not open the Nook.
+        let onBubble = model.secondaryBubbleRect?.contains(location) ?? false
+        if panel.ignoresMouseEvents == (inside || onBubble) {
+            panel.ignoresMouseEvents = !(inside || onBubble)
         }
         guard inside != model.isHovering else { return }
         model.isHovering = inside

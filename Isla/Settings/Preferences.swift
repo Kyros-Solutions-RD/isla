@@ -144,6 +144,8 @@ final class Preferences {
     var activityMeetings: Bool { didSet { set(activityMeetings, "activityMeetings") } }
     var activityCapsLock: Bool { didSet { set(activityCapsLock, "activityCapsLock") } }
     var activityHUD: Bool { didSet { set(activityHUD, "activityHUD") } }
+    /// A second ongoing activity shows as a bubble beside the island.
+    var activitySecondary: Bool { didSet { set(activitySecondary, "activitySecondary") } }
     var replaceSystemHUD: Bool { didSet { set(replaceSystemHUD, "replaceSystemHUD") } }
     var lowBatteryThreshold: Int { didSet { set(lowBatteryThreshold, "lowBatteryThreshold") } }
     var meetingLeadMinutes: Int { didSet { set(meetingLeadMinutes, "meetingLeadMinutes") } }
@@ -242,6 +244,7 @@ final class Preferences {
         activityMeetings = bool("activityMeetings", true)
         activityCapsLock = bool("activityCapsLock", true)
         activityHUD = bool("activityHUD", true)
+        activitySecondary = bool("activitySecondary", true)
         replaceSystemHUD = bool("replaceSystemHUD", false)
         lowBatteryThreshold = int("lowBatteryThreshold", 20)
         meetingLeadMinutes = int("meetingLeadMinutes", 5)

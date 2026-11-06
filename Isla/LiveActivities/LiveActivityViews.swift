@@ -289,6 +289,98 @@ struct ClosedActivityView: View {
     }
 }
 
+// MARK: - Second activity
+
+/// A small bubble hanging beside the island for the second thing going on: the cover of
+/// the song, the agent at work, a timer or a download. A click opens its tab.
+struct SecondaryBubble: View {
+    let activity: LiveActivity
+    let model: NotchViewModel
+    let side: CGFloat
+    @State private var hovering = false
+
+    var body: some View {
+        ZStack {
+            NotchShape(topRadius: 5, bottomRadius: side * 0.42)
+                .fill(Color.black)
+            content
+                .frame(width: side * 0.62, height: side * 0.62)
+                .padding(.top, 1)
+        }
+        .frame(width: side + 10, height: side)
+        .scaleEffect(hovering ? 1.08 : 1, anchor: .top)
+        .contentShape(Rectangle())
+        .onHover { hovering = $0 }
+        .onTapGesture { open() }
+        .animation(IslaMotion.snappy, value: hovering)
+        .foregroundStyle(.white)
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(Text(label))
+        .accessibilityAction { open() }
+    }
+
+    @ViewBuilder private var content: some View {
+        switch activity.kind {
+        case .nowPlaying, .trackChanged:
+            ArtworkThumbnail(size: side * 0.62, radius: side * 0.31)
+        case .agents:
+            if let session = AgentMonitor.shared.activeSessions.first {
+                AgentGlyph(tool: session.tool, size: side * 0.56, working: session.state == .working)
+            }
+        case .timer:
+            TimelineView(.periodic(from: .now, by: 1)) { context in
+                let primary = TimerStore.shared.primaryDisplay(at: context.date)
+                ProgressRing(progress: primary?.progress ?? 0, tint: primary?.tint ?? .orange, lineWidth: 2.4, animated: false)
+            }
+        case .download(_, let progress):
+            ProgressRing(progress: progress ?? 0.12, indeterminate: progress == nil, tint: .blue, lineWidth: 2.4)
+        case .meeting:
+            Image(systemName: "video.fill")
+                .font(.system(size: side * 0.32, weight: .bold))
+                .foregroundStyle(.green)
+        default:
+            EmptyView()
+        }
+    }
+
+    private var label: LocalizedStringKey {
+        switch activity.kind {
+        case .nowPlaying, .trackChanged: "Now Playing"
+        case .agents: "AI Agents"
+        case .timer: "Focus"
+        case .download: "Downloads"
+        case .meeting: "Upcoming meetings"
+        default: "Open Nook"
+        }
+    }
+
+    private func open() {
+        Haptics.tap()
+        switch activity.kind {
+        case .agents: model.controller?.open(.agents, makeKey: true)
+        case .timer: model.controller?.open(.timers, makeKey: true)
+        case .meeting: model.controller?.open(.calendar, makeKey: true)
+        default: model.controller?.open(.home, makeKey: true)
+        }
+    }
+}
+
+/// The bubble comes out of the island's side: it starts tucked against the island,
+/// small and soft, and slides out to its place.
+struct BubbleSplit: ViewModifier {
+    var progress: Double
+    var distance: CGFloat
+
+    func body(content: Content) -> some View {
+        content
+            .offset(x: -distance * (1 - progress))
+            .scaleEffect(0.35 + 0.65 * progress, anchor: .leading)
+            .blur(radius: 5 * (1 - progress))
+            .opacity(progress)
+    }
+}
+
 enum MeetingCountdown {
     static func label(until start: Date, now: Date) -> String {
         let seconds = start.timeIntervalSince(now)

@@ -39,6 +39,16 @@ struct NotchRootView: View {
         .frame(width: size.width, height: size.height, alignment: .top)
         .clipShape(shape)
         .contentShape(shape)
+        .overlay(alignment: .topTrailing) {
+            // A second activity splits off into its own small bubble, like the Dynamic Island.
+            if let side = model.secondaryBubbleSide, let secondary = activities.secondary {
+                SecondaryBubble(activity: secondary, model: model, side: side)
+                    .id(secondary.id)
+                    .offset(x: NotchViewModel.bubbleGap + side + 10)
+                    .transition(.modifier(active: BubbleSplit(progress: 0, distance: side + 16),
+                                          identity: BubbleSplit(progress: 1, distance: side + 16)))
+            }
+        }
         .background(alignment: .top) {
             // Soft shadow lifts the open panel off the desktop without
             // darkening the glass itself.
@@ -77,6 +87,8 @@ struct NotchRootView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .animation(model.isOpen ? IslaMotion.open : IslaMotion.close, value: model.phase)
         .animation(IslaMotion.activity, value: activities.presented?.id)
+        .animation(IslaMotion.activity, value: activities.secondary?.id)
+        .animation(IslaMotion.activity, value: model.secondaryBubbleSide)
         .animation(IslaMotion.activity, value: size)
         .environment(\.colorScheme, .dark)
         .preferredColorScheme(.dark)

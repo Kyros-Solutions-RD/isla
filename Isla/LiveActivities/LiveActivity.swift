@@ -167,24 +167,37 @@ final class LiveActivityCenter {
         transient ?? persistent
     }
 
-    var persistent: LiveActivity? {
+    var persistent: LiveActivity? { ongoing.first }
+
+    /// The next ongoing activity, shown as a small bubble beside the island, like the
+    /// Dynamic Island when two apps have something going on. Only while nothing brief
+    /// is on screen.
+    var secondary: LiveActivity? {
+        guard transient == nil, Preferences.shared.activitySecondary else { return nil }
+        let all = ongoing
+        return all.count > 1 ? all[1] : nil
+    }
+
+    /// Everything that is going on, most important first.
+    private var ongoing: [LiveActivity] {
         let prefs = Preferences.shared
+        var list: [LiveActivity] = []
         if prefs.activityTimers, TimerStore.shared.isAnyRunning {
-            return LiveActivity(.timer)
+            list.append(LiveActivity(.timer))
         }
         if prefs.activityDownloads, let download = DownloadsWatcher.shared.activeDownload {
-            return LiveActivity(.download(name: download.name, progress: download.progress))
+            list.append(LiveActivity(.download(name: download.name, progress: download.progress)))
         }
         if prefs.activityMeetings, let meeting = CalendarService.shared.imminentMeeting {
-            return LiveActivity(.meeting(title: meeting.title, start: meeting.start, url: meeting.meetingURL))
+            list.append(LiveActivity(.meeting(title: meeting.title, start: meeting.start, url: meeting.meetingURL)))
         }
         if prefs.activityAgents, AgentMonitor.shared.hasActiveAgents {
-            return LiveActivity(.agents)
+            list.append(LiveActivity(.agents))
         }
         if prefs.activityMedia, NowPlayingService.shared.hasActiveMedia, NowPlayingService.shared.isPlaying {
-            return LiveActivity(.nowPlaying)
+            list.append(LiveActivity(.nowPlaying))
         }
-        return nil
+        return list
     }
 
     func post(_ kind: LiveActivityKind, duration: TimeInterval = 2.4) {

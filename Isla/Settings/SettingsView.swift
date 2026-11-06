@@ -345,10 +345,11 @@ private struct ActivitiesPane: View {
                 if prefs.activityMeetings {
                     Stepper("Start \(prefs.meetingLeadMinutes) minutes before", value: $prefs.meetingLeadMinutes, in: 1...30)
                 }
+                Toggle("Show a second activity in a bubble beside the island", isOn: $prefs.activitySecondary)
             } header: {
                 Text("While it matters")
             } footer: {
-                Text("These stay around the notch while they are running.")
+                Text("These stay around the notch while they are running. When two are going on, the second one waits in a small bubble beside the island; click it to open its tab.")
             }
 
             Section("Moments") {

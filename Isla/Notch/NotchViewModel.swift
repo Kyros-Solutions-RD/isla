@@ -58,6 +58,22 @@ final class NotchViewModel {
                       height: notchSize.height + activity.detailHeight + (showsIslandLyrics ? 26 : 0))
     }
 
+    /// Space between the island and the bubble of a second activity.
+    static let bubbleGap: CGFloat = 6
+
+    /// Height of the bubble beside the closed island when a second activity is going on.
+    var secondaryBubbleSide: CGFloat? {
+        guard phase == .closed, LiveActivityCenter.shared.secondary != nil else { return nil }
+        return max(26, notchSize.height - 2)
+    }
+
+    /// Where the bubble sits on screen, so it can take clicks.
+    var secondaryBubbleRect: CGRect? {
+        guard let side = secondaryBubbleSide else { return nil }
+        let island = geometry.rect(for: shapeSize)
+        return CGRect(x: island.maxX + Self.bubbleGap, y: geometry.topY - side, width: side + 10, height: side)
+    }
+
     /// Synced lyrics under the island while music plays (opt-in).
     var showsIslandLyrics: Bool {
         LiveActivityCenter.shared.presented?.kind == .nowPlaying &&
