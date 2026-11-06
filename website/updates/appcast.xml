@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.11</title>
+      <pubDate>Fri, 06 Nov 2026 03:59:13 GMT</pubDate>
+      <sparkle:version>19</sparkle:version>
+      <sparkle:shortVersionString>1.1.11</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>The island opens like liquid pouring out of the camera: it widens first and then drops down with a little bounce, and closing it folds up before drawing back into the camera. Width and height now move on their own springs, and the content folds away with the panel instead of just fading.</li><li>The tab icons come out of the camera one after another when the Nook opens, and the tab you pick gives a small bounce.</li><li>The open panel has a hairline of light along its sides and bottom, and the cards are lit from above and glow softly under the pointer, so everything reads clearly on any wallpaper, in Liquid Glass and in black.</li><li>A live activity&#x27;s ears leave quickly when the Nook opens, so they never linger over it.</li><li>With Reduce Motion on, the island opens and closes with a plain, short fade of its size.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.11.dmg" sparkle:edSignature="rQ1MwbTzSuuZVomY5gK65FoYYwied90oydBSQ+XGoExldZUCzAB34n6zL+AqA2/Eaoyc+VpF4Ew0tjPtdB/mAQ==" length="11867411" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.10</title>
       <pubDate>Fri, 06 Nov 2026 03:11:34 GMT</pubDate>
       <sparkle:version>18</sparkle:version>
