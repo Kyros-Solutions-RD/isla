@@ -17,6 +17,22 @@ enum IslaMotion {
     static let content = Animation.smooth(duration: 0.3)
     /// Content rising out of the camera housing once the shape has room for it.
     static let emerge = Animation.spring(response: 0.5, dampingFraction: 0.82)
+
+    /// The island's width and height move on their own springs, so it pours out of the
+    /// camera instead of zooming: opening, it widens first and then drops down with a little
+    /// bounce; closing, it folds up first and then draws in toward the camera.
+    /// Peeking under the pointer keeps the livelier activity spring on both axes.
+    static func island(to phase: NotchViewModel.Phase, reduceMotion: Bool) -> (width: Animation, height: Animation) {
+        if reduceMotion {
+            let plain = Animation.smooth(duration: 0.24)
+            return (plain, plain)
+        }
+        switch phase {
+        case .open: return (.spring(response: 0.36, dampingFraction: 0.8), .spring(response: 0.47, dampingFraction: 0.72))
+        case .peek: return (activity, activity)
+        case .closed: return (.spring(response: 0.36, dampingFraction: 0.9), .spring(response: 0.25, dampingFraction: 1))
+        }
+    }
 }
 
 // MARK: - Emerging from the notch
@@ -97,19 +113,29 @@ enum IslaMetrics {
 struct IslaCard<Content: View>: View {
     var padding: CGFloat = IslaMetrics.innerPadding
     @ViewBuilder var content: Content
+    @State private var hovering = false
 
     var body: some View {
+        let card = RoundedRectangle(cornerRadius: IslaMetrics.cardRadius, style: .continuous)
         content
             .padding(padding)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .background {
-                RoundedRectangle(cornerRadius: IslaMetrics.cardRadius, style: .continuous)
-                    .fill(.white.opacity(0.07))
+                // Lit from above: a touch brighter at the top, with a rim that catches the
+                // light along the upper edge. Under the pointer the card glows a little.
+                card
+                    .fill(LinearGradient(colors: [.white.opacity(hovering ? 0.1 : 0.085),
+                                                  .white.opacity(hovering ? 0.075 : 0.06)],
+                                         startPoint: .top, endPoint: .bottom))
                     .overlay {
-                        RoundedRectangle(cornerRadius: IslaMetrics.cardRadius, style: .continuous)
-                            .strokeBorder(.white.opacity(0.07), lineWidth: 0.5)
+                        card.strokeBorder(LinearGradient(colors: [.white.opacity(hovering ? 0.16 : 0.12),
+                                                                  .white.opacity(0.04)],
+                                                         startPoint: .top, endPoint: .bottom),
+                                          lineWidth: 0.6)
                     }
+                    .animation(.easeOut(duration: 0.18), value: hovering)
             }
+            .onHover { hovering = $0 }
     }
 }
 

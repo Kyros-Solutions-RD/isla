@@ -27,16 +27,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // Permission report: prints which grants this build has, without asking for any.
         // Used to confirm that updates keep their permissions.
         if ProcessInfo.processInfo.environment["ISLA_PERMISSION_REPORT"] == "1" {
-            // Location's answer arrives a moment after the first location manager exists.
+            // Location's answer arrives a moment after the first location manager exists, and
+            // sometimes well after 1.5 s: wait for it (up to about 6 s) instead of guessing.
             let locationProbe = CLLocationManager()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                _ = locationProbe
+            func finish(attempt: Int) {
+                if locationProbe.authorizationStatus == .notDetermined && attempt < 24 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { finish(attempt: attempt + 1) }
+                    return
+                }
                 PermissionCenter.shared.refresh()
                 let report = PermissionKind.allCases.map { "\($0.rawValue)=\(PermissionCenter.shared.isGranted($0) ? "granted" : "missing")" }
                 print("isla-permissions " + report.joined(separator: " "))
                 print("isla-permissions-raw " + PermissionCenter.rawStatuses())
                 exit(0)
             }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { finish(attempt: 0) }
             return
         }
 

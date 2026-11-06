@@ -2,6 +2,14 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.11 — 2026-11-05
+
+- La isla se abre como un líquido que sale de la cámara: primero se ensancha y luego baja con un pequeño rebote, y al cerrarse se pliega hacia arriba antes de recogerse en la cámara. El ancho y el alto se mueven ahora con su propio resorte, y el contenido se recoge con el panel en vez de solo desvanecerse.
+- Los íconos de las pestañas salen de la cámara uno tras otro al abrir el Nook, y la pestaña que eliges da un pequeño salto.
+- El panel abierto tiene un hilo de luz en los lados y abajo, y las tarjetas reciben luz desde arriba y brillan un poco bajo el puntero, para que todo se lea bien sobre cualquier fondo, en Liquid Glass y en negro.
+- Las orejas de una actividad en vivo se van enseguida al abrir el Nook, así nunca se quedan encima.
+- Con «Reducir movimiento» activado, la isla se abre y se cierra con un cambio de tamaño simple y corto.
+
 ## 1.1.10 — 2026-11-05
 
 - VoiceOver nombra cada botón con ícono del notch por lo que hace: letras, unirse a una reunión, abrir Calendario, menos o más minutos, restablecer, reproducir el sonido de enfoque, nueva nota, eliminar, reiniciar, más o menos velocidad, texto más grande o más pequeño. Antes algunos se leían por su símbolo («burbuja», «círculo», «basurero»).

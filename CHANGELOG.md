@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.11 — 2026-11-05
+
+- The island opens like liquid pouring out of the camera: it widens first and then drops down with a little bounce, and closing it folds up before drawing back into the camera. Width and height now move on their own springs, and the content folds away with the panel instead of just fading.
+- The tab icons come out of the camera one after another when the Nook opens, and the tab you pick gives a small bounce.
+- The open panel has a hairline of light along its sides and bottom, and the cards are lit from above and glow softly under the pointer, so everything reads clearly on any wallpaper, in Liquid Glass and in black.
+- A live activity's ears leave quickly when the Nook opens, so they never linger over it.
+- With Reduce Motion on, the island opens and closes with a plain, short fade of its size.
+
 ## 1.1.10 — 2026-11-05
 
 - VoiceOver names every icon button in the notch by what it does: lyrics, join a meeting, open Calendar, fewer or more minutes, reset, play the focus sound, new note, delete, restart, faster or slower, bigger or smaller text. Before, some were read by their symbol (“bubble”, “circle”, “trash can”).

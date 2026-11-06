@@ -13,30 +13,38 @@ struct NotchRootView: View {
     @Bindable var model: NotchViewModel
     private let prefs = Preferences.shared
     private let activities = LiveActivityCenter.shared
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         let size = model.shapeSize
         let radii = model.cornerRadii
         let shape = NotchShape(topRadius: radii.top, bottomRadius: radii.bottom)
+        let motion = IslaMotion.island(to: model.phase, reduceMotion: reduceMotion)
 
-        ZStack(alignment: .top) {
-            NotchSurface(model: model, shape: shape)
-
-            Group {
-                if model.isOpen {
-                    OpenNotchView(model: model)
-                        .transition(.asymmetric(
-                            insertion: .opacity.animation(.easeOut(duration: 0.16).delay(0.04)),
-                            removal: AnyTransition(.blurReplace).combined(with: .opacity).animation(.easeIn(duration: 0.13))))
-                } else if let activity = activities.presented {
-                    ClosedActivityView(activity: activity, model: model)
-                        .id(activity.id)
-                        .transition(.opacity.combined(with: .blurReplace).animation(IslaMotion.activity))
-                }
+        // The island's width and height ride their own springs (see `IslaMotion.island`).
+        // Only this empty frame is animated; the surface and the content are laid out
+        // inside it on every frame, so they always fill exactly the shape on screen.
+        Color.clear
+            .modifier(IslandHeight(height: size.height))
+            .animation(motion.height, value: model.phase)
+            .modifier(IslandWidth(width: size.width))
+            .animation(motion.width, value: model.phase)
+            .background(alignment: .top) {
+                NotchSurface(model: model, shape: shape)
             }
-            .frame(width: size.width, height: size.height, alignment: .top)
-        }
-        .frame(width: size.width, height: size.height, alignment: .top)
+            .overlay(alignment: .top) {
+                Group {
+                    if model.isOpen {
+                        OpenNotchView(model: model)
+                            .transition(.nookContent)
+                    } else if let activity = activities.presented {
+                        ClosedActivityView(activity: activity, model: model)
+                            .id(activity.id)
+                            .transition(.islandActivity)
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            }
         .clipShape(shape)
         .contentShape(shape)
         .overlay(alignment: .topTrailing) {
@@ -51,15 +59,13 @@ struct NotchRootView: View {
         }
         .background(alignment: .top) {
             // Soft shadow lifts the open panel off the desktop without
-            // darkening the glass itself.
+            // darkening the glass itself. It takes the island's size as it animates.
             shape
                 .fill(.black)
-                .frame(width: size.width, height: size.height)
                 .shadow(color: .black.opacity(model.isOpen && prefs.showShadow ? 0.5 : 0), radius: 26, y: 14)
                 .mask {
                     InverseShape(shape: shape, outset: 80)
                         .fill(style: FillStyle(eoFill: true))
-                        .frame(width: size.width, height: size.height)
                 }
                 .opacity(model.isOpen ? 1 : 0)
                 .allowsHitTesting(false)
@@ -68,7 +74,6 @@ struct NotchRootView: View {
             if model.isDropTargeted && !model.isOpen {
                 shape
                     .stroke(Color.accentColor.opacity(0.9), lineWidth: 1.5)
-                    .frame(width: size.width, height: size.height)
             }
         }
         .onDrop(of: ShelfStore.acceptedTypes, isTargeted: $model.isDropTargeted) { providers in
@@ -95,7 +100,51 @@ struct NotchRootView: View {
     }
 }
 
+private extension AnyTransition {
+    /// The Nook's content fades in behind the growing island; closing, it folds back
+    /// into the camera as it fades.
+    static let nookContent = AnyTransition.asymmetric(
+        insertion: AnyTransition.opacity.animation(.easeOut(duration: 0.16).delay(0.04)),
+        removal: AnyTransition(.blurReplace)
+            .combined(with: .scale(scale: 0.94, anchor: .top))
+            .combined(with: .opacity)
+            .animation(.easeIn(duration: 0.14)))
+
+    /// A live activity arrives on the island's spring and leaves quickly, so its ears never
+    /// linger over the Nook opening or over the activity that takes their place.
+    static let islandActivity = AnyTransition.asymmetric(
+        insertion: AnyTransition.opacity.combined(with: AnyTransition(.blurReplace)).animation(IslaMotion.activity),
+        removal: AnyTransition.opacity.combined(with: AnyTransition(.blurReplace)).animation(.easeIn(duration: 0.12)))
+}
+
 // MARK: - Surface
+
+/// The island's height as an animatable value. SwiftUI hands the body every in-between
+/// height, so whatever hangs off this frame is laid out fresh on each frame.
+private struct IslandHeight: ViewModifier, Animatable {
+    var height: CGFloat
+    var animatableData: CGFloat {
+        get { height }
+        set { height = newValue }
+    }
+
+    func body(content: Content) -> some View {
+        content.frame(height: max(0, height))
+    }
+}
+
+/// The island's width; see ``IslandHeight``.
+private struct IslandWidth: ViewModifier, Animatable {
+    var width: CGFloat
+    var animatableData: CGFloat {
+        get { width }
+        set { width = newValue }
+    }
+
+    func body(content: Content) -> some View {
+        content.frame(width: max(0, width))
+    }
+}
 
 /// A large rectangle with the notch punched out, used to mask its shadow.
 struct InverseShape<S: Shape>: Shape {
@@ -147,6 +196,20 @@ struct NotchSurface: View {
                     .fill(RadialGradient(colors: [accent.opacity(0.22), .clear],
                                          center: .bottomLeading, startRadius: 10, endRadius: 420))
                     .allowsHitTesting(false)
+            }
+
+            if open {
+                // A hairline of light along the sides and the bottom, brightest at the lower
+                // edge, so the panel reads as a lit object on any wallpaper. It fades out
+                // toward the top, where the island melts into the screen edge.
+                shape
+                    .stroke(LinearGradient(stops: [.init(color: .white.opacity(0), location: 0),
+                                                   .init(color: .white.opacity(glass ? 0.05 : 0.07), location: 0.45),
+                                                   .init(color: .white.opacity(glass ? 0.13 : 0.17), location: 1)],
+                                           startPoint: .top, endPoint: .bottom),
+                            lineWidth: 1.5)
+                    .allowsHitTesting(false)
+                    .transition(.opacity)
             }
         }
     }
@@ -242,8 +305,12 @@ struct NotchHeader: View {
 
         HStack(spacing: 0) {
             HStack(spacing: 3) {
-                ForEach(shown) { tab in
+                // The icons come out of the camera one after another: the one next to the
+                // notch first, the outermost last, following the island as it widens.
+                ForEach(Array(shown.enumerated()), id: \.element) { index, tab in
                     tabButton(tab)
+                        .emerge(delay: 0.03 + Double(shown.count - 1 - index) * 0.022,
+                                offset: CGSize(width: 10, height: -4))
                 }
                 if !overflow.isEmpty {
                     Menu {
@@ -266,6 +333,7 @@ struct NotchHeader: View {
                     .menuIndicator(.hidden)
                     .fixedSize()
                     .accessibilityLabel(Text("More Tabs"))
+                    .emerge(delay: 0.03 + Double(shown.count) * 0.022, offset: CGSize(width: 10, height: -4))
                 }
             }
             .frame(width: sideWidth, alignment: .leading)
@@ -273,6 +341,7 @@ struct NotchHeader: View {
             Spacer(minLength: model.notchSize.width)
 
             HeaderActions(model: model)
+                .emerge(delay: 0.05, offset: CGSize(width: -10, height: -4))
                 .frame(width: sideWidth, alignment: .trailing)
         }
     }
@@ -314,12 +383,15 @@ private struct HeaderTabButton: View {
     let selection: Namespace.ID
     let action: () -> Void
     @State private var hovering = false
+    /// Bumped each time this tab becomes the selected one, for a single bounce.
+    @State private var bounce = 0
 
     var body: some View {
         Button(action: action) {
             Image(systemName: tab.symbol)
                 .font(.system(size: 12.5, weight: .semibold))
                 .symbolRenderingMode(.hierarchical)
+                .symbolEffect(.bounce.up.byLayer, options: .nonRepeating, value: bounce)
                 .frame(width: 30, height: 24)
                 .foregroundStyle(selected ? Color.white : Color.white.opacity(hovering ? 0.85 : 0.5))
                 .background {
@@ -335,6 +407,9 @@ private struct HeaderTabButton: View {
         }
         .buttonStyle(PressSqueeze())
         .onHover { hovering = $0 }
+        .onChange(of: selected) { _, isSelected in
+            if isSelected { bounce += 1 }
+        }
         .animation(IslaMotion.snappy, value: hovering)
         // VoiceOver says the tab's name, not the symbol's ("Grid 2x2", "Sparkle"…).
         .accessibilityLabel(Text(tab.title))
