@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.7</title>
+      <pubDate>Fri, 06 Nov 2026 01:53:34 GMT</pubDate>
+      <sparkle:version>15</sparkle:version>
+      <sparkle:shortVersionString>1.1.7</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>An agent that finishes and exits (a one-shot run, a closed terminal) no longer just disappears: it stays in the AI tab for ten minutes as **Ended**, and the island says it is done.</li><li>The AI apps you have open show as named chips, and when LM Studio or Ollama is running with no model loaded, a button opens it.</li><li>A tab with a lot to show can no longer push the notch&#x27;s header up under the camera.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.7.dmg" sparkle:edSignature="MB53gmULp2lxgTJlUjlSK/Y8KlGGaxhZJDfdXAVgnl5Wej+7ldhWQ3mayU8RIDcYKC5C8o2kWXF1UnxohstuBA==" length="11774800" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.6</title>
       <pubDate>Fri, 06 Nov 2026 01:19:14 GMT</pubDate>
       <sparkle:version>14</sparkle:version>
