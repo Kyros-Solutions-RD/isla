@@ -21,6 +21,7 @@ enum DemoActivities {
         case "brightness": center.post(.hud(.brightness, value: 0.4, muted: false), duration: 6)
         case "caps": center.post(.capsLock(true), duration: 6)
         case "download": center.post(.download(name: "Isla-1.0.dmg", progress: 0.64), duration: 6)
+        case "download-unknown": center.post(.download(name: "Isla-1.0.dmg", progress: nil), duration: 8)
         case "downloaded": center.post(.downloadFinished(name: "Isla-1.0.dmg", url: URL(fileURLWithPath: NSHomeDirectory())), duration: 6)
         case "meeting": center.post(.meeting(title: "Design Review", start: .now.addingTimeInterval(240), url: nil), duration: 6)
         case "timer":

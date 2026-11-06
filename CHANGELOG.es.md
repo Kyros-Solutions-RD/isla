@@ -2,6 +2,12 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.4 — 2026-11-05
+
+- Más ahorro de batería, medido pestaña por pestaña: la pestaña Enfoque con un temporizador en marcha pasó de un 39 % de un núcleo a menos de un 2 %, y un temporizador alrededor del notch cerrado de un 10 % a menos de un 1,5 %.
+- El cronómetro solo se redibuja mientras corre, y los anillos de los temporizadores ya no animan cada segundo un cambio demasiado pequeño para verse.
+- Las descargas de tamaño desconocido giran su anillo con Core Animation en lugar de redibujar el notch.
+
 ## 1.1.3 — 2026-11-05
 
 - Mucho más ligera con la batería: las animaciones del notch (los puntos de los agentes, el halo y el ecualizador de la música) ahora usan Core Animation. Con un agente trabajando o música sonando y el notch cerrado, Isla pasó de un 12 % de un núcleo a un 0,2 %, y la pestaña IA abierta de un 45 % a menos de un 2 %.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.4 — 2026-11-05
+
+- More battery savings, measured tab by tab: the Focus tab with a timer running went from about 39 % of a core to under 2 %, and a timer around the closed notch from about 10 % to under 1.5 %.
+- The stopwatch only redraws while it runs, and timer rings no longer animate a change too small to see every second.
+- Downloads of unknown size spin their ring with Core Animation instead of redrawing the notch.
+
 ## 1.1.3 — 2026-11-05
 
 - Much lighter on the battery: the notch's animations (the agents' dots, the halo and the music equalizer) now run on Core Animation. With an agent working or music playing and the notch closed, Isla went from about 12 % of a core to about 0.2 %, and the open AI tab from about 45 % to under 2 %.

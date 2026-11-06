@@ -213,10 +213,10 @@ struct ClosedActivityView: View {
                     .monospacedDigit()
                     .foregroundStyle(.blue)
             } else {
+                // The spinning ring on the other side already says it is working.
                 Image(systemName: "arrow.down")
                     .font(.system(size: 12, weight: .bold))
                     .foregroundStyle(.blue)
-                    .symbolEffect(.pulse, options: .repeating)
             }
         case .downloadFinished:
             Image(systemName: "folder.fill")
@@ -321,21 +321,77 @@ struct ProgressRing: View {
     var indeterminate = false
     var tint: Color = .white
     var lineWidth: CGFloat = 2.2
-
-    @State private var spin = false
+    /// Rings that tick every second (timers) move too little to animate; skipping the
+    /// animation keeps the closed notch idle between ticks.
+    var animated = true
 
     var body: some View {
         ZStack {
             Circle().stroke(tint.opacity(0.22), lineWidth: lineWidth)
-            Circle()
-                .trim(from: 0, to: indeterminate ? 0.28 : max(0.02, min(1, progress)))
-                .stroke(tint, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
-                .rotationEffect(.degrees(-90))
-                .rotationEffect(.degrees(indeterminate && spin ? 360 : 0))
+            if indeterminate {
+                SpinningArc(tint: tint, lineWidth: lineWidth)
+            } else {
+                Circle()
+                    .trim(from: 0, to: max(0.02, min(1, progress)))
+                    .stroke(tint, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
+                    .rotationEffect(.degrees(-90))
+            }
         }
-        .animation(indeterminate ? .linear(duration: 1).repeatForever(autoreverses: false) : .smooth, value: spin)
-        .animation(.smooth, value: progress)
-        .onAppear { if indeterminate { spin = true } }
+        .animation(animated ? .smooth : nil, value: progress)
+    }
+}
+
+/// The arc of a ring that waits for an unknown amount of time, turned by Core Animation.
+private struct SpinningArc: NSViewRepresentable {
+    var tint: Color
+    var lineWidth: CGFloat
+
+    func makeNSView(context: Context) -> SpinningArcView { SpinningArcView() }
+
+    func updateNSView(_ view: SpinningArcView, context: Context) {
+        view.configure(color: NSColor(tint), lineWidth: lineWidth,
+                       animated: !context.environment.accessibilityReduceMotion)
+    }
+}
+
+final class SpinningArcView: NSView {
+    private let arc = CAShapeLayer()
+    private var animated = true
+
+    override init(frame: NSRect) {
+        super.init(frame: frame)
+        wantsLayer = true
+        arc.fillColor = nil
+        arc.lineCap = .round
+        arc.strokeEnd = 0.28
+        layer?.addSublayer(arc)
+    }
+
+    required init?(coder: NSCoder) { fatalError("init(coder:) is not used") }
+
+    func configure(color: NSColor, lineWidth: CGFloat, animated: Bool) {
+        arc.strokeColor = color.cgColor
+        arc.lineWidth = lineWidth
+        self.animated = animated
+        needsLayout = true
+    }
+
+    override func layout() {
+        super.layout()
+        arc.frame = bounds
+        let inset = arc.lineWidth / 2
+        arc.path = CGPath(ellipseIn: bounds.insetBy(dx: inset, dy: inset), transform: nil)
+        if animated, arc.animation(forKey: "spin") == nil {
+            let spin = CABasicAnimation(keyPath: "transform.rotation.z")
+            spin.fromValue = 0
+            spin.toValue = -2 * Double.pi
+            spin.duration = 1
+            spin.repeatCount = .infinity
+            spin.isRemovedOnCompletion = false
+            arc.add(spin, forKey: "spin")
+        } else if !animated {
+            arc.removeAnimation(forKey: "spin")
+        }
     }
 }
 
@@ -502,7 +558,7 @@ struct TimerEarLeading: View {
         TimelineView(.periodic(from: .now, by: 1)) { context in
             let primary = timers.primaryDisplay(at: context.date)
             HStack(spacing: 6) {
-                ProgressRing(progress: primary?.progress ?? 0, tint: primary?.tint ?? .orange, lineWidth: 2.4)
+                ProgressRing(progress: primary?.progress ?? 0, tint: primary?.tint ?? .orange, lineWidth: 2.4, animated: false)
                     .frame(width: 15, height: 15)
                 Text(primary?.label ?? "")
                     .font(.system(size: 11, weight: .semibold))

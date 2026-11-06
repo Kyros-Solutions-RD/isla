@@ -38,7 +38,6 @@ struct PomodoroCard: View {
                             .trim(from: 0, to: max(0.001, progress))
                             .stroke(state.phase.tint.gradient, style: StrokeStyle(lineWidth: 7, lineCap: .round))
                             .rotationEffect(.degrees(-90))
-                            .animation(.linear(duration: 1), value: progress)
                         VStack(spacing: 0) {
                             Text(remaining.clockString)
                                 .font(.system(size: 22, weight: .bold, design: .rounded))
@@ -196,7 +195,7 @@ private struct TimerRow: View {
         TimelineView(.periodic(from: .now, by: 1)) { context in
             HoverRow(radius: 8) {
                 HStack(spacing: 8) {
-                    ProgressRing(progress: timer.progress(at: context.date), tint: .orange, lineWidth: 2.5)
+                    ProgressRing(progress: timer.progress(at: context.date), tint: .orange, lineWidth: 2.5, animated: false)
                         .frame(width: 16, height: 16)
                     Text(timer.label)
                         .font(.system(size: 11.5, weight: .medium))
@@ -225,15 +224,24 @@ private struct FocusExtrasCard: View {
     private let store = TimerStore.shared
     @Bindable private var sounds = FocusSoundPlayer.shared
 
+    private func stopwatchLabel(at date: Date) -> some View {
+        let elapsed = store.stopwatchElapsed(at: date)
+        return Text(String(format: "%@.%d", elapsed.clockString, Int(elapsed * 10) % 10))
+            .font(.system(size: 20, weight: .bold, design: .rounded))
+            .monospacedDigit()
+    }
+
     var body: some View {
         IslaCard(padding: 10) {
             VStack(alignment: .leading, spacing: 8) {
                 CardHeader(title: "Stopwatch", symbol: "stopwatch", tint: .yellow)
-                TimelineView(.periodic(from: .now, by: 0.1)) { context in
-                    Text(String(format: "%@.%d", store.stopwatchElapsed(at: context.date).clockString,
-                                Int(store.stopwatchElapsed(at: context.date) * 10) % 10))
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .monospacedDigit()
+                // Ticks ten times a second only while it runs; a stopped stopwatch is just text.
+                if store.isStopwatchRunning {
+                    TimelineView(.periodic(from: .now, by: 0.1)) { context in
+                        stopwatchLabel(at: context.date)
+                    }
+                } else {
+                    stopwatchLabel(at: .now)
                 }
                 HStack(spacing: 6) {
                     Button { store.toggleStopwatch() } label: {
