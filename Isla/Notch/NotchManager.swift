@@ -82,6 +82,11 @@ final class NotchManager {
         activeController?.open(tab, makeKey: true)
     }
 
+    /// Whether a notch is on screen somewhere (closed or open, both show what arrives).
+    var isNotchVisible: Bool {
+        controllers.values.contains { $0.panel.isVisible }
+    }
+
     func closeAll() {
         controllers.values.forEach { $0.close() }
     }

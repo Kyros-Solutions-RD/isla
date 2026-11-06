@@ -65,7 +65,7 @@ enum TemperatureUnit: String, CaseIterable, Identifiable, Codable {
 }
 
 enum HomeWidget: String, CaseIterable, Identifiable, Codable {
-    case media, calendar, weather, timer, battery, shortcuts, shelf, note, actions, agents
+    case media, calendar, weather, timer, battery, shortcuts, shelf, note, actions, agents, notifications
 
     var id: String { rawValue }
 
@@ -81,6 +81,7 @@ enum HomeWidget: String, CaseIterable, Identifiable, Codable {
         case .note: "Quick Note"
         case .actions: "Quick Actions"
         case .agents: "AI Agents"
+        case .notifications: "Notifications"
         }
     }
 
@@ -96,6 +97,7 @@ enum HomeWidget: String, CaseIterable, Identifiable, Codable {
         case .note: "note.text"
         case .actions: "bolt.fill"
         case .agents: "sparkles"
+        case .notifications: "bell.badge.fill"
         }
     }
 
@@ -195,6 +197,20 @@ final class Preferences {
     var agentsLocalModels: Bool { didSet { set(agentsLocalModels, "agentsLocalModels") } }
     var agentsCustomCommands: [String] { didSet { setCodable(agentsCustomCommands, "agentsCustomCommands") } }
 
+    // MARK: Notifications
+    /// Mirror other apps' notifications in the notch (needs Accessibility).
+    var notificationsEnabled: Bool { didSet { set(notificationsEnabled, "notificationsEnabled") } }
+    /// Show only the app until the pointer rests on the island.
+    var notificationsHideContent: Bool { didSet { set(notificationsHideContent, "notificationsHideContent") } }
+    /// Close the system banner once the notch shows it.
+    var notificationsHideBanner: Bool { didSet { set(notificationsHideBanner, "notificationsHideBanner") } }
+    /// System sound played when one arrives; empty for silence (the default: the app already plays its own).
+    var notificationsSound: String { didSet { set(notificationsSound, "notificationsSound") } }
+    /// Keep the recent ones (in memory only) for the Nook widget.
+    var notificationsHistory: Bool { didSet { set(notificationsHistory, "notificationsHistory") } }
+    /// Apps whose notifications stay out of the notch (bundle IDs, or "name:<App>").
+    var notificationsMutedApps: [String] { didSet { setCodable(notificationsMutedApps, "notificationsMutedApps") } }
+
     // MARK: Shortcuts
     var favoriteShortcuts: [String] { didSet { setCodable(favoriteShortcuts, "favoriteShortcuts") } }
 
@@ -285,6 +301,13 @@ final class Preferences {
         agentsShowSteps = bool("agentsShowSteps", true)
         agentsLocalModels = bool("agentsLocalModels", true)
         agentsCustomCommands = codable("agentsCustomCommands", [String]())
+
+        notificationsEnabled = bool("notificationsEnabled", true)
+        notificationsHideContent = bool("notificationsHideContent", false)
+        notificationsHideBanner = bool("notificationsHideBanner", false)
+        notificationsSound = string("notificationsSound", "")
+        notificationsHistory = bool("notificationsHistory", true)
+        notificationsMutedApps = codable("notificationsMutedApps", [String]())
 
         favoriteShortcuts = codable("favoriteShortcuts", [String]())
 

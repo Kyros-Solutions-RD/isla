@@ -35,6 +35,21 @@ enum IslaMotion {
     }
 }
 
+extension IslaMotion {
+    /// A notification pours out of the camera: the island widens first and then drops down
+    /// with a little bounce; when it goes, it folds up first and then draws in.
+    static func notification(arriving: Bool, reduceMotion: Bool) -> (width: Animation, height: Animation) {
+        if reduceMotion {
+            let plain = Animation.smooth(duration: 0.24)
+            return (plain, plain)
+        }
+        if arriving {
+            return (.spring(response: 0.34, dampingFraction: 0.82), .spring(response: 0.46, dampingFraction: 0.7).delay(0.08))
+        }
+        return (.spring(response: 0.34, dampingFraction: 0.9).delay(0.07), .spring(response: 0.26, dampingFraction: 1))
+    }
+}
+
 // MARK: - Emerging from the notch
 
 /// Content that comes out of the notch: blurred, a little smaller and tucked toward the

@@ -22,6 +22,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ClipboardStore.shared.start()
         AgentMonitor.shared.start()
         NotchManager.shared.start()
+        // Reads banners through Accessibility only if it is already allowed: never prompts.
+        NotificationMirror.shared.refresh()
         Self.registerHotKeys()
 
         // Permission report: prints which grants this build has, without asking for any.

@@ -33,7 +33,8 @@
 
 | | |
 | --- | --- |
-| **Nook** | A row of widgets you pick and order: Now Playing, Up Next, Weather, Focus, Battery & Devices, Shortcuts, Shelf, Quick Note, Quick Actions and AI Agents. |
+| **Nook** | A row of widgets you pick and order: Now Playing, Up Next, Weather, Focus, Battery & Devices, Shortcuts, Shelf, Quick Note, Quick Actions, AI Agents and Notifications. |
+| **Notifications** | Messages, WhatsApp, Mail and every other app: their notifications come out of the camera with the app's real icon, the sender and the message. They stack when several arrive and group by conversation; click to open the conversation, rest the pointer to read it all, swipe to dismiss. Optional hidden content, sound and closing the system banner. Follows your Focus. Read through Accessibility, kept only in memory. |
 | **AI** | The coding agents running on your Mac, in Terminal or in their own app: the folder each one works in, since when, whether it is working, waiting or needs you, and what it is doing right now. Plus the models Ollama and LM Studio keep in memory and the AI apps you have open. No permissions needed. |
 | **Now Playing** | Follows any app in Control Center's Now Playing (Music, Spotify, Podcasts, browsers). Artwork, scrubber, controls, **synced lyrics** from LRCLIB (optionally shown right under the island), artwork-tinted glass and an animated equalizer. Swipe sideways on the notch to change tracks. |
 | **Shelf** | Drop files on the notch and drag them back out anywhere. **AirDrop**, Share, Quick Look (Space), convert to PNG, JPEG, HEIC, TIFF, PDF, merged PDF, MP4, M4A or ZIP. Text and images you drop become files. |
@@ -48,7 +49,7 @@
 | **Shortcuts** | Run your macOS Shortcuts from the notch, with favorites. |
 | **Terminal** | A real shell under the notch (SwiftTerm) that keeps running while you switch tabs or close the panel. |
 | **Quick Actions** | Keep your Mac awake, pick a color from anywhere, capture a screenshot to the Shelf, lock the screen or toggle dark mode. |
-| **Live activities** | Music, track changes, charging and low battery, **AirPods and Bluetooth devices with battery**, volume and brightness, downloads with progress, upcoming meetings, timers, **AI agents at work** and Caps Lock. |
+| **Live activities** | Music, track changes, charging and low battery, **AirPods and Bluetooth devices with battery**, volume and brightness, downloads with progress, upcoming meetings, timers, **AI agents at work**, **notifications** and Caps Lock. |
 | **System HUD** | Optionally replaces the volume and brightness overlay with a slim slider under the notch (⌥⇧ for fine steps). |
 | **Gestures & keys** | Hover or swipe down to open, swipe up to close, ⌃⌥Space to toggle, ⌃⌥V for the clipboard, ⌘1…⌘9 to switch tabs. All shortcuts are configurable. |
 | **Updates** | Built-in updater (Sparkle) with signed releases. Checks once a day and tells you on the island when a new version ships. |
@@ -108,7 +109,7 @@ Isla/
 ├── Notch/            Panel, geometry, shape, view model, header
 ├── LiveActivities/   Activity model and the views around the notch
 ├── Features/         Home, Agents, Media, Shelf, Clipboard, Calendar, Tasks, Timers,
-│                     Notes, Mirror, Teleprompter, Weather, Shortcuts
+│                     Notes, Notifications, Mirror, Teleprompter, Weather, Shortcuts
 ├── System/           Battery, Bluetooth, volume & brightness, downloads, permissions
 ├── Settings/         Preferences and the Settings window
 ├── Onboarding/       Welcome tour
@@ -122,7 +123,7 @@ design/               App icon and alternatives
 
 ## Privacy
 
-Isla asks only for what a feature needs, when you turn it on: Calendar, Reminders, Camera (Mirror), Location (weather), Microphone and Speech (teleprompter), Bluetooth (device activities) and Accessibility (system HUD and auto-paste). It works without any of them.
+Isla asks only for what a feature needs, when you turn it on: Calendar, Reminders, Camera (Mirror), Location (weather), Microphone and Speech (teleprompter), Bluetooth (device activities) and Accessibility (notifications, system HUD and auto-paste). It works without any of them.
 
 ## Contributing
 

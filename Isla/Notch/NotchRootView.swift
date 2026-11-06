@@ -20,15 +20,20 @@ struct NotchRootView: View {
         let radii = model.cornerRadii
         let shape = NotchShape(topRadius: radii.top, bottomRadius: radii.bottom)
         let motion = IslaMotion.island(to: model.phase, reduceMotion: reduceMotion)
+        let notification = activities.presented?.kind.notification
+        let arrival = IslaMotion.notification(arriving: notification != nil, reduceMotion: reduceMotion)
 
         // The island's width and height ride their own springs (see `IslaMotion.island`).
         // Only this empty frame is animated; the surface and the content are laid out
         // inside it on every frame, so they always fill exactly the shape on screen.
+        // A notification pours out the same way: wider first, then down.
         Color.clear
             .modifier(IslandHeight(height: size.height))
             .animation(motion.height, value: model.phase)
+            .animation(arrival.height, value: notification?.id)
             .modifier(IslandWidth(width: size.width))
             .animation(motion.width, value: model.phase)
+            .animation(arrival.width, value: notification?.id)
             .background(alignment: .top) {
                 NotchSurface(model: model, shape: shape)
             }
@@ -40,7 +45,8 @@ struct NotchRootView: View {
                     } else if let activity = activities.presented {
                         ClosedActivityView(activity: activity, model: model)
                             .id(activity.id)
-                            .transition(.islandActivity)
+                            .transition(activity.kind.notification == nil ? .islandActivity
+                                        : .notificationExit(NotificationMirror.shared.exit))
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -50,6 +56,11 @@ struct NotchRootView: View {
             }
         .clipShape(shape)
         .contentShape(shape)
+        .background(alignment: .bottom) {
+            // More notifications wait underneath, like a stack of cards.
+            NotificationStackBackdrop(depth: model.isOpen ? 0 : activities.notificationStackDepth,
+                                      tint: notification.map { NotificationApps.shared.tint(for: $0.app) })
+        }
         .overlay(alignment: .topTrailing) {
             // A second activity splits off into its own small bubble, like the Dynamic Island.
             if let side = model.secondaryBubbleSide, let secondary = activities.secondary {
@@ -142,8 +153,14 @@ private struct AttentionNudge: ViewModifier {
                 }
             }
             .onChange(of: LiveActivityCenter.shared.presented?.id) { _, _ in
+                // Notifications nudge on every arrival instead (below), stacked ones included.
+                guard !reduceMotion, !model.isOpen, let kind = LiveActivityCenter.shared.presented?.kind,
+                      kind.notification == nil, kind.wantsAttention else { return }
+                trigger += 1
+            }
+            .onChange(of: NotificationMirror.shared.arrivals) { _, _ in
                 guard !reduceMotion, !model.isOpen,
-                      LiveActivityCenter.shared.presented?.kind.wantsAttention == true else { return }
+                      LiveActivityCenter.shared.presented?.kind.notification?.isMessage == true else { return }
                 trigger += 1
             }
     }
@@ -161,6 +178,21 @@ private extension AnyTransition {
 
     /// A live activity arrives on the island's spring and leaves quickly, so its ears never
     /// linger over the Nook opening or over the activity that takes their place.
+    /// A notification arrives like any activity, and leaves the way it was swiped: up into
+    /// the camera or off to a side.
+    static func notificationExit(_ exit: NotificationMirror.Exit) -> AnyTransition {
+        let removal: AnyTransition
+        switch exit {
+        case .up: removal = .offset(y: -18).combined(with: .scale(scale: 0.9, anchor: .top))
+        case .left: removal = .offset(x: -60)
+        case .right: removal = .offset(x: 60)
+        case .fade: removal = .scale(scale: 0.96, anchor: .top)
+        }
+        return AnyTransition.asymmetric(
+            insertion: AnyTransition.opacity.combined(with: AnyTransition(.blurReplace)).animation(IslaMotion.activity),
+            removal: removal.combined(with: .opacity).combined(with: AnyTransition(.blurReplace)).animation(.easeIn(duration: 0.16)))
+    }
+
     static let islandActivity = AnyTransition.asymmetric(
         insertion: AnyTransition.opacity.combined(with: AnyTransition(.blurReplace)).animation(IslaMotion.activity),
         removal: AnyTransition.opacity.combined(with: AnyTransition(.blurReplace)).animation(.easeIn(duration: 0.12)))
@@ -307,6 +339,31 @@ struct OpenNotchView: View {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
         .frame(width: model.openSize.width, height: model.openSize.height)
+        .overlay(alignment: .top) {
+            NookNotificationLayer(topInset: model.notchSize.height + 4)
+        }
+    }
+}
+
+/// A notification that arrives while the Nook is open drops out of the camera as a small
+/// card over the content, instead of waiting for the Nook to close. Its own view, so brief
+/// activities (volume, brightness) never re-render the whole panel.
+private struct NookNotificationLayer: View {
+    let topInset: CGFloat
+
+    var body: some View {
+        let notification = LiveActivityCenter.shared.transient?.kind.notification
+        ZStack(alignment: .top) {
+            if let notification {
+                NookNotificationToast(notification: notification)
+                    .padding(.top, topInset)
+                    .id(notification.id)
+                    .transition(.asymmetric(
+                        insertion: .offset(y: -16).combined(with: .scale(scale: 0.86, anchor: .top)).combined(with: .opacity),
+                        removal: .offset(y: -10).combined(with: .scale(scale: 0.92, anchor: .top)).combined(with: .opacity)))
+            }
+        }
+        .animation(IslaMotion.activity, value: notification?.id)
     }
 }
 

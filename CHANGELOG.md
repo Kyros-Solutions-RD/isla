@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.13 — 2026-11-06
+
+- **Notifications in the notch.** Messages, WhatsApp, Mail and every other app (including the ones mirrored from your iPhone) now show up on the island: the app's real icon and the sender beside the camera, the message underneath. Isla reads the banners macOS draws through Accessibility, the permission it already uses for the volume overlay, so it needs no Full Disk Access and nothing leaves your Mac.
+- A notification pours out of the camera like the Nook does: the island widens first, then drops down with a little bounce, the icon lands with a ripple and a soft glow in the app's color. Messages from people give the island its small shake.
+- When several arrive they stack, with the earlier ones peeking out underneath; messages from the same conversation fold into one card with a count.
+- Click a notification to go straight to its conversation (or the app). Rest the pointer on it to keep it and unfold a long message; swipe it up into the camera or off to a side to dismiss it, with the trackpad or by dragging.
+- If one arrives while the Nook is open, it drops in as a small card under the camera instead of waiting.
+- New Settings › Notifications: turn it on or off, choose which apps show up, hide the content until you rest the pointer on the island, pick a sound, and optionally close the system banner once the notch shows it. Focus and Do Not Disturb are always respected: what macOS silences stays quiet in the notch too.
+- New Nook widget, Notifications, with the most recent ones. They are kept in memory only and are gone when Isla quits.
+
 ## 1.1.12 — 2026-11-06
 
 - When something needs you (an agent waiting on your answer, a timer that ended, a low battery), the island gives one small shake once it has grown, like the Dynamic Island.

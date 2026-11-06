@@ -2,6 +2,16 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.13 — 2026-11-06
+
+- **Notificaciones en el notch.** Mensajes, WhatsApp, Mail y cualquier otra app (también las que llegan del iPhone) aparecen ahora en la isla: el ícono real de la app y el remitente junto a la cámara, y el mensaje debajo. Isla lee los avisos que dibuja macOS mediante Accesibilidad, el mismo permiso que ya usa para el indicador de volumen, así que no necesita Acceso total al disco y nada sale de tu Mac.
+- La notificación sale de la cámara igual que el Nook: la isla primero se ensancha y luego baja con un pequeño rebote, el ícono aterriza con una onda y un brillo suave del color de la app. Los mensajes de personas hacen que la isla dé su pequeña sacudida.
+- Cuando llegan varias se apilan y las anteriores asoman por debajo; los mensajes de una misma conversación se juntan en una sola tarjeta con un contador.
+- Haz clic en una notificación para ir directo a su conversación (o a la app). Deja el puntero encima para que se quede y se despliegue un mensaje largo; deslízala hacia la cámara o a un lado para descartarla, con el trackpad o arrastrando.
+- Si llega una con el Nook abierto, cae como una pequeña tarjeta bajo la cámara en vez de esperar.
+- Nuevo panel Ajustes › Notificaciones: activarlas o desactivarlas, elegir qué apps se muestran, ocultar el contenido hasta que dejes el puntero sobre la isla, elegir un sonido y, si quieres, cerrar el aviso del sistema cuando el notch ya lo muestra. La Concentración y No molestar se respetan siempre: lo que macOS silencia también se queda en silencio en el notch.
+- Nuevo widget del Nook, Notificaciones, con las más recientes. Solo se guardan en memoria y desaparecen al cerrar Isla.
+
 ## 1.1.12 — 2026-11-06
 
 - Cuando algo te necesita (un agente esperando tu respuesta, un temporizador que terminó, la batería baja), la isla da una pequeña sacudida después de crecer, como la Dynamic Island.

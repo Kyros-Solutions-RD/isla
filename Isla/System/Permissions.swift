@@ -33,7 +33,7 @@ enum PermissionKind: String, CaseIterable, Identifiable {
         case .reminders: "Tasks synced with your Reminders lists."
         case .camera: "The Mirror, to check yourself before a call."
         case .location: "Local weather in the Nook."
-        case .accessibility: "Replace the volume and brightness overlay, and paste from the clipboard history."
+        case .accessibility: "Show your notifications in the notch, replace the volume and brightness overlay, and paste from the clipboard history."
         case .microphone: "Lets the Teleprompter follow your voice."
         }
     }

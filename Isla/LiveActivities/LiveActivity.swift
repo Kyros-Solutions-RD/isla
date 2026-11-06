@@ -83,6 +83,9 @@ enum LiveActivityKind: Equatable {
     /// AI agents working; the views read the details from `AgentMonitor`.
     case agents
     case agentFinished(toolID: String, title: String, needsYou: Bool)
+    /// A notification from another app (Messages, WhatsApp, Mail…), mirrored from Notification
+    /// Center. `stack` is how many more peek out underneath it (0–2).
+    case notification(IslaNotification, stack: Int)
 
     /// Activities in the same category update in place instead of re-animating.
     var category: String {
@@ -101,6 +104,7 @@ enum LiveActivityKind: Equatable {
         case .message: "message"
         case .agents: "agents"
         case .agentFinished: "agent-finished"
+        case .notification: "notification"
         }
     }
 
@@ -109,6 +113,7 @@ enum LiveActivityKind: Equatable {
         switch self {
         case .lowBattery, .timerFinished: true
         case .agentFinished(_, _, let needsYou): needsYou
+        case .notification(let notification, _): notification.isMessage
         default: false
         }
     }
@@ -145,6 +150,10 @@ enum LiveActivityKind: Equatable {
         case .message: return (140, 34)
         case .agents: return (square + 100, 52)
         case .agentFinished: return (150, 64)
+        case .notification(let notification, _):
+            // The island measures the hidden/revealed variants itself (see `NotchViewModel`).
+            let width = NotificationLayout.earWidth(for: notification, revealed: true)
+            return (width, width)
         }
     }
 }
@@ -168,6 +177,9 @@ final class LiveActivityCenter {
     /// Bumped to make an already-visible activity "pulse" again.
     private(set) var pulse = 0
     @ObservationIgnored private var dismissTask: Task<Void, Never>?
+    /// While the pointer rests on a notification it stays; it leaves a moment after.
+    @ObservationIgnored private var held = false
+    @ObservationIgnored private var pendingDuration: TimeInterval = 2.4
 
     private init() {}
 
@@ -216,16 +228,33 @@ final class LiveActivityCenter {
             transient = LiveActivity(kind)
         }
         pulse &+= 1
+        pendingDuration = duration
+        held ? dismissTask?.cancel() : scheduleDismissal(after: duration)
+    }
+
+    func dismissTransient() {
+        dismissTask?.cancel()
+        held = false
+        transient = nil
+    }
+
+    /// Keeps the brief activity on screen (the pointer is on it) or lets it go a moment later.
+    func holdTransient(_ hold: Bool, resumeAfter: TimeInterval = 2.4) {
+        guard hold != held else { return }
+        held = hold
+        if hold {
+            dismissTask?.cancel()
+        } else if transient != nil {
+            scheduleDismissal(after: min(resumeAfter, pendingDuration))
+        }
+    }
+
+    private func scheduleDismissal(after duration: TimeInterval) {
         dismissTask?.cancel()
         dismissTask = Task { [weak self] in
             try? await Task.sleep(for: .seconds(duration))
             guard !Task.isCancelled else { return }
             self?.transient = nil
         }
-    }
-
-    func dismissTransient() {
-        dismissTask?.cancel()
-        transient = nil
     }
 }

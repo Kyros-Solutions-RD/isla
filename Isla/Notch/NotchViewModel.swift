@@ -52,10 +52,32 @@ final class NotchViewModel {
     /// Size of the closed notch, including any live activity ears.
     var closedSize: CGSize {
         guard let activity = LiveActivityCenter.shared.presented?.kind else { return notchSize }
+        if let layout = notificationLayout {
+            return CGSize(width: notchSize.width + layout.earWidth * 2, height: notchSize.height + layout.detailHeight)
+        }
         let ears = activity.earWidths(notchHeight: notchSize.height)
         let earWidth = max(ears.left, ears.right)
         return CGSize(width: notchSize.width + earWidth * 2 + (showsIslandLyrics ? 120 : 0),
                       height: notchSize.height + activity.detailHeight + (showsIslandLyrics ? 26 : 0))
+    }
+
+    /// How the island lays out the notification it shows: content hidden for privacy comes
+    /// out under the pointer, and resting on a long message unfolds the rest of it.
+    struct NotificationIslandLayout: Equatable {
+        var earWidth: CGFloat
+        var detailHeight: CGFloat
+        var revealed: Bool
+        var expanded: Bool
+    }
+
+    var notificationLayout: NotificationIslandLayout? {
+        guard let notification = LiveActivityCenter.shared.presented?.kind.notification else { return nil }
+        let revealed = !Preferences.shared.notificationsHideContent || isHovering
+        let expanded = isHovering && phase != .open
+        let earWidth = NotificationLayout.earWidth(for: notification, revealed: revealed)
+        let detail = NotificationLayout.detailHeight(for: notification, islandWidth: notchSize.width + earWidth * 2,
+                                                     revealed: revealed, expanded: expanded)
+        return NotificationIslandLayout(earWidth: earWidth, detailHeight: detail, revealed: revealed, expanded: expanded)
     }
 
     /// Space between the island and the bubble of a second activity.
@@ -97,7 +119,8 @@ final class NotchViewModel {
         case .open:
             return (16, 34)
         case .peek, .closed:
-            let hasDetail = (LiveActivityCenter.shared.presented?.kind.detailHeight ?? 0) > 0 || showsIslandLyrics
+            let detail = notificationLayout?.detailHeight ?? LiveActivityCenter.shared.presented?.kind.detailHeight ?? 0
+            let hasDetail = detail > 0 || showsIslandLyrics
             let base: CGFloat = geometry.hasHardwareNotch ? 10 : 12
             return (6, hasDetail ? 20 : (phase == .peek ? base + 3 : base))
         }

@@ -51,6 +51,7 @@ enum DemoActivities {
         case "lyrics-off": Preferences.shared.lyricsOnIsland = false
         case "widgets-actions": Preferences.shared.homeWidgets = [.media, .actions, .calendar]
         case "widgets-default": Preferences.shared.homeWidgets = [.media, .calendar, .weather]
+        case "widgets-notifications": Preferences.shared.homeWidgets = [.media, .notifications, .calendar]
         case "terminal":
             TerminalSession.shared.run("PROMPT='%F{cyan}isla%f %F{white}%~%f %# '; clear; print -P '%F{214}¡Hola desde la isla!%f'; sw_vers")
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
@@ -63,6 +64,8 @@ enum DemoActivities {
             NowPlayingService.shared.applyDemo()
         case "agent-done", "agent-needs", "agents-empty", "agents-live", "agents-sample", "agents-sample-working":
             AgentMonitor.shared.runDemo(name)
+        case let demo where demo.hasPrefix("notify-"):
+            NotificationMirror.shared.runDemo(demo)
         case "peek", "unpeek":
             // The hover state, without moving the real pointer.
             guard let model = NotchManager.shared.controllers.values.first(where: { $0.model.geometry.hasHardwareNotch })?.model

@@ -36,6 +36,7 @@ struct SettingsRootView: View {
                 case .appearance: AppearancePane()
                 case .nook: NookPane()
                 case .activities: ActivitiesPane()
+                case .notifications: NotificationsPane()
                 case .agents: AgentsPane()
                 case .media: MediaPane()
                 case .shelf: ShelfPane()

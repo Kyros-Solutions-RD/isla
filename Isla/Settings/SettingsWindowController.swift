@@ -7,7 +7,7 @@ import AppKit
 import SwiftUI
 
 enum SettingsPane: String, CaseIterable, Identifiable, Hashable {
-    case general, appearance, nook, activities, agents, media, shelf, clipboard, calendar, focus, keyboard, permissions, about
+    case general, appearance, nook, activities, notifications, agents, media, shelf, clipboard, calendar, focus, keyboard, permissions, about
 
     var id: String { rawValue }
 
@@ -17,6 +17,7 @@ enum SettingsPane: String, CaseIterable, Identifiable, Hashable {
         case .appearance: "Appearance"
         case .nook: "Nook & Widgets"
         case .activities: "Live Activities"
+        case .notifications: "Notifications"
         case .agents: "AI Agents"
         case .media: "Music"
         case .shelf: "Shelf"
@@ -36,6 +37,7 @@ enum SettingsPane: String, CaseIterable, Identifiable, Hashable {
         case .appearance: String(localized: "Appearance")
         case .nook: String(localized: "Nook & Widgets")
         case .activities: String(localized: "Live Activities")
+        case .notifications: String(localized: "Notifications")
         case .agents: String(localized: "AI Agents")
         case .media: String(localized: "Music")
         case .shelf: String(localized: "Shelf")
@@ -54,6 +56,7 @@ enum SettingsPane: String, CaseIterable, Identifiable, Hashable {
         case .appearance: "paintbrush.fill"
         case .nook: "square.grid.2x2.fill"
         case .activities: "capsule.inset.filled"
+        case .notifications: "bell.badge.fill"
         case .agents: "sparkles"
         case .media: "music.note"
         case .shelf: "tray.full.fill"
@@ -72,6 +75,7 @@ enum SettingsPane: String, CaseIterable, Identifiable, Hashable {
         case .appearance: .blue
         case .nook: .indigo
         case .activities: .purple
+        case .notifications: .red
         case .agents: .orange
         case .media: .pink
         case .shelf: .teal
@@ -86,7 +90,7 @@ enum SettingsPane: String, CaseIterable, Identifiable, Hashable {
 
     static let groups: [[SettingsPane]] = [
         [.general, .appearance],
-        [.nook, .activities, .agents],
+        [.nook, .activities, .notifications, .agents],
         [.media, .shelf, .clipboard, .calendar, .focus],
         [.keyboard, .permissions],
         [.about],

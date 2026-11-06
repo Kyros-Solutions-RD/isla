@@ -228,6 +228,12 @@ final class NotchWindowController {
         closeTask?.cancel()
         guard model.phase != .open else { return }
         model.peek()
+        if LiveActivityCenter.shared.isPresentingNotification {
+            // Resting on a notification keeps it and unfolds it, so it can be read and clicked;
+            // it does not turn into the Nook under the pointer (swipe down for that).
+            NotificationMirror.shared.setHovering(true)
+            return
+        }
         let prefs = Preferences.shared
         guard prefs.openOnHover else { return }
         hoverTask?.cancel()
@@ -240,6 +246,7 @@ final class NotchWindowController {
 
     private func pointerExited() {
         hoverTask?.cancel()
+        NotificationMirror.shared.setHovering(false)
         if model.phase == .peek {
             model.unpeek()
             return
@@ -331,6 +338,19 @@ final class NotchWindowController {
         guard !scrollConsumed else { return !model.isOpen }
 
         if !model.isOpen {
+            if LiveActivityCenter.shared.isPresentingNotification {
+                // A notification goes away with a swipe up (into the camera) or to a side.
+                if scrollAccumulator.height < -12 {
+                    scrollConsumed = true
+                    NotificationMirror.shared.dismiss(.up)
+                    return true
+                }
+                if abs(scrollAccumulator.width) > 34 {
+                    scrollConsumed = true
+                    NotificationMirror.shared.dismiss(scrollAccumulator.width > 0 ? .right : .left)
+                    return true
+                }
+            }
             if scrollAccumulator.height > 14 {
                 scrollConsumed = true
                 open()

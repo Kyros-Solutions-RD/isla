@@ -41,6 +41,16 @@
         }
       }
     },
+    "%@: new notification": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: notificación nueva"
+          }
+        }
+      }
+    },
     "%lld": {
       "localizations": {
         "es": {
@@ -57,6 +67,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld eventos"
+          }
+        }
+      }
+    },
+    "%lld h": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld h"
           }
         }
       }
@@ -97,6 +117,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld elementos"
+          }
+        }
+      }
+    },
+    "%lld min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min"
           }
         }
       }
@@ -411,6 +441,16 @@
         }
       }
     },
+    "Add the Widget to the Nook": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir el widget al Nook"
+          }
+        }
+      }
+    },
     "Add to Favorites": {
       "localizations": {
         "es": {
@@ -561,6 +601,16 @@
         }
       }
     },
+    "Always respected": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siempre se respeta"
+          }
+        }
+      }
+    },
     "Animated equalizer": {
       "localizations": {
         "es": {
@@ -587,6 +637,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Apariencia"
+          }
+        }
+      }
+    },
+    "Apps": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps"
+          }
+        }
+      }
+    },
+    "Apps show up here once they can send notifications.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las apps aparecen aquí cuando pueden enviar notificaciones."
           }
         }
       }
@@ -1021,6 +1091,16 @@
         }
       }
     },
+    "Close the system banner": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar el aviso del sistema"
+          }
+        }
+      }
+    },
     "Close when the pointer leaves": {
       "localizations": {
         "es": {
@@ -1321,6 +1401,16 @@
         }
       }
     },
+    "Dismiss": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descartar"
+          }
+        }
+      }
+    },
     "Displays": {
       "localizations": {
         "es": {
@@ -1611,6 +1701,16 @@
         }
       }
     },
+    "Focus and Do Not Disturb": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Concentración y No molestar"
+          }
+        }
+      }
+    },
     "Focus done": {
       "localizations": {
         "es": {
@@ -1761,12 +1861,42 @@
         }
       }
     },
+    "Hidden": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oculto"
+          }
+        }
+      }
+    },
+    "Hide the content": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar el contenido"
+          }
+        }
+      }
+    },
     "Hide when an app is full screen": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Ocultar cuando una app está en pantalla completa"
+          }
+        }
+      }
+    },
+    "History is off": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historial desactivado"
           }
         }
       }
@@ -1817,6 +1947,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Imágenes a PDF"
+          }
+        }
+      }
+    },
+    "In the notch": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En el notch"
           }
         }
       }
@@ -1951,12 +2091,32 @@
         }
       }
     },
+    "Isla reads the banners macOS draws, through Accessibility. Nothing is saved and nothing leaves your Mac.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla lee los avisos que dibuja macOS mediante Accesibilidad. No guarda nada y nada sale de tu Mac."
+          }
+        }
+      }
+    },
     "Isla reads the calendars already on your Mac — iCloud, Google, Exchange — and never sends them anywhere.": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Isla lee los calendarios que ya tienes en tu Mac — iCloud, Google, Exchange — y nunca los envía a ningún sitio."
+          }
+        }
+      }
+    },
+    "Isla shows only what macOS lets through: when a Focus or Do Not Disturb silences an app, it stays quiet in the notch too.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isla solo muestra lo que macOS deja pasar: si una Concentración o No molestar silencia una app, en el notch también se queda en silencio."
           }
         }
       }
@@ -2051,6 +2211,16 @@
         }
       }
     },
+    "Keep the recent ones": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar las recientes"
+          }
+        }
+      }
+    },
     "Keeping your Mac awake": {
       "localizations": {
         "es": {
@@ -2067,6 +2237,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tu Mac se mantiene despierto. Haz clic para detener."
+          }
+        }
+      }
+    },
+    "Kept in memory only: never written to disk, and gone when Isla quits.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo en memoria: nunca se escriben en el disco y desaparecen al cerrar Isla."
           }
         }
       }
@@ -2361,6 +2541,16 @@
         }
       }
     },
+    "Messages, WhatsApp, Mail and every other app: their notifications come out of the camera. Click one to open it, rest the pointer on it to read it all, or swipe it away.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mensajes, WhatsApp, Mail y cualquier otra app: sus notificaciones salen de la cámara. Haz clic en una para abrirla, deja el puntero encima para leerla entera o deslízala para descartarla."
+          }
+        }
+      }
+    },
     "Microphone & Speech": {
       "localizations": {
         "es": {
@@ -2497,6 +2687,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Requiere acceso a %@"
+          }
+        }
+      }
+    },
+    "Needs Accessibility": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Necesita Accesibilidad"
           }
         }
       }
@@ -2691,6 +2891,16 @@
         }
       }
     },
+    "No notifications yet": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay notificaciones"
+          }
+        }
+      }
+    },
     "No permissions needed. Nothing leaves your Mac.": {
       "localizations": {
         "es": {
@@ -2857,6 +3067,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nada programado"
+          }
+        }
+      }
+    },
+    "Notifications": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificaciones"
+          }
+        }
+      }
+    },
+    "Notifications are off": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las notificaciones están desactivadas"
+          }
+        }
+      }
+    },
+    "Notifications in the notch": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificaciones en el notch"
           }
         }
       }
@@ -3331,6 +3571,16 @@
         }
       }
     },
+    "Preview": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver un ejemplo"
+          }
+        }
+      }
+    },
     "Preview the Nook": {
       "localizations": {
         "es": {
@@ -3347,6 +3597,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Privacidad y permisos"
+          }
+        }
+      }
+    },
+    "Privacy and banners": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacidad y avisos"
           }
         }
       }
@@ -3461,6 +3721,16 @@
         }
       }
     },
+    "Recent": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recientes"
+          }
+        }
+      }
+    },
     "Record Shortcut": {
       "localizations": {
         "es": {
@@ -3567,16 +3837,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reemplazar el indicador de volumen y brillo del sistema"
-          }
-        }
-      }
-    },
-    "Replace the volume and brightness overlay, and paste from the clipboard history.": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reemplazar el indicador de volumen y brillo, y pegar desde el historial del portapapeles."
           }
         }
       }
@@ -4021,6 +4281,16 @@
         }
       }
     },
+    "Show notifications in the notch": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar las notificaciones en el notch"
+          }
+        }
+      }
+    },
     "Show the AI tab in the notch": {
       "localizations": {
         "es": {
@@ -4077,6 +4347,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mostrar los agentes trabajando alrededor del notch cerrado"
+          }
+        }
+      }
+    },
+    "Show your notifications in the notch, replace the volume and brightness overlay, and paste from the clipboard history.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar tus notificaciones en el notch, reemplazar el indicador de volumen y brillo, y pegar desde el historial del portapapeles."
           }
         }
       }
@@ -4504,6 +4784,16 @@
         }
       }
     },
+    "This is how a message looks when it arrives. Click to open it, or swipe it away.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Así se ve un mensaje cuando llega. Haz clic para abrirlo o deslízalo para descartarlo."
+          }
+        }
+      }
+    },
     "Thunderstorm": {
       "localizations": {
         "es": {
@@ -4574,12 +4864,32 @@
         }
       }
     },
+    "Turn On": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activar"
+          }
+        }
+      }
+    },
     "Turn On Mirror": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Activar Espejo"
+          }
+        }
+      }
+    },
+    "Turn an app off to keep its notifications out of the notch. They still reach Notification Center as usual.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desactiva una app para que sus notificaciones no salgan en el notch. Seguirán llegando al Centro de notificaciones como siempre."
           }
         }
       }
@@ -4890,6 +5200,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ruido blanco"
+          }
+        }
+      }
+    },
+    "With the content hidden, the island shows only the app until you rest the pointer on it. Closing the system banner also takes the notification out of Notification Center; the Nook widget keeps the recent ones.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con el contenido oculto, la isla solo muestra la app hasta que dejas el puntero encima. Cerrar el aviso del sistema también quita la notificación del Centro de notificaciones; el widget del Nook guarda las recientes."
           }
         }
       }

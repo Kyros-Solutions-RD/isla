@@ -13,6 +13,14 @@ struct ClosedActivityView: View {
     let model: NotchViewModel
 
     var body: some View {
+        if let notification = activity.kind.notification {
+            NotificationIslandContent(notification: notification, model: model)
+        } else {
+            ears
+        }
+    }
+
+    @ViewBuilder private var ears: some View {
         let notch = model.notchSize
         let ears = activity.kind.earWidths(notchHeight: notch.height)
         let earWidth = max(ears.left, ears.right)
@@ -159,6 +167,8 @@ struct ClosedActivityView: View {
             AgentsEarLeading()
         case .agentFinished(let toolID, let title, let needsYou):
             AgentFinishedEarLeading(toolID: toolID, title: title, needsYou: needsYou)
+        case .notification:
+            EmptyView()
         }
     }
 
@@ -243,6 +253,8 @@ struct ClosedActivityView: View {
             AgentsEarTrailing()
         case .agentFinished(_, _, let needsYou):
             AgentFinishedEarTrailing(needsYou: needsYou)
+        case .notification:
+            EmptyView()
         }
     }
 
