@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.8</title>
+      <pubDate>Fri, 06 Nov 2026 02:19:16 GMT</pubDate>
+      <sparkle:version>16</sparkle:version>
+      <sparkle:shortVersionString>1.1.8</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>Two things at once, like the Dynamic Island: when a second activity is going on (an agent working while music plays, a timer and a download…), it splits off into a small bubble beside the island with the song&#x27;s cover, the agent&#x27;s icon or a progress ring. Click the bubble to open its tab. You can turn it off in Settings › Live Activities.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.8.dmg" sparkle:edSignature="nNp+Ut/3LFk6DJbzRRPChStXXgdnuB4Z3Jp1Ggz0FJcob1+iThvyZyxp7uUkhpw+IbU2FsPtbRIq9yxecpt5DQ==" length="11840587" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.7</title>
       <pubDate>Fri, 06 Nov 2026 01:53:34 GMT</pubDate>
       <sparkle:version>15</sparkle:version>
