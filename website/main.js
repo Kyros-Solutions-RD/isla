@@ -1,13 +1,20 @@
 /* Isla website: language, the menu bar island, live desktop demo, comparisons and motion. */
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // A page change the browser decides not to animate (a hidden tab) is not an error worth reporting.
+  const quiet = (event) => {
+    const transition = event.viewTransition;
+    if (transition) [transition.ready, transition.finished, transition.updateCallbackDone].forEach((promise) => promise?.catch(() => {}));
+  };
+  addEventListener('pageswap', quiet);
+  addEventListener('pagereveal', quiet);
   const canHover = window.matchMedia('(hover: hover)').matches;
 
   /* ---------------- Language ---------------- */
 
   const en = {
     'skip': 'Skip to content',
-    'nav.badge': 'Free', 'nav.try': 'Try it', 'nav.features': 'Features', 'nav.free': 'Price', 'nav.news': 'What’s new', 'nav.faq': 'FAQ', 'nav.download': 'Download',
+    'nav.badge': 'Free', 'nav.try': 'Try it', 'nav.new': 'New', 'nav.features': 'Features', 'nav.free': 'Price', 'nav.news': 'What’s new', 'nav.faq': 'FAQ', 'nav.download': 'Download',
     'island.label': 'What’s new',
     'hero.news': 'What’s new in version',
     'hero.title1': 'Your notch, now', 'hero.title2': 'an island.',
@@ -20,14 +27,26 @@
     'mb.file': 'File', 'mb.edit': 'Edit',
     'tab.home': 'Nook', 'tab.shelf': 'Shelf', 'tab.clipboard': 'Clipboard', 'tab.calendar': 'Calendar', 'tab.tasks': 'Tasks',
     'tab.timers': 'Focus', 'tab.notes': 'Notes', 'tab.teleprompter': 'Teleprompter', 'tab.terminal': 'Terminal', 'tab.actions': 'Actions',
-    'tab.agents': 'AI', 'act.agents': 'An agent at work',
+    'tab.agents': 'AI', 'act.agents': 'An agent at work', 'act.call': 'An incoming call',
     'b.agents.t': 'Your AI agents, in sight', 'b.agents.p': 'Codex, Gemini CLI, Antigravity and the other agents working on your Mac: which folder, since when, what they are doing now and whether they need you. Plus the models Ollama and LM Studio keep in memory. No permissions, and nothing leaves your Mac.',
     'style.classic': 'Classic',
     'act.airpods': 'Connect AirPods', 'act.charging': 'Plug in the charger', 'act.volume': 'Turn up the volume', 'act.brightness': 'Dim the screen',
     'act.meeting': 'Meeting in 4 min', 'act.download': 'Download a file', 'act.track': 'Change the song', 'act.lyrics': 'Lyrics under the island',
     'act.timer': 'Pomodoro done', 'act.caps': 'Caps Lock',
     'live.title': 'The island keeps you posted.',
-    'live.lead': 'Charging, AirPods with their battery, volume and brightness, downloads, meetings, timers, your AI agents and your song. They appear around the notch and leave on their own; when two happen at once, the second waits in a bubble.',
+    'live.lead': 'Charging, AirPods with their battery, volume and brightness, downloads, calls, meetings, timers, your AI agents and your song. They appear around the notch and leave on their own; when two happen at once, the second waits in a bubble.',
+    'news.title': 'Search, ask, watch and answer.',
+    'news.lead': 'New in version 1.1.14: four features that live under the camera, without opening another app and without anything leaving your Mac.',
+    'news.listAria': 'New in 1.1.14',
+    'news.search.t': 'Search', 'news.search.p': 'Apps, files, the calculator and currencies. Type “100 usd to dop” and Return copies the answer.',
+    'news.chat.t': 'Local AI chat', 'news.chat.p': 'Talk to your Ollama or LM Studio models as the answer streams in. Only with the server on your Mac.',
+    'news.system.t': 'System monitor', 'news.system.p': 'CPU and network with a graph, memory and free disk in a Nook widget, plus optional ears with the notch closed.',
+    'news.call.t': 'Calls on the island', 'news.call.p': 'FaceTime or your iPhone rings on the island, with large Accept and Decline buttons.',
+    'news.search.alt': 'Search with “100 usd a dop” typed and the answer in Dominican pesos',
+    'news.chat.alt': 'Chat with a local Ollama model answering under the notch',
+    'news.system.alt': 'The Nook with the System widget: CPU, memory, network and disk',
+    'news.call.alt': 'An incoming call on the island with Decline and Accept buttons',
+    'm.notif.t': 'Notifications', 'm.notif.p': 'WhatsApp, Messages and Mail, on the island.',
     'features.title1': 'More than 40 features.', 'features.title2': 'Zero cost.',
     'features.lead': 'Everything you’d expect from the best notch app, and a few things you wouldn’t.',
     'b.music.t': 'Music you can see', 'b.music.p': 'Any app in Now Playing: Music, Spotify, Podcasts or your browser. Artwork, controls, synced lyrics and glass that takes on the album’s color.',
@@ -58,8 +77,8 @@
     'free.title': 'One app for the notch. Zero dollars.',
     'free.lead': 'No Pro tier, no 48-hour trial, no subscription and no limit on Macs. Download it ready to go, or build it yourself.',
     'free.compare': 'What’s included? Compare ↓',
-    'plan.flag': 'RECOMMENDED', 'plan.a.kicker': 'Ready to use',
-    'plan.a.text': 'Download the .dmg, drag it to Applications and you’re done. It updates itself, signed and verified.',
+    'plan.a.kicker': 'Ready to use',
+    'plan.a.text': 'The one we recommend: download the .dmg, drag it to Applications and you’re done. It updates itself, signed and verified.',
     'plan.a.note': 'free, forever', 'plan.a.chip': 'On every Mac you own', 'plan.a.cta': 'Download Isla',
     'plan.a.foot': 'Version <span data-latest></span> · see what’s new ↗',
     'plan.b.kicker': 'To build it yourself',
@@ -95,7 +114,7 @@
     'footer.photos': 'Photo behind the captures:',
     'log.title': 'What’s new',
     'log.lead': 'Everything that changes in Isla, version by version. The app updates itself and lets you know on the island; here you can see what each version brings.',
-    'log.cta': 'Download Isla', 'log.feed': 'Subscribe via RSS', 'log.list': 'Every version',
+    'log.cta': 'Download Isla', 'log.feed': 'Subscribe via RSS', 'log.list': 'Every version', 'log.jump': 'Go to a version',
     'log.foot': 'Looking for something more technical? Every version is also on',
   };
 
@@ -104,6 +123,8 @@
   const original = new Map(nodes.map((node) => [node, node.textContent]));
   const ariaNodes = [...document.querySelectorAll('[data-i18n-aria]')];
   const originalAria = new Map(ariaNodes.map((node) => [node, node.getAttribute('aria-label')]));
+  const altNodes = [...document.querySelectorAll('[data-i18n-alt]')];
+  const originalAlt = new Map(altNodes.map((node) => [node, node.getAttribute('alt')]));
   const toggle = document.querySelector('[data-lang-toggle]');
   let lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('isla-lang') || 'es';
   if (lang !== 'en') lang = 'es';
@@ -118,6 +139,7 @@
       if (rich.has(node)) { node.innerHTML = value; } else { node.textContent = value; }
     });
     ariaNodes.forEach((node) => node.setAttribute('aria-label', lang === 'en' && en[node.dataset.i18nAria] ? en[node.dataset.i18nAria] : originalAria.get(node)));
+    altNodes.forEach((node) => node.setAttribute('alt', lang === 'en' && en[node.dataset.i18nAlt] ? en[node.dataset.i18nAlt] : originalAlt.get(node)));
     if (toggle) {
       toggle.textContent = lang === 'en' ? 'ES' : 'EN';
       toggle.setAttribute('aria-label', lang === 'en' ? 'Cambiar a español' : 'Change language to English');
@@ -136,7 +158,8 @@
     // The words cross-fade into the other language instead of jumping.
     if (document.startViewTransition && !reduceMotion) {
       // A transition the browser skips (a hidden tab) still applies the language; only the fade is lost.
-      document.startViewTransition(applyLanguage).ready.catch(() => {});
+      const transition = document.startViewTransition(applyLanguage);
+      [transition.ready, transition.finished, transition.updateCallbackDone].forEach((promise) => promise?.catch(() => {}));
     } else {
       applyLanguage();
     }
@@ -150,6 +173,47 @@
     const settle = () => { ticking = false; notchWrap.classList.toggle('is-scrolled', window.scrollY > 40); };
     addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(settle); } }, { passive: true });
     settle();
+  }
+
+  /* ---------------- The notch's links: a plate follows the section you are reading ---------------- */
+
+  const navLinks = document.querySelector('[data-navlinks]');
+  if (navLinks && 'IntersectionObserver' in window) {
+    const plate = document.createElement('span');
+    plate.className = 'nav-thumb';
+    plate.setAttribute('aria-hidden', 'true');
+    navLinks.prepend(plate);
+    const links = [...navLinks.querySelectorAll('a[href^="#"]')];
+    const sections = links.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+    let current = null;
+    const placePlate = (link, animated = true) => {
+      if (!link || !link.offsetWidth) { plate.classList.remove('on'); return; }
+      if (!animated) plate.style.transition = 'none';
+      plate.style.setProperty('--tx', `${link.offsetLeft}px`);
+      plate.style.setProperty('--tw', `${link.offsetWidth}px`);
+      plate.style.setProperty('--th', `${link.offsetHeight}px`);
+      plate.style.top = `${link.offsetTop}px`;
+      if (!animated) { void plate.offsetWidth; plate.style.transition = ''; }
+      plate.classList.add('on');
+    };
+    const mark = (id) => {
+      const link = links.find((l) => l.getAttribute('href') === `#${id}`) || null;
+      if (link === current) return;
+      const first = !current || !plate.classList.contains('on');
+      current = link;
+      links.forEach((l) => l.classList.toggle('is-here', l === link));
+      placePlate(link, !first);
+    };
+    // A section counts as "in view" while it crosses the middle of the window.
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) mark(entry.target.id); });
+      if (window.scrollY < innerHeight * 0.5) mark('');
+    }, { rootMargin: '-45% 0px -54% 0px' });
+    sections.forEach((section) => spy.observe(section));
+    // Past the questions, the page is closing: no link is "here" any more.
+    document.querySelectorAll('.final').forEach((section) => spy.observe(section));
+    addEventListener('resize', () => placePlate(current, false), { passive: true });
+    document.addEventListener('isla:lang', () => requestAnimationFrame(() => placePlate(current, false)));
   }
 
   /* ---------------- Segmented controls: a plate that glides to the choice ---------------- */
@@ -232,7 +296,7 @@
     const tabs = ['home', 'agents', 'shelf', 'clipboard', 'calendar', 'tasks', 'timers', 'notes', 'teleprompter', 'terminal', 'home-actions', 'dragging'];
     const activities = {
       media: { x: 436, w: 640, h: 80 }, airpods: {}, charging: {}, volume: {}, brightness: {}, meeting: {}, download: {}, caps: {}, timerdone: {}, shelf: {},
-      track: { h: 100 }, lyrics: { x: 376, w: 760, h: 100 }, agents: {},
+      track: { h: 100 }, lyrics: { x: 376, w: 760, h: 100 }, agents: {}, call: { h: 90 },
     };
     let style = 'glass';
     let tab = 'home';
@@ -282,7 +346,11 @@
       placeAll(true);
     }
 
+    // Once someone has played with the demo, the island stops inviting them to.
+    const touch = () => { desk.dataset.touched = ''; };
+
     function open(name = tab, { pin = false } = {}) {
+      touch();
       clearTimeout(closeTimer);
       endActivity(true);
       tab = name;
@@ -334,12 +402,20 @@
         ready.then(() => setTimeout(() => { if (token === actToken && desk.dataset.state !== 'open') desk.dataset.actOn = ''; }, 16));
       }, wasOn ? 170 : 0);
       clearTimeout(actTimer);
-      actButtons.forEach((button) => button.classList.toggle('is-on', !persistent && button.dataset.act === name));
+      const duration = name === 'meeting' || name === 'lyrics' || name === 'call' ? 4200 : 3000;
+      actButtons.forEach((button) => {
+        const on = !persistent && button.dataset.act === name;
+        // Restart the fill even when the same activity is shown twice in a row.
+        if (on && button.classList.contains('is-on')) { button.classList.remove('is-on'); void button.offsetWidth; }
+        button.style.setProperty('--dur', `${duration}ms`);
+        button.classList.toggle('is-on', on);
+      });
       if (!persistent) {
+        touch();
         actTimer = setTimeout(() => {
           actButtons.forEach((button) => button.classList.remove('is-on'));
           showActivity('media', true);
-        }, name === 'meeting' || name === 'lyrics' ? 4200 : 3000);
+        }, duration);
       }
     }
 
@@ -403,7 +479,8 @@
         document.body.appendChild(ghost);
         file.style.opacity = '0.35';
         hint?.classList.add('is-hidden');
-        dragging = { file, ghost, near: false };
+        dragging = { file, ghost, near: false, home: { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 } };
+        touch();
         endActivity(true);
       });
       file.addEventListener('pointermove', (event) => {
@@ -417,12 +494,25 @@
           if (near) { open('dragging'); } else { desk.dataset.state = 'closed'; }
         }
       });
+      // The ghost leaves with a gesture: swallowed by the notch, or sliding back to its place.
+      const fly = (ghost, to, into) => {
+        const from = 'translate(-50%, -50%) rotate(-4deg)';
+        if (reduceMotion || !ghost.animate) { ghost.remove(); return; }
+        const dx = to.x - parseFloat(ghost.style.left);
+        const dy = to.y - parseFloat(ghost.style.top);
+        const end = into
+          ? { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0.2)`, opacity: 0 }
+          : { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) rotate(0deg)`, opacity: 0.2 };
+        const motion = ghost.animate([{ transform: from, opacity: 0.95 }, end], { duration: into ? 340 : 420, easing: into ? 'cubic-bezier(0.55, 0, 0.75, 0.2)' : 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' });
+        motion.onfinish = () => ghost.remove();
+      };
       const finish = () => {
         if (!dragging || dragging.file !== file) return;
-        const { ghost, near } = dragging;
+        const { ghost, near, home } = dragging;
         dragging = null;
-        ghost.remove();
-        file.style.opacity = '';
+        const target = notchPoint();
+        fly(ghost, near ? { x: target.x, y: target.y } : home, near);
+        if (near || reduceMotion) { file.style.opacity = ''; } else { setTimeout(() => { file.style.opacity = ''; }, 380); }
         if (near) {
           file.classList.add('is-gone');
           open('shelf', { pin: true });
@@ -430,7 +520,10 @@
             if (desk.dataset.state === 'open' && tab === 'shelf') { pinned = false; desk.dataset.state = 'closed'; showActivity('shelf'); }
           }, 1800);
           if (files.every((f) => f.classList.contains('is-gone'))) {
-            setTimeout(() => { files.forEach((f) => f.classList.remove('is-gone')); hint?.classList.remove('is-hidden'); }, 6000);
+            setTimeout(() => {
+              files.forEach((f) => { f.classList.remove('is-gone'); f.classList.add('is-back'); setTimeout(() => f.classList.remove('is-back'), 600); });
+              hint?.classList.remove('is-hidden');
+            }, 6000);
           }
         } else {
           close();
@@ -445,40 +538,136 @@
 
   document.querySelectorAll('[data-ba]').forEach((ba) => {
     const range = ba.querySelector('[data-ba-range]');
-    range.addEventListener('input', () => ba.style.setProperty('--pos', `${range.value}%`));
+    let touched = false;
+    const set = (value) => { ba.style.setProperty('--pos', `${value}%`); range.value = String(Math.round(value)); };
+    range.addEventListener('input', () => { touched = true; set(Number(range.value)); });
+    // The first time it comes into view, the handle sweeps once each way to show it can be dragged.
+    if (reduceMotion || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver((entries, observer) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      observer.disconnect();
+      const keys = [[0, 50], [0.32, 34], [0.7, 64], [1, 50]];
+      const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+      setTimeout(() => {
+        const start = performance.now();
+        const step = (now) => {
+          if (touched) return;
+          const t = Math.min(1, (now - start) / 1900);
+          let k = 1;
+          while (k < keys.length - 1 && t > keys[k][0]) k++;
+          const [t0, v0] = keys[k - 1];
+          const [t1, v1] = keys[k];
+          set(v0 + (v1 - v0) * ease((t - t0) / (t1 - t0)));
+          if (t < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }, 500);
+    }, { threshold: 0.6 }).observe(ba);
   });
 
   /* ---------------- Marquee duplicate ---------------- */
 
-  const track = document.querySelector('.marquee-track');
-  if (track) track.append(...[...track.children].map((node) => node.cloneNode(true)));
+  document.querySelectorAll('.marquee-track').forEach((track) => track.append(...[...track.children].map((node) => node.cloneNode(true))));
+
+  /* ---------------- New in 1.1.14: one stage, four features ---------------- */
+
+  const news = document.querySelector('[data-news]');
+  if (news) {
+    const items = [...news.querySelectorAll('[data-news-item]')];
+    const shots = [...news.querySelectorAll('[data-news-shot]')];
+    const hold = 6500;
+    let index = 0;
+    let timer;
+    let startedAt = 0;
+    let remaining = hold;
+    let inView = false;
+    let held = false;
+
+    const run = () => {
+      if (reduceMotion || !inView || held) { pause(); return; }
+      if (!news.classList.contains('paused')) return;
+      news.classList.remove('paused');
+      items[index].classList.add('run');
+      startedAt = performance.now();
+      timer = setTimeout(() => select(index + 1), remaining);
+    };
+    const pause = () => {
+      if (news.classList.contains('paused')) return;
+      clearTimeout(timer);
+      remaining = Math.max(400, remaining - (performance.now() - startedAt));
+      news.classList.add('paused');
+    };
+    function select(next, focus = false) {
+      index = (next + items.length) % items.length;
+      const key = items[index].dataset.newsItem;
+      items.forEach((item, n) => {
+        const on = n === index;
+        item.classList.toggle('is-on', on);
+        item.classList.remove('run');
+        item.setAttribute('aria-selected', String(on));
+        item.tabIndex = on ? 0 : -1;
+      });
+      shots.forEach((shot) => {
+        if (shot.dataset.newsShot === key && shot.loading === 'lazy') shot.loading = 'eager';
+        shot.classList.toggle('is-on', shot.dataset.newsShot === key);
+      });
+      if (focus) items[index].focus();
+      void news.offsetWidth;
+      remaining = hold;
+      news.style.setProperty('--dur', `${hold}ms`);
+      news.classList.add('paused');
+      run();
+    }
+    items.forEach((item, n) => {
+      item.addEventListener('click', () => select(n));
+      item.addEventListener('keydown', (event) => {
+        const move = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
+        if (move) { event.preventDefault(); select(index + move, true); }
+      });
+    });
+    // Resting the pointer on the list, or tabbing into it, holds the current feature.
+    const list = news.querySelector('.news-list');
+    list.addEventListener('pointerenter', (event) => { if (event.pointerType === 'mouse') { held = true; pause(); } });
+    list.addEventListener('pointerleave', (event) => { if (event.pointerType === 'mouse') { held = false; run(); } });
+    news.addEventListener('focusin', () => { held = true; pause(); });
+    news.addEventListener('focusout', (event) => { if (!news.contains(event.relatedTarget)) { held = false; run(); } });
+    // Warm the other pictures once the section is near, so every switch is instant.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries, observer) => {
+        if (entries.some((entry) => entry.isIntersecting)) { shots.forEach((shot) => { shot.loading = 'eager'; }); observer.disconnect(); }
+      }, { rootMargin: '700px' }).observe(news);
+      new IntersectionObserver((entries) => {
+        inView = entries.some((entry) => entry.isIntersecting);
+        if (inView) { run(); } else { pause(); }
+      }, { threshold: 0.45 }).observe(news);
+    }
+    items.forEach((item, n) => { item.tabIndex = n === 0 ? 0 : -1; });
+    news.style.setProperty('--dur', `${hold}ms`);
+    news.classList.add('paused');
+    if (!reduceMotion) news.classList.add('auto');
+  }
 
   /* ---------------- Reveal ---------------- */
 
   if (!reduceMotion && 'IntersectionObserver' in window) {
+    // [section, [[part, manner], ...]]: parts arrive in reading order, each kind in its own way.
     const groups = [
-      ['.section-head', ['.h2', '.lead', '.quote', '.quote-by', '.pill-link']],
-      ['.demo', ['.screen', '.demo-controls', '.acts', '.demo-after']],
-      ['.bento', ['.tile']],
-      ['.mini-grid', ['.mini']],
-      ['.made', ['.stats div', '.tech', '.native-text', '.shot-a', '.shot-b']],
-      ['.compare', ['.ba']],
-      ['.plans', ['.plan']],
-      ['.promises', ['.promise']],
-      ['.includes', ['.h3', '.cmp', '.cmp-note']],
-      ['.final', ['.stage', '.h1', '.lead', '.hero-ctas', '.hero-meta']],
-      ['.faq-list', ['details']],
-      ['.release', ['.release-version', '.release-date', '.release-badge', '.release-intro', '.release-shot', 'li', '.release-links']],
-      ['.log', ['.log-foot']],
+      ['.section-head', [['.h2', 'rv-title'], ['.lead'], ['.quote'], ['.quote-by', 'rv-sm'], ['.pill-link', 'rv-sm']]],
+      ['.demo', [['.demo-controls'], ['.acts'], ['.demo-after']]],
+      ['.news-body', [['.news-item', 'rv-sm']]],
+      ['.bento', [['.tile', 'rv-tile']]],
+      ['.mini-grid', [['.mini', 'rv-sm']]],
+      ['.made', [['.stats div'], ['.tech', 'rv-sm'], ['.native-text', 'rv-left'], ['.shot-a', 'rv-pic'], ['.shot-b', 'rv-pic']]],
+      ['.compare', [['.ba', 'rv-pic']]],
+      ['.plans', [['.plan-main', 'rv-left'], ['.plan:not(.plan-main)', 'rv-right']]],
+      ['.promises', [['.promise']]],
+      ['.includes', [['.h3', 'rv-title'], ['.cmp', 'rv-pic'], ['.cmp-note', 'rv-sm']]],
+      ['.faq-head', [['.h2', 'rv-title'], ['.lead'], ['.faq-more', 'rv-sm']]],
+      ['.faq-list', [['details', 'rv-sm']]],
+      ['.final', [['.h1', 'rv-title'], ['.lead'], ['.hero-ctas'], ['.hero-meta', 'rv-sm']]],
+      ['.release', [['.release-version', 'rv-title'], ['.release-date', 'rv-sm'], ['.release-badge', 'rv-sm'], ['.release-intro'], ['.release-shot', 'rv-pic'], ['li', 'rv-sm'], ['.release-links', 'rv-sm']]],
+      ['.log', [['.log-foot']]],
     ];
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.querySelectorAll('.reveal').forEach((node) => node.classList.add('in'));
-        entry.target.querySelectorAll('[data-count]').forEach(countUp);
-        observer.unobserve(entry.target);
-      });
-    }, { rootMargin: '0px 0px -10% 0px' });
 
     // The figures roll up to their value once, as the stats come into view.
     function countUp(node) {
@@ -493,16 +682,52 @@
       };
       requestAnimationFrame(step);
     }
+
+    // Once a part has arrived it gives its transitions back, so hovers answer at once.
+    const settle = (node) => {
+      const step = parseFloat(getComputedStyle(node).getPropertyValue('--step')) || 75;
+      setTimeout(() => node.classList.remove('reveal', 'in', 'rv-title', 'rv-sm', 'rv-pic', 'rv-tile', 'rv-left', 'rv-right'), 1300 + Number(node.style.getPropertyValue('--i') || 0) * step);
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('.reveal').forEach((node) => { node.classList.add('in'); settle(node); });
+        entry.target.querySelectorAll('[data-count]').forEach(countUp);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+
     groups.forEach(([selector, parts]) => {
       document.querySelectorAll(selector).forEach((section) => {
         let i = 0;
-        parts.forEach((part) => section.querySelectorAll(part).forEach((node) => {
+        parts.forEach(([part, manner]) => section.querySelectorAll(part).forEach((node) => {
           if (node.classList.contains('reveal')) return;
           node.classList.add('reveal');
-          node.style.setProperty('--i', String(i++ % 8));
+          if (manner) node.classList.add(manner);
+          node.style.setProperty('--i', String(i++ % 10));
         }));
         observer.observe(section);
       });
+    });
+
+    // Neon signs outside the hero switch on, with their flicker, as you reach them.
+    const signs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('lit'); signs.unobserve(entry.target); } });
+    }, { rootMargin: '0px 0px -15% 0px' });
+    document.querySelectorAll('.neon-side').forEach((sign) => signs.observe(sign));
+  }
+
+  /* ---------------- What's new: every version as a chip ---------------- */
+
+  const jump = document.querySelector('[data-log-jump]');
+  if (jump) {
+    document.querySelectorAll('.release[id]').forEach((release, i) => {
+      const link = document.createElement('a');
+      link.href = `#${release.id}`;
+      link.textContent = release.id.replace(/^v/, '');
+      link.style.setProperty('--i', String(i));
+      if (i === 0) link.classList.add('is-latest');
+      jump.append(link);
     });
   }
 

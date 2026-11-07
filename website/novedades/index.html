@@ -16,7 +16,8 @@
   <link rel="canonical" href="https://isla.kyrosrd.com/novedades/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles.css?v=4.2">
+  <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="page-log">
   <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
@@ -32,6 +33,7 @@
       </a>
       <div class="notchbar-links">
         <a href="../#pruebala" data-i18n="nav.try">Pruébala</a>
+        <a href="../#nuevo" data-i18n="nav.new">Lo nuevo</a>
         <a href="../#funciones" data-i18n="nav.features">Funciones</a>
         <a href="../#gratis" data-i18n="nav.free">Precio</a>
         <a href="./" aria-current="page" data-i18n="nav.news">Novedades</a>
@@ -51,10 +53,10 @@
         <img class="hero-art" src="../assets/px-hero.jpg" width="1536" height="1024" alt="">
         <span class="hero-dots"></span>
       </div>
-      <span class="neon neon-v neon-rose" style="--x:6%;--y:24%" aria-hidden="true">NUEVO</span>
-      <span class="neon neon-teal neon-sm neon-side" style="--x:86%;--y:30%" aria-hidden="true">NOVEDADES</span>
+      <span class="neon neon-v neon-rose" style="--x:6%;--y:24%;--k:0" aria-hidden="true">NUEVO</span>
+      <span class="neon neon-teal neon-sm" style="--x:86%;--y:30%;--k:2" aria-hidden="true">NOVEDADES</span>
       <div class="log-hero-copy">
-        <h1 class="h1" data-i18n="log.title">Novedades</h1>
+        <h1 class="h1 lines"><span class="line"><span class="line-in" data-i18n="log.title">Novedades</span></span></h1>
         <p class="lead" data-i18n="log.lead">Todo lo que cambia en Isla, versión por versión. La app se actualiza sola y te avisa en la isla; aquí ves qué trae cada versión.</p>
         <div class="log-ctas">
           <a class="btn btn-light btn-lg" href="../downloads/Isla.dmg">
@@ -63,6 +65,7 @@
           </a>
           <a class="btn btn-glass btn-lg" href="../updates/appcast.xml" data-i18n="log.feed">Suscribirse por RSS</a>
         </div>
+        <nav class="log-jump" aria-label="Ir a una versión" data-i18n-aria="log.jump" data-log-jump></nav>
       </div>
     </section>
 
@@ -677,6 +680,6 @@
     <p class="footer-word" aria-hidden="true">Isla</p>
   </footer>
 
-  <script src="../main.js" defer></script>
+  <script src="../main.js?v=4.2" defer></script>
 </body>
 </html>

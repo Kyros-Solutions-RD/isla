@@ -16,7 +16,8 @@
   <link rel="canonical" href="https://isla.kyrosrd.com/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=4.2">
+  <script>document.documentElement.classList.add('js');try{if(!sessionStorage.getItem('isla-intro')){document.documentElement.classList.add('intro');sessionStorage.setItem('isla-intro','1')}}catch(e){}</script>
 </head>
 <body>
   <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
@@ -30,8 +31,9 @@
         <span>Isla</span>
         <b class="badge" data-i18n="nav.badge">Gratis</b>
       </a>
-      <div class="notchbar-links">
+      <div class="notchbar-links" data-navlinks>
         <a href="#pruebala" data-i18n="nav.try">Pruébala</a>
+        <a href="#nuevo" data-i18n="nav.new">Lo nuevo</a>
         <a href="#funciones" data-i18n="nav.features">Funciones</a>
         <a href="#gratis" data-i18n="nav.free">Precio</a>
         <a href="novedades/" data-i18n="nav.news">Novedades</a>
@@ -52,12 +54,13 @@
         <img class="hero-art" src="assets/px-hero.jpg" width="1536" height="1024" alt="">
         <span class="hero-dots"></span>
       </div>
-      <span class="neon neon-v neon-rose" style="--x:5%;--y:12%" aria-hidden="true">COLMADO</span>
-      <span class="neon neon-teal neon-sm" style="--x:10.5%;--y:36%" aria-hidden="true">ABIERTO</span>
-      <span class="neon neon-v neon-sun neon-sm neon-dim" style="--x:17%;--y:17%" aria-hidden="true">CAFÉ</span>
-      <span class="neon neon-v neon-violet" style="--x:91%;--y:13%" aria-hidden="true">BACHATA</span>
-      <span class="neon neon-rose neon-sm" style="--x:78%;--y:35%" aria-hidden="true">MALECÓN</span>
-      <span class="neon neon-sun neon-xs" style="--x:86%;--y:9%" aria-hidden="true">24H</span>
+      <span class="neon neon-v neon-rose" style="--x:5%;--y:12%;--k:0" aria-hidden="true">COLMADO</span>
+      <span class="neon neon-teal neon-sm neon-mid" style="--x:10.5%;--y:36%;--k:3" aria-hidden="true">ABIERTO</span>
+      <span class="neon neon-v neon-sun neon-sm neon-dim" style="--x:17%;--y:17%;--k:5" aria-hidden="true">CAFÉ</span>
+      <span class="neon neon-v neon-violet" style="--x:91%;--y:13%;--k:1" aria-hidden="true">BACHATA</span>
+      <span class="neon neon-rose neon-sm neon-mid" style="--x:78%;--y:35%;--k:4" aria-hidden="true">MALECÓN</span>
+      <span class="neon neon-sun neon-xs" style="--x:86%;--y:9%;--k:2" aria-hidden="true">24H</span>
+      <span class="neon neon-teal neon-sm neon-phone" style="--k:2" aria-hidden="true">ABIERTO</span>
 
       <div class="hero-copy">
         <div class="stage">
@@ -65,7 +68,7 @@
           <span class="stage-ring" aria-hidden="true"></span>
           <span class="stage-ring stage-ring-2" aria-hidden="true"></span>
         </div>
-        <h1 class="hero-title"><span data-i18n="hero.title1">Tu notch, ahora es</span> <span class="grad" data-i18n="hero.title2">una isla.</span></h1>
+        <h1 class="hero-title lines"><span class="line"><span class="line-in" data-i18n="hero.title1">Tu notch, ahora es</span></span> <span class="line"><span class="line-in grad" data-i18n="hero.title2">una isla.</span></span></h1>
         <p class="hero-sub" data-i18n="hero.sub">Música con letras, Bandeja con AirDrop, calendario, teleprompter, terminal y más: más de 40 funciones bajo tu cámara. Gratis y de código abierto.</p>
         <div class="hero-ctas">
           <a class="btn btn-light btn-lg" href="downloads/Isla.dmg"><svg viewBox="0 0 20 20" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M10 2a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42L9 11.59V3a1 1 0 0 1 1-1ZM4 16a1 1 0 1 0 0 2h12a1 1 0 1 0 0-2H4Z"/></svg><span data-i18n="hero.cta">Descargar Isla</span></a>
@@ -102,11 +105,12 @@
             </div>
           </div>
           <div class="notch" aria-hidden="true"></div>
+          <span class="notch-hint" aria-hidden="true"></span>
           <button class="notch-hit" type="button" data-open aria-label="Abrir el Nook" data-i18n-aria="demo.openAria"></button>
           <div class="act" data-act-layer><img data-act-img src="assets/app/act-media.jpg" width="1280" height="160" alt=""></div>
           <div class="panel" data-panel>
             <img data-panel-img src="assets/app/glass-home.jpg" width="2160" height="640" alt="El Nook de Isla abierto">
-            <img class="panel-next" data-panel-next width="2160" height="640" alt="" aria-hidden="true">
+            <img class="panel-next" data-panel-next src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="2160" height="640" alt="" aria-hidden="true">
             <div class="panel-hits">
               <button type="button" style="--x:192" data-tab="home" aria-label="Nook"></button>
               <button type="button" style="--x:225" data-tab="agents" aria-label="IA"></button>
@@ -147,6 +151,7 @@
         </div>
       </div>
       <div class="acts" role="group" aria-label="Actividades en vivo">
+        <button type="button" class="pill pill-new" data-act="call" data-i18n="act.call">Una llamada entrante</button>
         <button type="button" class="pill" data-act="airpods" data-i18n="act.airpods">Conectar AirPods</button>
         <button type="button" class="pill" data-act="charging" data-i18n="act.charging">Enchufar el cargador</button>
         <button type="button" class="pill" data-act="volume" data-i18n="act.volume">Subir el volumen</button>
@@ -170,21 +175,67 @@
 
     <!-- ============ Live activities ============ -->
     <section class="live" aria-labelledby="live-title">
-      <div class="section-head center">
+      <div class="section-head split">
         <h2 id="live-title" class="h2" data-i18n="live.title">La isla te avisa.</h2>
-        <p class="lead" data-i18n="live.lead">Carga, AirPods con su batería, volumen y brillo, descargas, reuniones, temporizadores, tus agentes de IA y tu canción. Aparecen alrededor del notch y se van solas; si hay dos a la vez, la segunda espera en una burbuja.</p>
+        <p class="lead" data-i18n="live.lead">Carga, AirPods con su batería, volumen y brillo, descargas, llamadas, reuniones, temporizadores, tus agentes de IA y tu canción. Aparecen alrededor del notch y se van solas; si hay dos a la vez, la segunda espera en una burbuja.</p>
       </div>
       <div class="marquee" aria-hidden="true">
         <div class="marquee-track">
           <img src="assets/app/act-airpods.jpg" width="1280" height="160" alt="">
+          <img src="assets/app/act-call.jpg" width="1280" height="180" alt="">
           <img src="assets/app/act-charging.jpg" width="1280" height="160" alt="">
           <img src="assets/app/act-volume.jpg" width="1280" height="160" alt="">
           <img src="assets/app/act-meeting.jpg" width="1280" height="160" alt="">
           <img src="assets/app/act-download.jpg" width="1280" height="160" alt="">
+        </div>
+        <div class="marquee-track marquee-back">
           <img src="assets/app/act-media.jpg" width="1280" height="160" alt="">
           <img src="assets/app/act-agents.jpg" width="1280" height="160" alt="">
           <img src="assets/app/act-brightness.jpg" width="1280" height="160" alt="">
           <img src="assets/app/act-shelf.jpg" width="1280" height="160" alt="">
+          <img src="assets/app/act-timerdone.jpg" width="1280" height="160" alt="">
+          <img src="assets/app/act-caps.jpg" width="1280" height="160" alt="">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ New in 1.1.14: one stage, four features ============ -->
+    <section class="news" id="nuevo" aria-labelledby="news-title">
+      <span class="neon neon-v neon-sun neon-sm neon-side" style="--x:96%;--y:2%" aria-hidden="true">NUEVO</span>
+      <div class="section-head">
+        <h2 id="news-title" class="h2" data-i18n="news.title">Busca, pregunta, vigila y contesta.</h2>
+        <p class="lead" data-i18n="news.lead">Lo nuevo de la versión 1.1.14: cuatro funciones que viven bajo la cámara, sin abrir otra app y sin que nada salga de tu Mac.</p>
+      </div>
+      <div class="news-body" data-news>
+        <div class="news-stage">
+          <div class="news-screen" data-ui>
+            <img class="is-on" data-news-shot="search" src="assets/app/new-search.jpg" width="2160" height="640" loading="lazy" alt="Buscar con «100 usd a dop» escrito y el resultado en pesos dominicanos" data-i18n-alt="news.search.alt">
+            <img data-news-shot="chat" src="assets/app/new-chat.jpg" width="2160" height="640" loading="lazy" alt="Chat con un modelo local de Ollama respondiendo bajo el notch" data-i18n-alt="news.chat.alt">
+            <img data-news-shot="system" src="assets/app/new-system.jpg" width="2160" height="640" loading="lazy" alt="Nook con el widget Sistema: CPU, memoria, red y disco" data-i18n-alt="news.system.alt">
+            <img data-news-shot="call" src="assets/app/new-call.jpg" width="2160" height="640" loading="lazy" alt="Una llamada entrante en la isla con los botones Rechazar y Aceptar" data-i18n-alt="news.call.alt">
+          </div>
+        </div>
+        <div class="news-list" role="tablist" aria-label="Lo nuevo de la 1.1.14" data-i18n-aria="news.listAria">
+          <button type="button" class="news-item is-on" role="tab" aria-selected="true" data-news-item="search">
+            <span class="news-name"><b data-i18n="news.search.t">Buscar</b> <kbd>⌃⌥K</kbd></span>
+            <span class="news-text" data-i18n="news.search.p">Apps, archivos, la calculadora y divisas. Escribe «100 usd a dop» y Return copia el resultado.</span>
+            <i class="news-bar" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="news-item" role="tab" aria-selected="false" data-news-item="chat">
+            <span class="news-name"><b data-i18n="news.chat.t">Chat con IA local</b></span>
+            <span class="news-text" data-i18n="news.chat.p">Habla con tus modelos de Ollama o LM Studio palabra a palabra. Solo con el servidor de tu Mac.</span>
+            <i class="news-bar" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="news-item" role="tab" aria-selected="false" data-news-item="system">
+            <span class="news-name"><b data-i18n="news.system.t">Monitor del sistema</b></span>
+            <span class="news-text" data-i18n="news.system.p">CPU y red con gráfica, memoria y disco libre en un widget del Nook, y orejas opcionales con el notch cerrado.</span>
+            <i class="news-bar" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="news-item" role="tab" aria-selected="false" data-news-item="call">
+            <span class="news-name"><b data-i18n="news.call.t">Llamadas en la isla</b></span>
+            <span class="news-text" data-i18n="news.call.p">FaceTime o tu iPhone suenan en la isla con botones grandes de Aceptar y Rechazar.</span>
+            <i class="news-bar" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
     </section>
@@ -193,7 +244,7 @@
     <section class="features" id="funciones" aria-labelledby="features-title">
       <span class="neon neon-v neon-violet neon-sm neon-side" style="--x:95%;--y:5%" aria-hidden="true">IA</span>
       <span class="neon neon-v neon-teal neon-sm neon-side" style="--x:4%;--y:24%" aria-hidden="true">MÚSICA</span>
-      <div class="section-head center">
+      <div class="section-head split">
         <h2 id="features-title" class="h2"><span data-i18n="features.title1">Más de 40 funciones.</span> <span class="grad" data-i18n="features.title2">Cero pesos.</span></h2>
         <p class="lead" data-i18n="features.lead">Todo lo que esperarías de la mejor app del notch, y un par de cosas que no.</p>
       </div>
@@ -265,10 +316,6 @@
       </div>
 
       <ul class="mini-grid">
-        <li class="mini card"><b data-i18n="m.search.t">Buscar</b><span data-i18n="m.search.p">⌃⌥K: apps, archivos, calculadora y divisas.</span></li>
-        <li class="mini card"><b data-i18n="m.chat.t">Chat con IA local</b><span data-i18n="m.chat.p">Tus modelos de Ollama o LM Studio, sin internet.</span></li>
-        <li class="mini card"><b data-i18n="m.system.t">Monitor del sistema</b><span data-i18n="m.system.p">CPU, memoria, red y disco en vivo.</span></li>
-        <li class="mini card"><b data-i18n="m.calls.t">Llamadas en la isla</b><span data-i18n="m.calls.p">Acepta o rechaza FaceTime y el iPhone.</span></li>
         <li class="mini card"><b data-i18n="m.tasks.t">Tareas</b><span data-i18n="m.tasks.p">Sincronizadas con Recordatorios.</span></li>
         <li class="mini card"><b data-i18n="m.notes.t">Notas</b><span data-i18n="m.notes.p">Rápidas, locales, con exportación a Notas.</span></li>
         <li class="mini card"><b data-i18n="m.mirror.t">Espejo</b><span data-i18n="m.mirror.p">Mírate antes de una llamada.</span></li>
@@ -280,7 +327,7 @@
         <li class="mini card"><b data-i18n="m.keys.t">Teclado</b><span data-i18n="m.keys.p">⌃⌥Espacio abre la isla desde cualquier app.</span></li>
         <li class="mini card"><b data-i18n="m.lang.t">Español e inglés</b><span data-i18n="m.lang.p">Traducida por completo.</span></li>
         <li class="mini card"><b data-i18n="m.privacy.t">Privada</b><span data-i18n="m.privacy.p">Sin cuentas ni analíticas.</span></li>
-        <li class="mini card"><b data-i18n="m.updates.t">Siempre al día</b><span data-i18n="m.updates.p">Te avisa cuando hay versión nueva.</span></li>
+        <li class="mini card"><b data-i18n="m.notif.t">Notificaciones</b><span data-i18n="m.notif.p">WhatsApp, Mensajes y Mail, en la isla.</span></li>
       </ul>
     </section>
 
@@ -314,7 +361,7 @@
 
     <!-- ============ Glass vs classic ============ -->
     <section class="compare" aria-labelledby="compare-title">
-      <div class="section-head center">
+      <div class="section-head">
         <h2 id="compare-title" class="h2" data-i18n="compare.title">Vidrio o negro. Tú eliges.</h2>
         <p class="lead" data-i18n="compare.lead">El Liquid Glass de macOS deja ver tu fondo a través de la isla. El negro clásico la funde con la cámara. Desliza para comparar.</p>
       </div>
@@ -323,7 +370,7 @@
         <div class="ba-top"><img src="assets/app/glass-home.jpg" width="2160" height="640" loading="lazy" alt="Isla en Liquid Glass"></div>
         <span class="ba-label ba-l">Liquid Glass</span>
         <span class="ba-label ba-r" data-i18n="style.classic">Clásico</span>
-        <span class="ba-handle" aria-hidden="true"></span>
+        <span class="ba-handle" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6 3 12l6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar estilos" data-ba-range>
       </div>
     </section>
@@ -332,19 +379,18 @@
     <section class="free" id="gratis" aria-labelledby="free-title">
       <span class="neon neon-v neon-rose neon-sm neon-side" style="--x:5%;--y:6%" aria-hidden="true">GRATIS</span>
       <span class="neon neon-teal neon-sm neon-side" style="--x:90%;--y:9%" aria-hidden="true">ABIERTO</span>
-      <div class="section-head center">
+      <div class="section-head split">
         <h2 id="free-title" class="h2" data-i18n="free.title">Una app para el notch. Cero pesos.</h2>
         <p class="lead" data-i18n="free.lead">Sin versión Pro, sin prueba de 48 horas, sin suscripción y sin límite de Macs. Descárgala lista o compílala tú.</p>
         <a class="pill-link" href="#incluye" data-i18n="free.compare">¿Qué incluye? Compáralo ↓</a>
       </div>
       <div class="plans">
         <article class="plan plan-main">
-          <span class="neon neon-rose neon-xs plan-flag" aria-hidden="true" data-i18n="plan.flag">RECOMENDADA</span>
           <header class="plan-head">
             <img src="assets/isla-icon-512.png" width="48" height="48" alt="">
             <h3 data-i18n="plan.a.kicker">Lista para usar</h3>
           </header>
-          <p class="plan-text" data-i18n="plan.a.text">Descarga el .dmg, arrástrala a Aplicaciones y listo. Se actualiza sola, firmada y verificada.</p>
+          <p class="plan-text" data-i18n="plan.a.text">La que te recomendamos: descarga el .dmg, arrástrala a Aplicaciones y listo. Se actualiza sola, firmada y verificada.</p>
           <p class="plan-price">0 <small>US$</small></p>
           <p class="plan-note" data-i18n="plan.a.note">gratis, para siempre</p>
           <p class="plan-chip" data-i18n="plan.a.chip">En todos tus Macs, sin límite</p>
@@ -402,6 +448,28 @@ open Isla.xcodeproj</code></pre>
       </div>
     </section>
 
+    <!-- ============ FAQ ============ -->
+    <section class="faq" id="preguntas" aria-labelledby="faq-title">
+      <span class="neon neon-sun neon-sm neon-side" style="--x:2.5%;--y:58%" aria-hidden="true">AYUDA</span>
+      <span class="neon neon-v neon-teal neon-sm neon-side" style="--x:92%;--y:18%" aria-hidden="true">¿DUDAS?</span>
+      <div class="faq-grid">
+      <div class="faq-head">
+        <h2 id="faq-title" class="h2" data-i18n="faq.title">Preguntas, respondidas.</h2>
+        <p class="lead" data-i18n="faq.lead">La versión corta de lo que más nos preguntan.</p>
+        <p class="faq-more"><span data-i18n="faq.more">¿Te queda alguna duda? Escríbenos en</span> <a href="https://github.com/Kyros-Solutions-RD/isla/issues">GitHub</a>.</p>
+      </div>
+      <div class="faq-list">
+        <details class="card"><summary data-i18n="faq.q1">¿Isla es gratis de verdad?</summary><p data-i18n="faq.a1">Sí. Todas las funciones son gratis, para siempre, sin prueba ni suscripción. El código está en GitHub bajo la licencia MIT.</p></details>
+        <details class="card"><summary data-i18n="faq.q2">¿Qué Mac necesito?</summary><p data-i18n="faq.a2">Cualquier Mac con macOS 26 Tahoe o posterior, con Apple silicon o Intel. Isla usa el Liquid Glass del sistema, por eso requiere Tahoe.</p></details>
+        <details class="card"><summary data-i18n="faq.q3">¿Y si mi Mac no tiene notch?</summary><p data-i18n="faq.a3">Isla dibuja una isla equivalente en la parte superior de cualquier pantalla, incluidos los monitores externos. Tú eliges en qué pantallas aparece.</p></details>
+        <details class="card"><summary data-i18n="faq.q4">¿Con qué apps de música funciona?</summary><p data-i18n="faq.a4">Con cualquier app que aparezca en «Reproduciendo» del Centro de control: Música, Spotify, Podcasts, YouTube en el navegador y más. Las letras vienen de LRCLIB, una base de datos abierta.</p></details>
+        <details class="card"><summary data-i18n="faq.q5">¿Qué permisos pide y qué hace con mis datos?</summary><p data-i18n="faq.a5">Solo los que tú actives: Calendario, Recordatorios, Cámara para el Espejo, Ubicación para el clima, Micrófono para el teleprompter y Accesibilidad para el indicador de volumen, las notificaciones y las llamadas. Nada sale de tu Mac salvo el clima con ubicación aproximada, la búsqueda de letras, los tipos de cambio cuando conviertes una divisa y la comprobación de actualizaciones. El chat solo habla con Ollama o LM Studio en tu Mac.</p></details>
+        <details class="card"><summary data-i18n="faq.q6">macOS dice que no puede verificar la app, ¿qué hago?</summary><p data-i18n="faq.a6">Las versiones de la comunidad se firman sin un certificado de pago de Apple. Abre Ajustes del Sistema › Privacidad y seguridad, baja hasta el final, pulsa «Abrir igualmente» y confirma. Solo se hace una vez. O compílala tú desde el código fuente.</p></details>
+        <details class="card"><summary data-i18n="faq.q7">¿Cómo me entero de las versiones nuevas?</summary><p data-i18n="faq.a7">Isla busca actualizaciones una vez al día y te avisa en la propia isla; se instalan con un clic. Todo lo que cambia está en <a href="novedades/">Novedades</a>. Puedes desactivar la búsqueda en Ajustes.</p></details>
+      </div>
+      </div>
+    </section>
+
     <!-- ============ The Malecón, then the last call ============ -->
     <section class="seafront" aria-hidden="true">
       <img class="seafront-art" src="assets/px-malecon.jpg" width="2400" height="700" alt="">
@@ -422,25 +490,6 @@ open Isla.xcodeproj</code></pre>
       <p class="hero-meta" data-i18n="hero.meta">Gratis para siempre · macOS 26 Tahoe o posterior · también en Macs sin notch</p>
     </section>
 
-    <!-- ============ FAQ ============ -->
-    <section class="faq" id="preguntas" aria-labelledby="faq-title">
-      <span class="neon neon-sun neon-sm neon-side" style="--x:6%;--y:30%" aria-hidden="true">AYUDA</span>
-      <span class="neon neon-v neon-teal neon-sm neon-side" style="--x:92%;--y:18%" aria-hidden="true">¿DUDAS?</span>
-      <div class="section-head center">
-        <h2 id="faq-title" class="h2" data-i18n="faq.title">Preguntas, respondidas.</h2>
-        <p class="lead" data-i18n="faq.lead">La versión corta de lo que más nos preguntan.</p>
-      </div>
-      <div class="faq-list">
-        <details class="card"><summary data-i18n="faq.q1">¿Isla es gratis de verdad?</summary><p data-i18n="faq.a1">Sí. Todas las funciones son gratis, para siempre, sin prueba ni suscripción. El código está en GitHub bajo la licencia MIT.</p></details>
-        <details class="card"><summary data-i18n="faq.q2">¿Qué Mac necesito?</summary><p data-i18n="faq.a2">Cualquier Mac con macOS 26 Tahoe o posterior, con Apple silicon o Intel. Isla usa el Liquid Glass del sistema, por eso requiere Tahoe.</p></details>
-        <details class="card"><summary data-i18n="faq.q3">¿Y si mi Mac no tiene notch?</summary><p data-i18n="faq.a3">Isla dibuja una isla equivalente en la parte superior de cualquier pantalla, incluidos los monitores externos. Tú eliges en qué pantallas aparece.</p></details>
-        <details class="card"><summary data-i18n="faq.q4">¿Con qué apps de música funciona?</summary><p data-i18n="faq.a4">Con cualquier app que aparezca en «Reproduciendo» del Centro de control: Música, Spotify, Podcasts, YouTube en el navegador y más. Las letras vienen de LRCLIB, una base de datos abierta.</p></details>
-        <details class="card"><summary data-i18n="faq.q5">¿Qué permisos pide y qué hace con mis datos?</summary><p data-i18n="faq.a5">Solo los que tú actives: Calendario, Recordatorios, Cámara para el Espejo, Ubicación para el clima, Micrófono para el teleprompter y Accesibilidad para el indicador de volumen, las notificaciones y las llamadas. Nada sale de tu Mac salvo el clima con ubicación aproximada, la búsqueda de letras, los tipos de cambio cuando conviertes una divisa y la comprobación de actualizaciones. El chat solo habla con Ollama o LM Studio en tu Mac.</p></details>
-        <details class="card"><summary data-i18n="faq.q6">macOS dice que no puede verificar la app, ¿qué hago?</summary><p data-i18n="faq.a6">Las versiones de la comunidad se firman sin un certificado de pago de Apple. Abre Ajustes del Sistema › Privacidad y seguridad, baja hasta el final, pulsa «Abrir igualmente» y confirma. Solo se hace una vez. O compílala tú desde el código fuente.</p></details>
-        <details class="card"><summary data-i18n="faq.q7">¿Cómo me entero de las versiones nuevas?</summary><p data-i18n="faq.a7">Isla busca actualizaciones una vez al día y te avisa en la propia isla; se instalan con un clic. Todo lo que cambia está en <a href="novedades/">Novedades</a>. Puedes desactivar la búsqueda en Ajustes.</p></details>
-      </div>
-      <p class="faq-more"><span data-i18n="faq.more">¿Te queda alguna duda? Escríbenos en</span> <a href="https://github.com/Kyros-Solutions-RD/isla/issues">GitHub</a>.</p>
-    </section>
   </main>
 
   <footer class="footer">
@@ -450,7 +499,7 @@ open Isla.xcodeproj</code></pre>
         <p data-i18n="footer.tag">Tu notch, ahora es una isla. Hecha con cariño, y mucho café, en Santo Domingo.</p>
         <a class="btn btn-light btn-sm" href="downloads/Isla.dmg"><svg viewBox="0 0 20 20" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M10 2a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42L9 11.59V3a1 1 0 0 1 1-1ZM4 16a1 1 0 1 0 0 2h12a1 1 0 1 0 0-2H4Z"/></svg><span data-i18n="hero.cta">Descargar Isla</span></a>
       </div>
-      <div><h4 data-i18n="footer.product">Producto</h4><a href="#pruebala" data-i18n="nav.try">Pruébala</a><a href="#funciones" data-i18n="nav.features">Funciones</a><a href="#gratis" data-i18n="nav.free">Precio</a><a href="novedades/" data-i18n="footer.changelog">Novedades</a></div>
+      <div><h4 data-i18n="footer.product">Producto</h4><a href="#pruebala" data-i18n="nav.try">Pruébala</a><a href="#nuevo" data-i18n="nav.new">Lo nuevo</a><a href="#funciones" data-i18n="nav.features">Funciones</a><a href="#gratis" data-i18n="nav.free">Precio</a><a href="novedades/" data-i18n="footer.changelog">Novedades</a></div>
       <div><h4 data-i18n="footer.help">Ayuda</h4><a href="downloads/Isla.dmg" data-i18n="nav.download">Descargar</a><a href="#preguntas" data-i18n="nav.faq">Preguntas</a><a href="https://github.com/Kyros-Solutions-RD/isla/issues" data-i18n="footer.issues">Reportar un problema</a><a href="updates/appcast.xml" data-i18n="footer.rss">Feed RSS</a></div>
       <div><h4 data-i18n="footer.community">Comunidad</h4><a href="https://github.com/Kyros-Solutions-RD/isla">GitHub ↗</a><a href="https://github.com/Kyros-Solutions-RD/isla/blob/main/CONTRIBUTING.md" data-i18n="footer.contribute">Contribuir ↗</a><a href="https://github.com/Kyros-Solutions-RD">Kyros Solutions RD ↗</a></div>
     </div>
@@ -461,6 +510,6 @@ open Isla.xcodeproj</code></pre>
     <p class="footer-word" aria-hidden="true">Isla</p>
   </footer>
 
-  <script src="main.js" defer></script>
+  <script src="main.js?v=4.2" defer></script>
 </body>
 </html>
