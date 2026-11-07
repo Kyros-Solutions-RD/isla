@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.14</title>
+      <pubDate>Sat, 07 Nov 2026 05:32:37 GMT</pubDate>
+      <sparkle:version>22</sparkle:version>
+      <sparkle:shortVersionString>1.1.14</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>**Search** (⌃⌥K, or the magnifying glass in the Nook): open apps and the files you have opened, jump to any tab, run Isla&#x27;s actions, find what you copied, calculate (&quot;128 * 4.5 + 2^10&quot;), convert units (&quot;10 km to mi&quot;) and currencies (&quot;100 usd to eur&quot;), start a timer (&quot;timer 25&quot;) or write a note (&quot;note call Ana&quot;). The answer shows large at the top; Return copies it. Results you pick rise to the top next time.</li><li>**Chat with your local models**: a new Chat tab talks to Ollama or LM Studio right under the camera, with answers that stream in word by word. Summarize, translate or explain what you copied with one click. It only talks to the server on your Mac and never starts one. Also from Search: type a question and choose &quot;Ask&quot;.</li><li>**System monitor**: a System widget for the Nook with CPU and network graphs, memory, free disk and thermal state, and optional CPU and network ears around the closed notch (Settings › Live Activities). The graphs are drawn by Core Animation, so they cost next to nothing.</li><li>**Calls on the island**: an incoming FaceTime call, or one from your iPhone, rings on the island with large Accept and Decline buttons, which answer the system&#x27;s call alert. It leaves when the call is answered elsewhere or missed. You can turn it off in Settings › Notifications.</li><li>Exchange rates for currency conversions come from ExchangeRate-API, only when you convert a currency and at most twice a day. Nothing else new leaves your Mac.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.14.dmg" sparkle:edSignature="teSJptK2XJWETBOzImAeGkkuG7BUlOdsEyxpF4wjozaOO8HbWfknfctzCjNQH2w1+oiJ/xs0Ptnxh6GoXxS1Bw==" length="13049267" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.13</title>
       <pubDate>Fri, 06 Nov 2026 16:58:25 GMT</pubDate>
       <sparkle:version>21</sparkle:version>
