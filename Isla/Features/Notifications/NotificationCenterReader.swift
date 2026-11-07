@@ -33,6 +33,8 @@ struct NotificationBanner: Sendable, Equatable {
     var isAlert: Bool
     /// The same banner, filled in after it was first read (its text grew): not a new message.
     var isUpdate = false
+    /// The names of its buttons ("Accept", "Decline"…), in the system's language.
+    var buttons: [String] = []
 }
 
 final class NotificationCenterReader: @unchecked Sendable {
@@ -40,6 +42,9 @@ final class NotificationCenterReader: @unchecked Sendable {
 
     /// Called on the main thread for each new banner.
     var onBanner: (@MainActor (NotificationBanner) -> Void)?
+    /// Called on the main thread with the banners that left the screen (answered, declined,
+    /// or timed out), so an incoming call can leave the island with them.
+    var onGone: (@MainActor (Set<String>) -> Void)?
 
     // Lifecycle (main thread).
     private var observer: AXObserver?
@@ -58,6 +63,8 @@ final class NotificationCenterReader: @unchecked Sendable {
     private var elements: [String: AXUIElement] = [:]
     private var elementOrder: [String] = []
     private var quietUntil: TimeInterval = 0
+    /// Banners on screen at the last scan.
+    private var onScreen: Set<String> = []
 
     var isRunning: Bool { observer != nil }
 
@@ -134,7 +141,11 @@ final class NotificationCenterReader: @unchecked Sendable {
 
     // MARK: Acting on a banner
 
-    enum BannerAction: Sendable { case open, close }
+    enum BannerAction: Sendable {
+        case open, close
+        /// Presses the banner's button with one of these names (an incoming call's Accept).
+        case button([String])
+    }
 
     /// Opens (like a click on the banner, which goes straight to the conversation) or closes a
     /// banner that is still on screen. Reports on the main thread whether it worked.
@@ -148,6 +159,10 @@ final class NotificationCenterReader: @unchecked Sendable {
                 case .close:
                     if let close = Self.closeAction(of: element) {
                         done = AXUIElementPerformAction(element, close as CFString) == .success
+                    }
+                case .button(let names):
+                    if let button = Self.button(in: element, named: names) {
+                        done = AXUIElementPerformAction(button, kAXPressAction as CFString) == .success
                     }
                 }
                 if done { self.forget(id) }
@@ -167,6 +182,34 @@ final class NotificationCenterReader: @unchecked Sendable {
         let words = ["Close", "Cerrar", "Fermer", "Schließen", "Chiudi", "Fechar", "Sluiten", "Stäng", "Luk", "Lukk",
                      "Sulje", "Zamknij", "Kapat", "Закрыть", "閉じる", "关闭", "關閉", "닫기"]
         return custom.first { action in words.contains { action.hasPrefix("Name:\($0)\n") } } ?? custom.last
+    }
+
+    /// A button inside a banner whose title or description starts with one of `names`.
+    private static func button(in element: AXUIElement, named names: [String], depth: Int = 0) -> AXUIElement? {
+        guard depth < 4 else { return nil }
+        for child in children(of: element, kAXChildrenAttribute) {
+            if string(child, kAXRoleAttribute) == kAXButtonRole {
+                let label = (string(child, kAXTitleAttribute) ?? "") + " " + (string(child, kAXDescriptionAttribute) ?? "")
+                if names.contains(where: { label.localizedCaseInsensitiveContains($0) }) { return child }
+            }
+            if let found = button(in: child, named: names, depth: depth + 1) { return found }
+        }
+        return nil
+    }
+
+    private static func buttonNames(in element: AXUIElement, depth: Int = 0) -> [String] {
+        guard depth < 4 else { return [] }
+        var names: [String] = []
+        for child in children(of: element, kAXChildrenAttribute) {
+            if string(child, kAXRoleAttribute) == kAXButtonRole {
+                let label = [string(child, kAXTitleAttribute), string(child, kAXDescriptionAttribute)]
+                    .compactMap { $0 }.first { !$0.isEmpty }
+                if let label { names.append(label) }
+            } else {
+                names += buttonNames(in: child, depth: depth + 1)
+            }
+        }
+        return names
     }
 
     // MARK: Scanning (queue)
@@ -200,6 +243,16 @@ final class NotificationCenterReader: @unchecked Sendable {
             quietUntil = ProcessInfo.processInfo.systemUptime + 1
             hasBaseline = true
             return
+        }
+
+        let present = Set(banners.compactMap { Self.string($0, kAXIdentifierAttribute) })
+        let gone = onScreen.subtracting(present)
+        onScreen = present
+        if !gone.isEmpty {
+            for id in gone { forget(id) }
+            DispatchQueue.main.async {
+                MainActor.assumeIsolated { self.onGone?(gone) }
+            }
         }
 
         var fresh: [NotificationBanner] = []
@@ -290,7 +343,8 @@ final class NotificationCenterReader: @unchecked Sendable {
         }
         return NotificationBanner(id: id, appName: app, title: title, subtitle: subtitle, body: body,
                                   fromiPhone: parsed.fromiPhone,
-                                  isAlert: hasButtons || subrole.localizedCaseInsensitiveContains("alert"))
+                                  isAlert: hasButtons || subrole.localizedCaseInsensitiveContains("alert"),
+                                  buttons: buttonNames(in: element))
     }
 
     /// "Messages, Ana, Lunch?, from iPhone" → ("Messages", fromiPhone: true).

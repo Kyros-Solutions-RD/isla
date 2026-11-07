@@ -65,7 +65,7 @@ enum TemperatureUnit: String, CaseIterable, Identifiable, Codable {
 }
 
 enum HomeWidget: String, CaseIterable, Identifiable, Codable {
-    case media, calendar, weather, timer, battery, shortcuts, shelf, note, actions, agents, notifications
+    case media, calendar, weather, timer, battery, shortcuts, shelf, note, actions, agents, notifications, system
 
     var id: String { rawValue }
 
@@ -82,6 +82,7 @@ enum HomeWidget: String, CaseIterable, Identifiable, Codable {
         case .actions: "Quick Actions"
         case .agents: "AI Agents"
         case .notifications: "Notifications"
+        case .system: "System"
         }
     }
 
@@ -98,6 +99,7 @@ enum HomeWidget: String, CaseIterable, Identifiable, Codable {
         case .actions: "bolt.fill"
         case .agents: "sparkles"
         case .notifications: "bell.badge.fill"
+        case .system: "cpu"
         }
     }
 
@@ -148,6 +150,8 @@ final class Preferences {
     var activityHUD: Bool { didSet { set(activityHUD, "activityHUD") } }
     /// A second ongoing activity shows as a bubble beside the island.
     var activitySecondary: Bool { didSet { set(activitySecondary, "activitySecondary") } }
+    var activitySystem: Bool { didSet { set(activitySystem, "activitySystem") } }
+    var callsOnIsland: Bool { didSet { set(callsOnIsland, "callsOnIsland") } }
     var replaceSystemHUD: Bool { didSet { set(replaceSystemHUD, "replaceSystemHUD") } }
     var lowBatteryThreshold: Int { didSet { set(lowBatteryThreshold, "lowBatteryThreshold") } }
     var meetingLeadMinutes: Int { didSet { set(meetingLeadMinutes, "meetingLeadMinutes") } }
@@ -218,6 +222,7 @@ final class Preferences {
     var toggleHotKey: KeyCombo? { didSet { setCodable(toggleHotKey, "toggleHotKey") } }
     var clipboardHotKey: KeyCombo? { didSet { setCodable(clipboardHotKey, "clipboardHotKey") } }
     var shelfHotKey: KeyCombo? { didSet { setCodable(shelfHotKey, "shelfHotKey") } }
+    var launcherHotKey: KeyCombo? { didSet { setCodable(launcherHotKey, "launcherHotKey") } }
 
     private init() {
         let d = UserDefaults.standard
@@ -261,6 +266,8 @@ final class Preferences {
         activityCapsLock = bool("activityCapsLock", true)
         activityHUD = bool("activityHUD", true)
         activitySecondary = bool("activitySecondary", true)
+        activitySystem = bool("activitySystem", false)
+        callsOnIsland = bool("callsOnIsland", true)
         replaceSystemHUD = bool("replaceSystemHUD", false)
         lowBatteryThreshold = int("lowBatteryThreshold", 20)
         meetingLeadMinutes = int("meetingLeadMinutes", 5)
@@ -314,6 +321,7 @@ final class Preferences {
         toggleHotKey = codable("toggleHotKey", Optional(KeyCombo.defaultToggle))
         clipboardHotKey = codable("clipboardHotKey", Optional(KeyCombo.defaultClipboard))
         shelfHotKey = codable("shelfHotKey", Optional<KeyCombo>.none)
+        launcherHotKey = codable("launcherHotKey", Optional(KeyCombo.defaultLauncher))
 
         // The AI tab arrived in an update: add it once for people who already chose their tabs.
         if !bool("agentsTabIntroduced", false) {

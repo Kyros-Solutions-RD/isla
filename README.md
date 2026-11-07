@@ -33,8 +33,11 @@
 
 | | |
 | --- | --- |
-| **Nook** | A row of widgets you pick and order: Now Playing, Up Next, Weather, Focus, Battery & Devices, Shortcuts, Shelf, Quick Note, Quick Actions, AI Agents and Notifications. |
-| **Notifications** | Messages, WhatsApp, Mail and every other app: their notifications come out of the camera with the app's real icon, the sender and the message. They stack when several arrive and group by conversation; click to open the conversation, rest the pointer to read it all, swipe to dismiss. Optional hidden content, sound and closing the system banner. Follows your Focus. Read through Accessibility, kept only in memory. |
+| **Nook** | A row of widgets you pick and order: Now Playing, Up Next, Weather, Focus, Battery & Devices, Shortcuts, Shelf, Quick Note, Quick Actions, AI Agents, Notifications and System. |
+| **Notifications** | Messages, WhatsApp, Mail and every other app: their notifications come out of the camera with the app's real icon, the sender and the message. They stack when several arrive and group by conversation; click to open the conversation, rest the pointer to read it all, swipe to dismiss. Optional hidden content, sound and closing the system banner. Follows your Focus. Read through Accessibility, kept only in memory. **Incoming calls** from FaceTime or your iPhone ring on the island with Accept and Decline. |
+| **Search** | ⌃⌥K opens a launcher in the notch: apps, files you have opened, Isla's tabs and actions, the clipboard, a **calculator**, **unit and currency conversions** ("10 km to mi", "100 usd to eur"), timers ("timer 25") and quick notes. Learns what you pick. |
+| **Chat** | Talk to the models in Ollama or LM Studio right under the camera, with answers that stream in word by word. Summarize, translate or explain what you copied. Only talks to the server on your Mac; never starts one. |
+| **System** | CPU with a live graph, memory, network speed, free disk and thermal state, in a Nook widget and, if you like, around the closed notch. No permissions. |
 | **AI** | The coding agents running on your Mac, in Terminal or in their own app: the folder each one works in, since when, whether it is working, waiting or needs you, and what it is doing right now. Plus the models Ollama and LM Studio keep in memory and the AI apps you have open. No permissions needed. |
 | **Now Playing** | Follows any app in Control Center's Now Playing (Music, Spotify, Podcasts, browsers). Artwork, scrubber, controls, **synced lyrics** from LRCLIB (optionally shown right under the island), artwork-tinted glass and an animated equalizer. Swipe sideways on the notch to change tracks. |
 | **Shelf** | Drop files on the notch and drag them back out anywhere. **AirDrop**, Share, Quick Look (Space), convert to PNG, JPEG, HEIC, TIFF, PDF, merged PDF, MP4, M4A or ZIP. Text and images you drop become files. |
@@ -49,9 +52,9 @@
 | **Shortcuts** | Run your macOS Shortcuts from the notch, with favorites. |
 | **Terminal** | A real shell under the notch (SwiftTerm) that keeps running while you switch tabs or close the panel. |
 | **Quick Actions** | Keep your Mac awake, pick a color from anywhere, capture a screenshot to the Shelf, lock the screen or toggle dark mode. |
-| **Live activities** | Music, track changes, charging and low battery, **AirPods and Bluetooth devices with battery**, volume and brightness, downloads with progress, upcoming meetings, timers, **AI agents at work**, **notifications** and Caps Lock. |
+| **Live activities** | Music, track changes, charging and low battery, **AirPods and Bluetooth devices with battery**, volume and brightness, downloads with progress, upcoming meetings, timers, **AI agents at work**, **notifications**, **incoming calls**, CPU and network, and Caps Lock. |
 | **System HUD** | Optionally replaces the volume and brightness overlay with a slim slider under the notch (⌥⇧ for fine steps). |
-| **Gestures & keys** | Hover or swipe down to open, swipe up to close, ⌃⌥Space to toggle, ⌃⌥V for the clipboard, ⌘1…⌘9 to switch tabs. All shortcuts are configurable. |
+| **Gestures & keys** | Hover or swipe down to open, swipe up to close, ⌃⌥Space to toggle, ⌃⌥K to search, ⌃⌥V for the clipboard, ⌘1…⌘9 to switch tabs. All shortcuts are configurable. |
 | **Updates** | Built-in updater (Sparkle) with signed releases. Checks once a day and tells you on the island when a new version ships. |
 | **Languages** | English and Spanish. |
 
@@ -100,7 +103,7 @@ Press ⌘R in Xcode 26 or later. To produce a DMG:
 
 - **The notch window** is a borderless, non-activating panel above the menu bar on each display. It ignores the mouse everywhere except over the notch silhouette, so it never steals clicks from the menu bar or the apps below.
 - **Now Playing** comes from a small bridge (`MediaBridge/`) loaded by the system's `/usr/bin/perl`, an Apple-signed interpreter that macOS lets read the Now Playing session. Isla falls back to AppleScript for Music and Spotify.
-- **Weather** uses [Open-Meteo](https://open-meteo.com) with a location rounded to about a kilometre. **Lyrics** come from [LRCLIB](https://lrclib.net). The **update check** downloads the release feed from [isla.kyrosrd.com](https://isla.kyrosrd.com) and can be turned off in Settings. Nothing else leaves your Mac.
+- **Weather** uses [Open-Meteo](https://open-meteo.com) with a location rounded to about a kilometre. **Lyrics** come from [LRCLIB](https://lrclib.net). The **update check** downloads the release feed from [isla.kyrosrd.com](https://isla.kyrosrd.com) and can be turned off in Settings. **Currency conversions** in Search fetch exchange rates from [ExchangeRate-API](https://www.exchangerate-api.com), only when you convert a currency and at most twice a day. **Chat** only talks to Ollama or LM Studio on 127.0.0.1. Nothing else leaves your Mac.
 - **Terminal** is powered by [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) (MIT).
 
 ```
@@ -109,7 +112,8 @@ Isla/
 ├── Notch/            Panel, geometry, shape, view model, header
 ├── LiveActivities/   Activity model and the views around the notch
 ├── Features/         Home, Agents, Media, Shelf, Clipboard, Calendar, Tasks, Timers,
-│                     Notes, Notifications, Mirror, Teleprompter, Weather, Shortcuts
+│                     Notes, Notifications, Mirror, Teleprompter, Weather, Shortcuts,
+│                     Launcher, LocalChat, SystemStats
 ├── System/           Battery, Bluetooth, volume & brightness, downloads, permissions
 ├── Settings/         Preferences and the Settings window
 ├── Onboarding/       Welcome tour

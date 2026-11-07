@@ -15,6 +15,8 @@ struct ClosedActivityView: View {
     var body: some View {
         if let notification = activity.kind.notification {
             NotificationIslandContent(notification: notification, model: model)
+        } else if case .call(let call) = activity.kind {
+            IncomingCallIsland(call: call, model: model)
         } else {
             ears
         }
@@ -167,7 +169,9 @@ struct ClosedActivityView: View {
             AgentsEarLeading()
         case .agentFinished(let toolID, let title, let needsYou):
             AgentFinishedEarLeading(toolID: toolID, title: title, needsYou: needsYou)
-        case .notification:
+        case .systemStats:
+            SystemEarLeading()
+        case .notification, .call:
             EmptyView()
         }
     }
@@ -253,7 +257,9 @@ struct ClosedActivityView: View {
             AgentsEarTrailing()
         case .agentFinished(_, _, let needsYou):
             AgentFinishedEarTrailing(needsYou: needsYou)
-        case .notification:
+        case .systemStats:
+            SystemEarTrailing()
+        case .notification, .call:
             EmptyView()
         }
     }
@@ -295,6 +301,8 @@ struct ClosedActivityView: View {
             model.controller?.open(.shelf)
         case .agents, .agentFinished:
             model.controller?.open(.agents)
+        case .systemStats:
+            QuickActions.shared.openActivityMonitor()
         default:
             model.controller?.open()
         }
@@ -351,6 +359,8 @@ struct SecondaryBubble: View {
             Image(systemName: "video.fill")
                 .font(.system(size: side * 0.32, weight: .bold))
                 .foregroundStyle(.green)
+        case .systemStats:
+            SystemBubbleRing()
         default:
             EmptyView()
         }
@@ -363,6 +373,7 @@ struct SecondaryBubble: View {
         case .timer: "Focus"
         case .download: "Downloads"
         case .meeting: "Upcoming meetings"
+        case .systemStats: "System"
         default: "Open Nook"
         }
     }
@@ -373,6 +384,7 @@ struct SecondaryBubble: View {
         case .agents: model.controller?.open(.agents, makeKey: true)
         case .timer: model.controller?.open(.timers, makeKey: true)
         case .meeting: model.controller?.open(.calendar, makeKey: true)
+        case .systemStats: QuickActions.shared.openActivityMonitor()
         default: model.controller?.open(.home, makeKey: true)
         }
     }

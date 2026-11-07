@@ -52,7 +52,7 @@ final class NotificationMirror {
     /// Apps seen so far (names and bundle IDs only), for Settings.
     private(set) var seenApps: [NotificationAppInfo] = []
 
-    @ObservationIgnored private let reader = NotificationCenterReader()
+    @ObservationIgnored let reader = NotificationCenterReader()
     @ObservationIgnored private var accessObserver: NSObjectProtocol?
     @ObservationIgnored private var activeObserver: NSObjectProtocol?
     @ObservationIgnored private var sequence = 0
@@ -65,6 +65,7 @@ final class NotificationMirror {
             seenApps = apps
         }
         reader.onBanner = { [weak self] banner in self?.receive(banner) }
+        reader.onGone = { ids in CallCenter.shared.bannersGone(ids) }
     }
 
     // MARK: Running
@@ -111,6 +112,11 @@ final class NotificationMirror {
         let app = NotificationApps.shared.resolve(name: banner.appName)
         // Isla's own banners (and its Debug twin's) are already in the notch.
         if app.bundleID?.hasPrefix("com.kyrossolutions.isla") == true { return }
+        // A call rings on the island with its own buttons, whatever the per-app setting says.
+        if CallCenter.isCall(banner, app: app) {
+            CallCenter.shared.ring(from: banner, app: app)
+            return
+        }
         noteSeen(app)
         guard !Preferences.shared.notificationsMutedApps.contains(app.key) else { return }
         if banner.isUpdate, let index = burst.firstIndex(where: { $0.bannerID == banner.id }) {

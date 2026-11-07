@@ -86,6 +86,10 @@ enum LiveActivityKind: Equatable {
     /// A notification from another app (Messages, WhatsApp, Mail…), mirrored from Notification
     /// Center. `stack` is how many more peek out underneath it (0–2).
     case notification(IslaNotification, stack: Int)
+    /// A FaceTime or iPhone call ringing, with Accept and Decline on the island.
+    case call(IncomingCall)
+    /// CPU and network around the closed notch (opt-in).
+    case systemStats
 
     /// Activities in the same category update in place instead of re-animating.
     var category: String {
@@ -105,6 +109,8 @@ enum LiveActivityKind: Equatable {
         case .agents: "agents"
         case .agentFinished: "agent-finished"
         case .notification: "notification"
+        case .call: "call"
+        case .systemStats: "system"
         }
     }
 
@@ -114,6 +120,7 @@ enum LiveActivityKind: Equatable {
         case .lowBattery, .timerFinished: true
         case .agentFinished(_, _, let needsYou): needsYou
         case .notification(let notification, _): notification.isMessage
+        case .call: true
         default: false
         }
     }
@@ -126,6 +133,7 @@ enum LiveActivityKind: Equatable {
         case .device: 0
         case .timerFinished, .downloadFinished, .lowBattery: 0
         case .meeting: 0
+        case .call: 50
         default: 0
         }
     }
@@ -154,6 +162,8 @@ enum LiveActivityKind: Equatable {
             // The island measures the hidden/revealed variants itself (see `NotchViewModel`).
             let width = NotificationLayout.earWidth(for: notification, revealed: true)
             return (width, width)
+        case .call: return (168, 168)
+        case .systemStats: return (98, 84)
         }
     }
 }
@@ -217,6 +227,9 @@ final class LiveActivityCenter {
         }
         if prefs.activityMedia, NowPlayingService.shared.hasActiveMedia, NowPlayingService.shared.isPlaying {
             list.append(LiveActivity(.nowPlaying))
+        }
+        if prefs.activitySystem {
+            list.append(LiveActivity(.systemStats))
         }
         return list
     }

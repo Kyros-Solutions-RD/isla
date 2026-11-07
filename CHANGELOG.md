@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.14 — 2026-11-07
+
+- **Search** (⌃⌥K, or the magnifying glass in the Nook): open apps and the files you have opened, jump to any tab, run Isla's actions, find what you copied, calculate ("128 * 4.5 + 2^10"), convert units ("10 km to mi") and currencies ("100 usd to eur"), start a timer ("timer 25") or write a note ("note call Ana"). The answer shows large at the top; Return copies it. Results you pick rise to the top next time.
+- **Chat with your local models**: a new Chat tab talks to Ollama or LM Studio right under the camera, with answers that stream in word by word. Summarize, translate or explain what you copied with one click. It only talks to the server on your Mac and never starts one. Also from Search: type a question and choose "Ask".
+- **System monitor**: a System widget for the Nook with CPU and network graphs, memory, free disk and thermal state, and optional CPU and network ears around the closed notch (Settings › Live Activities). The graphs are drawn by Core Animation, so they cost next to nothing.
+- **Calls on the island**: an incoming FaceTime call, or one from your iPhone, rings on the island with large Accept and Decline buttons, which answer the system's call alert. It leaves when the call is answered elsewhere or missed. You can turn it off in Settings › Notifications.
+- Exchange rates for currency conversions come from ExchangeRate-API, only when you convert a currency and at most twice a day. Nothing else new leaves your Mac.
+
 ## 1.1.13 — 2026-11-06
 
 - **Notifications in the notch.** Messages, WhatsApp, Mail and every other app (including the ones mirrored from your iPhone) now show up on the island: the app's real icon and the sender beside the camera, the message underneath. Isla reads the banners macOS draws through Accessibility, the permission it already uses for the volume overlay, so it needs no Full Disk Access and nothing leaves your Mac.

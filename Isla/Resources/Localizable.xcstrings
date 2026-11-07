@@ -21,6 +21,26 @@
         }
       }
     },
+    "%@ did not answer. Is the model still loading?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ no respondió. ¿El modelo sigue cargando?"
+          }
+        }
+      }
+    },
+    "%@ free": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ libres"
+          }
+        }
+      }
+    },
     "%@ limit: %lld%%": {
       "localizations": {
         "es": {
@@ -271,6 +291,36 @@
         }
       }
     },
+    "10 km to mi": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 km a mi"
+          }
+        }
+      }
+    },
+    "100 usd to eur": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100 usd a dop"
+          }
+        }
+      }
+    },
+    "2^10 + 24": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2^10 + 24"
+          }
+        }
+      }
+    },
     "A real shell under the notch that keeps running in the background.": {
       "localizations": {
         "es": {
@@ -357,6 +407,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Acerca de Isla"
+          }
+        }
+      }
+    },
+    "Accept": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aceptar"
           }
         }
       }
@@ -631,6 +691,16 @@
         }
       }
     },
+    "App": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App"
+          }
+        }
+      }
+    },
     "Appearance": {
       "localizations": {
         "es": {
@@ -667,6 +737,46 @@
           "stringUnit": {
             "state": "translated",
             "value": "Archivo"
+          }
+        }
+      }
+    },
+    "Ask": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preguntar"
+          }
+        }
+      }
+    },
+    "Ask %@: “%@”": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preguntar a %1$@: «%2$@»"
+          }
+        }
+      }
+    },
+    "Ask %@…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregunta a %@…"
+          }
+        }
+      }
+    },
+    "Ask anything. Your words stay on this Mac.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregunta lo que quieras. Tus palabras se quedan en este Mac."
           }
         }
       }
@@ -751,6 +861,16 @@
         }
       }
     },
+    "Brainstorm ideas": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lluvia de ideas"
+          }
+        }
+      }
+    },
     "Break over": {
       "localizations": {
         "es": {
@@ -767,6 +887,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ruido marrón"
+          }
+        }
+      }
+    },
+    "CPU": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CPU"
+          }
+        }
+      }
+    },
+    "CPU and network (System monitor)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CPU y red (monitor del sistema)"
           }
         }
       }
@@ -901,6 +1041,36 @@
         }
       }
     },
+    "Chat": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chat"
+          }
+        }
+      }
+    },
+    "Chat with your local models": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chatea con tus modelos locales"
+          }
+        }
+      }
+    },
+    "Check Again": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volver a comprobar"
+          }
+        }
+      }
+    },
     "Check for Updates": {
       "localizations": {
         "es": {
@@ -1027,6 +1197,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Limpiar"
+          }
+        }
+      }
+    },
+    "Clear Search": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Borrar la búsqueda"
           }
         }
       }
@@ -1351,6 +1531,16 @@
         }
       }
     },
+    "Decline": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechazar"
+          }
+        }
+      }
+    },
     "Decrease %@": {
       "localizations": {
         "es": {
@@ -1397,6 +1587,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Desconectado"
+          }
+        }
+      }
+    },
+    "Disk": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disco"
           }
         }
       }
@@ -1631,6 +1831,46 @@
         }
       }
     },
+    "Explain this simply:": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explícame esto de forma sencilla:"
+          }
+        }
+      }
+    },
+    "Explain what I copied": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explicar lo que copié"
+          }
+        }
+      }
+    },
+    "FaceTime Video": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Video de FaceTime"
+          }
+        }
+      }
+    },
+    "FaceTime calls and calls from your iPhone ring on the island with Accept and Decline. They answer the system's call alert, exactly as a click on it would.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las llamadas de FaceTime y las de tu iPhone suenan en la isla con Aceptar y Rechazar, que responden al aviso de llamada del sistema igual que un clic en él."
+          }
+        }
+      }
+    },
     "Fahrenheit (°F)": {
       "localizations": {
         "es": {
@@ -1647,6 +1887,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Menos minutos"
+          }
+        }
+      }
+    },
+    "File": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivo"
           }
         }
       }
@@ -1781,6 +2031,16 @@
         }
       }
     },
+    "Give me five quick ideas for my next project.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dame cinco ideas rápidas para mi próximo proyecto."
+          }
+        }
+      }
+    },
     "Glass tint": {
       "localizations": {
         "es": {
@@ -1851,6 +2111,16 @@
         }
       }
     },
+    "Help me write a short, friendly email.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayúdame a escribir un correo corto y amable."
+          }
+        }
+      }
+    },
     "Hi everyone, and thanks for joining.\n\nToday I want to show you how Isla turns the notch into a place where your music, files and calendar live, right under the camera.\n\nThe teleprompter keeps your eyes close to the lens, so you look at your audience while you read.\n\nTurn on Follow My Voice and the text moves only when you speak.": {
       "localizations": {
         "es": {
@@ -1911,6 +2181,16 @@
         }
       }
     },
+    "Hot": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caliente"
+          }
+        }
+      }
+    },
     "Idle": {
       "localizations": {
         "es": {
@@ -1957,6 +2237,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "En el notch"
+          }
+        }
+      }
+    },
+    "Incoming call from %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Llamada entrante de %@"
+          }
+        }
+      }
+    },
+    "Incoming calls on the island": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Llamadas entrantes en la isla"
           }
         }
       }
@@ -2361,6 +2661,16 @@
         }
       }
     },
+    "Local AI": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IA local"
+          }
+        }
+      }
+    },
     "Local models": {
       "localizations": {
         "es": {
@@ -2407,6 +2717,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bloquear"
+          }
+        }
+      }
+    },
+    "Lock Screen": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloquear pantalla"
           }
         }
       }
@@ -2531,6 +2851,16 @@
         }
       }
     },
+    "Memory": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Memoria"
+          }
+        }
+      }
+    },
     "Merge PDFs": {
       "localizations": {
         "es": {
@@ -2567,6 +2897,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Espejo"
+          }
+        }
+      }
+    },
+    "Model": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelo"
           }
         }
       }
@@ -2711,12 +3051,32 @@
         }
       }
     },
+    "Network": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Red"
+          }
+        }
+      }
+    },
     "Never record from": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Nunca registrar desde"
+          }
+        }
+      }
+    },
+    "New Chat": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo chat"
           }
         }
       }
@@ -2757,6 +3117,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nuevo evento a la próxima hora"
+          }
+        }
+      }
+    },
+    "New note: %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva nota: %@"
           }
         }
       }
@@ -3201,6 +3571,16 @@
         }
       }
     },
+    "Open Activity Monitor": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Monitor de Actividad"
+          }
+        }
+      }
+    },
     "Open Calendar": {
       "localizations": {
         "es": {
@@ -3251,6 +3631,26 @@
         }
       }
     },
+    "Open Ollama or LM Studio and load a model. Everything stays on this Mac, with no account and no internet.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Ollama o LM Studio y carga un modelo. Todo se queda en este Mac, sin cuenta y sin internet."
+          }
+        }
+      }
+    },
+    "Open Ollama or LM Studio to chat with your models.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Ollama o LM Studio para chatear con tus modelos."
+          }
+        }
+      }
+    },
     "Open Reminders": {
       "localizations": {
         "es": {
@@ -3287,6 +3687,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Abrir Atajos"
+          }
+        }
+      }
+    },
+    "Open apps and files, calculate, convert units and currencies, and run Isla's actions.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre apps y archivos, calcula, convierte unidades y divisas y usa las acciones de Isla."
           }
         }
       }
@@ -3891,6 +4301,16 @@
         }
       }
     },
+    "Result": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resultado"
+          }
+        }
+      }
+    },
     "Resume capture": {
       "localizations": {
         "es": {
@@ -4031,6 +4451,16 @@
         }
       }
     },
+    "Search": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar"
+          }
+        }
+      }
+    },
     "Search Shortcuts": {
       "localizations": {
         "es": {
@@ -4041,12 +4471,42 @@
         }
       }
     },
+    "Search and calculate": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar y calcular"
+          }
+        }
+      }
+    },
+    "Search apps, files, Isla, or calculate…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Busca apps, archivos, Isla o calcula…"
+          }
+        }
+      }
+    },
     "Search clipboard": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Buscar en el portapapeles"
+          }
+        }
+      }
+    },
+    "Search the web for “%@”": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar «%@» en la web"
           }
         }
       }
@@ -4107,6 +4567,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mira tu agenda aquí"
+          }
+        }
+      }
+    },
+    "Send": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviar"
           }
         }
       }
@@ -4484,6 +4954,16 @@
         }
       }
     },
+    "Start a %@-minute timer": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar un temporizador de %@ min"
+          }
+        }
+      }
+    },
     "Start a coding agent in Terminal or in its app, or load a local model. Isla shows which folder it works in, since when and whether it is working or waiting for you.": {
       "localizations": {
         "es": {
@@ -4574,6 +5054,26 @@
         }
       }
     },
+    "Summarize this in a few lines:": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resume esto en pocas líneas:"
+          }
+        }
+      }
+    },
+    "Summarize what I copied": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resumir lo que copié"
+          }
+        }
+      }
+    },
     "SwiftTerm": {
       "localizations": {
         "es": {
@@ -4634,6 +5134,16 @@
         }
       }
     },
+    "System": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistema"
+          }
+        }
+      }
+    },
     "System Now Playing": {
       "localizations": {
         "es": {
@@ -4650,6 +5160,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pestañas"
+          }
+        }
+      }
+    },
+    "Talk to the models in Ollama or LM Studio. Private: nothing leaves your Mac.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habla con los modelos de Ollama o LM Studio. Privado: nada sale de tu Mac."
           }
         }
       }
@@ -4854,12 +5374,52 @@
         }
       }
     },
+    "Toggle Dark Mode": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activar o desactivar el modo oscuro"
+          }
+        }
+      }
+    },
     "Trackpad gestures": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Gestos del trackpad"
+          }
+        }
+      }
+    },
+    "Translate this to English (or to Spanish if it is already in English):": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traduce esto al inglés (o al español si ya está en inglés):"
+          }
+        }
+      }
+    },
+    "Translate what I copied": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traducir lo que copié"
+          }
+        }
+      }
+    },
+    "Try": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prueba"
           }
         }
       }
@@ -5124,6 +5684,16 @@
         }
       }
     },
+    "Warm": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Templado"
+          }
+        }
+      }
+    },
     "Weather": {
       "localizations": {
         "es": {
@@ -5150,6 +5720,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "El clima usa una ubicación aproximada y las letras solo envían los datos de la canción."
+          }
+        }
+      }
+    },
+    "Web": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Web"
           }
         }
       }
@@ -5240,6 +5820,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Trabajando con un agente ayudante"
+          }
+        }
+      }
+    },
+    "Write a short email": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escribir un correo corto"
           }
         }
       }
@@ -5410,6 +6000,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "min"
+          }
+        }
+      }
+    },
+    "note call Ana": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "nota llamar a Ana"
+          }
+        }
+      }
+    },
+    "timer 25": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "temporizador 25"
+          }
+        }
+      }
+    },
+    "your local model": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tu modelo local"
           }
         }
       }

@@ -2,6 +2,14 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.14 — 2026-11-07
+
+- **Buscar** (⌃⌥K, o la lupa del Nook): abre apps y los archivos que has abierto, salta a cualquier pestaña, usa las acciones de Isla, encuentra lo que copiaste, calcula («128 * 4,5 + 2^10»), convierte unidades («10 km a mi») y divisas («100 usd a dop»), inicia un temporizador («temporizador 25») o escribe una nota («nota llamar a Ana»). El resultado sale grande arriba y Return lo copia. Lo que eliges sube en la lista la próxima vez.
+- **Chat con tus modelos locales**: la nueva pestaña Chat habla con Ollama o LM Studio justo bajo la cámara, con respuestas que llegan palabra a palabra. Resume, traduce o explica lo que copiaste con un clic. Solo habla con el servidor de tu Mac y nunca lo arranca. También desde Buscar: escribe una pregunta y elige «Preguntar».
+- **Monitor del sistema**: un widget Sistema para el Nook con gráficas de CPU y red, memoria, disco libre y estado térmico, y orejas opcionales de CPU y red alrededor del notch cerrado (Ajustes › Actividades en vivo). Las gráficas las dibuja Core Animation, así que casi no gastan.
+- **Llamadas en la isla**: una llamada entrante de FaceTime, o de tu iPhone, suena en la isla con botones grandes de Aceptar y Rechazar, que responden al aviso de llamada del sistema. Se va cuando contestas en otro sitio o la pierdes. Puedes apagarlo en Ajustes › Notificaciones.
+- Los tipos de cambio de las conversiones de divisas vienen de ExchangeRate-API, solo cuando conviertes una divisa y como mucho dos veces al día. Nada más nuevo sale de tu Mac.
+
 ## 1.1.13 — 2026-11-06
 
 - **Notificaciones en el notch.** Mensajes, WhatsApp, Mail y cualquier otra app (también las que llegan del iPhone) aparecen ahora en la isla: el ícono real de la app y el remitente junto a la cámara, y el mensaje debajo. Isla lee los avisos que dibuja macOS mediante Accesibilidad, el mismo permiso que ya usa para el indicador de volumen, así que no necesita Acceso total al disco y nada sale de tu Mac.

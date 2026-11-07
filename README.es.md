@@ -33,8 +33,11 @@
 
 | | |
 | --- | --- |
-| **Nook** | Una fila de widgets que eliges y ordenas: Reproduciendo, A continuación, Clima, Enfoque, Batería y dispositivos, Atajos, Bandeja, Nota rápida, Acciones rápidas, Agentes de IA y Notificaciones. |
-| **Notificaciones** | Mensajes, WhatsApp, Mail y cualquier otra app: sus notificaciones salen de la cámara con el ícono real de la app, el remitente y el mensaje. Se apilan cuando llegan varias y se agrupan por conversación; haz clic para abrir la conversación, deja el puntero encima para leerla entera o deslízala para descartarla. Contenido oculto, sonido y cierre del aviso del sistema opcionales. Respeta tu Concentración. Se leen mediante Accesibilidad y solo se guardan en memoria. |
+| **Nook** | Una fila de widgets que eliges y ordenas: Reproduciendo, A continuación, Clima, Enfoque, Batería y dispositivos, Atajos, Bandeja, Nota rápida, Acciones rápidas, Agentes de IA, Notificaciones y Sistema. |
+| **Notificaciones** | Mensajes, WhatsApp, Mail y cualquier otra app: sus notificaciones salen de la cámara con el ícono real de la app, el remitente y el mensaje. Se apilan cuando llegan varias y se agrupan por conversación; haz clic para abrir la conversación, deja el puntero encima para leerla entera o deslízala para descartarla. Contenido oculto, sonido y cierre del aviso del sistema opcionales. Respeta tu Concentración. Se leen mediante Accesibilidad y solo se guardan en memoria. Las **llamadas entrantes** de FaceTime o de tu iPhone suenan en la isla con Aceptar y Rechazar. |
+| **Buscar** | ⌃⌥K abre un lanzador en el notch: apps, archivos que has abierto, pestañas y acciones de Isla, el portapapeles, una **calculadora**, **conversiones de unidades y divisas** («10 km a mi», «100 usd a dop»), temporizadores («temporizador 25») y notas rápidas. Aprende lo que eliges. |
+| **Chat** | Habla con los modelos de Ollama o LM Studio justo bajo la cámara, con respuestas que llegan palabra a palabra. Resume, traduce o explica lo que copiaste. Solo habla con el servidor de tu Mac y nunca lo arranca. |
+| **Sistema** | CPU con gráfica en vivo, memoria, velocidad de red, disco libre y estado térmico, en un widget del Nook y, si quieres, alrededor del notch cerrado. Sin permisos. |
 | **IA** | Los agentes de programación que corren en tu Mac, en Terminal o en su propia app: la carpeta en la que trabaja cada uno, desde cuándo, si está trabajando, esperando o te necesita, y qué hace en este momento. Además, los modelos que Ollama y LM Studio tienen en memoria y las apps de IA que tienes abiertas. No necesita permisos. |
 | **Música** | Sigue cualquier app de «Reproduciendo» del Centro de control (Música, Spotify, Podcasts, navegadores). Portada, barra para adelantar, controles, **letras sincronizadas** de LRCLIB (también bajo la isla), vidrio teñido con la portada y ecualizador animado. Desliza de lado sobre el notch para cambiar de canción. |
 | **Bandeja** | Suelta archivos en el notch y arrástralos fuera donde quieras. **AirDrop**, Compartir y conversión a PNG, JPEG, HEIC, TIFF, PDF, PDF combinado, MP4, M4A o ZIP. El texto y las imágenes que sueltas se vuelven archivos. |
@@ -50,9 +53,9 @@
 | **Terminal** | Una terminal real bajo el notch (SwiftTerm) que sigue funcionando aunque cambies de pestaña o cierres el panel. |
 | **Acciones rápidas** | Mantén el Mac despierto, toma un color de cualquier parte, captura a la Bandeja, bloquea la pantalla o cambia a modo oscuro. |
 | **Actualizaciones** | Actualizador integrado (Sparkle) con versiones firmadas. Revisa una vez al día y te avisa en la isla cuando hay versión nueva. |
-| **Actividades en vivo** | Música, cambio de canción, carga y batería baja, **AirPods y dispositivos Bluetooth con batería**, volumen y brillo, descargas con progreso, próximas reuniones, temporizadores, **agentes de IA trabajando**, **notificaciones** y Bloq Mayús. |
+| **Actividades en vivo** | Música, cambio de canción, carga y batería baja, **AirPods y dispositivos Bluetooth con batería**, volumen y brillo, descargas con progreso, próximas reuniones, temporizadores, **agentes de IA trabajando**, **notificaciones**, **llamadas entrantes**, CPU y red, y Bloq Mayús. |
 | **HUD del sistema** | Puede reemplazar el indicador de volumen y brillo por un control fino bajo el notch (⌥⇧ para pasos finos). |
-| **Gestos y teclas** | Pasa el puntero o desliza hacia abajo para abrir, hacia arriba para cerrar, ⌃⌥Espacio para abrir o cerrar, ⌃⌥V para el portapapeles, ⌘1…⌘9 para cambiar de pestaña. Todo es configurable. |
+| **Gestos y teclas** | Pasa el puntero o desliza hacia abajo para abrir, hacia arriba para cerrar, ⌃⌥Espacio para abrir o cerrar, ⌃⌥K para buscar, ⌃⌥V para el portapapeles, ⌘1…⌘9 para cambiar de pestaña. Todo es configurable. |
 | **Idiomas** | Español e inglés. |
 
 <p align="center">
@@ -90,7 +93,7 @@ Pulsa ⌘R en Xcode 26 o posterior. Para generar un DMG:
 
 ## Privacidad
 
-Isla pide solo lo que una función necesita, cuando la activas: Calendario, Recordatorios, Cámara (Espejo), Ubicación (clima), Micrófono y voz (teleprompter), Bluetooth (actividades de dispositivos) y Accesibilidad (notificaciones, HUD del sistema y pegado automático). Funciona sin ninguno de ellos. El clima usa [Open-Meteo](https://open-meteo.com) con una ubicación aproximada, las letras vienen de [LRCLIB](https://lrclib.net) y la búsqueda de actualizaciones descarga la lista de versiones de [isla.kyrosrd.com](https://isla.kyrosrd.com) (se puede apagar en Ajustes). Nada más sale de tu Mac.
+Isla pide solo lo que una función necesita, cuando la activas: Calendario, Recordatorios, Cámara (Espejo), Ubicación (clima), Micrófono y voz (teleprompter), Bluetooth (actividades de dispositivos) y Accesibilidad (notificaciones, HUD del sistema y pegado automático). Funciona sin ninguno de ellos. El clima usa [Open-Meteo](https://open-meteo.com) con una ubicación aproximada, las letras vienen de [LRCLIB](https://lrclib.net) y la búsqueda de actualizaciones descarga la lista de versiones de [isla.kyrosrd.com](https://isla.kyrosrd.com) (se puede apagar en Ajustes). Las **conversiones de divisas** de Buscar consultan los tipos de cambio en [ExchangeRate-API](https://www.exchangerate-api.com), solo cuando conviertes una divisa y como mucho dos veces al día. El **Chat** solo habla con Ollama o LM Studio en 127.0.0.1. Nada más sale de tu Mac.
 
 ## Contribuir
 

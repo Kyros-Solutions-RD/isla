@@ -16,6 +16,7 @@ struct KeyCombo: Codable, Equatable, Hashable {
 
     static let defaultToggle = KeyCombo(keyCode: UInt32(kVK_Space), carbonModifiers: UInt32(controlKey | optionKey), display: "⌃⌥Space")
     static let defaultClipboard = KeyCombo(keyCode: UInt32(kVK_ANSI_V), carbonModifiers: UInt32(controlKey | optionKey), display: "⌃⌥V")
+    static let defaultLauncher = KeyCombo(keyCode: UInt32(kVK_ANSI_K), carbonModifiers: UInt32(controlKey | optionKey), display: "⌃⌥K")
 
     init(keyCode: UInt32, carbonModifiers: UInt32, display: String) {
         self.keyCode = keyCode
@@ -75,6 +76,7 @@ final class HotKeyCenter {
         case toggleNotch = 1
         case clipboard = 2
         case shelf = 3
+        case launcher = 4
     }
 
     private var references: [UInt32: EventHotKeyRef] = [:]

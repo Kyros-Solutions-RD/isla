@@ -103,6 +103,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         HotKeyCenter.shared.register(.toggleNotch, combo: prefs.toggleHotKey) { NotchManager.shared.toggle() }
         HotKeyCenter.shared.register(.clipboard, combo: prefs.clipboardHotKey) { NotchManager.shared.toggle(.clipboard) }
         HotKeyCenter.shared.register(.shelf, combo: prefs.shelfHotKey) { NotchManager.shared.toggle(.shelf) }
+        HotKeyCenter.shared.register(.launcher, combo: prefs.launcherHotKey) { NotchManager.shared.toggle(.launcher) }
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {

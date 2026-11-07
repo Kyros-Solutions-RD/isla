@@ -54,6 +54,12 @@ struct NotificationsPane: View {
             }
 
             Section {
+                Toggle("Incoming calls on the island", isOn: $prefs.callsOnIsland)
+            } footer: {
+                Text("FaceTime calls and calls from your iPhone ring on the island with Accept and Decline. They answer the system's call alert, exactly as a click on it would.")
+            }
+
+            Section {
                 LabeledContent("Focus and Do Not Disturb") {
                     Label("Always respected", systemImage: "moon.fill")
                         .foregroundStyle(.secondary)

@@ -399,6 +399,7 @@ private struct ActivitiesPane: View {
                 if prefs.activityMeetings {
                     Stepper("Start \(prefs.meetingLeadMinutes) minutes before", value: $prefs.meetingLeadMinutes, in: 1...30)
                 }
+                Toggle("CPU and network (System monitor)", isOn: $prefs.activitySystem)
                 Toggle("Show a second activity in a bubble beside the island", isOn: $prefs.activitySecondary)
             } header: {
                 Text("While it matters")
@@ -656,10 +657,14 @@ private struct KeyboardPane: View {
                 LabeledContent("Shelf") {
                     HotKeyRecorder(combo: $prefs.shelfHotKey)
                 }
+                LabeledContent("Search and calculate") {
+                    HotKeyRecorder(combo: $prefs.launcherHotKey)
+                }
             }
             .onChange(of: prefs.toggleHotKey) { AppDelegate.registerHotKeys() }
             .onChange(of: prefs.clipboardHotKey) { AppDelegate.registerHotKeys() }
             .onChange(of: prefs.shelfHotKey) { AppDelegate.registerHotKeys() }
+            .onChange(of: prefs.launcherHotKey) { AppDelegate.registerHotKeys() }
 
             Section("Inside the Nook") {
                 LabeledContent("Close", value: "⎋")

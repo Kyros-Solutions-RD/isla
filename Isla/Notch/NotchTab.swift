@@ -18,6 +18,8 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
     case teleprompter
     case shortcuts
     case terminal
+    case launcher
+    case chat
 
     var id: String { rawValue }
 
@@ -37,6 +39,8 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
         case .teleprompter: "Teleprompter"
         case .shortcuts: "Shortcuts"
         case .terminal: "Terminal"
+        case .launcher: "Search"
+        case .chat: "Chat"
         }
     }
 
@@ -54,6 +58,8 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
         case .teleprompter: String(localized: "Teleprompter")
         case .shortcuts: String(localized: "Shortcuts")
         case .terminal: String(localized: "Terminal")
+        case .launcher: String(localized: "Search")
+        case .chat: String(localized: "Chat")
         }
     }
 
@@ -71,6 +77,8 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
         case .teleprompter: "text.alignleft"
         case .shortcuts: "square.stack.3d.up.fill"
         case .terminal: "apple.terminal.fill"
+        case .launcher: "magnifyingglass"
+        case .chat: "bubble.left.and.text.bubble.right.fill"
         }
     }
 
@@ -88,6 +96,8 @@ enum NotchTab: String, CaseIterable, Identifiable, Codable, Hashable {
         case .teleprompter: "Read scripts right under your camera, at your pace or following your voice."
         case .shortcuts: "Run your favorite Shortcuts from the notch."
         case .terminal: "A real shell under the notch that keeps running in the background."
+        case .launcher: "Open apps and files, calculate, convert units and currencies, and run Isla's actions."
+        case .chat: "Talk to the models in Ollama or LM Studio. Private: nothing leaves your Mac."
         }
     }
 }

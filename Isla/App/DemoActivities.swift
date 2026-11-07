@@ -66,6 +66,23 @@ enum DemoActivities {
             AgentMonitor.shared.runDemo(name)
         case let demo where demo.hasPrefix("notify-"):
             NotificationMirror.shared.runDemo(demo)
+        case "launcher-calc", "launcher-unit", "launcher-currency", "launcher-app", "launcher-file", "launcher-clear":
+            // Typing in the launcher, without the real keyboard.
+            let queries = ["launcher-calc": "128 * 4,5 + 2^10", "launcher-unit": "10 km to mi", "launcher-currency": "100 usd a dop",
+                           "launcher-app": "saf", "launcher-file": "changelog", "launcher-clear": ""]
+            LauncherEngine.shared.query = queries[name] ?? ""
+        case "chat-ask":
+            LocalChat.shared.send("¿Qué es un notch en un MacBook? Responde en dos frases.")
+        case "chat-clear":
+            LocalChat.shared.clear()
+        case "call", "call-video":
+            CallCenter.shared.runDemo(name)
+        case "call-end":
+            CallCenter.shared.end()
+        case "system-on", "system-off":
+            Preferences.shared.activitySystem = name == "system-on"
+        case "system-widget":
+            Preferences.shared.homeWidgets = [.media, .system, .calendar]
         case "peek", "unpeek":
             // The hover state, without moving the real pointer.
             guard let model = NotchManager.shared.controllers.values.first(where: { $0.model.geometry.hasHardwareNotch })?.model

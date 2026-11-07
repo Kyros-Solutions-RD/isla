@@ -385,6 +385,8 @@ struct TabContent: View {
             case .teleprompter: TeleprompterView(model: model)
             case .shortcuts: ShortcutsView(model: model)
             case .terminal: NotchTerminalView(model: model)
+            case .launcher: LauncherView(model: model)
+            case .chat: LocalChatView(model: model)
             }
         }
         .id(model.tab)
@@ -604,6 +606,21 @@ struct HeaderActions: View {
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(Text(verbatim: "\(battery.level)% · \(battery.statusDescription)"))
             }
+
+            Button {
+                if model.tab == .launcher {
+                    model.select(Preferences.shared.visibleTabs.first ?? .home)
+                } else {
+                    model.controller?.open(.launcher, makeKey: true)
+                }
+                Haptics.tap()
+            } label: {
+                Image(systemName: "magnifyingglass")
+                    .foregroundStyle(model.tab == .launcher ? Color.accentColor : .white)
+            }
+            .buttonStyle(NotchIconButtonStyle(size: 26))
+            .help(String(localized: "Search"))
+            .accessibilityLabel(Text("Search"))
 
             Button {
                 model.isPinned.toggle()

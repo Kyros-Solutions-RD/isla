@@ -42,6 +42,7 @@ struct HomeView: View {
         case .actions: QuickActionsCard(model: model)
         case .agents: AgentsWidgetCard(model: model)
         case .notifications: NotificationsWidgetCard(model: model)
+        case .system: SystemWidgetCard(model: model)
         }
     }
 }
