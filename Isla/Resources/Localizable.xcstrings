@@ -741,6 +741,16 @@
         }
       }
     },
+    "Around the menu bar": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Junto a la barra de menús"
+          }
+        }
+      }
+    },
     "Ask": {
       "localizations": {
         "es": {
@@ -1337,6 +1347,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Compacto"
+          }
+        }
+      }
+    },
+    "Compact activities show just their icon beside the camera, and their detail for a few seconds when something changes or while the pointer rests on the island. When the pointer moves along the menu bar, the island tucks its ears into the camera so you can see and click the menus and icons underneath.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las actividades compactas muestran solo su ícono junto a la cámara, y su detalle unos segundos cuando algo cambia o mientras el puntero descansa sobre la isla. Al mover el puntero por la barra de menús, la isla recoge sus orejas en la cámara para que veas y pulses los menús y los íconos de debajo."
           }
         }
       }
@@ -2501,6 +2521,16 @@
         }
       }
     },
+    "Keep ongoing activities compact": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantener compactas las actividades en curso"
+          }
+        }
+      }
+    },
     "Keep open": {
       "localizations": {
         "es": {
@@ -2827,6 +2857,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Solo la pantalla principal"
+          }
+        }
+      }
+    },
+    "Make way for the menu bar": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apartarse de la barra de menús"
           }
         }
       }

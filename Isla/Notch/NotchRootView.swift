@@ -47,6 +47,11 @@ struct NotchRootView: View {
                             .id(activity.id)
                             .transition(activity.kind.notification == nil ? .islandActivity
                                         : .notificationExit(NotificationMirror.shared.exit))
+                            // Tucked into the camera for the menu bar, the ears fade as they go.
+                            .opacity(model.isTuckedAway ? 0 : 1)
+                            .blur(radius: model.isTuckedAway && !reduceMotion ? 3 : 0)
+                            .animation(model.isTuckedAway ? .easeOut(duration: 0.12) : IslaMotion.content.delay(0.08),
+                                       value: model.isTuckedAway)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -104,6 +109,11 @@ struct NotchRootView: View {
         .scaleEffect(model.isDropTargeted && !model.isOpen ? 1.07 : 1, anchor: .top)
         .animation(IslaMotion.activity, value: model.isDropTargeted)
         .modifier(AttentionNudge(model: model))
+        // An ongoing activity with news opens its compact ears for a moment, then settles.
+        .onChange(of: activities.presentedHeadline) { _, headline in
+            guard !headline.isEmpty, activities.transient == nil else { return }
+            activities.showDetailBriefly()
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .animation(model.isOpen ? IslaMotion.open : IslaMotion.close, value: model.phase)
         .animation(IslaMotion.activity, value: activities.presented?.id)

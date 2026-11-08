@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.15 — 2026-11-08
+
+- **The island makes way for the menu bar.** Move the pointer along the menu bar beside the island, on your way to a menu or an icon of another app, and the ears of an ongoing activity tuck into the camera (the bubble too), so whatever was under them can be seen and clicked. They come back as soon as the pointer leaves the menu bar. Resting on the camera itself still brings the island out, and a pointer that only crosses it along the bar no longer wakes it.
+- **Compact activities.** AI agents at work, downloads and upcoming meetings now keep small ears by the camera: the agent's glyph and its dots, the download ring and its percentage, the meeting camera and its countdown. Their detail (the project, the file, the meeting) opens up for a few seconds when something changes, and whenever you rest the pointer on the island. Before, an agent at work could cover more than 450 points of the menu bar.
+- Both live in Settings › Live Activities › Around the menu bar.
+
 ## 1.1.14 — 2026-11-07
 
 - **Search** (⌃⌥K, or the magnifying glass in the Nook): open apps and the files you have opened, jump to any tab, run Isla's actions, find what you copied, calculate ("128 * 4.5 + 2^10"), convert units ("10 km to mi") and currencies ("100 usd to eur"), start a timer ("timer 25") or write a note ("note call Ana"). The answer shows large at the top; Return copies it. Results you pick rise to the top next time.

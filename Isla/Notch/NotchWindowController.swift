@@ -50,6 +50,7 @@ final class NotchWindowController {
     private var monitors: [Any] = []
     private var hoverTask: Task<Void, Never>?
     private var closeTask: Task<Void, Never>?
+    private var yieldReturnTask: Task<Void, Never>?
     private var dragChangeCount = 0
     private var openedByDrag = false
     private var scrollAccumulator = CGSize.zero
@@ -213,7 +214,10 @@ final class NotchWindowController {
 
     func evaluatePointer() {
         let location = NSEvent.mouseLocation
-        let inside = interactiveRect.contains(location) || (model.isDraggingFiles && dragAttractionRect.contains(location))
+        // Decided first: on the menu bar beside the camera the pointer is on its way to a menu
+        // or an icon, so it does not wake the island (even one already peeking: it settles).
+        let yielding = updateYield(at: location)
+        let inside = !yielding && (interactiveRect.contains(location) || (model.isDraggingFiles && dragAttractionRect.contains(location)))
         // The bubble of a second activity takes clicks, but resting on it does not open the Nook.
         let onBubble = model.secondaryBubbleRect?.contains(location) ?? false
         if panel.ignoresMouseEvents == (inside || onBubble) {
@@ -224,9 +228,68 @@ final class NotchWindowController {
         inside ? pointerEntered() : pointerExited()
     }
 
+    // MARK: - Making way for the menu bar
+
+    /// With the pointer on the menu bar beside the island (on its way to a menu or an icon of
+    /// another app), the ears of an ongoing activity tuck into the camera, so what was under
+    /// them can be seen and clicked. They come back once the pointer leaves the menu bar.
+    /// Resting on the camera itself still brings the island out as usual.
+    @discardableResult
+    private func updateYield(at location: CGPoint) -> Bool {
+        let yield = shouldYield(at: location)
+        if yield {
+            yieldReturnTask?.cancel()
+            yieldReturnTask = nil
+            if !model.isYielding { model.isYielding = true }
+        } else if model.isYielding, yieldReturnTask == nil {
+            yieldReturnTask = Task { [weak self] in
+                try? await Task.sleep(for: .milliseconds(420))
+                guard let self, !Task.isCancelled else { return }
+                self.yieldReturnTask = nil
+                if !self.shouldYield(at: NSEvent.mouseLocation) { self.model.isYielding = false }
+            }
+        }
+        return yield
+    }
+
+    private func shouldYield(at location: CGPoint) -> Bool {
+        let activities = LiveActivityCenter.shared
+        guard Preferences.shared.activityYieldToMenuBar, model.phase != .open, !model.isDraggingFiles,
+              activities.transient == nil, let activity = activities.presented?.kind else { return false }
+        let geometry = model.geometry
+        // The menu bar band, plus the few points under the island that already count as on it.
+        let band = geometry.notchSize.height + 6
+        guard location.y > geometry.topY - band, location.y <= geometry.topY + 1 else { return false }
+        // The camera (and the margin that wakes the island) is the island's own handle.
+        let camera = geometry.rect(for: geometry.notchSize).insetBy(dx: -10, dy: 0)
+        if location.x >= camera.minX && location.x <= camera.maxX { return false }
+        // Anywhere the ears (or the bubble beside them) would cover, with a little lead so they
+        // are already gone when the pointer gets there along the bar.
+        let full = model.fullClosedSize(for: activity, compact: model.showsCompactEars)
+        var reach = full.width / 2 + 36
+        if activities.secondary != nil { reach += NotchViewModel.bubbleGap + geometry.notchSize.height + 10 }
+        return abs(location.x - geometry.centerX) <= reach
+    }
+
     private func pointerEntered() {
         closeTask?.cancel()
         guard model.phase != .open else { return }
+        // Arriving along the menu bar from beside the island, the pointer is most likely
+        // passing through to the other side: the island waits a moment before it wakes,
+        // instead of popping its ears out under a pointer that is just crossing.
+        if model.isYielding {
+            hoverTask?.cancel()
+            hoverTask = Task { [weak self] in
+                try? await Task.sleep(for: .milliseconds(240))
+                guard let self, !Task.isCancelled, self.model.isHovering, self.model.phase != .open else { return }
+                self.wake()
+            }
+            return
+        }
+        wake()
+    }
+
+    private func wake() {
         model.peek()
         if LiveActivityCenter.shared.isPresentingNotification {
             // Resting on a notification keeps it and unfolds it, so it can be read and clicked;

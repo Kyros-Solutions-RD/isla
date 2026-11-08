@@ -122,9 +122,10 @@ final class HaloView: NSView {
 struct AgentGlyphStack: View {
     let sessions: [AgentSession]
     var size: CGFloat = 17
+    var limit = 3
 
     var body: some View {
-        let shown = Array(sessions.prefix(3))
+        let shown = Array(sessions.prefix(limit))
         HStack(spacing: -size * 0.42) {
             ForEach(Array(shown.enumerated()), id: \.element.id) { index, session in
                 AgentGlyph(tool: session.tool, icon: AgentMonitor.shared.iconForSession(session), size: size)
@@ -314,6 +315,8 @@ extension AgentMonitor {
 /// Left ear while agents work: their glyphs and what they work on.
 struct AgentsEarLeading: View {
     private let monitor = AgentMonitor.shared
+    /// Compact, the ear keeps only the glyphs by the camera; the project shows on news.
+    @Environment(\.compactEars) private var compact
 
     var body: some View {
         content
@@ -327,18 +330,21 @@ struct AgentsEarLeading: View {
         let active = monitor.activeSessions
         let working = active.filter { $0.state == .working }
         HStack(spacing: 6) {
-            AgentGlyphStack(sessions: active, size: 17)
-            Group {
-                if working.count > 1 && active.count == working.count {
-                    Text("\(working.count) working")
-                } else if let first = active.first {
-                    Text(verbatim: first.project ?? first.tool.name)
+            AgentGlyphStack(sessions: active, size: compact ? 16 : 17, limit: compact ? 2 : 3)
+            if !compact {
+                Group {
+                    if working.count > 1 && active.count == working.count {
+                        Text("\(working.count) working")
+                    } else if let first = active.first {
+                        Text(verbatim: first.project ?? first.tool.name)
+                    }
                 }
+                .font(.system(size: 11, weight: .semibold))
+                .lineLimit(1)
+                .truncationMode(.tail)
+                .contentTransition(.opacity)
+                .transition(.compactEarText)
             }
-            .font(.system(size: 11, weight: .semibold))
-            .lineLimit(1)
-            .truncationMode(.tail)
-            .contentTransition(.opacity)
         }
         .animation(IslaMotion.content, value: active.map(\.id))
     }

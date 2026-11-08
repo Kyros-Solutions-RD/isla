@@ -166,6 +166,20 @@ enum LiveActivityKind: Equatable {
         case .systemStats: return (98, 84)
         }
     }
+
+    /// Ears for an activity that can stay on screen for hours: its glyph by the camera and
+    /// its signal on the other side, so the menus and icons of the menu bar stay in sight.
+    /// The full ears come back for a moment when it changes, and under the pointer.
+    /// `nil` means the activity has no compact form.
+    func compactEarWidths(notchHeight: CGFloat) -> (left: CGFloat, right: CGFloat)? {
+        let square = notchHeight + 6
+        switch self {
+        case .agents: return (square + 4, square + 4)
+        case .download: return (square, square + 10)
+        case .meeting: return (square, square + 16)
+        default: return nil
+        }
+    }
 }
 
 struct LiveActivity: Identifiable, Equatable {
@@ -186,6 +200,10 @@ final class LiveActivityCenter {
     private(set) var transient: LiveActivity?
     /// Bumped to make an already-visible activity "pulse" again.
     private(set) var pulse = 0
+    /// For a few seconds after an ongoing activity starts or has news, its compact ears open
+    /// up to show the detail, the way the Dynamic Island expands and then settles.
+    private(set) var isShowingDetail = false
+    @ObservationIgnored private var detailTask: Task<Void, Never>?
     @ObservationIgnored private var dismissTask: Task<Void, Never>?
     /// While the pointer rests on a notification it stays; it leaves a moment after.
     @ObservationIgnored private var held = false
@@ -232,6 +250,32 @@ final class LiveActivityCenter {
             list.append(LiveActivity(.systemStats))
         }
         return list
+    }
+
+    /// What the presented activity has to say; when it changes, compact ears show the detail.
+    /// Only real news counts (an agent that starts or stops, one that needs you), not the
+    /// back and forth between working and waiting.
+    var presentedHeadline: String {
+        guard let presented else { return "" }
+        switch presented.kind {
+        case .agents:
+            let sessions = AgentMonitor.shared.sessions.filter { $0.state != .ended && $0.state != .idle }
+            let needsYou = sessions.contains { $0.state == .needsYou }
+            return "agents:" + sessions.map(\.id).sorted().joined(separator: ",") + (needsYou ? ":needs" : "")
+        case .download(let name, _): return "download:" + name
+        case .meeting(let title, let start, _): return "meeting:\(title)\(start.timeIntervalSinceReferenceDate)"
+        default: return presented.id
+        }
+    }
+
+    func showDetailBriefly(for seconds: TimeInterval = 4) {
+        detailTask?.cancel()
+        if !isShowingDetail { isShowingDetail = true }
+        detailTask = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(seconds))
+            guard !Task.isCancelled else { return }
+            self?.isShowingDetail = false
+        }
     }
 
     func post(_ kind: LiveActivityKind, duration: TimeInterval = 2.4) {

@@ -407,6 +407,15 @@ private struct ActivitiesPane: View {
                 Text("These stay around the notch while they are running. When two are going on, the second one waits in a small bubble beside the island; click it to open its tab.")
             }
 
+            Section {
+                Toggle("Keep ongoing activities compact", isOn: $prefs.activityCompactEars)
+                Toggle("Make way for the menu bar", isOn: $prefs.activityYieldToMenuBar)
+            } header: {
+                Text("Around the menu bar")
+            } footer: {
+                Text("Compact activities show just their icon beside the camera, and their detail for a few seconds when something changes or while the pointer rests on the island. When the pointer moves along the menu bar, the island tucks its ears into the camera so you can see and click the menus and icons underneath.")
+            }
+
             Section("Moments") {
                 Toggle("Charging and battery", isOn: $prefs.activityBattery)
                 if prefs.activityBattery {

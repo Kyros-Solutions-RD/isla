@@ -2,6 +2,12 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.15 — 2026-11-08
+
+- **La isla se aparta de la barra de menús.** Lleva el puntero por la barra de menús junto a la isla, camino de un menú o del ícono de otra app, y las orejas de la actividad en curso se recogen en la cámara (también la burbuja), así ves y pulsas lo que tapaban. Vuelven en cuanto el puntero sale de la barra. Apoyar el puntero en la cámara sigue sacando la isla, y si solo la cruzas por la barra ya no se despierta.
+- **Actividades compactas.** Los agentes de IA trabajando, las descargas y las próximas reuniones se quedan ahora con orejas pequeñas junto a la cámara: el ícono del agente y sus puntos, el anillo de la descarga y su porcentaje, la cámara de la reunión y la cuenta atrás. El detalle (el proyecto, el archivo, la reunión) se despliega unos segundos cuando algo cambia y siempre que apoyas el puntero en la isla. Antes, un agente trabajando podía tapar más de 450 puntos de la barra de menús.
+- Las dos opciones están en Ajustes › Actividades en vivo › Junto a la barra de menús.
+
 ## 1.1.14 — 2026-11-07
 
 - **Buscar** (⌃⌥K, o la lupa del Nook): abre apps y los archivos que has abierto, salta a cualquier pestaña, usa las acciones de Isla, encuentra lo que copiaste, calcula («128 * 4,5 + 2^10»), convierte unidades («10 km a mi») y divisas («100 usd a dop»), inicia un temporizador («temporizador 25») o escribe una nota («nota llamar a Ana»). El resultado sale grande arriba y Return lo copia. Lo que eliges sube en la lista la próxima vez.

@@ -25,6 +25,9 @@ final class NotchViewModel {
     var isHovering = false
     var isDropTargeted = false
     var isDraggingFiles = false
+    /// The pointer is on the menu bar beside the island: the ears of an ongoing activity
+    /// tuck into the camera so the menus and icons under them show (see `NotchWindowController`).
+    var isYielding = false
     /// +1 when the newly chosen tab sits to the right of the previous one, -1 to the left.
     var tabDirection: CGFloat = 1
     /// Reasons that temporarily prevent auto-closing (open menus, editing…).
@@ -52,13 +55,40 @@ final class NotchViewModel {
     /// Size of the closed notch, including any live activity ears.
     var closedSize: CGSize {
         guard let activity = LiveActivityCenter.shared.presented?.kind else { return notchSize }
+        if isTuckedAway { return notchSize }
+        return fullClosedSize(for: activity, compact: showsCompactEars)
+    }
+
+    /// The closed island with its ears out, whatever the pointer is doing.
+    func fullClosedSize(for activity: LiveActivityKind, compact: Bool) -> CGSize {
         if let layout = notificationLayout {
             return CGSize(width: notchSize.width + layout.earWidth * 2, height: notchSize.height + layout.detailHeight)
         }
-        let ears = activity.earWidths(notchHeight: notchSize.height)
-        let earWidth = max(ears.left, ears.right)
-        return CGSize(width: notchSize.width + earWidth * 2 + (showsIslandLyrics ? 120 : 0),
+        return CGSize(width: notchSize.width + earWidth(for: activity, compact: compact) * 2 + (showsIslandLyrics ? 120 : 0),
                       height: notchSize.height + activity.detailHeight + (showsIslandLyrics ? 26 : 0))
+    }
+
+    /// Both ears are as wide as the wider one, so the camera stays in the middle.
+    func earWidth(for activity: LiveActivityKind, compact: Bool) -> CGFloat {
+        let ears = (compact ? activity.compactEarWidths(notchHeight: notchSize.height) : nil)
+            ?? activity.earWidths(notchHeight: notchSize.height)
+        return max(ears.left, ears.right)
+    }
+
+    /// An ongoing activity keeps its small ears unless it has news or the pointer is on it.
+    var showsCompactEars: Bool {
+        let activities = LiveActivityCenter.shared
+        guard Preferences.shared.activityCompactEars, phase == .closed, !isHovering, activities.transient == nil,
+              let kind = activities.presented?.kind,
+              kind.compactEarWidths(notchHeight: notchSize.height) != nil else { return false }
+        return !activities.isShowingDetail
+    }
+
+    /// The ears of an ongoing activity have tucked into the camera for the menu bar.
+    /// Brief activities (a notification, a call, the volume) always stay out.
+    var isTuckedAway: Bool {
+        isYielding && phase == .closed && LiveActivityCenter.shared.transient == nil
+            && LiveActivityCenter.shared.presented != nil
     }
 
     /// How the island lays out the notification it shows: content hidden for privacy comes
@@ -85,7 +115,7 @@ final class NotchViewModel {
 
     /// Height of the bubble beside the closed island when a second activity is going on.
     var secondaryBubbleSide: CGFloat? {
-        guard phase == .closed, LiveActivityCenter.shared.secondary != nil else { return nil }
+        guard phase == .closed, !isTuckedAway, LiveActivityCenter.shared.secondary != nil else { return nil }
         return max(26, notchSize.height - 2)
     }
 

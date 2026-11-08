@@ -416,8 +416,11 @@ final class LauncherEngine {
         query.predicate = NSPredicate(format: "(%K CONTAINS[cd] %@) AND (%K != 'com.apple.application-bundle') AND (%K > %@)",
                                       NSMetadataItemFSNameKey, text, NSMetadataItemContentTypeKey, NSMetadataItemLastUsedDateKey, since)
         query.sortDescriptors = [NSSortDescriptor(key: NSMetadataItemLastUsedDateKey, ascending: false)]
-        metadataObserver = NotificationCenter.default.addObserver(forName: .NSMetadataQueryDidFinishGathering, object: query, queue: .main) { [weak self] _ in
-            MainActor.assumeIsolated { self?.collectFiles(from: query, text: text) }
+        metadataObserver = NotificationCenter.default.addObserver(forName: .NSMetadataQueryDidFinishGathering, object: query, queue: .main) { [weak self] note in
+            MainActor.assumeIsolated {
+                guard let finished = note.object as? NSMetadataQuery else { return }
+                self?.collectFiles(from: finished, text: text)
+            }
         }
         metadata = query
         query.start()

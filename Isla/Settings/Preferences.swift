@@ -151,6 +151,12 @@ final class Preferences {
     /// A second ongoing activity shows as a bubble beside the island.
     var activitySecondary: Bool { didSet { set(activitySecondary, "activitySecondary") } }
     var activitySystem: Bool { didSet { set(activitySystem, "activitySystem") } }
+    /// Activities that stay on screen keep small ears by the camera and show their detail
+    /// only for a moment when something changes, or under the pointer.
+    var activityCompactEars: Bool { didSet { set(activityCompactEars, "activityCompactEars") } }
+    /// With the pointer on the menu bar beside the island, the ears tuck into the camera so
+    /// the menus and icons underneath can be seen and clicked.
+    var activityYieldToMenuBar: Bool { didSet { set(activityYieldToMenuBar, "activityYieldToMenuBar") } }
     var callsOnIsland: Bool { didSet { set(callsOnIsland, "callsOnIsland") } }
     var replaceSystemHUD: Bool { didSet { set(replaceSystemHUD, "replaceSystemHUD") } }
     var lowBatteryThreshold: Int { didSet { set(lowBatteryThreshold, "lowBatteryThreshold") } }
@@ -267,6 +273,8 @@ final class Preferences {
         activityHUD = bool("activityHUD", true)
         activitySecondary = bool("activitySecondary", true)
         activitySystem = bool("activitySystem", false)
+        activityCompactEars = bool("activityCompactEars", true)
+        activityYieldToMenuBar = bool("activityYieldToMenuBar", true)
         callsOnIsland = bool("callsOnIsland", true)
         replaceSystemHUD = bool("replaceSystemHUD", false)
         lowBatteryThreshold = int("lowBatteryThreshold", 20)

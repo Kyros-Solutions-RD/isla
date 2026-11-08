@@ -8,6 +8,11 @@
 import AppKit
 import SwiftUI
 
+extension EnvironmentValues {
+    /// The ears are in their compact form: glyphs and signals only, no words.
+    @Entry var compactEars = false
+}
+
 struct ClosedActivityView: View {
     let activity: LiveActivity
     let model: NotchViewModel
@@ -24,8 +29,8 @@ struct ClosedActivityView: View {
 
     @ViewBuilder private var ears: some View {
         let notch = model.notchSize
-        let ears = activity.kind.earWidths(notchHeight: notch.height)
-        let earWidth = max(ears.left, ears.right)
+        let compact = model.showsCompactEars
+        let earWidth = model.earWidth(for: activity.kind, compact: compact)
 
         VStack(spacing: 0) {
             HStack(spacing: 0) {
@@ -41,6 +46,8 @@ struct ClosedActivityView: View {
                     .emerge(delay: 0.05, offset: CGSize(width: -16, height: 0))
             }
             .frame(height: notch.height)
+            .environment(\.compactEars, compact)
+            .animation(IslaMotion.activity, value: compact)
 
             if activity.kind.detailHeight > 0 {
                 detail
@@ -118,10 +125,13 @@ struct ClosedActivityView: View {
             HStack(spacing: 6) {
                 ProgressRing(progress: progress ?? 0.12, indeterminate: progress == nil, tint: .blue)
                     .frame(width: 15, height: 15)
-                Text(name)
-                    .font(.system(size: 11, weight: .semibold))
-                    .lineLimit(1)
-                    .truncationMode(.middle)
+                if !model.showsCompactEars {
+                    Text(name)
+                        .font(.system(size: 11, weight: .semibold))
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                        .transition(.compactEarText)
+                }
             }
         case .downloadFinished(let name, _):
             HStack(spacing: 6) {
@@ -138,9 +148,12 @@ struct ClosedActivityView: View {
                 Image(systemName: "video.fill")
                     .foregroundStyle(.green)
                     .font(.system(size: 11, weight: .bold))
-                Text(title)
-                    .font(.system(size: 11, weight: .semibold))
-                    .lineLimit(1)
+                if !model.showsCompactEars {
+                    Text(title)
+                        .font(.system(size: 11, weight: .semibold))
+                        .lineLimit(1)
+                        .transition(.compactEarText)
+                }
             }
         case .capsLock(let on):
             HStack(spacing: 6) {
@@ -307,6 +320,15 @@ struct ClosedActivityView: View {
             model.controller?.open()
         }
     }
+}
+
+extension AnyTransition {
+    /// Words in an ear slide in from the camera side as the ear opens up, and slip back into
+    /// it when the ear settles to its compact form.
+    static let compactEarText = AnyTransition.asymmetric(
+        insertion: .opacity.combined(with: .offset(x: -8)).combined(with: AnyTransition(.blurReplace))
+            .animation(IslaMotion.content.delay(0.06)),
+        removal: .opacity.combined(with: AnyTransition(.blurReplace)).animation(.easeIn(duration: 0.12)))
 }
 
 // MARK: - Second activity
