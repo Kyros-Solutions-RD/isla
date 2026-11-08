@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.15</title>
+      <pubDate>Sun, 08 Nov 2026 23:58:40 GMT</pubDate>
+      <sparkle:version>23</sparkle:version>
+      <sparkle:shortVersionString>1.1.15</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>**The island makes way for the menu bar.** Move the pointer along the menu bar beside the island, on your way to a menu or an icon of another app, and the ears of an ongoing activity tuck into the camera (the bubble too), so whatever was under them can be seen and clicked. They come back as soon as the pointer leaves the menu bar. Resting on the camera itself still brings the island out, and a pointer that only crosses it along the bar no longer wakes it.</li><li>**Compact activities.** AI agents at work, downloads and upcoming meetings now keep small ears by the camera: the agent&#x27;s glyph and its dots, the download ring and its percentage, the meeting camera and its countdown. Their detail (the project, the file, the meeting) opens up for a few seconds when something changes, and whenever you rest the pointer on the island. Before, an agent at work could cover more than 450 points of the menu bar.</li><li>Both live in Settings › Live Activities › Around the menu bar.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.15.dmg" sparkle:edSignature="1WCT4uPTV/XuveVxk/kP4I+ZIehGednNMi9y5vs5ksWbr61HyYsRXnDzD0rg5rg3QMcQumjmTO0zvDTG6yWgDA==" length="13097146" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.14</title>
       <pubDate>Sat, 07 Nov 2026 05:32:37 GMT</pubDate>
       <sparkle:version>22</sparkle:version>
