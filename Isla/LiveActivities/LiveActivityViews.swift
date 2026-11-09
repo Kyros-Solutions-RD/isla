@@ -724,6 +724,8 @@ struct ArtworkThumbnail: View {
 
 struct TimerEarLeading: View {
     private let timers = TimerStore.shared
+    /// Compact, only the ring stays by the camera; the name shows when the phase changes.
+    @Environment(\.compactEars) private var compact
 
     var body: some View {
         TimelineView(.periodic(from: .now, by: 1)) { context in
@@ -731,10 +733,13 @@ struct TimerEarLeading: View {
             HStack(spacing: 6) {
                 ProgressRing(progress: primary?.progress ?? 0, tint: primary?.tint ?? .orange, lineWidth: 2.4, animated: false)
                     .frame(width: 15, height: 15)
-                Text(primary?.label ?? "")
-                    .font(.system(size: 11, weight: .semibold))
-                    .lineLimit(1)
-                    .foregroundStyle(.white.opacity(0.85))
+                if !compact {
+                    Text(primary?.label ?? "")
+                        .font(.system(size: 11, weight: .semibold))
+                        .lineLimit(1)
+                        .foregroundStyle(.white.opacity(0.85))
+                        .transition(.compactEarText)
+                }
             }
         }
     }
@@ -749,6 +754,9 @@ struct TimerEarTrailing: View {
             Text(primary?.remaining.clockString ?? "")
                 .font(.system(size: 12.5, weight: .semibold, design: .rounded))
                 .monospacedDigit()
+                .lineLimit(1)
+                // Over an hour, the compact ear shrinks the figures a little instead of cutting them.
+                .minimumScaleFactor(0.75)
                 .foregroundStyle(primary?.tint ?? .orange)
                 .contentTransition(.numericText(countsDown: true))
         }

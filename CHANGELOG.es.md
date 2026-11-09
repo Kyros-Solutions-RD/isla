@@ -2,6 +2,10 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.17 — 2026-11-08
+
+- **Temporizador compacto.** Un temporizador o un Pomodoro en marcha también se queda con orejas pequeñas: su anillo junto a la cámara y la cuenta atrás al otro lado. Su nombre (Enfoque, Descanso corto o tu etiqueta) aparece unos segundos al empezar o al cambiar de fase, y mientras el puntero descansa sobre la isla.
+
 ## 1.1.16 — 2026-11-08
 
 - **Controles de música en la isla.** Mientras suena música, apoya el puntero en la isla y sale un pequeño reproductor bajo la cámara: la canción, el artista y los botones de anterior, reproducir o pausar y siguiente, sin abrir el Nook. Quédate un momento más sobre la cámara para abrir el Nook como siempre; mientras el puntero está en los botones del reproductor, no se abre encima de ellos. Puedes apagarlo en Ajustes › Música.

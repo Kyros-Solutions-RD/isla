@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.17 — 2026-11-08
+
+- **A compact timer.** A running timer or Pomodoro now keeps small ears too: its ring by the camera and the countdown on the other side. Its name (Focus, Short Break or your label) shows for a few seconds when it starts or changes phase, and while the pointer rests on the island.
+
 ## 1.1.16 — 2026-11-08
 
 - **Music controls on the island.** While music plays, rest the pointer on the island and a small player comes out under the camera: the song, the artist and the previous, play/pause and next buttons, without opening the Nook. Stay on the camera a moment longer to open the Nook as before; while the pointer is on the player's buttons, it never opens over them. You can turn it off in Settings › Music.

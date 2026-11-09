@@ -175,6 +175,7 @@ enum LiveActivityKind: Equatable {
         let square = notchHeight + 6
         switch self {
         case .agents: return (square + 4, square + 4)
+        case .timer: return (square, square + 18)
         case .download: return (square, square + 10)
         case .meeting: return (square, square + 16)
         default: return nil
@@ -262,6 +263,7 @@ final class LiveActivityCenter {
             let sessions = AgentMonitor.shared.sessions.filter { $0.state != .ended && $0.state != .idle }
             let needsYou = sessions.contains { $0.state == .needsYou }
             return "agents:" + sessions.map(\.id).sorted().joined(separator: ",") + (needsYou ? ":needs" : "")
+        case .timer: return "timer:" + (TimerStore.shared.primaryDisplay(at: .now)?.label ?? "")
         case .download(let name, _): return "download:" + name
         case .meeting(let title, let start, _): return "meeting:\(title)\(start.timeIntervalSinceReferenceDate)"
         default: return presented.id
