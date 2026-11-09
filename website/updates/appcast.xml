@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.16</title>
+      <pubDate>Mon, 09 Nov 2026 00:28:32 GMT</pubDate>
+      <sparkle:version>24</sparkle:version>
+      <sparkle:shortVersionString>1.1.16</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>**Music controls on the island.** While music plays, rest the pointer on the island and a small player comes out under the camera: the song, the artist and the previous, play/pause and next buttons, without opening the Nook. Stay on the camera a moment longer to open the Nook as before; while the pointer is on the player&#x27;s buttons, it never opens over them. You can turn it off in Settings › Music.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.16.dmg" sparkle:edSignature="x4Oa8Lvf4F/DywIb2y4IsSvtJvRNuqMSt54nigbS/e2fGPznq/WvUMaMQfAhltrCtzbc5Vo7b8/8NY+L2QKXAA==" length="13118422" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.15</title>
       <pubDate>Sun, 08 Nov 2026 23:58:40 GMT</pubDate>
       <sparkle:version>23</sparkle:version>
