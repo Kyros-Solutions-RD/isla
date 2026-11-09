@@ -132,11 +132,27 @@ final class NotchViewModel {
             Preferences.shared.lyricsOnIsland && LyricsService.shared.hasSyncedLyrics
     }
 
+    /// Height of the small music player under the camera.
+    static let miniPlayerHeight: CGFloat = 40
+
+    /// Resting the pointer on the island while music plays brings out a small player under
+    /// the camera: the song and its buttons, without opening the Nook.
+    var showsMiniPlayer: Bool {
+        phase == .peek && Preferences.shared.musicHoverControls
+            && LiveActivityCenter.shared.transient == nil
+            && LiveActivityCenter.shared.presented?.kind == .nowPlaying
+            && NowPlayingService.shared.info != nil
+    }
+
     var shapeSize: CGSize {
         switch phase {
         case .open:
             return openSize
         case .peek:
+            if showsMiniPlayer {
+                return CGSize(width: max(closedSize.width + 18, notchSize.width + 136),
+                              height: notchSize.height + Self.miniPlayerHeight)
+            }
             let closed = closedSize
             return CGSize(width: closed.width + 18, height: closed.height + 8)
         case .closed:
@@ -150,7 +166,7 @@ final class NotchViewModel {
             return (16, 34)
         case .peek, .closed:
             let detail = notificationLayout?.detailHeight ?? LiveActivityCenter.shared.presented?.kind.detailHeight ?? 0
-            let hasDetail = detail > 0 || showsIslandLyrics
+            let hasDetail = detail > 0 || showsIslandLyrics || showsMiniPlayer
             let base: CGFloat = geometry.hasHardwareNotch ? 10 : 12
             return (6, hasDetail ? 20 : (phase == .peek ? base + 3 : base))
         }

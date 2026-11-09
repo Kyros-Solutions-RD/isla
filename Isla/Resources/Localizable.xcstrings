@@ -3051,6 +3051,16 @@
         }
       }
     },
+    "Music controls when the pointer rests on the island": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controles de música al apoyar el puntero en la isla"
+          }
+        }
+      }
+    },
     "My Location": {
       "localizations": {
         "es": {
@@ -5810,6 +5820,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mientras importa"
+          }
+        }
+      }
+    },
+    "While music plays, rest the pointer on the island and a small player comes out under the camera, with the song and its buttons. Stay on the camera a moment longer to open the Nook.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mientras suena música, apoya el puntero en la isla y sale un pequeño reproductor bajo la cámara, con la canción y sus botones. Quédate un momento más sobre la cámara para abrir el Nook."
           }
         }
       }

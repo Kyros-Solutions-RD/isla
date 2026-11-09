@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.16 — 2026-11-08
+
+- **Music controls on the island.** While music plays, rest the pointer on the island and a small player comes out under the camera: the song, the artist and the previous, play/pause and next buttons, without opening the Nook. Stay on the camera a moment longer to open the Nook as before; while the pointer is on the player's buttons, it never opens over them. You can turn it off in Settings › Music.
+
 ## 1.1.15 — 2026-11-08
 
 - **The island makes way for the menu bar.** Move the pointer along the menu bar beside the island, on your way to a menu or an icon of another app, and the ears of an ongoing activity tuck into the camera (the bubble too), so whatever was under them can be seen and clicked. They come back as soon as the pointer leaves the menu bar. Resting on the camera itself still brings the island out, and a pointer that only crosses it along the bar no longer wakes it.

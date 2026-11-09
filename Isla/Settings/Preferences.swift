@@ -166,6 +166,8 @@ final class Preferences {
     var lyricsEnabled: Bool { didSet { set(lyricsEnabled, "lyricsEnabled") } }
     var showVisualizer: Bool { didSet { set(showVisualizer, "showVisualizer") } }
     var lyricsOnIsland: Bool { didSet { set(lyricsOnIsland, "lyricsOnIsland") } }
+    /// Resting the pointer on the island while music plays brings out a small player.
+    var musicHoverControls: Bool { didSet { set(musicHoverControls, "musicHoverControls") } }
     var checkForUpdates: Bool { didSet { set(checkForUpdates, "checkForUpdates") } }
 
     // MARK: Shelf
@@ -283,6 +285,7 @@ final class Preferences {
         lyricsEnabled = bool("lyricsEnabled", true)
         showVisualizer = bool("showVisualizer", true)
         lyricsOnIsland = bool("lyricsOnIsland", false)
+        musicHoverControls = bool("musicHoverControls", true)
         checkForUpdates = bool("checkForUpdates", true)
 
         rememberShelf = bool("rememberShelf", true)

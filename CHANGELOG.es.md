@@ -2,6 +2,10 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.16 — 2026-11-08
+
+- **Controles de música en la isla.** Mientras suena música, apoya el puntero en la isla y sale un pequeño reproductor bajo la cámara: la canción, el artista y los botones de anterior, reproducir o pausar y siguiente, sin abrir el Nook. Quédate un momento más sobre la cámara para abrir el Nook como siempre; mientras el puntero está en los botones del reproductor, no se abre encima de ellos. Puedes apagarlo en Ajustes › Música.
+
 ## 1.1.15 — 2026-11-08
 
 - **La isla se aparta de la barra de menús.** Lleva el puntero por la barra de menús junto a la isla, camino de un menú o del ícono de otra app, y las orejas de la actividad en curso se recogen en la cámara (también la burbuja), así ves y pulsas lo que tapaban. Vuelven en cuanto el puntero sale de la barra. Apoyar el puntero en la cámara sigue sacando la isla, y si solo la cruzas por la barra ya no se despierta.

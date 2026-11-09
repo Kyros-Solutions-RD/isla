@@ -223,6 +223,15 @@ final class NotchWindowController {
         if panel.ignoresMouseEvents == (inside || onBubble) {
             panel.ignoresMouseEvents = !(inside || onBubble)
         }
+        // With the small music player out, the Nook waits while the pointer is on its buttons
+        // and counts again once it is back on the camera row.
+        if inside, model.isHovering, model.phase == .peek, model.showsMiniPlayer, Preferences.shared.openOnHover {
+            if isOnMiniPlayer(location) {
+                hoverTask?.cancel()
+            } else if hoverTask == nil || hoverTask?.isCancelled == true {
+                scheduleHoverOpen()
+            }
+        }
         guard inside != model.isHovering else { return }
         model.isHovering = inside
         inside ? pointerEntered() : pointerExited()
@@ -297,14 +306,30 @@ final class NotchWindowController {
             NotificationMirror.shared.setHovering(true)
             return
         }
-        let prefs = Preferences.shared
-        guard prefs.openOnHover else { return }
+        guard Preferences.shared.openOnHover else { return }
+        scheduleHoverOpen()
+    }
+
+    /// Opens the Nook once the pointer has rested long enough. With the small music player
+    /// out it waits longer, so its buttons can be reached, and never opens over them.
+    private func scheduleHoverOpen() {
         hoverTask?.cancel()
+        let player = model.showsMiniPlayer
+        let delay = player ? max(Preferences.shared.hoverDelay, 0.9) : Preferences.shared.hoverDelay
         hoverTask = Task { [weak self] in
-            try? await Task.sleep(for: .seconds(prefs.hoverDelay))
+            try? await Task.sleep(for: .seconds(delay))
             guard let self, !Task.isCancelled, self.model.isHovering else { return }
+            if self.model.showsMiniPlayer && self.isOnMiniPlayer(NSEvent.mouseLocation) {
+                self.hoverTask = nil
+                return
+            }
             self.open()
         }
+    }
+
+    /// Below the camera row, where the small player's song and buttons are.
+    private func isOnMiniPlayer(_ location: CGPoint) -> Bool {
+        location.y < model.geometry.topY - model.notchSize.height
     }
 
     private func pointerExited() {

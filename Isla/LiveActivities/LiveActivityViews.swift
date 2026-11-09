@@ -49,7 +49,12 @@ struct ClosedActivityView: View {
             .environment(\.compactEars, compact)
             .animation(IslaMotion.activity, value: compact)
 
-            if activity.kind.detailHeight > 0 {
+            if model.showsMiniPlayer {
+                IslandMiniPlayer()
+                    .frame(height: NotchViewModel.miniPlayerHeight)
+                    .padding(.horizontal, 14)
+                    .transition(.miniPlayer)
+            } else if activity.kind.detailHeight > 0 {
                 detail
                     .frame(height: activity.kind.detailHeight)
                     .padding(.horizontal, 16)
@@ -322,7 +327,35 @@ struct ClosedActivityView: View {
     }
 }
 
+/// The song and its buttons, out under the camera while the pointer rests on the island.
+struct IslandMiniPlayer: View {
+    private let media = NowPlayingService.shared
+
+    var body: some View {
+        HStack(spacing: 10) {
+            VStack(alignment: .leading, spacing: 0) {
+                MarqueeText(text: media.info?.title ?? "", font: .system(size: 11.5, weight: .semibold), speed: 24)
+                Text(media.info?.artist ?? "")
+                    .font(.system(size: 10, weight: .medium))
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            TransportControls(size: 0.64)
+                .fixedSize()
+        }
+        .padding(.bottom, 4)
+    }
+}
+
 extension AnyTransition {
+    /// The small player drops out from under the camera as the island grows, and folds
+    /// back up quickly when the pointer leaves.
+    static let miniPlayer = AnyTransition.asymmetric(
+        insertion: .opacity.combined(with: .offset(y: -8)).combined(with: AnyTransition(.blurReplace))
+            .animation(IslaMotion.emerge.delay(0.05)),
+        removal: .opacity.combined(with: .offset(y: -4)).animation(.easeIn(duration: 0.1)))
+
     /// Words in an ear slide in from the camera side as the ear opens up, and slip back into
     /// it when the ear settles to its compact form.
     static let compactEarText = AnyTransition.asymmetric(

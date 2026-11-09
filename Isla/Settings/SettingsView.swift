@@ -473,6 +473,11 @@ private struct MediaPane: View {
             } footer: {
                 Text("Lyrics come from LRCLIB, a free and open lyrics database. Only the song title, artist and album are sent.")
             }
+            Section {
+                Toggle("Music controls when the pointer rests on the island", isOn: $prefs.musicHoverControls)
+            } footer: {
+                Text("While music plays, rest the pointer on the island and a small player comes out under the camera, with the song and its buttons. Stay on the camera a moment longer to open the Nook.")
+            }
             Section("Source") {
                 LabeledContent("Now Playing") {
                     if let info = media.info {
