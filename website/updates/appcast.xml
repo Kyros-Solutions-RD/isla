@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.18</title>
+      <pubDate>Mon, 09 Nov 2026 00:58:52 GMT</pubDate>
+      <sparkle:version>26</sparkle:version>
+      <sparkle:shortVersionString>1.1.18</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>**A cleaner Nook.** The cards and the header now sit on one edge with a real margin from the island&#x27;s sides (they used to almost touch its curved shoulders while leaving a wide gap below). The panel is 20 points wider in every size, so the content keeps its room.</li><li>Up Next shows full event titles: the join button appears only for a call that is on or starts within 15 minutes; the others show a small camera beside their time.</li><li>Tasks: the Today card no longer runs off the panel, and its button reads &quot;Connect Reminders&quot;.</li><li>Search: the &quot;Try&quot; examples line up with the field. Terminal: &quot;Open in Terminal&quot; is no longer cut. Shortcuts: the last row fades at the edge instead of being cut.</li><li>Weather in Spanish reads &quot;Máx. 31°  Mín. 24°&quot;.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.18.dmg" sparkle:edSignature="gtOd1r0QUenadTBMs5NU1OIGgw1NQFmiCSxsGcWkAqJnP2qoWPM64UN9B6sXTn+AUvRbRleFLiSg7ReDugEBDw==" length="13143575" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.17</title>
       <pubDate>Mon, 09 Nov 2026 00:41:30 GMT</pubDate>
       <sparkle:version>25</sparkle:version>
