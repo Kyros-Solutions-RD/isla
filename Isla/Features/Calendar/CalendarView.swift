@@ -35,7 +35,12 @@ private struct WeekStrip: View {
     var body: some View {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: .now)
-        let days = (0..<14).compactMap { calendar.date(byAdding: .day, value: $0, to: today) }
+        // A small month: four weeks from the start of this one, the weekday initials once on top.
+        let weekStart = calendar.dateInterval(of: .weekOfYear, for: today)?.start ?? today
+        let days = (0..<28).compactMap { calendar.date(byAdding: .day, value: $0, to: weekStart) }
+        let symbols = calendar.veryShortStandaloneWeekdaySymbols
+        let initials = (0..<7).map { symbols[(calendar.firstWeekday - 1 + $0) % 7] }
+        let columns = Array(repeating: GridItem(.flexible(), spacing: 2), count: 7)
 
         IslaCard(padding: 10) {
             VStack(alignment: .leading, spacing: 8) {
@@ -52,10 +57,21 @@ private struct WeekStrip: View {
                     .help(String(localized: "Open Calendar"))
                     .accessibilityLabel(Text("Open Calendar"))
                 }
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 2), count: 7), spacing: 4) {
+                LazyVGrid(columns: columns, spacing: 0) {
+                    ForEach(Array(initials.enumerated()), id: \.offset) { _, initial in
+                        Text(verbatim: initial)
+                            .font(.system(size: 9, weight: .semibold))
+                            .foregroundStyle(.secondary)
+                            .frame(maxWidth: .infinity)
+                    }
+                }
+                .accessibilityHidden(true)
+                LazyVGrid(columns: columns, spacing: 2) {
                     ForEach(days, id: \.self) { day in
                         DayCell(day: day, selected: calendar.isDate(day, inSameDayAs: selectedDay),
                                 isToday: calendar.isDate(day, inSameDayAs: today),
+                                isPast: day < today,
+                                otherMonth: !calendar.isDate(day, equalTo: today, toGranularity: .month),
                                 hasEvents: !service.events(on: day).isEmpty) {
                             withAnimation(IslaMotion.snappy) { selectedDay = day }
                             Haptics.tap()
@@ -72,24 +88,31 @@ private struct DayCell: View {
     let day: Date
     let selected: Bool
     let isToday: Bool
+    let isPast: Bool
+    /// Days of the next month, after the end of this one, read a little softer.
+    let otherMonth: Bool
     let hasEvents: Bool
     let action: () -> Void
+    @State private var hovering = false
 
     var body: some View {
         Button(action: action) {
             VStack(spacing: 2) {
-                Text(day, format: .dateTime.weekday(.narrow))
-                    .font(.system(size: 9, weight: .semibold))
-                    .foregroundStyle(selected ? Color.black.opacity(0.6) : Color.secondary)
                 Text(day, format: .dateTime.day())
                     .font(.system(size: 12.5, weight: .bold, design: .rounded))
                     .foregroundStyle(selected ? Color.black : (isToday ? Color.red : Color.white))
+                    .opacity(selected ? 1 : (isPast ? 0.35 : (otherMonth ? 0.55 : 1)))
                 Circle()
-                    .fill(hasEvents ? (selected ? Color.black.opacity(0.5) : Color.white.opacity(0.6)) : .clear)
+                    .fill(hasEvents ? (selected ? Color.black.opacity(0.5) : Color.white.opacity(isPast ? 0.3 : 0.6)) : .clear)
                     .frame(width: 3.5, height: 3.5)
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 4)
+            .padding(.vertical, 3)
+            .background {
+                if hovering && !selected {
+                    RoundedRectangle(cornerRadius: 9, style: .continuous).fill(.white.opacity(0.08))
+                }
+            }
             .background {
                 RoundedRectangle(cornerRadius: 9, style: .continuous)
                     .fill(selected ? Color.white : .clear)
@@ -97,6 +120,10 @@ private struct DayCell: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .onHover { hovering = $0 }
+        .animation(.easeOut(duration: 0.12), value: hovering)
+        .accessibilityLabel(Text(day, format: .dateTime.weekday(.wide).day().month(.wide)))
+        .accessibilityAddTraits(selected ? .isSelected : [])
     }
 }
 

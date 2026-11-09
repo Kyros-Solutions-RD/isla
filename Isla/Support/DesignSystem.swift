@@ -326,6 +326,8 @@ struct MarqueeText: View {
     let text: String
     var font: Font = .system(size: 13, weight: .semibold)
     var speed: Double = 28
+    /// Where the text sits while it fits; once it scrolls it always starts at the leading edge.
+    var alignment: Alignment = .leading
 
     @State private var textWidth: CGFloat = 0
     @State private var containerWidth: CGFloat = 0
@@ -345,7 +347,7 @@ struct MarqueeText: View {
                 }
                 .offset(x: offset)
             }
-            .frame(width: proxy.size.width, alignment: .leading)
+            .frame(width: proxy.size.width, alignment: overflow > 0 ? .leading : alignment)
             .clipped()
             .mask {
                 LinearGradient(stops: overflow > 0 ? [

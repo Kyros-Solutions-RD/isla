@@ -289,7 +289,8 @@ struct ClosedActivityView: View {
         case .trackChanged:
             let info = NowPlayingService.shared.info
             VStack(spacing: 1) {
-                MarqueeText(text: info?.title ?? "", font: .system(size: 12.5, weight: .semibold))
+                // Centered like the artist under it, as long as it fits.
+                MarqueeText(text: info?.title ?? "", font: .system(size: 12.5, weight: .semibold), alignment: .center)
                 Text(info?.artist ?? "")
                     .font(.system(size: 11))
                     .foregroundStyle(.secondary)

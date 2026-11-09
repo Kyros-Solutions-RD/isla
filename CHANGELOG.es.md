@@ -2,6 +2,11 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.19 — 2026-11-08
+
+- **Un mes de verdad en Calendario.** Las iniciales de los días van una sola vez arriba y debajo siguen cuatro semanas desde el inicio de esta, en vez de dos semanas que repetían las iniciales en cada fila y dejaban media tarjeta vacía. Los días pasados se atenúan, los del mes siguiente se ven más suaves y cada día responde al puntero.
+- Al cambiar de canción, el título queda centrado sobre el artista (antes se iba a la izquierda mientras el artista estaba en el centro).
+
 ## 1.1.18 — 2026-11-08
 
 - **Un Nook más limpio.** Las tarjetas y la cabecera comparten ahora un mismo borde, con un margen real respecto a los lados de la isla (antes casi tocaban sus hombros curvos y dejaban mucho hueco abajo). El panel es 20 puntos más ancho en todos los tamaños, así que el contenido conserva su espacio.

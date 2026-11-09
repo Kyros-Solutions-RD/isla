@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.19 — 2026-11-08
+
+- **A real little month in Calendar.** The weekday initials sit once on top and four weeks follow from the start of this one, instead of two weeks that repeated the initials on every row and left half the card empty. Past days are dimmed, days of the next month are softer, and each day answers the pointer.
+- When the song changes, its title is centered over the artist (it used to lean left while the artist sat in the middle).
+
 ## 1.1.18 — 2026-11-08
 
 - **A cleaner Nook.** The cards and the header now sit on one edge with a real margin from the island's sides (they used to almost touch its curved shoulders while leaving a wide gap below). The panel is 20 points wider in every size, so the content keeps its room.
