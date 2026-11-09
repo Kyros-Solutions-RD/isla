@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.17</title>
+      <pubDate>Mon, 09 Nov 2026 00:41:30 GMT</pubDate>
+      <sparkle:version>25</sparkle:version>
+      <sparkle:shortVersionString>1.1.17</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>**A compact timer.** A running timer or Pomodoro now keeps small ears too: its ring by the camera and the countdown on the other side. Its name (Focus, Short Break or your label) shows for a few seconds when it starts or changes phase, and while the pointer rests on the island.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.17.dmg" sparkle:edSignature="YagBcDyVbW9vr9rFy5ms7d6Tc7CKmPkBVH17rd4jqwTyy6RQvAc6HaHsk91tjAhxn1pU/9it0mg2ExypD9zrAA==" length="13129324" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.16</title>
       <pubDate>Mon, 09 Nov 2026 00:28:32 GMT</pubDate>
       <sparkle:version>24</sparkle:version>
