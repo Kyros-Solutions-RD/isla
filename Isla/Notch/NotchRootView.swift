@@ -332,18 +332,25 @@ struct NotchContextMenu: View {
 
 struct OpenNotchView: View {
     @Bindable var model: NotchViewModel
+    /// Width of the open island's curved top corners (its `NotchShape` top radius).
+    static let shoulder: CGFloat = 16
+    /// Room between the island's sides and its content.
+    static let margin: CGFloat = 12
 
     var body: some View {
         VStack(spacing: 0) {
+            // One edge for the header and the cards: the island's straight sides start
+            // `shoulder` points in (its curved top corners), and the content sits a real
+            // margin inside them, about as much as it leaves at the bottom.
             NotchHeader(model: model)
                 .frame(height: model.notchSize.height)
-                .padding(.horizontal, 22)
+                .padding(.horizontal, Self.shoulder + Self.margin)
                 .zIndex(1)
 
             TabContent(model: model)
-                .padding(.horizontal, 18)
+                .padding(.horizontal, Self.shoulder + Self.margin)
                 .padding(.top, 8)
-                .padding(.bottom, 16)
+                .padding(.bottom, 14)
                 // minHeight 0: a tab that asks for more room than the panel has can never
                 // push the header up under the camera.
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)

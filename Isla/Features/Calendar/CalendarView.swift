@@ -242,12 +242,21 @@ struct UpNextCard: View {
                                 Text(event.title)
                                     .font(.system(size: 11.5, weight: .semibold))
                                     .lineLimit(1)
-                                Text(relative(event))
-                                    .font(.system(size: 10))
-                                    .foregroundStyle(event.isHappeningNow ? Color.green : .secondary)
+                                HStack(spacing: 4) {
+                                    Text(relative(event))
+                                    // A call further away just says so; its button waits until it is near.
+                                    if event.meetingURL != nil && !isJoinable(event) {
+                                        Image(systemName: "video.fill")
+                                            .font(.system(size: 7.5))
+                                            .foregroundStyle(.green.opacity(0.8))
+                                            .accessibilityHidden(true)
+                                    }
+                                }
+                                .font(.system(size: 10))
+                                .foregroundStyle(event.isHappeningNow ? Color.green : .secondary)
                             }
                             Spacer(minLength: 0)
-                            if let url = event.meetingURL {
+                            if let url = event.meetingURL, isJoinable(event) {
                                 Button { NSWorkspace.shared.open(url) } label: { Image(systemName: "video.fill") }
                                     .buttonStyle(NotchIconButtonStyle(size: 22))
                                     .foregroundStyle(.green)
@@ -260,6 +269,12 @@ struct UpNextCard: View {
                 }
             }
         }
+    }
+
+    /// The join button only for a call that is on or about to start, so the titles of the
+    /// others get the whole width.
+    private func isJoinable(_ event: AgendaEvent) -> Bool {
+        event.isHappeningNow || event.start.timeIntervalSinceNow < 15 * 60
     }
 
     private func relative(_ event: AgendaEvent) -> String {

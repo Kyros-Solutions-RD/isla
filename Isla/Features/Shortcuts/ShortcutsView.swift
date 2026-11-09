@@ -98,7 +98,10 @@ struct ShortcutsView: View {
                                 .scrollEdgeEase()
                         }
                     }
+                    .padding(.bottom, 8)
                 }
+                // The last row eases out at the edge instead of being cut.
+                .scrollFade()
             }
         }
         .task { if !service.loaded { await service.reload() } }

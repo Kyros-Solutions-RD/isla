@@ -36,6 +36,7 @@ struct TasksView: View {
             }
             sideCard
                 .frame(width: 190)
+                .clipped()
         }
     }
 
@@ -126,15 +127,19 @@ struct TasksView: View {
                 }
                 .frame(height: 5)
                 Spacer(minLength: 0)
-                if !store.usesReminders {
-                    Button("Sync with Reminders") { Task { await store.requestRemindersAccess() } }
-                        .buttonStyle(NotchPillButtonStyle())
-                } else {
-                    Button("Open Reminders") {
-                        NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Applications/Reminders.app"))
+                // The card has a fixed width: its button fits it instead of pushing it wider.
+                Group {
+                    if !store.usesReminders {
+                        Button("Connect Reminders") { Task { await store.requestRemindersAccess() } }
+                    } else {
+                        Button("Open Reminders") {
+                            NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Applications/Reminders.app"))
+                        }
                     }
-                    .buttonStyle(NotchPillButtonStyle())
                 }
+                .buttonStyle(NotchPillButtonStyle())
+                .lineLimit(1)
+                .minimumScaleFactor(0.85)
             }
         }
     }

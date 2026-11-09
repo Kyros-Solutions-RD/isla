@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.18 — 2026-11-08
+
+- **A cleaner Nook.** The cards and the header now sit on one edge with a real margin from the island's sides (they used to almost touch its curved shoulders while leaving a wide gap below). The panel is 20 points wider in every size, so the content keeps its room.
+- Up Next shows full event titles: the join button appears only for a call that is on or starts within 15 minutes; the others show a small camera beside their time.
+- Tasks: the Today card no longer runs off the panel, and its button reads "Connect Reminders".
+- Search: the "Try" examples line up with the field. Terminal: "Open in Terminal" is no longer cut. Shortcuts: the last row fades at the edge instead of being cut.
+- Weather in Spanish reads "Máx. 31°  Mín. 24°".
+
 ## 1.1.17 — 2026-11-08
 
 - **A compact timer.** A running timer or Pomodoro now keeps small ears too: its ring by the camera and the countdown on the other side. Its name (Focus, Short Break or your label) shows for a few seconds when it starts or changes phase, and while the pointer rests on the island.

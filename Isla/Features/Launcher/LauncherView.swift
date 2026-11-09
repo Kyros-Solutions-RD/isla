@@ -263,6 +263,8 @@ private struct LauncherHome: View {
                 Text("Try")
                     .font(.system(size: 11, weight: .semibold))
                     .foregroundStyle(.white.opacity(0.4))
+                    // Lines up with the magnifying glass of the field above, not the panel's edge.
+                    .padding(.leading, 12)
                 ForEach(Array(examples.enumerated()), id: \.offset) { index, example in
                     Button { fill(example) } label: {
                         Text(verbatim: example)

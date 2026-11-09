@@ -2,6 +2,14 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.18 — 2026-11-08
+
+- **Un Nook más limpio.** Las tarjetas y la cabecera comparten ahora un mismo borde, con un margen real respecto a los lados de la isla (antes casi tocaban sus hombros curvos y dejaban mucho hueco abajo). El panel es 20 puntos más ancho en todos los tamaños, así que el contenido conserva su espacio.
+- «A continuación» muestra los títulos completos: el botón para unirte solo aparece en la llamada que está en curso o empieza en menos de 15 minutos; las demás llevan una pequeña cámara junto a la hora.
+- Tareas: la tarjeta «Hoy» ya no se sale del panel y su botón dice «Conectar Recordatorios».
+- Buscar: los ejemplos de «Prueba» se alinean con el campo. Terminal: «Abrir en Terminal» ya no se corta. Atajos: la última fila se funde en el borde en vez de cortarse.
+- El clima en español dice «Máx. 31°  Mín. 24°».
+
 ## 1.1.17 — 2026-11-08
 
 - **Temporizador compacto.** Un temporizador o un Pomodoro en marcha también se queda con orejas pequeñas: su anillo junto a la cámara y la cuenta atrás al otro lado. Su nombre (Enfoque, Descanso corto o tu etiqueta) aparece unos segundos al empezar o al cambiar de fase, y mientras el puntero descansa sobre la isla.

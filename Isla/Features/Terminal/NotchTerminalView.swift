@@ -121,7 +121,7 @@ struct NotchTerminalView: View {
                     .foregroundStyle(.tertiary)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            .frame(width: 136)
+            .frame(width: 150)
         }
         .onAppear {
             session.startIfNeeded()
@@ -141,7 +141,7 @@ private struct TerminalActionButton: View {
         Button(action: action) {
             HStack(spacing: 7) {
                 Image(systemName: symbol).font(.system(size: 11, weight: .semibold)).frame(width: 14)
-                Text(title).font(.system(size: 11.5, weight: .medium)).lineLimit(1)
+                Text(title).font(.system(size: 11.5, weight: .medium)).lineLimit(1).minimumScaleFactor(0.85)
                 Spacer(minLength: 0)
             }
             .padding(.horizontal, 9)

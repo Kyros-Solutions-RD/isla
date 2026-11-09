@@ -1391,6 +1391,16 @@
         }
       }
     },
+    "Connect Reminders": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectar Recordatorios"
+          }
+        }
+      }
+    },
     "Connected": {
       "localizations": {
         "es": {
@@ -2106,7 +2116,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Máx:%lld°  Mín:%lld°"
+            "value": "Máx. %lld°  Mín. %lld°"
           }
         }
       }

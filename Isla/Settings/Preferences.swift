@@ -37,9 +37,11 @@ enum PanelSize: String, CaseIterable, Identifiable, Codable {
 
     var size: CGSize {
         switch self {
-        case .compact: CGSize(width: 660, height: 236)
-        case .regular: CGSize(width: 740, height: 262)
-        case .large: CGSize(width: 840, height: 300)
+        // 20 pt wider than before 1.1.18: the content keeps its width now that it clears
+        // the island's curved shoulders with a real margin.
+        case .compact: CGSize(width: 680, height: 236)
+        case .regular: CGSize(width: 760, height: 262)
+        case .large: CGSize(width: 860, height: 300)
         }
     }
 }
