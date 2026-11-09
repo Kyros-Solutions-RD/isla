@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.19</title>
+      <pubDate>Mon, 09 Nov 2026 01:11:42 GMT</pubDate>
+      <sparkle:version>27</sparkle:version>
+      <sparkle:shortVersionString>1.1.19</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>**A real little month in Calendar.** The weekday initials sit once on top and four weeks follow from the start of this one, instead of two weeks that repeated the initials on every row and left half the card empty. Past days are dimmed, days of the next month are softer, and each day answers the pointer.</li><li>When the song changes, its title is centered over the artist (it used to lean left while the artist sat in the middle).</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.19.dmg" sparkle:edSignature="ZQX2Q2usNfHG9BTPjZ6HByvLesCUhLUom6IvvqMyCCj4uOajko9PAve6isHIFB49gqFXe01U4FdW+oL9iKRzCw==" length="13131406" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.18</title>
       <pubDate>Mon, 09 Nov 2026 00:58:52 GMT</pubDate>
       <sparkle:version>26</sparkle:version>
