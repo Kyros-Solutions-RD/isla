@@ -118,7 +118,7 @@ struct NotchTerminalView: View {
                 Spacer(minLength: 0)
                 Text("⌥ types special characters. Esc goes to the shell.")
                     .font(.system(size: 10))
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(IslaInk.faint)
                     .fixedSize(horizontal: false, vertical: true)
             }
             .frame(width: 150)

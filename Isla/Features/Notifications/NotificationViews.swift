@@ -360,7 +360,7 @@ struct NotificationsWidgetCard: View {
             if mirror.history.count > 3 {
                 Text("+\(mirror.history.count - 3)")
                     .font(.system(size: 10, weight: .medium))
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(IslaInk.faint)
             }
         } else if mirror.status == .needsAccess {
             placeholder(symbol: "accessibility", title: "Needs Accessibility") {
@@ -377,7 +377,7 @@ struct NotificationsWidgetCard: View {
             Spacer(minLength: 0)
             Image(systemName: symbol)
                 .font(.system(size: 18, weight: .light))
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(IslaInk.faint)
             Text(title)
                 .font(.system(size: 11.5, weight: .semibold))
                 .foregroundStyle(.secondary)
@@ -416,7 +416,7 @@ private struct NotificationWidgetRow: View {
                     age
                         .font(.system(size: 10, weight: .medium))
                         .monospacedDigit()
-                        .foregroundStyle(.tertiary)
+                        .foregroundStyle(IslaInk.faint)
                         .lineLimit(1)
                         .fixedSize()
                 }

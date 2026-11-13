@@ -100,7 +100,14 @@ struct TasksView: View {
     private var sideCard: some View {
         IslaCard(padding: 12) {
             VStack(alignment: .leading, spacing: 8) {
-                CardHeader(title: "Today", symbol: "sun.max.fill", tint: .orange)
+                // Titled like the list beside it (and Calendar's "Today").
+                HStack(spacing: 6) {
+                    Image(systemName: "sun.max.fill")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(.orange)
+                    Text("Today")
+                        .font(.system(size: 13, weight: .bold))
+                }
                 let open = store.tasks.filter { !$0.isDone }
                 let done = store.tasks.filter(\.isDone)
                 let total = max(1, open.count + done.count)

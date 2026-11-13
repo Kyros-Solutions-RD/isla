@@ -238,12 +238,12 @@ private struct LauncherHome: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 6) {
                 ForEach(Array(engine.favorites.enumerated()), id: \.element.id) { index, app in
                     Button { engine.open(app) } label: {
-                        VStack(spacing: 5) {
-                            LauncherIcon(icon: .app(app.url), size: 46)
+                        VStack(spacing: 6) {
+                            LauncherIcon(icon: .app(app.url), size: 52)
                             Text(verbatim: app.name)
                                 .font(.system(size: 11, weight: .medium))
                                 .foregroundStyle(.white.opacity(0.8))
@@ -280,8 +280,9 @@ private struct LauncherHome: View {
             }
             .lineLimit(1)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .padding(.top, 2)
+        // Centered in the room under the field, so the empty launcher never looks top-heavy.
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .padding(.bottom, 4)
     }
 }
 

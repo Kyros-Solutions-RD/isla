@@ -322,7 +322,7 @@ struct AgentsEarLeading: View {
         content
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(Text(verbatim: monitor.activeSessions
-                .map { "\($0.project ?? $0.tool.name), \($0.state.titleString)" }
+                .map { "\(($0.project ?? $0.tool.name).readableName), \($0.state.titleString)" }
                 .joined(separator: "; ")))
     }
 
@@ -336,7 +336,7 @@ struct AgentsEarLeading: View {
                     if working.count > 1 && active.count == working.count {
                         Text("\(working.count) working")
                     } else if let first = active.first {
-                        Text(verbatim: first.project ?? first.tool.name)
+                        Text(verbatim: (first.project ?? first.tool.name).readableName)
                     }
                 }
                 .font(.system(size: 11, weight: .semibold))

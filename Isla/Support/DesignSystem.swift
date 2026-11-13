@@ -128,6 +128,13 @@ extension View {
     }
 }
 
+/// Text colors inside the notch, which is always dark. The system's tertiary label is
+/// too faint on glass over a light window; these keep their contrast on any wallpaper.
+enum IslaInk {
+    static let secondary = Color.white.opacity(0.7)
+    static let faint = Color.white.opacity(0.52)
+}
+
 enum IslaMetrics {
     static let cardRadius: CGFloat = 18
     static let innerPadding: CGFloat = 12
@@ -293,7 +300,7 @@ struct NotchEmptyState: View {
         VStack(spacing: 8) {
             Image(systemName: symbol)
                 .font(.system(size: 26, weight: .light))
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(IslaInk.faint)
                 .symbolRenderingMode(.hierarchical)
                 .emerge(delay: 0.08)
             Text(title)
@@ -303,7 +310,7 @@ struct NotchEmptyState: View {
             if let message {
                 Text(message)
                     .font(.system(size: 11.5))
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(IslaInk.faint)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: 320)
                     .emerge(delay: 0.16, offset: CGSize(width: 0, height: -5))

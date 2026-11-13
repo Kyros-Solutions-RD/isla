@@ -66,7 +66,7 @@ private struct NoteRow: View {
             }
             Text(note.updated, format: .relative(presentation: .named))
                 .font(.system(size: 9.5))
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(IslaInk.faint)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 8)
@@ -111,7 +111,7 @@ private struct NoteEditor: View {
             HStack(spacing: 4) {
                 Text("\(text.split { $0.isWhitespace || $0.isNewline }.count) words")
                     .font(.system(size: 9.5, weight: .medium))
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(IslaInk.faint)
                 Button { store.exportToAppleNotes(note) } label: { Image(systemName: "square.and.arrow.up") }
                     .buttonStyle(NotchIconButtonStyle(size: 22))
                     .help(String(localized: "Save to Apple Notes"))
@@ -142,7 +142,7 @@ struct QuickNoteCard: View {
                     .onSubmit(save)
                 Spacer(minLength: 0)
                 HStack {
-                    Text("\(store.notes.count) notes").font(.system(size: 10)).foregroundStyle(.tertiary)
+                    Text("\(store.notes.count) notes").font(.system(size: 10)).foregroundStyle(IslaInk.faint)
                     Spacer()
                     Button("Save") { save() }
                         .buttonStyle(NotchPillButtonStyle())

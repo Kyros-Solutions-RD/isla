@@ -20,13 +20,15 @@ struct AgentsView: View {
                     AgentsEmptyState()
                         .transition(.blurReplace.combined(with: .opacity))
                 } else {
-                    HStack(spacing: 12) {
+                    HStack(alignment: .top, spacing: 12) {
                         AgentsListCard()
-                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity)
                             .emerge(delay: 0.06)
                         VStack(spacing: 10) {
                             if prefs.agentsLocalModels {
+                                // Takes the height the apps leave, so both columns end together.
                                 LocalModelsCard()
+                                    .frame(maxHeight: .infinity)
                                     .emerge(delay: 0.11)
                             }
                             if !monitor.apps.isEmpty || !prefs.agentsLocalModels {
@@ -36,6 +38,7 @@ struct AgentsView: View {
                             }
                         }
                         .frame(width: 236)
+                        .frame(maxHeight: .infinity, alignment: .top)
                     }
                     .transition(.blurReplace.combined(with: .opacity))
                 }
@@ -73,7 +76,8 @@ private struct AgentsListCard: View {
                         Text("\(sessions.count)")
                             .font(.system(size: 11, weight: .semibold, design: .rounded))
                             .monospacedDigit()
-                            .foregroundStyle(.tertiary)
+                            .foregroundStyle(IslaInk.secondary)
+                            .help(String(localized: "Agents running"))
                             .contentTransition(.numericText(value: Double(sessions.count)))
                     }
                     .animation(IslaMotion.snappy, value: working)
@@ -86,13 +90,13 @@ private struct AgentsListCard: View {
                         Spacer(minLength: 0)
                         Image(systemName: "moon.zzz.fill")
                             .font(.system(size: 20, weight: .light))
-                            .foregroundStyle(.tertiary)
+                            .foregroundStyle(IslaInk.faint)
                         Text("No agents running")
                             .font(.system(size: 12, weight: .semibold))
                             .foregroundStyle(.secondary)
                         Text("Start one in Terminal or in its app and it shows up here.")
                             .font(.system(size: 10.5))
-                            .foregroundStyle(.tertiary)
+                            .foregroundStyle(IslaInk.faint)
                             .multilineTextAlignment(.center)
                         Spacer(minLength: 0)
                     }
@@ -115,6 +119,9 @@ private struct AgentsListCard: View {
                     .scrollFade()
                 }
             }
+            // Whatever a row asks for, it stays inside its card.
+            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+            .clipped()
         }
     }
 }
@@ -143,6 +150,8 @@ private struct AgentRow: View {
     let session: AgentSession
     @State private var hovering = false
     private let monitor = AgentMonitor.shared
+    static let statusWidth: CGFloat = 112
+
 
     var body: some View {
         HStack(spacing: 10) {
@@ -162,6 +171,8 @@ private struct AgentRow: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
+            // One column of the same width on every row: the state, its graph and time, or,
+            // under the pointer, the row's actions, all lined up from row to row.
             ZStack(alignment: .trailing) {
                 if hovering {
                     actions
@@ -171,6 +182,7 @@ private struct AgentRow: View {
                         .transition(.blurReplace.combined(with: .opacity))
                 }
             }
+            .frame(width: Self.statusWidth, alignment: .trailing)
             .animation(IslaMotion.snappy, value: hovering)
         }
         .padding(.horizontal, 6)
@@ -219,13 +231,15 @@ private struct AgentRow: View {
             Text(verbatim: session.displayTitle)
                 .font(.system(size: 12.5, weight: .semibold))
                 .lineLimit(1)
+                .truncationMode(.tail)
             if session.title != nil || session.project != nil {
+                // The tool's color, lifted toward white so it reads on its own tinted capsule.
                 Text(verbatim: badge)
                     .font(.system(size: 9, weight: .bold))
-                    .foregroundStyle(session.tool.tint)
+                    .foregroundStyle(session.tool.tint.mix(with: .white, by: 0.45))
                     .padding(.horizontal, 5)
                     .padding(.vertical, 1.5)
-                    .background(Capsule().fill(session.tool.tint.opacity(0.16)))
+                    .background(Capsule().fill(session.tool.tint.opacity(0.24)))
                     .fixedSize()
                     .help([session.tool.name, session.contextSummary].compactMap { $0 }.joined(separator: " · "))
             }
@@ -237,19 +251,29 @@ private struct AgentRow: View {
             detailParts(folder: session.shortFolder, host: true)
             detailParts(folder: session.project ?? session.shortFolder, host: true)
             detailParts(folder: session.project ?? session.shortFolder, host: false)
+            // Narrowest: the folder name gives way (cut in the middle) so the row never grows
+            // wider than its card.
+            detailParts(folder: session.project ?? session.shortFolder, host: false, squeeze: true)
         }
         .font(.system(size: 10.5))
-        .foregroundStyle(.secondary)
+        .foregroundStyle(IslaInk.secondary)
     }
 
-    private func detailParts(folder: String?, host showsHost: Bool) -> some View {
+    private func detailParts(folder: String?, host showsHost: Bool, squeeze: Bool = false) -> some View {
         HStack(spacing: 4) {
             if let folder {
                 Image(systemName: "folder.fill")
                     .font(.system(size: 8.5))
-                Text(verbatim: folder)
-                    .lineLimit(1)
-                    .fixedSize()
+                if squeeze {
+                    Text(verbatim: folder.readableName)
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                        .layoutPriority(-1)
+                } else {
+                    Text(verbatim: folder.readableName)
+                        .lineLimit(1)
+                        .fixedSize()
+                }
             }
             if showsHost, let host = session.hostName, session.tool.kind == .cli {
                 Text(verbatim: "·")
@@ -257,16 +281,18 @@ private struct AgentRow: View {
                     .lineLimit(1)
                     .fixedSize()
             }
-            Text(verbatim: "·")
-            Image(systemName: "clock")
-                .font(.system(size: 8.5))
-            Text(session.started, format: .dateTime.hour().minute())
-                .monospacedDigit()
-                .fixedSize()
-            if let used = session.limitUsed, let window = session.limitWindow {
+            if !squeeze || folder == nil {
+                Text(verbatim: "·")
+                Image(systemName: "clock")
+                    .font(.system(size: 8.5))
+                Text(session.started, format: .dateTime.hour().minute())
+                    .monospacedDigit()
+                    .fixedSize()
+            }
+            if !squeeze, let used = session.limitUsed, let window = session.limitWindow {
                 Text(verbatim: "·")
                 Text("\(AgentDuration.window(minutes: window)) limit: \(Int(used.rounded()))%")
-                    .foregroundStyle(used >= 80 ? AgentState.needsYou.tint : .secondary)
+                    .foregroundStyle(used >= 80 ? AgentState.needsYou.tint : IslaInk.secondary)
                     .lineLimit(1)
                     .fixedSize()
                     .help(String(localized: "Share of the account's usage limit already used"))
@@ -285,7 +311,7 @@ private struct AgentRow: View {
                     .truncationMode(.tail)
             }
             .font(.system(size: 10.5, weight: .medium))
-            .foregroundStyle(session.state == .needsYou ? session.state.tint : .white.opacity(0.62))
+            .foregroundStyle(session.state == .needsYou ? session.state.tint : IslaInk.secondary)
             .id(step.text)
             .transition(.blurReplace.combined(with: .opacity))
         }
@@ -294,17 +320,21 @@ private struct AgentRow: View {
     private var status: some View {
         VStack(alignment: .trailing, spacing: 5) {
             AgentStatePill(state: session.state)
-            HStack(spacing: 6) {
-                ActivitySparkline(values: session.history, tint: session.state == .working ? session.state.tint : .white.opacity(0.45))
-                    .frame(width: 40, height: 12)
+            // The graph keeps to the left and the time to the right, never on top of each other.
+            HStack(spacing: 8) {
+                ActivitySparkline(values: session.history, tint: session.state == .working ? session.state.tint : .white.opacity(0.4))
+                    .frame(width: 34, height: 11)
                 TimelineView(.periodic(from: .now, by: 20)) { context in
                     Text(verbatim: AgentDuration.label(since: session.stateSince, now: context.date))
                         .font(.system(size: 10, weight: .medium, design: .rounded))
                         .monospacedDigit()
-                        .foregroundStyle(.tertiary)
-                        .fixedSize()
+                        .foregroundStyle(IslaInk.secondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                 }
+                .frame(maxWidth: .infinity, alignment: .trailing)
             }
+            .frame(width: Self.statusWidth)
         }
         .help(timeHelp)
     }
@@ -324,7 +354,7 @@ private struct AgentRow: View {
     }
 
     private var actions: some View {
-        HStack(spacing: 2) {
+        HStack(spacing: 4) {
             if session.hostPID != nil {
                 Button { monitor.bringToFront(session) } label: { Image(systemName: "macwindow") }
                     .buttonStyle(NotchIconButtonStyle(size: 26))
@@ -387,8 +417,9 @@ private struct LocalModelsCard: View {
                         } else {
                             Text("Models you load in Ollama or LM Studio appear here with the memory they use.")
                                 .font(.system(size: 10.5))
-                                .foregroundStyle(.tertiary)
+                                .foregroundStyle(IslaInk.secondary)
                                 .lineLimit(4)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                         Spacer(minLength: 0)
                     }
@@ -479,7 +510,7 @@ private struct LocalModelRow: View {
                     Text(remaining > 60 ? "Unloads in \(AgentDuration.label(since: context.date.addingTimeInterval(-remaining), now: context.date))"
                                         : "Unloading soon")
                         .font(.system(size: 9.5))
-                        .foregroundStyle(.tertiary)
+                        .foregroundStyle(IslaInk.faint)
                 }
             }
         }
@@ -505,7 +536,7 @@ private struct AIAppsCard: View {
                 if monitor.apps.isEmpty {
                     Text("No AI apps open")
                         .font(.system(size: 11))
-                        .foregroundStyle(.tertiary)
+                        .foregroundStyle(IslaInk.faint)
                 } else {
                     // Named chips, two to a row: an icon alone left most of the card empty.
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 92), spacing: 6)], alignment: .leading, spacing: 6) {
@@ -594,7 +625,7 @@ private struct AgentsEmptyState: View {
                 .padding(.top, 3)
                 Text("No permissions needed. Nothing leaves your Mac.")
                     .font(.system(size: 10))
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(IslaInk.faint)
                     .emerge(delay: 0.42)
             }
         }

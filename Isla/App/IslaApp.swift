@@ -78,7 +78,7 @@ private struct MenuBarContent: View {
 
     /// The session's own title tells two agents in one folder apart; the folder otherwise.
     private static func menuName(_ session: AgentSession) -> String {
-        let name = session.title ?? session.project ?? session.tool.name
+        let name = (session.title ?? session.project ?? session.tool.name).readableName
         return name.count > 42 ? String(name.prefix(41)) + "…" : name
     }
 }

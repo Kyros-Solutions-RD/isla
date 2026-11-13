@@ -271,9 +271,23 @@ struct NotchSurface: View {
                 Color.clear
                     .glassEffect(.regular.tint(glassTint), in: shape)
             }
+            // Open, the glass sits under a dark veil: Liquid Glass alone turns light grey over a
+            // white window and the panel's text loses its contrast. The Glass tint setting
+            // decides how much of the wallpaper still shows through.
             shape
                 .fill(Color.black)
-                .opacity(glass && open ? 0 : 1)
+                .opacity(glass && open ? openVeil : 1)
+
+            if open && glass {
+                // Black at the very top, so the island melts into the camera housing and the
+                // screen edge instead of showing a black block on lighter glass.
+                LinearGradient(stops: [.init(color: .black, location: 0),
+                                       .init(color: .black.opacity(0.85), location: 0.55),
+                                       .init(color: .black.opacity(0), location: 1)],
+                               startPoint: .top, endPoint: .bottom)
+                    .frame(height: model.notchSize.height + 18)
+                    .allowsHitTesting(false)
+            }
 
             if open && glass && model.geometry.hasHardwareNotch {
                 // Keep the camera housing crisp inside the glass.
@@ -307,6 +321,11 @@ struct NotchSurface: View {
 
     private var glassTint: Color {
         Color.black.opacity(prefs.glassTint)
+    }
+
+    /// 0.5 with the slider at Clear, about 0.68 by default, 0.86 at Dark.
+    private var openVeil: Double {
+        0.5 + 0.42 * prefs.glassTint
     }
 }
 

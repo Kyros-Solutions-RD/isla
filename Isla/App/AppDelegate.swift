@@ -71,6 +71,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         #if DEBUG
+        // `--env ISLA_APPEARANCE=light|dark`: Settings and the other windows in that appearance,
+        // to check both without changing the Mac's own setting.
+        switch ProcessInfo.processInfo.environment["ISLA_APPEARANCE"] {
+        case "light": NSApp.appearance = NSAppearance(named: .aqua)
+        case "dark": NSApp.appearance = NSAppearance(named: .darkAqua)
+        default: break
+        }
         // Test mode for Debug builds (`--env ISLA_TEST=1`): the notch and the services that need
         // no permission run, but no welcome tour and nothing that could show a permission prompt.
         if ProcessInfo.processInfo.environment["ISLA_TEST"] == "1" { return }

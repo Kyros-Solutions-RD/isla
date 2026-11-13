@@ -125,7 +125,7 @@ private struct TimersCard: View {
                     Spacer(minLength: 0)
                     Text("Run as many timers as you like. They stay in the notch while they count down.")
                         .font(.system(size: 11.5))
-                        .foregroundStyle(.tertiary)
+                        .foregroundStyle(IslaInk.faint)
                         .fixedSize(horizontal: false, vertical: true)
                     Spacer(minLength: 0)
                 } else {

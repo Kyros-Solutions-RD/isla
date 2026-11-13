@@ -2,6 +2,15 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.20 — 2026-11-12
+
+- El Nook abierto es oscuro sobre cualquier fondo. Sobre una ventana blanca, el Liquid Glass solo se volvía gris claro y el texto perdía contraste; ahora el vidrio lleva un velo oscuro (el ajuste Tinte del vidrio sigue decidiendo cuánto se transparenta), y la parte de arriba se funde con la cámara en vez de dejar un bloque negro.
+- El texto tenue del notch se lee mejor: estados vacíos, tiempos y pistas usan un gris más claro.
+- La pestaña IA ya no se sale de su tarjeta cuando un agente tiene un nombre o una carpeta largos: la carpeta cede primero, recortada por el medio. El estado, su gráfica y su tiempo van en una columna del mismo ancho en todas las filas, también cuando el puntero muestra las acciones de la fila, y las dos columnas terminan a la misma altura.
+- Los nombres escritos en mayúsculas (una sesión llamada «ISLA - APP NOTCH MAC», una carpeta «NOTCHY CLONE») se muestran como «Isla - App Notch Mac» en la pestaña IA, alrededor del notch cerrado, en el widget y en la barra de menús.
+- Las etiquetas del modelo en la pestaña IA se leen bien sobre su cápsula de color.
+- El Chat sin servidor de modelos muestra sus botones justo debajo de la explicación, Buscar vacío queda centrado y Tareas titula su tarjeta Hoy como la lista de al lado.
+
 ## 1.1.19 — 2026-11-08
 
 - **Un mes de verdad en Calendario.** Las iniciales de los días van una sola vez arriba y debajo siguen cuatro semanas desde el inicio de esta, en vez de dos semanas que repetían las iniciales en cada fila y dejaban media tarjeta vacía. Los días pasados se atenúan, los del mes siguiente se ven más suaves y cada día responde al puntero.

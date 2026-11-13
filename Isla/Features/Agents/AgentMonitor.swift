@@ -107,7 +107,7 @@ struct AgentSession: Identifiable, Equatable {
         return (folder as NSString).lastPathComponent
     }
 
-    var displayTitle: String { title ?? project ?? tool.name }
+    var displayTitle: String { (title ?? project ?? tool.name).readableName }
 
     /// The project and the folder it sits in: "MACBOOK › NOTCHY CLONE".
     var shortFolder: String? {
@@ -383,7 +383,7 @@ final class AgentMonitor {
 
     private func postMoment(for session: AgentSession, needsYou: Bool) {
         LiveActivityCenter.shared.post(.agentFinished(toolID: session.tool.id,
-                                                      title: session.project ?? session.tool.name,
+                                                      title: (session.project ?? session.tool.name).readableName,
                                                       needsYou: needsYou),
                                        duration: 5)
         let sound = Preferences.shared.agentsSound
@@ -517,7 +517,7 @@ final class AgentMonitor {
     /// Previews for the AI tab and its notch moments. Nothing is saved.
     func runDemo(_ name: String) {
         let tool = sessions.first?.tool ?? AgentCatalog.claudeCode
-        let title = sessions.first?.project ?? "Isla"
+        let title = sessions.first?.project?.readableName ?? "Isla"
         switch name {
         case "agent-done":
             LiveActivityCenter.shared.post(.agentFinished(toolID: tool.id, title: title, needsYou: false), duration: 6)
@@ -844,5 +844,16 @@ enum AgentScanner {
         }
 
         return Result(date: now, agents: agents, cpuBook: book, localServerProcesses: localServers)
+    }
+}
+
+extension String {
+    /// Names typed in capitals ("ISLA - APP NOTCH MAC", a folder called "NOTCHY CLONE") read
+    /// like shouting next to the others: they show as "Isla - App Notch Mac". Names with any
+    /// lowercase letter stay exactly as they are.
+    var readableName: String {
+        let letters = unicodeScalars.filter { CharacterSet.letters.contains($0) }
+        guard letters.count >= 4, !contains(where: \.isLowercase) else { return self }
+        return lowercased().capitalized(with: .current)
     }
 }

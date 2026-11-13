@@ -182,7 +182,7 @@ struct LyricsTicker: View {
                 if index + 1 < lyrics.lines.count {
                     Text(lyrics.lines[index + 1].text)
                         .font(.system(size: 11.5, weight: .medium))
-                        .foregroundStyle(.tertiary)
+                        .foregroundStyle(IslaInk.faint)
                         .lineLimit(1)
                 }
             }
@@ -200,7 +200,7 @@ struct IdleMediaView: View {
                     .fill(LinearGradient(colors: [.white.opacity(0.12), .white.opacity(0.04)], startPoint: .top, endPoint: .bottom))
                 Image(systemName: "music.note")
                     .font(.system(size: 28, weight: .medium))
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(IslaInk.faint)
             }
             .aspectRatio(1, contentMode: .fit)
 

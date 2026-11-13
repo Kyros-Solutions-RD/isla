@@ -36,7 +36,7 @@ struct AgentsWidgetCard: View {
                     VStack(spacing: 5) {
                         Image(systemName: "moon.zzz.fill")
                             .font(.system(size: 18, weight: .light))
-                            .foregroundStyle(.tertiary)
+                            .foregroundStyle(IslaInk.faint)
                         Text("No agents running")
                             .font(.system(size: 11.5, weight: .semibold))
                             .foregroundStyle(.secondary)
@@ -66,7 +66,7 @@ struct AgentsWidgetCard: View {
                             }
                         }
                         .font(.system(size: 10, weight: .medium))
-                        .foregroundStyle(.tertiary)
+                        .foregroundStyle(IslaInk.faint)
                         .lineLimit(1)
                     }
                 }
@@ -92,7 +92,7 @@ private struct AgentWidgetRow: View {
             AgentGlyph(tool: session.tool, icon: AgentMonitor.shared.iconForSession(session), size: 20,
                        working: session.state == .working)
             VStack(alignment: .leading, spacing: 0) {
-                Text(verbatim: session.project ?? session.displayTitle)
+                Text(verbatim: session.project?.readableName ?? session.displayTitle)
                     .font(.system(size: 11.5, weight: .semibold))
                     .lineLimit(1)
                 TimelineView(.periodic(from: .now, by: 20)) { context in
@@ -100,7 +100,7 @@ private struct AgentWidgetRow: View {
                         Text(session.state.title)
                             .foregroundStyle(session.state.tint)
                         Text(verbatim: "· " + AgentDuration.label(since: session.stateSince, now: context.date))
-                            .foregroundStyle(.tertiary)
+                            .foregroundStyle(IslaInk.faint)
                     }
                     .font(.system(size: 10, weight: .medium))
                     .lineLimit(1)

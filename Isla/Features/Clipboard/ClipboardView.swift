@@ -134,7 +134,7 @@ private struct ClipCard: View {
                 }
                 Text(item.date, format: .relative(presentation: .named))
                     .font(.system(size: 9.5, weight: .medium))
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(IslaInk.faint)
                     .lineLimit(1)
                 Spacer(minLength: 0)
                 if item.isPinned || hovering {

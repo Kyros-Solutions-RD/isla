@@ -279,10 +279,13 @@ private struct ChatNoServer: View {
     private let apps = LocalChat.installedServerApps()
 
     var body: some View {
-        VStack(spacing: 10) {
+        // The buttons sit right under the words, and the group is centered as one.
+        VStack(spacing: 12) {
+            Spacer(minLength: 0)
             NotchEmptyState(symbol: "bubble.left.and.text.bubble.right",
                             title: "Chat with your local models",
                             message: "Open Ollama or LM Studio and load a model. Everything stays on this Mac, with no account and no internet.")
+                .fixedSize(horizontal: false, vertical: true)
             HStack(spacing: 8) {
                 ForEach(apps, id: \.url) { app in
                     Button {
@@ -305,6 +308,7 @@ private struct ChatNoServer: View {
                 .buttonStyle(NotchPillButtonStyle(tint: .secondary))
             }
             .emerge(delay: 0.2, offset: CGSize(width: 0, height: -5))
+            Spacer(minLength: 0)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

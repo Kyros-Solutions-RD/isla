@@ -551,6 +551,16 @@
         }
       }
     },
+    "Agents running": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agentes en marcha"
+          }
+        }
+      }
+    },
     "AirDrop": {
       "localizations": {
         "es": {

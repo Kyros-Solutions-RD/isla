@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.20 — 2026-11-12
+
+- The open Nook is dark on any wallpaper. Over a white window, Liquid Glass alone turned light grey and the text lost its contrast; now a dark veil sits on the glass (the Glass tint setting still decides how much shows through), and the top melts into the camera instead of leaving a black block.
+- Faint text inside the notch is easier to read: empty states, times and hints use a brighter grey.
+- The AI tab no longer spills out of its card when an agent has a long name or folder: the folder gives way first, cut in the middle. The state, its graph and its time sit in a column of the same width on every row, also when the pointer shows the row's actions, and both columns end at the same height.
+- Names typed in capitals (a session called "ISLA - APP NOTCH MAC", a folder "NOTCHY CLONE") show as "Isla - App Notch Mac" in the AI tab, around the closed notch, in the widget and in the menu bar.
+- Model labels on the AI tab read clearly on their colored capsule.
+- Chat without a model server shows its buttons right under the explanation, the empty Search is centered, and Tasks titles its Today card like the list beside it.
+
 ## 1.1.19 — 2026-11-08
 
 - **A real little month in Calendar.** The weekday initials sit once on top and four weeks follow from the start of this one, instead of two weeks that repeated the initials on every row and left half the card empty. Past days are dimmed, days of the next month are softer, and each day answers the pointer.
