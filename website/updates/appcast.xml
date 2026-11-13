@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.20</title>
+      <pubDate>Fri, 13 Nov 2026 03:44:43 GMT</pubDate>
+      <sparkle:version>28</sparkle:version>
+      <sparkle:shortVersionString>1.1.20</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>The open Nook is dark on any wallpaper. Over a white window, Liquid Glass alone turned light grey and the text lost its contrast; now a dark veil sits on the glass (the Glass tint setting still decides how much shows through), and the top melts into the camera instead of leaving a black block.</li><li>Faint text inside the notch is easier to read: empty states, times and hints use a brighter grey.</li><li>The AI tab no longer spills out of its card when an agent has a long name or folder: the folder gives way first, cut in the middle. The state, its graph and its time sit in a column of the same width on every row, also when the pointer shows the row&#x27;s actions, and both columns end at the same height.</li><li>Names typed in capitals (a session called &quot;ISLA - APP NOTCH MAC&quot;, a folder &quot;NOTCHY CLONE&quot;) show as &quot;Isla - App Notch Mac&quot; in the AI tab, around the closed notch, in the widget and in the menu bar.</li><li>Model labels on the AI tab read clearly on their colored capsule.</li><li>Chat without a model server shows its buttons right under the explanation, the empty Search is centered, and Tasks titles its Today card like the list beside it.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.20.dmg" sparkle:edSignature="OHK8bcprZvQ5ETa4L3r7JqlMV6g/Y3lprcrIr6dnVnoCRJPNfTD5a8FfKtjGA8mXXhZC8RGxvpTGZZphYD8sCQ==" length="13152427" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.19</title>
       <pubDate>Mon, 09 Nov 2026 01:11:42 GMT</pubDate>
       <sparkle:version>27</sparkle:version>
