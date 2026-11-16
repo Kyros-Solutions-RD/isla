@@ -9,6 +9,14 @@
 #if DEBUG
 import AppKit
 
+/// Debug-only switches the demos flip to show states that need the real pointer.
+@Observable
+@MainActor
+final class DemoFlags {
+    static let shared = DemoFlags()
+    var hoverAgentRows = false
+}
+
 @MainActor
 enum DemoActivities {
     static func run(_ name: String) {
@@ -25,7 +33,7 @@ enum DemoActivities {
         case "downloaded": center.post(.downloadFinished(name: "Isla-1.0.dmg", url: URL(fileURLWithPath: NSHomeDirectory())), duration: 6)
         case "meeting": center.post(.meeting(title: "Design Review", start: .now.addingTimeInterval(240), url: nil), duration: 6)
         case "timer":
-            TimerStore.shared.startTimer(minutes: 25, label: "Focus")
+            TimerStore.shared.startTimer(minutes: 25, label: String(localized: "Focus"))
         case "timerdone": center.post(.timerFinished(label: String(localized: "Focus done")), duration: 6)
         case "shelf": center.post(.shelf(count: 3), duration: 6)
         case "track": center.post(.trackChanged, duration: 6)
@@ -83,6 +91,11 @@ enum DemoActivities {
             Preferences.shared.activitySystem = name == "system-on"
         case "system-widget":
             Preferences.shared.homeWidgets = [.media, .system, .calendar]
+        case "hover-rows-on", "hover-rows-off":
+            DemoFlags.shared.hoverAgentRows = name == "hover-rows-on"
+        case "onboarding":
+            // The welcome tour, to review it; it is only marked done by finishing it.
+            OnboardingWindowController.shared.show()
         case "peek", "unpeek":
             // The hover state, without moving the real pointer.
             guard let model = NotchManager.shared.controllers.values.first(where: { $0.model.geometry.hasHardwareNotch })?.model
@@ -91,6 +104,10 @@ enum DemoActivities {
         case "clear":
             for timer in TimerStore.shared.timers { TimerStore.shared.remove(timer) }
             center.dismissTransient()
+        case let widgets where widgets.hasPrefix("widgets="):
+            // `widgets=system,notifications,agents`: any set of Nook widgets.
+            Preferences.shared.homeWidgets = widgets.dropFirst("widgets=".count)
+                .split(separator: ",").compactMap { HomeWidget(rawValue: String($0)) }
         default: center.dismissTransient()
         }
     }

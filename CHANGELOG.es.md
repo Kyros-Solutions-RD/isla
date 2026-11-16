@@ -2,6 +2,16 @@
 
 Versión en español de [CHANGELOG.md](CHANGELOG.md). Cada sección `## x.y.z` se publica en https://isla.kyrosrd.com/novedades/.
 
+## 1.1.21 — 2026-11-16
+
+- El widget Batería muestra la batería del Mac en grande: la cifra, una barra del color que toca (verde, naranja si queda poca, rojo si queda muy poca, amarillo en modo de bajo consumo) y lo que está haciendo («Cargando», tiempo restante), con tus dispositivos Bluetooth debajo.
+- El widget Bandeja muestra tus últimos archivos lo bastante grandes para reconocerlos, cada uno con su nombre, y puedes arrastrar cualquiera directamente fuera del widget.
+- El widget Enfoque llena su tarjeta: un anillo con la fase, el tiempo, las sesiones hechas, Iniciar, Saltar y Restablecer, y los minutos de enfoque de hoy. En pausa ya no se redibuja cada segundo.
+- Los contadores ya concuerdan en español e inglés: «1 nota», «1 evento», «1 elemento», «1 pendiente», «1 palabra», «Empezar 1 minuto antes», en vez del plural.
+- Un agente que trabaja en tu carpeta personal muestra «Carpeta de inicio» en vez de un «~» suelto.
+- VoiceOver lee los widgets Batería, Enfoque y Bandeja: la carga y lo que está haciendo, el tiempo y la fase, y el nombre de cada archivo.
+- Isla lee las transcripciones de los agentes de IA solo cuando cambian: una sesión que espera o está en reposo ya no se relee cada pocos segundos. Con varios agentes abiertos, Isla gasta más o menos la mitad de CPU, con el notch cerrado y con la pestaña IA abierta.
+
 ## 1.1.20 — 2026-11-12
 
 - El Nook abierto es oscuro sobre cualquier fondo. Sobre una ventana blanca, el Liquid Glass solo se volvía gris claro y el texto perdía contraste; ahora el vidrio lleva un velo oscuro (el ajuste Tinte del vidrio sigue decidiendo cuánto se transparenta), y la parte de arriba se funde con la cámara en vez de dejar un bloque negro.

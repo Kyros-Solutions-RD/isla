@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.21 — 2026-11-16
+
+- The Battery widget shows the Mac's battery large: the figure, a bar in the right color (green, orange when low, red when very low, yellow in Low Power Mode) and what it is doing ("Charging", time left), with your Bluetooth devices under it.
+- The Shelf widget shows your latest files large enough to recognize, each with its name, and you can drag any of them straight out of the widget.
+- The Focus widget fills its card: a ring with the phase, the time, the sessions done, Start, Skip and Reset, and today's focused minutes. Paused, it no longer redraws every second.
+- Counts read right in Spanish and English: "1 nota", "1 evento", "1 elemento", "1 pendiente", "1 palabra", "Empezar 1 minuto antes", instead of the plural.
+- An agent working in your home folder shows "Home folder" instead of a lone "~".
+- VoiceOver reads the Battery, Focus and Shelf widgets: the charge and what it is doing, the time and the phase, and each file's name.
+- Isla reads the transcripts of AI agents only when they change: a waiting or idle session no longer gets re-read every few seconds. With several agents open, Isla uses about half the CPU, with the notch closed and with the AI tab open.
+
 ## 1.1.20 — 2026-11-12
 
 - The open Nook is dark on any wallpaper. Over a white window, Liquid Glass alone turned light grey and the text lost its contrast; now a dark veil sits on the glass (the Glass tint setting still decides how much shows through), and the top melts into the camera instead of leaving a black block.

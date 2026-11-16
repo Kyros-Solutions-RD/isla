@@ -112,7 +112,7 @@ struct AgentSession: Identifiable, Equatable {
     /// The project and the folder it sits in: "MACBOOK › NOTCHY CLONE".
     var shortFolder: String? {
         guard let folder, folder != "/" else { return nil }
-        if folder == NSHomeDirectory() { return "~" }
+        if folder == NSHomeDirectory() { return String(localized: "Home folder") }
         let parts = folder.split(separator: "/").suffix(2)
         return parts.joined(separator: " › ")
     }

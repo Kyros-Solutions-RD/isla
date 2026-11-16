@@ -297,28 +297,81 @@ struct FocusWidgetCard: View {
 
     var body: some View {
         IslaCard(padding: 11) {
-            TimelineView(.periodic(from: .now, by: 1)) { context in
-                let state = store.pomodoro
-                let remaining = state.remaining(at: context.date)
-                VStack(alignment: .leading, spacing: 6) {
-                    CardHeader(title: "Focus", symbol: state.phase.symbol, tint: state.phase.tint)
-                    Spacer(minLength: 0)
-                    Text(remaining.clockString)
-                        .font(.system(size: 28, weight: .bold, design: .rounded))
-                        .monospacedDigit()
-                        .contentTransition(.numericText(countsDown: true))
-                    ProgressView(value: 1 - remaining / max(1, state.phaseDuration))
-                        .tint(state.phase.tint)
-                    HStack {
-                        Text(state.phase.title).font(.system(size: 10.5, weight: .semibold)).foregroundStyle(.secondary)
-                        Spacer()
-                        Button { store.togglePomodoro() } label: {
-                            Image(systemName: state.isRunning ? "pause.fill" : "play.fill")
+            let state = store.pomodoro
+            VStack(alignment: .leading, spacing: 8) {
+                CardHeader(title: "Focus", symbol: state.phase.symbol, tint: state.phase.tint)
+                Spacer(minLength: 0)
+                // Ticks once a second only while it runs; paused or not started, it rests.
+                Group {
+                    if state.isRunning {
+                        TimelineView(.periodic(from: .now, by: 1)) { context in
+                            dial(state: state, remaining: state.remaining(at: context.date))
                         }
-                        .buttonStyle(NotchIconButtonStyle(size: 26, prominent: true))
+                    } else {
+                        dial(state: state, remaining: state.remaining(at: .now))
+                    }
+                }
+                Spacer(minLength: 0)
+                HStack(spacing: 6) {
+                    Button { store.togglePomodoro() } label: {
+                        Image(systemName: state.isRunning ? "pause.fill" : "play.fill")
+                    }
+                    .buttonStyle(NotchIconButtonStyle(size: 28, prominent: true))
+                    .accessibilityLabel(state.isRunning ? Text("Pause") : Text("Start"))
+                    Button { store.skipPomodoroPhase() } label: { Image(systemName: "forward.end.fill") }
+                        .buttonStyle(NotchIconButtonStyle(size: 26))
+                        .accessibilityLabel(Text("Skip"))
+                    if state.isStarted {
+                        Button { store.resetPomodoro() } label: { Image(systemName: "arrow.counterclockwise") }
+                            .buttonStyle(NotchIconButtonStyle(size: 26))
+                            .accessibilityLabel(Text("Reset"))
+                            .transition(.scale(scale: 0.6).combined(with: .opacity))
+                    }
+                    Spacer(minLength: 0)
+                    Text("\(store.focusMinutesToday) min focused today")
+                        .font(.system(size: 10, weight: .medium))
+                        .foregroundStyle(IslaInk.faint)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                }
+                .animation(IslaMotion.snappy, value: state.isStarted)
+            }
+        }
+    }
+
+    /// The ring with the phase inside it, and the time beside it with the sessions done.
+    private func dial(state: PomodoroState, remaining: TimeInterval) -> some View {
+        let cycles = max(1, Preferences.shared.pomodoroCyclesBeforeLongBreak)
+        let done = state.completedFocusSessions % cycles
+        return HStack(spacing: 12) {
+            ZStack {
+                ProgressRing(progress: 1 - remaining / max(1, state.phaseDuration), tint: state.phase.tint,
+                             lineWidth: 4, animated: false)
+                Image(systemName: state.phase.symbol)
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundStyle(state.phase.tint)
+            }
+            .frame(width: 52, height: 52)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(remaining.clockString)
+                    .font(.system(size: 26, weight: .bold, design: .rounded))
+                    .monospacedDigit()
+                    .contentTransition(.numericText(countsDown: true))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+                HStack(spacing: 4) {
+                    Text(state.phase.title)
+                        .font(.system(size: 10.5, weight: .semibold))
+                        .foregroundStyle(IslaInk.secondary)
+                    ForEach(0..<cycles, id: \.self) { index in
+                        Circle()
+                            .fill(index < done ? state.phase.tint : Color.white.opacity(0.18))
+                            .frame(width: 5, height: 5)
                     }
                 }
             }
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: "\(remaining.clockString), \(state.phase.title)"))
     }
 }

@@ -119,6 +119,10 @@ enum AgentTranscript {
     /// The latest thing the session did and the model it uses, from the tail of its transcript.
     static func info(sessionID: String, folder: String?) -> TranscriptInfo {
         guard let url = location(sessionID: sessionID, folder: folder) else { return TranscriptInfo() }
+        return TranscriptCache.info(for: url) { read(url) }
+    }
+
+    private static func read(_ url: URL) -> TranscriptInfo {
         var info = TranscriptInfo()
         JSONLines.scanTail(of: url, windows: [96 * 1024, 768 * 1024], limit: 60) { object in
             if info.step == nil { info.step = step(from: object) }
@@ -278,6 +282,10 @@ enum CodexTranscript {
 
     /// Whether a turn is running, its latest step, the model and the usage limit.
     static func info(_ url: URL) -> TranscriptInfo {
+        TranscriptCache.info(for: url) { read(url) }
+    }
+
+    private static func read(_ url: URL) -> TranscriptInfo {
         var info = TranscriptInfo()
         var settled = false
         JSONLines.scanTail(of: url, windows: [256 * 1024, 2 * 1024 * 1024], limit: 120) { object in
@@ -462,10 +470,49 @@ enum JSONLines {
         }
     }
 
-    static func date(_ string: String) -> Date? {
+    /// Made once: building a date formatter costs far more than using one, and transcripts
+    /// have a date on every line. (Parsing with a shared ISO8601DateFormatter is thread-safe.)
+    nonisolated(unsafe) private static let fractional: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        return formatter.date(from: string) ?? ISO8601DateFormatter().date(from: string)
+        return formatter
+    }()
+    nonisolated(unsafe) private static let whole = ISO8601DateFormatter()
+
+    static func date(_ string: String) -> Date? {
+        fractional.date(from: string) ?? whole.date(from: string)
+    }
+}
+
+/// What a transcript says only changes when the file does. A session that is waiting or idle
+/// keeps the same file, so its last reading is reused until the file's size or date moves,
+/// instead of parsing up to a megabyte of JSON every couple of seconds.
+enum TranscriptCache {
+    private struct Entry {
+        let size: Int
+        let modified: Date
+        let info: TranscriptInfo
+    }
+
+    private static let lock = NSLock()
+    nonisolated(unsafe) private static var entries: [String: Entry] = [:]
+
+    static func info(for url: URL, read: () -> TranscriptInfo) -> TranscriptInfo {
+        let values = try? url.resourceValues(forKeys: [.fileSizeKey, .contentModificationDateKey])
+        let size = values?.fileSize ?? -1
+        let modified = values?.contentModificationDate ?? .distantPast
+        lock.lock()
+        if let entry = entries[url.path], entry.size == size, entry.modified == modified {
+            lock.unlock()
+            return entry.info
+        }
+        lock.unlock()
+        let info = read()
+        lock.lock()
+        if entries.count > 64 { entries.removeAll() }
+        entries[url.path] = Entry(size: size, modified: modified, info: info)
+        lock.unlock()
+        return info
     }
 }
 

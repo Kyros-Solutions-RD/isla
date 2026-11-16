@@ -53,18 +53,46 @@ struct DevicesCard: View {
 
     var body: some View {
         IslaCard(padding: 11) {
-            VStack(alignment: .leading, spacing: 7) {
-                CardHeader(title: "Battery", symbol: "battery.75percent", tint: .green)
-                if battery.hasBattery {
-                    HStack(spacing: 8) {
-                        Image(systemName: "laptopcomputer").font(.system(size: 14)).frame(width: 20)
-                        Text("Mac").font(.system(size: 11.5, weight: .medium))
-                        Spacer()
-                        Text("\(battery.level)%").font(.system(size: 11.5, weight: .semibold, design: .rounded)).monospacedDigit()
-                        BatteryGlyph(level: battery.level, charging: battery.isCharging, width: 20)
+            VStack(alignment: .leading, spacing: 8) {
+                CardHeader(title: "Battery", symbol: battery.isCharging ? "battery.100percent.bolt" : "battery.75percent", tint: .green) {
+                    if battery.isLowPowerMode {
+                        Image(systemName: "leaf.fill")
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundStyle(.yellow)
+                            .help(String(localized: "Low Power Mode"))
                     }
                 }
-                ForEach(bluetooth.connected.prefix(3)) { device in
+                if battery.hasBattery {
+                    // The Mac's own battery, large: the figure, a bar and what it is doing.
+                    HStack(alignment: .firstTextBaseline, spacing: 2) {
+                        Text("\(battery.level)")
+                            .font(.system(size: 30, weight: .bold, design: .rounded))
+                            .monospacedDigit()
+                            .contentTransition(.numericText(value: Double(battery.level)))
+                        Text(verbatim: "%")
+                            .font(.system(size: 15, weight: .bold, design: .rounded))
+                            .foregroundStyle(IslaInk.secondary)
+                        Spacer(minLength: 4)
+                        BatteryGlyph(level: battery.level, charging: battery.isCharging || battery.isPluggedIn, width: 30)
+                    }
+                    .animation(IslaMotion.snappy, value: battery.level)
+                    // VoiceOver reads the figure and the state once, as one sentence.
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(Text(verbatim: "\(battery.level)% · \(battery.statusDescription)"))
+                    MeterBar(fraction: Double(battery.level) / 100, tint: levelTint)
+                        .frame(height: 6)
+                        .accessibilityHidden(true)
+                    Label {
+                        Text(verbatim: battery.statusDescription)
+                    } icon: {
+                        Image(systemName: battery.isCharging ? "bolt.fill" : (battery.isPluggedIn ? "powerplug.fill" : "clock"))
+                    }
+                    .font(.system(size: 11, weight: .medium))
+                    .foregroundStyle(IslaInk.secondary)
+                    .lineLimit(1)
+                    .accessibilityHidden(true)
+                }
+                ForEach(bluetooth.connected.prefix(battery.hasBattery ? 2 : 4)) { device in
                     HStack(spacing: 8) {
                         Image(systemName: device.kind.symbol).font(.system(size: 13)).frame(width: 20)
                         Text(device.name).font(.system(size: 11.5, weight: .medium)).lineLimit(1)
@@ -83,6 +111,12 @@ struct DevicesCard: View {
                 Spacer(minLength: 0)
             }
         }
+    }
+
+    private var levelTint: Color {
+        if battery.level <= 10 && !battery.isCharging { return .red }
+        if battery.level <= 20 && !battery.isCharging { return .orange }
+        return battery.isLowPowerMode ? .yellow : .green
     }
 }
 
@@ -103,13 +137,27 @@ struct ShelfPreviewCard: View {
                         .foregroundStyle(.secondary)
                     Spacer(minLength: 0)
                 } else {
-                    HStack(spacing: -10) {
-                        ForEach(shelf.items.suffix(4)) { item in
-                            Image(nsImage: shelf.thumbnails[item.id] ?? NSWorkspace.shared.icon(forFile: item.url.path))
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 40, height: 40)
-                                .shadow(radius: 3)
+                    // The latest files, large enough to recognize, each with its name; drag one
+                    // straight out of the widget.
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 3), spacing: 8) {
+                        ForEach(Array(shelf.items.suffix(6).reversed())) { item in
+                            VStack(spacing: 3) {
+                                Image(nsImage: shelf.thumbnails[item.id] ?? NSWorkspace.shared.icon(forFile: item.url.path))
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 38, height: 38)
+                                Text(verbatim: item.url.lastPathComponent)
+                                    .font(.system(size: 9.5, weight: .medium))
+                                    .foregroundStyle(IslaInk.secondary)
+                                    .lineLimit(1)
+                                    .truncationMode(.middle)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .contentShape(Rectangle())
+                            .onDrag { NSItemProvider(contentsOf: item.url) ?? NSItemProvider() }
+                            .help(item.url.lastPathComponent)
+                            .accessibilityElement(children: .ignore)
+                            .accessibilityLabel(Text(verbatim: item.url.lastPathComponent))
                         }
                     }
                     Spacer(minLength: 0)

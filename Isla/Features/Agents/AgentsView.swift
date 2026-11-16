@@ -149,6 +149,14 @@ private struct CountChip: View {
 private struct AgentRow: View {
     let session: AgentSession
     @State private var hovering = false
+
+    /// The row's actions replace its state under the pointer (or, in Debug, for a capture).
+    private var showsActions: Bool {
+        #if DEBUG
+        if DemoFlags.shared.hoverAgentRows { return true }
+        #endif
+        return hovering
+    }
     private let monitor = AgentMonitor.shared
     static let statusWidth: CGFloat = 112
 
@@ -174,7 +182,7 @@ private struct AgentRow: View {
             // One column of the same width on every row: the state, its graph and time, or,
             // under the pointer, the row's actions, all lined up from row to row.
             ZStack(alignment: .trailing) {
-                if hovering {
+                if showsActions {
                     actions
                         .transition(.blurReplace.combined(with: .opacity))
                 } else {
