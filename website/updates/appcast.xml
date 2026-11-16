@@ -6,6 +6,16 @@
     <description>Isla updates</description>
     <language>es</language>
     <item>
+      <title>Isla 1.1.21</title>
+      <pubDate>Mon, 16 Nov 2026 07:47:33 GMT</pubDate>
+      <sparkle:version>29</sparkle:version>
+      <sparkle:shortVersionString>1.1.21</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      <sparkle:fullReleaseNotesLink>https://isla.kyrosrd.com/novedades/</sparkle:fullReleaseNotesLink>
+      <description><![CDATA[<ul><li>The Battery widget shows the Mac&#x27;s battery large: the figure, a bar in the right color (green, orange when low, red when very low, yellow in Low Power Mode) and what it is doing (&quot;Charging&quot;, time left), with your Bluetooth devices under it.</li><li>The Shelf widget shows your latest files large enough to recognize, each with its name, and you can drag any of them straight out of the widget.</li><li>The Focus widget fills its card: a ring with the phase, the time, the sessions done, Start, Skip and Reset, and today&#x27;s focused minutes. Paused, it no longer redraws every second.</li><li>Counts read right in Spanish and English: &quot;1 nota&quot;, &quot;1 evento&quot;, &quot;1 elemento&quot;, &quot;1 pendiente&quot;, &quot;1 palabra&quot;, &quot;Empezar 1 minuto antes&quot;, instead of the plural.</li><li>An agent working in your home folder shows &quot;Home folder&quot; instead of a lone &quot;~&quot;.</li><li>VoiceOver reads the Battery, Focus and Shelf widgets: the charge and what it is doing, the time and the phase, and each file&#x27;s name.</li><li>Isla reads the transcripts of AI agents only when they change: a waiting or idle session no longer gets re-read every few seconds. With several agents open, Isla uses about half the CPU, with the notch closed and with the AI tab open.</li></ul>]]></description>
+      <enclosure url="https://isla.kyrosrd.com/downloads/Isla-1.1.21.dmg" sparkle:edSignature="Tiaf9frhaSCNFBbq0A4S8Iom2WnKLwYc+afx0eBsqaUc8yFJOW9ug58cy+PBZS6XgUYEBgKkye8ma9jd2BKQCg==" length="13202517" type="application/octet-stream"/>
+    </item>
+    <item>
       <title>Isla 1.1.20</title>
       <pubDate>Fri, 13 Nov 2026 03:44:43 GMT</pubDate>
       <sparkle:version>28</sparkle:version>
